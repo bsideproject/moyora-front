@@ -1,10 +1,10 @@
-# Next Zustand React-Query Template
+# Moyora Front Project
 
 ## Quick start
 
 ```
-https://github.com/Kir93/next-zustand-reactQuery-template.git use this template and make project
-git clone https://github.com/Kir93/{PROJECT_NAME}.git
+https://github.com/Kir93/moyora-front.git use this template and make project
+git clone https://github.com/moyora/{PROJECT_NAME}.git
 ```
 
 1. styles folder theme.ts, antd.less theme changed
@@ -16,13 +16,13 @@ git clone https://github.com/Kir93/{PROJECT_NAME}.git
 
 ## Repository short explanation
 
-NextJS Simple Template
+Moyora Front Project
 
 - FrameWork : NextJS
 - Styling : Styled Components, Antd Theme
 - Store : Zustand
 - API : React Query
-- Test : Cypress
+- Test : Cypress[ Not Used :( ]
 
 ## Package Version
 
