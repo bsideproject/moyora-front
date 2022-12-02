@@ -31,8 +31,8 @@ Important library version history
 | Name              | Version |
 | :---------------- | :------ |
 | react             | v18.2.0 |
-| next              | v13.0.3 |
+| next              | v13.0.5 |
 | styled-components | v5.3.6  |
-| antd              | v4.24.1 |
+| antd              | v5.0.3  |
 | zustand           | v4.1.4  |
 | react-query       | v3.39.2 |
