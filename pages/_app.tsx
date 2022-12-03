@@ -5,8 +5,8 @@ import Head from 'next/head';
 import localFont from '@next/font/local';
 import { AppProps } from 'next/app';
 import { ThemeProvider } from 'styled-components';
-import { ReactQueryDevtools } from 'react-query/devtools';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import theme from '@styles/theme';
 
