@@ -29,8 +29,11 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => (
     {process.env.NODE_ENV !== 'production' ? <ReactQueryDevtools initialIsOpen={false} /> : null}
     <ThemeProvider theme={theme}>
       <Head>
-        <title>Next Template</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>moyora - 우리학교 다시 모여라!</title>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, minimal-scale=1"
+        />
       </Head>
       <AppLayout>
         <main className={pretendard.className}>
