@@ -11,6 +11,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import theme from '@styles/theme';
 
 import AppLayout from '@components/Layout/AppLayout';
+import { ConfigProvider } from 'antd';
 
 const client = new QueryClient({
   defaultOptions: {
@@ -24,23 +25,35 @@ const pretendard = localFont({
   src: '../public/font/PretendardVariable.ttf',
 });
 
+const antdTheme = {
+  token: {
+    colorPrimary: '#FF6D3A',
+    colorError: '#D82C0D',
+    colorSuccess: '#2C6ECB',
+    fontFamily: `'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui,
+    Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif`,
+  },
+};
+
 const App: React.FC<AppProps> = ({ Component, pageProps }) => (
   <QueryClientProvider client={client}>
     {process.env.NODE_ENV !== 'production' ? <ReactQueryDevtools initialIsOpen={false} /> : null}
-    <ThemeProvider theme={theme}>
-      <Head>
-        <title>moyora - 우리학교 다시 모여라!</title>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, maximum-scale=1, minimal-scale=1"
-        />
-      </Head>
-      <AppLayout>
-        <main className={pretendard.className}>
-          <Component {...pageProps} />
-        </main>
-      </AppLayout>
-    </ThemeProvider>
+    <ConfigProvider theme={antdTheme}>
+      <ThemeProvider theme={theme}>
+        <Head>
+          <title>moyora - 우리학교 다시 모여라!</title>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, maximum-scale=1, minimal-scale=1"
+          />
+        </Head>
+        <AppLayout>
+          <main className={pretendard.className}>
+            <Component {...pageProps} />
+          </main>
+        </AppLayout>
+      </ThemeProvider>
+    </ConfigProvider>
   </QueryClientProvider>
 );
 
