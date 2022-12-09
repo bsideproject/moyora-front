@@ -13,7 +13,7 @@
     "cypress:run": "cypress run",
     "type-check": "tsc",
     "depcheck": "npx depcheck",
-    "svgo": "npx svgo -f public/svgs",
+    "svgo": "npx svgo -f public/svgs/**",
     "prepare": "husky install",
     "lint-staged": "lint-staged",
     "style:lint": "stylelint '**/*.styles.{tsx,ts,jsx,js}' --fix"

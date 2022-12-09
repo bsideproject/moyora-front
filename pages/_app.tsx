@@ -32,6 +32,7 @@ const antdTheme = {
     colorSuccess: '#2C6ECB',
     fontFamily: `'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui,
     Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif`,
+    fontSize: 16,
   },
 };
 
