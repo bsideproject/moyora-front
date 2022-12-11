@@ -9,11 +9,11 @@ import LinkIcon from '@public/svgs/icons/moyora-icons-link.svg';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
 
-import L from '@components/Login/LoginComplete.styles';
+import L from '@components/SignUp/SignUpComplete.styles';
 
 dayjs.locale('ko');
 
-const LoginComplete: React.FC = () => {
+const SignUpComplete: React.FC = () => {
   const [diffD, setDiffD] = useState('00');
   const [diffH, setDiffH] = useState('00');
   const [diffM, setDiffM] = useState('00');
@@ -40,7 +40,7 @@ const LoginComplete: React.FC = () => {
   }, []);
 
   return (
-    <L.LoginCompleteWrapper>
+    <L.SignUpCompleteWrapper>
       <L.LogoSection>
         <Image src={LogoSmall} alt="moyora-logo" />
       </L.LogoSection>
@@ -72,8 +72,8 @@ const LoginComplete: React.FC = () => {
           </div>
         </L.shareSection>
       </div>
-    </L.LoginCompleteWrapper>
+    </L.SignUpCompleteWrapper>
   );
 };
 
-export default LoginComplete;
+export default SignUpComplete;

@@ -8,7 +8,7 @@ const LogoSection = styled.section`
   height: 56rem;
 `;
 
-const LoginCompleteWrapper = styled.section`
+const SignUpCompleteWrapper = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -91,10 +91,10 @@ const shareSection = styled.div`
   }
 `;
 
-const LC = {
-  LoginCompleteWrapper,
+const SC = {
+  SignUpCompleteWrapper,
   LogoSection,
   shareSection,
 };
 
-export default LC;
+export default SC;
