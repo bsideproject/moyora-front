@@ -91,10 +91,10 @@ const shareSection = styled.div`
   }
 `;
 
-const SC = {
+const S = {
   SignUpCompleteWrapper,
   LogoSection,
   shareSection,
 };
 
-export default SC;
+export default S;
