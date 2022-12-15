@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import { Button, Progress } from 'antd';
+import { Progress } from 'antd';
 
 import Moyora from '@public/svgs/logos/moyora-logo-small.svg';
 import Step1Disabled from '@public/svgs/steps/step1-disabled.svg';
