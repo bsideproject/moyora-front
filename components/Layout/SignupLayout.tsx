@@ -2,15 +2,15 @@ import React from 'react';
 import Image from 'next/image';
 import { Progress } from 'antd';
 
-import Moyora from '@public/svgs/logos/moyora-logo-small.svg';
-import Step1Disabled from '@public/svgs/steps/step1-disabled.svg';
-import Step2Disabled from '@public/svgs/steps/step2-disabled.svg';
-import Step3Disabled from '@public/svgs/steps/step3-disabled.svg';
-import Step4Disabled from '@public/svgs/steps/step4-disabled.svg';
-import Step1Active from '@public/svgs/steps/step1-active.svg';
-import Step2Active from '@public/svgs/steps/step2-active.svg';
-import Step3Active from '@public/svgs/steps/step3-active.svg';
-import Step4Active from '@public/svgs/steps/step4-active.svg';
+import Moyora from '@public/svgs/moyora-logo-small.svg';
+import Step1Disabled from '@public/svgs/step1-disabled.svg';
+import Step2Disabled from '@public/svgs/step2-disabled.svg';
+import Step3Disabled from '@public/svgs/step3-disabled.svg';
+import Step4Disabled from '@public/svgs/step4-disabled.svg';
+import Step1Active from '@public/svgs/step1-active.svg';
+import Step2Active from '@public/svgs/step2-active.svg';
+import Step3Active from '@public/svgs/step3-active.svg';
+import Step4Active from '@public/svgs/step4-active.svg';
 
 import L from './Layout.styles';
 
@@ -18,6 +18,7 @@ type TStep = '1' | '2' | '3' | '4';
 
 interface IProps {
   step: TStep;
+  onClick: () => void;
   children: React.ReactElement;
 }
 
@@ -28,7 +29,7 @@ const StepContents = {
   '4': { disabled: Step4Disabled, active: Step4Active, title: '어디에 거주하고 계시나요?' },
 };
 
-const SignupLayout: React.FC<IProps> = ({ step, children }) => {
+const SignupLayout: React.FC<IProps> = ({ step, onClick, children }) => {
   return (
     <L.SignupStepWrapper>
       <Image src={Moyora} alt="moyora-logo" />
@@ -58,7 +59,7 @@ const SignupLayout: React.FC<IProps> = ({ step, children }) => {
       </L.SignupStepWrap>
       <h2>{StepContents[step].title}</h2>
       <section>{children}</section>
-      <L.SignupButton type="primary" disabled>
+      <L.SignupButton type="primary" onClick={onClick}>
         다음
       </L.SignupButton>
     </L.SignupStepWrapper>

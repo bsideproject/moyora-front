@@ -2,8 +2,8 @@ import React from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
-import Logo from '@public/svgs/logos/moyora-logo.svg';
-import KakaoLogo from '@public/svgs/logos/kakao-logo.svg';
+import Logo from '@public/svgs/moyora-logo.svg';
+import KakaoLogo from '@public/svgs/kakao-logo.svg';
 
 import L from '@components/Login/Login.styles';
 
