@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import Image from 'next/image';
 import { useToggle } from 'react-use';
 
@@ -9,8 +9,12 @@ import SelectAllow from '@public/svgs/select-allow.svg';
 import S from './Signup.styles';
 
 const StepOne: React.FC = () => {
+  const [graduationYear, setGraduationYear] = useState('');
   const options = useMemo(() => getGraduationYear(), []);
   const [isDefault, onToggle] = useToggle(true);
+
+  const onSelectGraduationYear = (value: unknown) => setGraduationYear(value as string);
+
   return (
     <S.SignupInputWrapper>
       <h3>졸업하신 초등학교는 어디인가요?</h3>
@@ -22,12 +26,14 @@ const StepOne: React.FC = () => {
           onClick={() => alert('clicked')}
         />
       ) : (
-        <S.SignupInput placeholder="학교명 입력" />
+        <S.SignupInput isFill placeholder="학교명 입력" />
       )}
       <h3>{isDefault ? '졸업연도는 언제인가요?' : '학교 위치는 어디인가요?'}</h3>
       {isDefault ? (
         <S.SignupSelect
           placeholder="졸업연도"
+          isFill={Boolean(graduationYear)}
+          onChange={onSelectGraduationYear}
           options={options}
           suffixIcon={<Image src={SelectAllow} alt="select-allow" />}
         />
