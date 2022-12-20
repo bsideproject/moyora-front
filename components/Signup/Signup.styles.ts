@@ -1,4 +1,4 @@
-import { Drawer, Input, Select } from 'antd';
+import { Collapse, Drawer, Input, Select } from 'antd';
 import styled from 'styled-components';
 
 interface IInputPublicProps {
@@ -10,23 +10,31 @@ const SignupInputWrapper = styled.div`
 
   & h3 {
     margin: 24rem 0 12rem;
-    font-size: 16px;
+    font-size: 16rem;
     font-weight: 500;
     color: ${({ theme }) => theme.gray800};
     text-align: left;
   }
 
+  & h4 {
+    margin-top: 8rem;
+    font-size: 14rem;
+    font-weight: 400;
+    color: ${({ theme }) => theme.gray600};
+    text-align: left;
+  }
+
   & > p {
     margin: 72rem 0 12rem;
-    font-size: 14px;
+    font-size: 14rem;
     font-weight: 400;
-    line-height: 20px;
+    line-height: 20rem;
     color: ${({ theme }) => theme.gray600};
     text-align: center;
   }
 
   & > button {
-    font-size: 14px;
+    font-size: 14rem;
     font-weight: 500;
     color: ${({ theme }) => theme.gray700};
     text-decoration: underline;
@@ -44,7 +52,7 @@ const SearchButton = styled(Input.Search)<IInputPublicProps>`
   & input {
     cursor: pointer;
   }
-  border: 1px solid ${({ theme, isFill }) => (isFill ? theme.gray500 : theme.gray200)};
+  border: 1rem solid ${({ theme, isFill }) => (isFill ? theme.gray500 : theme.gray200)};
   border-radius: 8rem;
   & button {
     border: 0;
@@ -57,12 +65,16 @@ const SearchButton = styled(Input.Search)<IInputPublicProps>`
 const SignupInput = styled(Input)<IInputPublicProps>`
   padding: 9rem 10rem;
   font-weight: 400;
-  border: 1px solid ${({ theme, isFill }) => (isFill ? theme.gray500 : theme.gray200)};
+  border: 1rem solid ${({ theme, isFill }) => (isFill ? theme.gray500 : theme.gray200)};
   border-radius: 8rem;
+
+  & + & {
+    margin-top: 12rem;
+  }
 
   &.ant-input-affix-wrapper-readonly {
     &:hover {
-      border: 1px solid ${({ theme }) => theme.gray200};
+      border: 1rem solid ${({ theme }) => theme.gray200};
     }
     & * {
       cursor: pointer;
@@ -114,12 +126,53 @@ const JobDrawer = styled(Drawer)`
   }
 `;
 
+const SignupCollapse = styled(Collapse)`
+  & div.ant-collapse-item-active {
+    & div.ant-collapse-header {
+      & span {
+        color: ${({ theme }) => theme.primary};
+      }
+    }
+  }
+  & div.ant-collapse-header {
+    padding: 15.5rem 4rem !important;
+    border-bottom: 1rem solid ${({ theme }) => theme.gray50};
+    & span {
+      font-size: 16rem;
+      font-weight: 500;
+    }
+  }
+
+  & div.ant-collapse-content-box {
+    padding: 16rem 4rem !important;
+    background-color: ${({ theme }) => theme.gray50};
+
+    & li {
+      padding: 10rem 24rem;
+      font-size: 16rem;
+      font-weight: 500;
+      cursor: pointer;
+
+      &.all {
+        color: ${({ theme }) => theme.primary};
+      }
+    }
+  }
+`;
+
+const Panel = styled(Collapse.Panel)`
+  text-align: left;
+  border-bottom: 1rem solid ${({ theme }) => theme.gray200};
+`;
+
 const S = {
   SignupInputWrapper,
   SignupInput,
   SearchButton,
   SignupSelect,
   JobDrawer,
+  SignupCollapse,
+  Panel,
 };
 
 export default S;
