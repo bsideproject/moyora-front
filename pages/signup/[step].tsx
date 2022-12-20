@@ -19,15 +19,19 @@ const StepSection = {
 
 const Signup: React.FC = () => {
   const router = useRouter();
+  const isAddSchool = router.query?.isAddSchool as string | undefined;
   const step = (router.query?.step ?? '1') as TStep;
 
   const onClick = () => {
+    if (step === '1' && isAddSchool) {
+      router.replace('/signup/1');
+    }
     if (step === '4') router.push('/');
     else router.push(`/signup/${parseInt(step ?? '1') + 1}`, '', { shallow: true });
   };
 
   return (
-    <SignupLayout step={step} onClick={onClick}>
+    <SignupLayout step={step} onClick={onClick} isAddSchool={isAddSchool}>
       {StepSection[step]}
     </SignupLayout>
   );

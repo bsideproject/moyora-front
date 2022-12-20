@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import Image from 'next/image';
-import { useToggle } from 'react-use';
+import { useRouter } from 'next/router';
 
 import getGraduationYear from '@utils/getGraduationYear';
 
@@ -9,16 +9,21 @@ import SelectAllow from '@public/svgs/select-allow.svg';
 import S from './Signup.styles';
 
 const StepOne: React.FC = () => {
+  const router = useRouter();
+  const isAddSchool = router.query?.isAddSchool as string | undefined;
   const [graduationYear, setGraduationYear] = useState('');
   const options = useMemo(() => getGraduationYear(), []);
-  const [isDefault, onToggle] = useToggle(true);
 
   const onSelectGraduationYear = (value: unknown) => setGraduationYear(value as string);
+
+  const onClickAddSchool = () => {
+    router.replace('/signup/1?isAddSchool=true', '/signup/1', { shallow: true });
+  };
 
   return (
     <S.SignupInputWrapper>
       <h3>졸업하신 초등학교는 어디인가요?</h3>
-      {isDefault ? (
+      {!isAddSchool ? (
         <S.SearchButton
           readOnly
           bordered={false}
@@ -26,10 +31,13 @@ const StepOne: React.FC = () => {
           onClick={() => alert('clicked')}
         />
       ) : (
-        <S.SignupInput isFill placeholder="학교명 입력" />
+        <>
+          <S.SignupInput isFill placeholder="학교명 입력" />
+          <h4>학교명 전체를 입력해 주세요. (예: 모여라초등학교)</h4>
+        </>
       )}
-      <h3>{isDefault ? '졸업연도는 언제인가요?' : '학교 위치는 어디인가요?'}</h3>
-      {isDefault ? (
+      <h3>{!isAddSchool ? '졸업연도는 언제인가요?' : '학교 위치는 어디인가요?'}</h3>
+      {!isAddSchool ? (
         <S.SignupSelect
           placeholder="졸업연도"
           isFill={Boolean(graduationYear)}
@@ -53,14 +61,14 @@ const StepOne: React.FC = () => {
           />
         </div>
       )}
-      {isDefault ? (
+      {!isAddSchool ? (
         <>
           <p>
             학교 검색이 안되시나요?
             <br />
             졸업하신 학교를 직접 등록하실 수 있습니다.
           </p>
-          <button onClick={onToggle}>학교 직접 등록하기</button>
+          <button onClick={onClickAddSchool}>학교 직접 등록하기</button>
         </>
       ) : null}
     </S.SignupInputWrapper>
