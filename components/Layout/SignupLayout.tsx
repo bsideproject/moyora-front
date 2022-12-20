@@ -19,6 +19,7 @@ type TStep = '1' | '2' | '3' | '4';
 interface IProps {
   step: TStep;
   onClick: () => void;
+  isAddSchool?: string;
   children: React.ReactElement;
 }
 
@@ -29,7 +30,7 @@ const StepContents = {
   '4': { disabled: Step4Disabled, active: Step4Active, title: '어디에 거주하고 계시나요?' },
 };
 
-const SignupLayout: React.FC<IProps> = ({ step, onClick, children }) => {
+const SignupLayout: React.FC<IProps> = ({ step, onClick, isAddSchool, children }) => {
   return (
     <L.SignupStepWrapper>
       <Image src={Moyora} alt="moyora-logo" />
@@ -60,7 +61,7 @@ const SignupLayout: React.FC<IProps> = ({ step, onClick, children }) => {
       <h2>{StepContents[step].title}</h2>
       <section>{children}</section>
       <L.SignupButton type="primary" onClick={onClick}>
-        다음
+        {isAddSchool ? '등록' : '다음'}
       </L.SignupButton>
     </L.SignupStepWrapper>
   );
