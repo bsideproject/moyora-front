@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import LogoSmall from '@public/svgs/logos/moyora-logo-small.svg';
+import LogoSmall from '@public/svgs/moyora-logo-small.svg';
 
 import LSS from './LogoSmallSection.styles';
 
