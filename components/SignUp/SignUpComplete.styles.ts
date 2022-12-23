@@ -3,36 +3,41 @@ import styled from 'styled-components';
 const SignUpCompleteWrapper = styled.section`
   display: flex;
   flex-direction: column;
-  align-items: center;
 
   & > div {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
+    width: 100%;
     margin-top: 68rem;
+    text-align: center;
 
     & > h3 {
+      margin-top: 43rem;
       font-size: 20rem;
       font-weight: 700;
-      line-height: 28rem;
       color: ${({ theme }) => theme.gray900};
-      margin-top: 43rem;
     }
 
     & > h2 {
+      margin-top: 20rem;
       font-size: 28rem;
       font-weight: 700;
-      line-height: 40rem;
       color: ${({ theme }) => theme.gray900};
-      margin-top: 20rem;
+
+      & span {
+        display: inline-block;
+        width: 35rem;
+      }
     }
 
     & > p {
       margin-top: 8rem;
       font-size: 16rem;
-      line-height: 24rem;
       font-weight: 400;
+      line-height: 24rem;
       color: ${({ theme }) => theme.gray800};
-      margin-top: 8rem;
     }
   }
 `;
@@ -53,8 +58,8 @@ const shareSection = styled.div`
   & div {
     display: flex;
     flex-direction: row;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     & > div {
       display: flex;
       flex-direction: column;
@@ -63,9 +68,9 @@ const shareSection = styled.div`
         margin-right: 20rem;
       }
       & > button {
-        margin: auto;
         width: 56rem;
         height: 56rem;
+        margin: auto;
       }
 
       & > button > img {
@@ -73,11 +78,11 @@ const shareSection = styled.div`
       }
 
       & > p {
+        margin-top: 5rem;
         font-size: 13rem;
         font-weight: 400;
         line-height: 18rem;
         color: ${({ theme }) => theme.gray700};
-        margin-top: 5rem;
       }
     }
   }
