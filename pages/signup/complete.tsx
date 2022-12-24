@@ -11,7 +11,7 @@ import LinkIcon from '@public/svgs/moyora-icons-link.svg';
 import KakaoIcon from '@public/svgs/kakao-icons-sharing.svg';
 import ParticleGroup from '@public/svgs/moyora-particles-group.svg';
 
-import S from '@components/Signup/SignUpComplete.styles';
+import S from '@components/Signup/Signup.styles';
 
 dayjs.locale('ko');
 
@@ -60,7 +60,7 @@ const SignUpComplete: React.FC = () => {
           분 : <span>{counterSecond}</span>초
         </h2>
         <p>1월 29일에 정식 버전으로 만나요!</p>
-        <S.shareSection>
+        <S.SignupCompleteWrap>
           <p>
             더 많은 동창 친구들이 모일 수 있도록
             <br />
@@ -81,7 +81,7 @@ const SignUpComplete: React.FC = () => {
               <p>링크 복사</p>
             </div>
           </div>
-        </S.shareSection>
+        </S.SignupCompleteWrap>
       </div>
     </S.SignUpCompleteWrapper>
   );
