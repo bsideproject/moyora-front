@@ -12,6 +12,7 @@ import Step2Active from '@public/svgs/step2-active.svg';
 import Step3Active from '@public/svgs/step3-active.svg';
 import Step4Active from '@public/svgs/step4-active.svg';
 
+import S from '@components/Signup/Signup.styles';
 import L from './Layout.styles';
 
 type TStep = '1' | '2' | '3' | '4';
@@ -60,9 +61,9 @@ const SignupLayout: React.FC<IProps> = ({ step, onClick, isAddSchool, children }
       </L.SignupStepWrap>
       <h2>{StepContents[step].title}</h2>
       <section>{children}</section>
-      <L.SignupButton type="primary" onClick={onClick}>
+      <S.SignupButton type="primary" onClick={onClick}>
         {isAddSchool ? '등록' : '다음'}
-      </L.SignupButton>
+      </S.SignupButton>
     </L.SignupStepWrapper>
   );
 };
