@@ -62,7 +62,7 @@
       }
     },
     {
-      "files": ["./reducers/**"],
+      "files": ["./reducers/**", "./components/**/*.ts"],
       "rules": {
         "max-lines": "off"
       }
