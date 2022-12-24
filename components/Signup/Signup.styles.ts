@@ -1,9 +1,20 @@
-import { Collapse, Drawer, Input, Select } from 'antd';
 import styled from 'styled-components';
+import { Button, Collapse, Drawer, Input, Select } from 'antd';
 
 interface IInputPublicProps {
   isFill?: boolean;
 }
+
+const SignupButton = styled(Button)`
+  position: absolute;
+  bottom: 32rem;
+  left: 0;
+  width: 100%;
+  height: 44rem;
+  font-size: 15rem;
+  font-weight: 600;
+  border: 0;
+`;
 
 const SignupInputWrapper = styled.div`
   text-align: center;
@@ -165,7 +176,154 @@ const Panel = styled(Collapse.Panel)`
   border-bottom: 1rem solid ${({ theme }) => theme.gray200};
 `;
 
+const IntroductionWrapper = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  min-height: 100vh;
+  & > h2 {
+    margin-top: 24rem;
+    font-size: 20rem;
+    font-weight: 700;
+    line-height: 28rem;
+    color: ${({ theme }) => theme.gray900};
+  }
+
+  & p {
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 20rem;
+    color: ${({ theme }) => theme.gray600};
+  }
+
+  & > p {
+    margin-top: 12rem;
+    font-size: 16rem;
+    font-weight: 400;
+    line-height: 24rem;
+    color: ${({ theme }) => theme.gray600};
+  }
+`;
+
+const SignupTextArea = styled(Input.TextArea)`
+  width: 350rem;
+  height: 132rem;
+
+  & textarea {
+    padding: 10rem 16rem;
+    margin-top: 32rem;
+    font-size: 16rem;
+    font-weight: 400;
+    line-height: 20rem;
+    resize: none;
+    border: 1px solid #ccd2d8;
+    border-radius: 4rem;
+  }
+
+  &::after {
+    position: relative;
+    right: 10rem;
+    bottom: 10rem;
+    float: right;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 20rem;
+    color: ${({ theme }) => theme.gray600};
+    transform: translateY(-100%);
+  }
+`;
+
+const SignUpCompleteWrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+
+  & > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 68rem;
+    text-align: center;
+
+    & > h3 {
+      margin-top: 43rem;
+      font-size: 20rem;
+      font-weight: 700;
+      color: ${({ theme }) => theme.gray900};
+    }
+
+    & > h2 {
+      margin-top: 20rem;
+      font-size: 28rem;
+      font-weight: 700;
+      color: ${({ theme }) => theme.gray900};
+
+      & span {
+        display: inline-block;
+        width: 35rem;
+      }
+    }
+
+    & > p {
+      margin-top: 8rem;
+      font-size: 16rem;
+      font-weight: 400;
+      line-height: 24rem;
+      color: ${({ theme }) => theme.gray800};
+    }
+  }
+`;
+
+const SignupCompleteWrap = styled.div`
+  justify-content: center;
+  width: 100%;
+  margin-top: 108rem;
+
+  & > p {
+    margin-top: 108rem;
+    font-size: 16rem;
+    font-weight: 400;
+    line-height: 24rem;
+    color: ${({ theme }) => theme.gray700};
+  }
+
+  & div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    & > div {
+      display: flex;
+      flex-direction: column;
+      margin-top: 20rem;
+      &:first-of-type {
+        margin-right: 20rem;
+      }
+      & > button {
+        width: 56rem;
+        height: 56rem;
+        margin: auto;
+      }
+
+      & > button > img {
+        margin: auto;
+      }
+
+      & > p {
+        margin-top: 5rem;
+        font-size: 13rem;
+        font-weight: 400;
+        line-height: 18rem;
+        color: ${({ theme }) => theme.gray700};
+      }
+    }
+  }
+`;
+
 const S = {
+  SignupButton,
   SignupInputWrapper,
   SignupInput,
   SearchButton,
@@ -173,6 +331,10 @@ const S = {
   JobDrawer,
   SignupCollapse,
   Panel,
+  IntroductionWrapper,
+  SignupTextArea,
+  SignUpCompleteWrapper,
+  SignupCompleteWrap,
 };
 
 export default S;
