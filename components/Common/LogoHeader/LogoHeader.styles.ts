@@ -1,11 +1,9 @@
 import styled from 'styled-components';
 
-const LSS = styled.section`
+export default styled.section`
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
   height: 56rem;
 `;
-
-export default LSS;

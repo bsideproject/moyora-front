@@ -1,4 +1,3 @@
-import { Button } from 'antd';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -11,7 +10,7 @@ const Container = styled.div`
   & > main {
     width: 390rem;
     min-height: 100vh;
-    padding: 0 20px;
+    padding: 0 20rem;
     background-color: ${({ theme }) => theme.white};
   }
 
@@ -27,13 +26,13 @@ const SignupStepWrapper = styled.div`
   padding: 16rem 0 32rem;
 
   & div.ant-progress {
-    width: 100vw;
+    width: 390rem;
     margin: 10rem 0;
-    margin-left: calc(-50vw + 50%);
+    margin-left: -20rem;
   }
 
   & > h2 {
-    font-size: 20px;
+    font-size: 20rem;
     font-weight: 700;
     color: ${({ theme }) => theme.gray900};
   }
@@ -52,22 +51,10 @@ const SignupStepWrap = styled.div`
   }
 `;
 
-const SignupButton = styled(Button)`
-  position: absolute;
-  bottom: 32rem;
-  left: 0;
-  width: 100%;
-  height: 44rem;
-  font-size: 15rem;
-  font-weight: 600;
-  border: 0;
-`;
-
 const L = {
   Container,
   SignupStepWrapper,
   SignupStepWrap,
-  SignupButton,
 };
 
 export default L;

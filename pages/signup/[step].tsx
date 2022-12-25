@@ -26,7 +26,7 @@ const Signup: React.FC = () => {
     if (step === '1' && isAddSchool) {
       router.replace('/signup/1');
     }
-    if (step === '4') router.push('/');
+    if (step === '4') router.push('/signup/introduction');
     else router.push(`/signup/${parseInt(step ?? '1') + 1}`, '', { shallow: true });
   };
 

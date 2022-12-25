@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import M from '@components/MainPage/MainPage.styles';
-import LSS from '@components/Common/LogoSmallSection';
+import LogoHeader from '@components/Common/LogoHeader';
 
 import ArchiveIcon from '@public/svgs/moyora-icons-archive.svg';
 import UserIcon from '@public/svgs/moyora-icons-users.svg';
@@ -35,25 +35,24 @@ import QuotationMark2 from '@public/svgs/quotationMark-2.svg';
 import QuotationMark3 from '@public/svgs/quotationMark-3.svg';
 import QuotationMark4 from '@public/svgs/quotationMark-4.svg';
 import QuotationMark5 from '@public/svgs/quotationMark-5.svg';
+import { guestBookTempList, IGuestBookList } from '@configs/bigContents';
+
+const stickers = {
+  '1': { sticker: Sticker1, quotationMark: QuotationMark1 },
+  '2': { sticker: Sticker2, quotationMark: QuotationMark1 },
+  '3': { sticker: Sticker3, quotationMark: QuotationMark1 },
+  '4': { sticker: Sticker4, quotationMark: QuotationMark1 },
+  '5': { sticker: Sticker5, quotationMark: QuotationMark2 },
+  '6': { sticker: Sticker6, quotationMark: QuotationMark2 },
+  '7': { sticker: Sticker7, quotationMark: QuotationMark3 },
+  '8': { sticker: Sticker8, quotationMark: QuotationMark3 },
+  '9': { sticker: Sticker9, quotationMark: QuotationMark4 },
+  '10': { sticker: Sticker10, quotationMark: QuotationMark4 },
+  '11': { sticker: Sticker11, quotationMark: QuotationMark5 },
+  '12': { sticker: Sticker12, quotationMark: QuotationMark5 },
+};
 
 const MainPage: React.FC = () => {
-  type TStickerType = '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12';
-
-  const stickers = {
-    '1': { sticker: Sticker1, quotationMark: QuotationMark1 },
-    '2': { sticker: Sticker2, quotationMark: QuotationMark1 },
-    '3': { sticker: Sticker3, quotationMark: QuotationMark1 },
-    '4': { sticker: Sticker4, quotationMark: QuotationMark1 },
-    '5': { sticker: Sticker5, quotationMark: QuotationMark2 },
-    '6': { sticker: Sticker6, quotationMark: QuotationMark2 },
-    '7': { sticker: Sticker7, quotationMark: QuotationMark3 },
-    '8': { sticker: Sticker8, quotationMark: QuotationMark3 },
-    '9': { sticker: Sticker9, quotationMark: QuotationMark4 },
-    '10': { sticker: Sticker10, quotationMark: QuotationMark4 },
-    '11': { sticker: Sticker11, quotationMark: QuotationMark5 },
-    '12': { sticker: Sticker12, quotationMark: QuotationMark5 },
-  };
-
   interface IOurSchoolList {
     id: string;
     category: string;
@@ -70,47 +69,7 @@ const MainPage: React.FC = () => {
     setOurSchoolFirstList(list);
   }, []);
 
-  interface IGuestBookList {
-    id: string;
-    sticker: TStickerType;
-    date?: string;
-    text: string;
-  }
   const [guestBookList, setGuestBookList] = useState<IGuestBookList[] | null>(null);
-  const guestBookTempList: IGuestBookList[] = [
-    {
-      id: '0',
-      sticker: '9',
-      date: '20220101',
-      text: '안녕 누구야! 잘 지내지? 나 누구야~ 기억하니! 여기서 보니 너무 반갑다! 너무 너무 반가워 우리 그때 재밌었잖아',
-    },
-    {
-      id: '1',
-      sticker: '5',
-      date: '20220111',
-      text: '잘 지내지? 나 누구야~ 기억하니! 여기서 보니 너무 반갑다! 너무 너무 반가워 우리 그때 재밌었잖아 안녕 누구야',
-    },
-    { id: '2', sticker: '1', date: '20220222', text: '잘 지내지? 나 누구야~ 잘있니? 난 잘있단다' },
-    {
-      id: '3',
-      sticker: '2',
-      date: '20220303',
-      text: '안녕 누구야! 잘 지내지? 나 누구야~ 기억하니! 여기서 보니 너무 반갑다! 너무 너무 반가워 우리 그때 재밌었잖아',
-    },
-    {
-      id: '4',
-      sticker: '3',
-      date: '20220404',
-      text: '잘 지내지? 나 누구야~ 기억하니! 여기서 보니 너무 반갑다! 너무 너무 반가워 우리 그때 재밌었잖아 안녕 누구야',
-    },
-    { id: '5', sticker: '4', date: '20220505', text: '잘 지내지? 나 누구야~ 잘있니? 난 잘있단다' },
-    {
-      id: '6',
-      sticker: '6',
-      date: '20220606',
-      text: '안녕 누구야! 잘 지내지? 나 누구야~ 기억하니! 여기서 보니 너무 반갑다! 너무 너무 반가워 우리 그때 재밌었잖아',
-    },
-  ];
 
   useEffect(() => {
     setGuestBookList(guestBookTempList);
@@ -118,7 +77,7 @@ const MainPage: React.FC = () => {
 
   return (
     <M.MainPageWrapper>
-      <LSS>
+      <LogoHeader>
         <M.logoSectionButton>
           <Link href="/mainPage">
             <Image src={ArchiveIcon} alt="ArchiveIcon" />
@@ -130,7 +89,7 @@ const MainPage: React.FC = () => {
             <Image src={ListIcon} alt="ArchiveIcon" />
           </Link>
         </M.logoSectionButton>
-      </LSS>
+      </LogoHeader>
       <M.mySchoolSection>
         <h2>모여라 초등학교</h2> <p>경기도 성남시</p>
         <div>
