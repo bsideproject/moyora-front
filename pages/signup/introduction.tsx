@@ -12,7 +12,7 @@ const Introduction: React.FC = () => {
   const onChangeIntroduction: React.ChangeEventHandler<HTMLTextAreaElement> = (e) =>
     setIntroduction(e.target.value);
 
-  const onClickRoute = () => router.replace('signup/complete');
+  const onClickRoute = () => router.replace('/signup/complete');
 
   return (
     <S.IntroductionWrapper>
