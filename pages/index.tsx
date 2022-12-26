@@ -1,24 +1,24 @@
 import React, { FC } from 'react';
-
-import useStore from '@reducers';
+import { useRouter } from 'next/router';
 
 import CommonButton from '@atoms/CommonButton';
 
-import CommonBar from '@components/Common/CommonBar';
-import DefaultComponents from '@components/DefaultComponents/DefaultComponents';
-
 const Home: FC = () => {
-  const me = useStore((state) => state.me);
-  const login = useStore((state) => state.login);
-  const logout = useStore((state) => state.logout);
+  const router = useRouter();
   return (
-    <>
-      <DefaultComponents />
-      <CommonBar />
-      <CommonButton type="primary" onClick={me === null ? login : logout}>
-        {me === null ? 'Log In' : 'Log Out'}
+    <div>
+      <h2
+        style={{ fontSize: '32rem', fontWeight: 'bold', textAlign: 'center', marginTop: '30rem' }}
+      >
+        페이지 이동하기
+      </h2>
+      <CommonButton type="primary" size="large" block onClick={() => router.push('/login')}>
+        Log In
       </CommonButton>
-    </>
+      <CommonButton size="large" block onClick={() => router.push('/mainPage')}>
+        Main
+      </CommonButton>
+    </div>
   );
 };
 
