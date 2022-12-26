@@ -124,6 +124,15 @@ const SignupSearchWrapper = styled.div`
   padding: 0 16rem;
   margin-left: -20rem;
   background-color: ${({ theme }) => theme.white};
+
+  & h4 {
+    margin-top: 160rem;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    color: ${({ theme }) => theme.gray500};
+    text-align: center;
+  }
 `;
 
 const SignupSearchInput = styled(Input)`

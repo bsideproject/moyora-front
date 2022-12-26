@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import Image from 'next/image';
+import { useToggle } from 'react-use';
 import { useRouter } from 'next/router';
 
 import getGraduationYear from '@utils/getGraduationYear';
@@ -14,7 +15,9 @@ const StepOne: React.FC = () => {
   const router = useRouter();
   const isSearchSchool = router.query?.isSearchSchool as string | undefined;
   const isAddSchool = router.query?.isAddSchool as string | undefined;
+  const [school, setSchool] = useState('');
   const [graduationYear, setGraduationYear] = useState('');
+  const [isSearch, onToggleSearch] = useToggle(false);
   const options = useMemo(() => getGraduationYear(), []);
 
   const onSelectGraduationYear = (value: unknown) => setGraduationYear(value as string);
@@ -31,6 +34,17 @@ const StepOne: React.FC = () => {
     router.replace('/signup/1?isAddSchool=true', '/signup/1', { shallow: true });
   };
 
+  const onSearchSchool = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const target = e.target as HTMLInputElement;
+    if (target.value) onToggleSearch(true);
+    else onToggleSearch(false);
+  };
+
+  const onClickSelectSchool = () => {
+    setSchool('이매초등학교');
+    router.replace('/signup/1', '/signup/1', { shallow: true });
+  };
+
   if (isSearchSchool) {
     return (
       <S.SignupSearchWrapper>
@@ -39,28 +53,35 @@ const StepOne: React.FC = () => {
           bordered={false}
           prefix={<Image src={SearchPr} alt="search-pr-icon" />}
           suffix={<button onClick={onClickCloseSchool}>닫기</button>}
+          onPressEnter={onSearchSchool}
         />
-        <S.SearchSchoolCard>
-          <Image src={School} alt="school-icon" />
-          <div>
-            <p>이매초등학교</p>
-            <span>경기도 성남시 분당구</span>
-          </div>
-        </S.SearchSchoolCard>
-        <S.SearchSchoolCard>
-          <Image src={School} alt="school-icon" />
-          <div>
-            <p>이매초등학교</p>
-            <span>경기도 성남시 분당구</span>
-          </div>
-        </S.SearchSchoolCard>
-        <S.SearchSchoolCard>
-          <Image src={School} alt="school-icon" />
-          <div>
-            <p>이매초등학교</p>
-            <span>경기도 성남시 분당구</span>
-          </div>
-        </S.SearchSchoolCard>
+        {isSearch ? (
+          <>
+            <S.SearchSchoolCard>
+              <Image src={School} alt="school-icon" />
+              <div onClick={onClickSelectSchool}>
+                <p>이매초등학교</p>
+                <span>경기도 성남시 분당구</span>
+              </div>
+            </S.SearchSchoolCard>
+            <S.SearchSchoolCard>
+              <Image src={School} alt="school-icon" />
+              <div>
+                <p>이매초등학교</p>
+                <span>경기도 성남시 분당구</span>
+              </div>
+            </S.SearchSchoolCard>
+            <S.SearchSchoolCard>
+              <Image src={School} alt="school-icon" />
+              <div>
+                <p>이매초등학교</p>
+                <span>경기도 성남시 분당구</span>
+              </div>
+            </S.SearchSchoolCard>
+          </>
+        ) : (
+          <h4>검색 결과가 없어요</h4>
+        )}
       </S.SignupSearchWrapper>
     );
   }
@@ -73,6 +94,7 @@ const StepOne: React.FC = () => {
           readOnly
           bordered={false}
           placeholder="학교 검색"
+          value={school}
           onClick={onClickSearchSchool}
         />
       ) : (
