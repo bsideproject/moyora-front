@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import M from '@components/MainPage/MainPage.styles';
 import LogoHeader from '@components/Common/LogoHeader';
-
-import ArchiveIcon from '@public/svgs/moyora-icons-archive.svg';
-import UserIcon from '@public/svgs/moyora-icons-users.svg';
-import ListIcon from '@public/svgs/moyora-icons-list.svg';
 import Image from 'next/image';
 import { Col, Row } from 'antd';
 import GuestBookBox from '@components/Common/GuestBookBox';
@@ -77,19 +73,7 @@ const MainPage: React.FC = () => {
 
   return (
     <M.MainPageWrapper>
-      <LogoHeader>
-        <M.logoSectionButton>
-          <Link href="/mainPage">
-            <Image src={ArchiveIcon} alt="ArchiveIcon" />
-          </Link>
-          <Link href="/mainPage">
-            <Image src={UserIcon} alt="ArchiveIcon" />
-          </Link>
-          <Link href="/mainPage">
-            <Image src={ListIcon} alt="ArchiveIcon" />
-          </Link>
-        </M.logoSectionButton>
-      </LogoHeader>
+      <LogoHeader headerIcons={true} />
       <M.mySchoolSection>
         <h2>모여라 초등학교</h2> <p>경기도 성남시</p>
         <div>
@@ -145,7 +129,7 @@ const MainPage: React.FC = () => {
       <M.ourSchoolGuestBookSection>
         <M.contentTitle>
           <h1>우리 학교 방명록</h1>
-          <Link href="/mainPage">
+          <Link href="/guestBook/list">
             <p>자세히 보기 &gt;</p>
           </Link>
         </M.contentTitle>
