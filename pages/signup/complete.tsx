@@ -28,7 +28,7 @@ const SignUpComplete: React.FC = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       const nowDate = dayjs();
-      const releaseDate = dayjs('2023-01-29', 'YYYY-MM-DD');
+      const releaseDate = dayjs('2023-02-06', 'YYYY-MM-DD');
       const timerDate = releaseDate.diff(nowDate, 's');
       const lastDay = fillZero(timerDate / 3600 / 24);
       const lastHour = fillZero((timerDate / 3600) % 24);
@@ -59,7 +59,7 @@ const SignUpComplete: React.FC = () => {
           <span>{counterDay}</span>일 : <span>{counterHour}</span>시 : <span>{counterMinute}</span>
           분 : <span>{counterSecond}</span>초
         </h2>
-        <p>1월 29일에 정식 버전으로 만나요!</p>
+        <p>2월 6일에 정식 버전으로 만나요!</p>
         <S.SignupCompleteWrap>
           <p>
             더 많은 동창 친구들이 모일 수 있도록

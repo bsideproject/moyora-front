@@ -6,9 +6,9 @@ import { useRouter } from 'next/router';
 import SearchPr from '@public/svgs/search-pr-icon.svg';
 
 import SearchSchoolCard from '@components/Search/SearchSchoolCard';
+import SearchFriendCard from '@components/Search/SearchFriendCard';
 
 import S from '@components/Search/Search.styles';
-import SearchFriendCard from '@components/Search/SearchFriendCard';
 
 const Search: React.FC = () => {
   const router = useRouter();
