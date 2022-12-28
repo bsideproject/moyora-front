@@ -31,8 +31,6 @@ const G = styled.div`
       display: -webkit-box;
       -webkit-box-orient: vertical;
       word-wrap: break-word;
-      overflow: hidden;
-      text-overflow: ellipsis;
 
       background-color: transparent;
       border: none;

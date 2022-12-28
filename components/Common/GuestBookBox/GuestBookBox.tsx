@@ -7,23 +7,36 @@ import 'dayjs/locale/ko';
 dayjs.locale('ko');
 
 interface IProps {
-  size: { width: string; height: string; line: string };
+  size: { width: string; height: string; line: string | false };
   text: string;
   date?: string;
+  onClick?: () => void;
   children: React.ReactElement;
 }
 
-const GuestBookBox: React.FC<IProps> = ({ size, text, date, children }) => {
+const GuestBookBox: React.FC<IProps> = ({ size, text, date, onClick, children }) => {
   const formattedDate = date ? dayjs(date).format('YYYY/MM/DD') : '';
   return (
     <>
-      <G style={{ width: size.width, height: size.height }}>
+      <G style={{ width: size.width, height: size.height }} onClick={onClick}>
         <div>
           <section>{children}</section>
           <textarea
             disabled
             value={text}
-            style={{ WebkitLineClamp: size.line, height: `${parseInt(size.line) * 20}rem` }}
+            style={
+              size.line
+                ? {
+                    WebkitLineClamp: size.line,
+                    height: `${parseInt(size.line) * 20}rem`,
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                  }
+                : {
+                    height: '200rem',
+                    overflow: 'auto',
+                  }
+            }
           />
         </div>
         <section>{formattedDate}</section>
