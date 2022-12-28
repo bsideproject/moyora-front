@@ -34,13 +34,6 @@ const MainPageWrapper = styled.section`
   }
 `;
 
-const logoSectionButton = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 104rem;
-`;
-
 const mySchoolSection = styled.div`
   width: 100%;
   height: 94rem;
@@ -164,7 +157,6 @@ const ourSchoolGuestBookSection = styled.div`
 
 const M = {
   MainPageWrapper,
-  logoSectionButton,
   mySchoolSection,
   ourSchoolStatisticsSection,
   contentTitle,
