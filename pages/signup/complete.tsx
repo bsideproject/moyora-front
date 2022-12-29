@@ -5,6 +5,8 @@ import dayjs from 'dayjs';
 import Image from 'next/image';
 import { Button } from 'antd';
 
+import fillZero from '@utils/fillZero';
+
 import LogoHeader from '@components/Common/LogoHeader';
 
 import LinkIcon from '@public/svgs/moyora-icons-link.svg';
@@ -14,10 +16,6 @@ import ParticleGroup from '@public/svgs/moyora-particles-group.svg';
 import S from '@components/Signup/Signup.styles';
 
 dayjs.locale('ko');
-
-const fillZero = (number: number) => {
-  return Math.floor(number).toString().padStart(2, '0');
-};
 
 const SignUpComplete: React.FC = () => {
   const [counterDay, setCounterDay] = useState('00');
