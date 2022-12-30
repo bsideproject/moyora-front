@@ -25,6 +25,7 @@ import { guestBookTempList, IGuestBookList } from '@configs/bigContents';
 import floatButtonWrite from '@public/svgs/float-button-write.svg';
 import Write from '@public/svgs/icon-write.svg';
 import { useToggle } from 'react-use';
+import { useRouter } from 'next/router';
 
 const stickers = {
   '1': { sticker: Sticker1, quotationMark: QuotationMark1 },
@@ -42,6 +43,8 @@ const stickers = {
 };
 
 const List: React.FC = () => {
+  const router = useRouter();
+  const onClickRoute = () => router.push('/guestBook/writeBeta', '', { shallow: true });
   const [guestBookList, setGuestBookList] = useState<IGuestBookList[] | null>(null);
   useEffect(() => {
     setGuestBookList(guestBookTempList);
@@ -100,6 +103,7 @@ const List: React.FC = () => {
             <L.FloatingButton
               shape="circle"
               type="primary"
+              onClick={onClickRoute}
               icon={<Image src={floatButtonWrite} alt="floatButtonWirte" />}
             />
           </div>
@@ -129,7 +133,7 @@ const List: React.FC = () => {
             ) : (
               ''
             )}
-            <L.writeButton type="primary">
+            <L.writeButton type="primary" onClick={onClickRoute}>
               <Image src={Write} alt="" /> &nbsp;나도 방명록 쓰러가기
             </L.writeButton>
           </L.GuestBookDrawer>
