@@ -2,25 +2,32 @@ import styled, { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
     div.container{
-        @media screen and (min-width: 768px) {
-            width: 100%;
-            margin: 0 auto auto;
-            background-color: ${({ theme }) => theme.white} !important;
-        
-            main {
-                width: 100% !important;
-                min-height: 100vh;
-                padding: 0;
-                background-color: ${({ theme }) => theme.white};
-            }
-        }
+      width: 100%;
+      margin: 0 auto auto;
+      background-color: ${({ theme }) => theme.white} !important;
+      main {
+        width: 100% !important;
+        min-height: 100vh;
+        padding: 0;
+        background-color: ${({ theme }) => theme.white};
+      }
     }
 `;
 
 const MainSection = styled.section`
+  width: 100%;
+  min-width: 100vw;
+  @media screen and (min-width: 768px) {
+    min-width: 960rem;
+  }
+
   & > div {
-    max-width: 920rem;
+    width: 390rem;
     margin: 0 auto;
+
+    @media screen and (min-width: 768px) {
+      width: 920rem;
+    }
   }
 `;
 
@@ -28,14 +35,18 @@ const BannerSection = styled(MainSection)`
   background-color: #fff3eb;
   & > div {
     padding: 38rem 0 149rem;
-
+    text-align: center;
     & > div {
       display: flex;
       margin-top: 105rem;
-
+      & img {
+        display: none;
+        @media screen and (min-width: 768px) {
+          display: inline-block;
+        }
+      }
       & > div {
         margin-right: 48rem;
-
         & h4 {
           font-size: 16rem;
           font-weight: 700;
@@ -50,12 +61,14 @@ const BannerSection = styled(MainSection)`
         }
         & h2 {
           margin: 47rem 0 52rem;
+          font-family: GmarketSans;
           font-size: 38rem;
           font-weight: 500;
           line-height: 38rem;
           & span {
             display: inline-block;
-            width: 48rem;
+            width: 54rem;
+            text-align: center;
           }
         }
         & p {

@@ -6,7 +6,7 @@ B-Side 13기 7팀 반갑다 친구야(Moyora)의 Front-end Repository.
 
 ```
 https://github.com/Kir93/moyora-front.git use this template and make project
-git clone https://github.com/moyora/{PROJECT_NAME}.git
+git clone https://github.com/moyora/moyora-front.git
 ```
 
 1. npm install
