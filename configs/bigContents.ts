@@ -98,3 +98,24 @@ export const guestBookTempList: IGuestBookList[] = [
     text: '안녕 누구야! 잘 지내지? 나 누구야~ 기억하니! 여기서 보니 너무 반갑다! 너무 너무 반가워 우리 그때 재밌었잖아',
   },
 ];
+
+export interface IFriendsList {
+  id: string;
+  name: string;
+  nickname: string;
+  school: string;
+}
+
+export const friendsTempList: IFriendsList[] = [
+  { id: '0', name: '홍길동', nickname: '홍홍홍', school: 'OO초등학교' },
+  { id: '1', name: '김민준', nickname: '길길길', school: 'OO초등학교' },
+  { id: '2', name: '이서준', nickname: '동동동', school: 'OO초등학교' },
+  { id: '3', name: '박도윤', nickname: '도유니', school: 'OO초등학교' },
+  { id: '4', name: '나예준', nickname: '나예', school: 'OO초등학교' },
+  { id: '5', name: '도시우', nickname: '도시', school: 'OO초등학교' },
+  { id: '6', name: '박하준', nickname: '별명없음', school: 'OO초등학교' },
+  { id: '7', name: '제갈주원', nickname: '줜', school: 'OO초등학교' },
+  { id: '8', name: '박주현', nickname: '박주', school: 'OO초등학교' },
+  { id: '9', name: '이지호', nickname: '이지', school: 'OO초등학교' },
+  { id: '10', name: '김지후', nickname: '김지', school: 'OO초등학교' },
+];
