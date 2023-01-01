@@ -17,8 +17,13 @@ const GlobalStyle = createGlobalStyle`
 const MainSection = styled.section`
   width: 100%;
   min-width: 100vw;
+  padding: 0 20rem;
   @media screen and (min-width: 768px) {
     min-width: 960rem;
+
+    & .mobile {
+      display: none;
+    }
   }
 
   & > div {
@@ -34,11 +39,19 @@ const MainSection = styled.section`
 const BannerSection = styled(MainSection)`
   background-color: #fff3eb;
   & > div {
-    padding: 38rem 0 149rem;
+    padding: 32rem 0 111rem;
     text-align: center;
+    @media screen and (min-width: 768px) {
+      padding: 38rem 0 149rem;
+      text-align: left;
+    }
     & > div {
       display: flex;
-      margin-top: 105rem;
+      justify-content: center;
+      margin-top: 60rem;
+      @media screen and (min-width: 768px) {
+        margin-top: 105rem;
+      }
       & img {
         display: none;
         @media screen and (min-width: 768px) {
@@ -46,41 +59,73 @@ const BannerSection = styled(MainSection)`
         }
       }
       & > div {
-        margin-right: 48rem;
+        @media screen and (min-width: 768px) {
+          margin-right: 48rem;
+        }
         & h4 {
-          font-size: 16rem;
+          font-size: 14rem;
           font-weight: 700;
-          line-height: 52rem;
+          line-height: 29rem;
           color: #ff6d3a;
+          @media screen and (min-width: 768px) {
+            display: inline-block;
+            font-size: 16rem;
+            line-height: 52rem;
+          }
         }
         & h3 {
-          font-size: 40rem;
+          font-size: 24rem;
           font-weight: 700;
-          line-height: 56rem;
+          line-height: 34rem;
           color: #1c1c1c;
+          @media screen and (min-width: 768px) {
+            font-size: 40rem;
+            line-height: 56rem;
+          }
         }
         & h2 {
-          margin: 47rem 0 52rem;
+          margin: 33rem 0;
           font-family: GmarketSans;
-          font-size: 38rem;
+          font-size: 24rem;
           font-weight: 500;
-          line-height: 38rem;
+          line-height: 24rem;
           & span {
             display: inline-block;
-            width: 54rem;
+            width: 34rem;
             text-align: center;
+          }
+          @media screen and (min-width: 768px) {
+            margin: 47rem 0 52rem;
+            font-size: 38rem;
+            line-height: 38rem;
+            & span {
+              width: 54rem;
+            }
           }
         }
         & p {
-          margin-bottom: 20rem;
-          font-size: 16rem;
+          margin-bottom: 12rem;
+          font-size: 12rem;
           font-weight: 400;
-          line-height: 19rem;
+          line-height: 16rem;
           color: #1c1c1c;
+
+          @media screen and (min-width: 768px) {
+            margin-bottom: 20rem;
+            font-size: 16rem;
+            line-height: 19rem;
+          }
         }
         & button {
-          height: 64rem;
+          height: 40rem;
+          font-size: 12rem;
+          font-weight: 700;
           border-radius: 8rem;
+
+          @media screen and (min-width: 768px) {
+            height: 64rem;
+            font-size: 20px;
+          }
         }
       }
     }
@@ -89,10 +134,12 @@ const BannerSection = styled(MainSection)`
 
 const NumberSection = styled(MainSection)`
   & > div {
-    display: flex;
-    justify-content: space-between;
-    width: 696rem;
-    padding: 44rem 0;
+    @media screen and (min-width: 768px) {
+      display: flex;
+      justify-content: space-between;
+      width: 696rem;
+      padding: 44rem 0;
+    }
 
     & > div {
       display: flex;
@@ -130,6 +177,23 @@ const ExamSection = styled(MainSection)`
       line-height: 56rem;
       color: #000000;
       text-align: center;
+      & > span {
+        position: relative;
+        & span {
+          position: relative;
+          z-index: 11;
+        }
+        & div.bar {
+          position: absolute;
+          top: 24rem;
+          left: -5%;
+          z-index: 10;
+          width: 110%;
+          height: 15rem;
+          background: rgba(255, 109, 58, 0.5);
+          border-radius: 30px;
+        }
+      }
     }
     & > div {
       display: flex;
