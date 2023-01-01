@@ -1,74 +1,23 @@
-import 'dayjs/locale/ko';
-
-import React, { useEffect, useState } from 'react';
-import dayjs from 'dayjs';
+import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from 'antd';
 import { useRouter } from 'next/router';
 
-import fillZero from '@utils/fillZero';
 import betaImages from '@configs/betaImages';
 
+import Banner from '@components/Beta/Banner';
 import B from '@components/Beta/Beta.styles';
-
-dayjs.locale('ko');
 
 const Beta: React.FC = () => {
   const router = useRouter();
 
-  const [counterDay, setCounterDay] = useState('00');
-  const [counterHour, setCounterHour] = useState('00');
-  const [counterMinute, setCounterMinute] = useState('00');
-  const [counterSecond, setCounterSecond] = useState('00');
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      const nowDate = dayjs();
-      const releaseDate = dayjs('2023-02-06', 'YYYY-MM-DD');
-      const timerDate = releaseDate.diff(nowDate, 's');
-      const lastDay = fillZero(timerDate / 3600 / 24);
-      const lastHour = fillZero((timerDate / 3600) % 24);
-      const lastMinutes = fillZero((timerDate / 60) % 60);
-      const lastSeconds = fillZero(timerDate % 60);
-
-      setCounterDay(lastDay);
-      setCounterHour(lastHour);
-      setCounterMinute(lastMinutes);
-      setCounterSecond(lastSeconds);
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
-
   const onClickStart = () => router.push('/login');
+
   return (
     <div>
       <B.GlobalStyle />
-      <B.BannerSection>
-        <div>
-          <Image src={betaImages.MoyoraLogo} alt="moyora-logo" />
-          <div>
-            <div>
-              <h4>우리 학교 온라인 동창회, 모여라</h4>
-              <h3>
-                2023년 2월 6일
-                <br />
-                전국민 온라인 동창회가 열립니다!
-              </h3>
-              <h2>
-                <span>{counterDay}</span>일 : <span>{counterHour}</span>시 :{' '}
-                <span>{counterMinute}</span>분 : <span>{counterSecond}</span>초
-              </h2>
-              <p>학교 정보를 입력하고 동창회까지 친구들이 모이기를 기다려보세요!</p>
-              <Button type="primary" onClick={onClickStart}>
-                우리 학교 동창회 참여하기
-              </Button>
-            </div>
-            <Image src={betaImages.BetaMain} alt="beta-main" />
-          </div>
-        </div>
-      </B.BannerSection>
+      <Banner onClick={onClickStart} />
       <B.NumberSection>
         <div>
           <div>
@@ -93,7 +42,10 @@ const Beta: React.FC = () => {
           <h2>
             오랜만에 만난 반가운 친구들과
             <br />
-            학교 통계와 방명록으로
+            <span>
+              <span>학교 통계와 방명록으로</span>
+              <div className="bar" />
+            </span>
             <br />
             근황을 나누며 동창회를 즐겨보세요!
           </h2>
