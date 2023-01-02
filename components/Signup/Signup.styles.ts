@@ -239,11 +239,12 @@ const SignUpCompleteWrapper = styled.section`
   flex-direction: column;
 
   & > div {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     width: 100%;
+    min-height: calc(100vh - 124rem);
     margin-top: 68rem;
     text-align: center;
 
@@ -252,6 +253,11 @@ const SignUpCompleteWrapper = styled.section`
       font-size: 20rem;
       font-weight: 700;
       color: ${({ theme }) => theme.gray900};
+
+      &.open {
+        margin-bottom: 16rem;
+        font-size: 24px;
+      }
     }
 
     & > h2 {
@@ -273,16 +279,27 @@ const SignUpCompleteWrapper = styled.section`
       line-height: 24rem;
       color: ${({ theme }) => theme.gray800};
     }
+
+    & > button {
+      position: absolute;
+      bottom: 24rem;
+      left: 0;
+      height: 44rem;
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: 8rem;
+    }
   }
 `;
 
 const SignupCompleteWrap = styled.div`
+  position: absolute;
+  bottom: 67rem;
+  left: 0;
   justify-content: center;
   width: 100%;
-  margin-top: 108rem;
 
   & > p {
-    margin-top: 108rem;
     font-size: 16rem;
     font-weight: 400;
     line-height: 24rem;
@@ -297,7 +314,7 @@ const SignupCompleteWrap = styled.div`
     & > div {
       display: flex;
       flex-direction: column;
-      margin-top: 20rem;
+      margin-top: 26rem;
       &:first-of-type {
         margin-right: 20rem;
       }
