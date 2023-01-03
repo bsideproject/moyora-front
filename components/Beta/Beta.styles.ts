@@ -410,23 +410,40 @@ const QuestionSection = styled(MainSection)`
 `;
 
 const EndSection = styled(MainSection)`
-  padding: 126rem 0;
-  background: url('../../pngs/beta-background3.png') top left no-repeat;
-  background-size: cover;
+  padding: 64rem 0 68rem;
+  background: #fff3eb;
+
+  @media screen and (min-width: 768px) {
+    padding: 126rem 0;
+    background: url('../../pngs/beta-background3.png') top left no-repeat;
+    background-size: cover;
+  }
+
   & > div {
     text-align: center;
-
     & h2 {
-      margin-bottom: 52rem;
-      font-size: 38rem;
-      font-weight: 600;
-      line-height: 56rem;
+      margin-bottom: 23rem;
+      font-size: 22rem;
+      font-weight: 700;
+      line-height: 32rem;
       color: #000000;
-      text-align: center;
+      @media screen and (min-width: 768px) {
+        margin-bottom: 52rem;
+        font-size: 38rem;
+        font-weight: 600;
+        line-height: 56rem;
+      }
     }
     & button {
-      height: 64px;
-      border-radius: 8px;
+      height: 40rem;
+      font-size: 14rem;
+      font-weight: 700;
+      border-radius: 5rem;
+      @media screen and (min-width: 768px) {
+        height: 64rem;
+        font-size: 20px;
+        border-radius: 8rem;
+      }
     }
   }
 `;
