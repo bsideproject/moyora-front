@@ -47,19 +47,30 @@ const BannerSection = styled(MainSection)`
     }
     & > div {
       display: flex;
+      flex-direction: column;
+      align-items: center;
       justify-content: center;
-      margin-top: 60rem;
+      margin-top: 24rem;
       @media screen and (min-width: 768px) {
+        flex-direction: row;
         margin-top: 105rem;
       }
       & img {
-        display: none;
+        order: 1;
+        width: 143rem;
+        height: 182rem;
+        margin-bottom: 20rem;
         @media screen and (min-width: 768px) {
-          display: inline-block;
+          order: 0;
+          width: 341rem;
+          height: 434rem;
+          margin-bottom: 0;
         }
       }
       & > div {
+        order: 2;
         @media screen and (min-width: 768px) {
+          order: 0;
           margin-right: 48rem;
         }
         & h4 {
@@ -104,10 +115,10 @@ const BannerSection = styled(MainSection)`
           }
         }
         & p {
-          margin-bottom: 12rem;
-          font-size: 12rem;
+          margin-bottom: 16rem;
+          font-size: 13rem;
           font-weight: 400;
-          line-height: 16rem;
+          line-height: 18rem;
           color: #1c1c1c;
 
           @media screen and (min-width: 768px) {
@@ -134,31 +145,55 @@ const BannerSection = styled(MainSection)`
 
 const NumberSection = styled(MainSection)`
   & > div {
+    padding: 15rem 0;
     @media screen and (min-width: 768px) {
       display: flex;
       justify-content: space-between;
-      width: 696rem;
-      padding: 44rem 0;
+      padding: 44rem 134rem;
     }
 
     & > div {
       display: flex;
-      flex-direction: column;
       align-items: center;
+      justify-content: space-between;
+      padding: 9rem 0;
+
+      @media screen and (min-width: 768px) {
+        flex-direction: column;
+      }
       & img {
-        margin-left: -9rem;
+        width: 40rem;
+        height: 40rem;
+        @media screen and (min-width: 768px) {
+          width: 56rem;
+          height: 56rem;
+          margin-left: -9rem;
+        }
       }
       & h3 {
-        margin: 13rem 0 6rem;
-        font-size: 32rem;
+        order: 2;
+        font-size: 20rem;
         font-weight: 600;
         color: #1c1c1c;
+
+        @media screen and (min-width: 768px) {
+          order: 0;
+          margin: 13rem 0 6rem;
+          font-size: 32rem;
+        }
       }
       & p {
-        font-size: 16rem;
+        margin-right: auto;
+        margin-left: 12rem;
+        font-size: 15rem;
         font-weight: 500;
         color: #888e94;
-        text-align: center;
+
+        @media screen and (min-width: 768px) {
+          margin: 0;
+          font-size: 16rem;
+          text-align: center;
+        }
       }
     }
   }
