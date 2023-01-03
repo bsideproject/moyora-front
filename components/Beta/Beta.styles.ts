@@ -449,16 +449,25 @@ const EndSection = styled(MainSection)`
 `;
 
 const LinkSection = styled(MainSection)`
-  padding: 54rem 0;
+  padding: 43rem 0;
   background: #ff6d3a;
+  @media screen and (min-width: 768px) {
+    padding: 54rem 0;
+  }
   & > div {
     & h2 {
-      margin-bottom: 24rem;
-      font-size: 28rem;
+      margin-bottom: 4rem;
+      font-size: 18rem;
       font-weight: 700;
-      line-height: 40rem;
+      line-height: 26rem;
       color: #ffffff;
       text-align: center;
+
+      @media screen and (min-width: 768px) {
+        margin-bottom: 24rem;
+        font-size: 28rem;
+        line-height: 40rem;
+      }
     }
     & div {
       display: flex;
@@ -471,7 +480,11 @@ const LinkSection = styled(MainSection)`
         margin-top: 20rem;
         cursor: pointer;
         &:first-of-type {
-          margin-right: 20rem;
+          margin-right: 22rem;
+
+          @media screen and (min-width: 768px) {
+            margin-right: 20rem;
+          }
         }
         & > button {
           width: 56rem;
