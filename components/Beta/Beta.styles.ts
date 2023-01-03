@@ -16,8 +16,9 @@ const GlobalStyle = createGlobalStyle`
 
 const MainSection = styled.section`
   width: 100%;
-  min-width: 100vw;
+  min-width: 390rem;
   padding: 0 20rem;
+
   & .web {
     display: none;
   }
@@ -32,11 +33,10 @@ const MainSection = styled.section`
   }
 
   & > div {
-    width: 390rem;
+    max-width: 390rem;
     margin: 0 auto;
-
     @media screen and (min-width: 768px) {
-      width: 920rem;
+      max-width: 920rem;
     }
   }
 `;
