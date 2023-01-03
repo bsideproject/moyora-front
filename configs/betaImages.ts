@@ -7,7 +7,9 @@ import BetaChart from '@public/svgs/beta-chart.svg';
 import BetaPaper from '@public/svgs/beta-paper.svg';
 import BetaJob from '@public/svgs/beta-job.svg';
 import BetaExam from '@public/svgs/beta-exam.svg';
-import BetaExam2 from '@public/svgs/beta-exam2.svg';
+import BetaQuestion1 from '@public/svgs/beta-question1.svg';
+import BetaQuestion2 from '@public/svgs/beta-question2.svg';
+import BetaQuestion3 from '@public/svgs/beta-question3.svg';
 import LinkIcon from '@public/svgs/moyora-icons-link.svg';
 import KakaoIcon from '@public/svgs/kakao-icons-sharing.svg';
 
@@ -21,7 +23,9 @@ const betaImages = {
   BetaPaper,
   BetaJob,
   BetaExam,
-  BetaExam2,
+  BetaQuestion1,
+  BetaQuestion2,
+  BetaQuestion3,
   LinkIcon,
   KakaoIcon,
 };

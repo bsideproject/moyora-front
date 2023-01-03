@@ -16,22 +16,27 @@ const GlobalStyle = createGlobalStyle`
 
 const MainSection = styled.section`
   width: 100%;
-  min-width: 100vw;
+  min-width: 390rem;
   padding: 0 20rem;
+
+  & .web {
+    display: none;
+  }
   @media screen and (min-width: 768px) {
     min-width: 960rem;
-
+    & .web {
+      display: flex;
+    }
     & .mobile {
       display: none;
     }
   }
 
   & > div {
-    width: 390rem;
+    max-width: 390rem;
     margin: 0 auto;
-
     @media screen and (min-width: 768px) {
-      width: 920rem;
+      max-width: 960rem;
     }
   }
 `;
@@ -47,19 +52,30 @@ const BannerSection = styled(MainSection)`
     }
     & > div {
       display: flex;
+      flex-direction: column;
+      align-items: center;
       justify-content: center;
-      margin-top: 60rem;
+      margin-top: 24rem;
       @media screen and (min-width: 768px) {
+        flex-direction: row;
         margin-top: 105rem;
       }
       & img {
-        display: none;
+        order: 1;
+        width: 143rem;
+        height: 182rem;
+        margin-bottom: 20rem;
         @media screen and (min-width: 768px) {
-          display: inline-block;
+          order: 0;
+          width: 341rem;
+          height: 434rem;
+          margin-bottom: 0;
         }
       }
       & > div {
+        order: 2;
         @media screen and (min-width: 768px) {
+          order: 0;
           margin-right: 48rem;
         }
         & h4 {
@@ -104,10 +120,10 @@ const BannerSection = styled(MainSection)`
           }
         }
         & p {
-          margin-bottom: 12rem;
-          font-size: 12rem;
+          margin-bottom: 16rem;
+          font-size: 13rem;
           font-weight: 400;
-          line-height: 16rem;
+          line-height: 18rem;
           color: #1c1c1c;
 
           @media screen and (min-width: 768px) {
@@ -134,49 +150,85 @@ const BannerSection = styled(MainSection)`
 
 const NumberSection = styled(MainSection)`
   & > div {
+    padding: 15rem 0;
     @media screen and (min-width: 768px) {
       display: flex;
       justify-content: space-between;
-      width: 696rem;
-      padding: 44rem 0;
+      padding: 44rem 134rem;
     }
 
     & > div {
       display: flex;
-      flex-direction: column;
       align-items: center;
+      justify-content: space-between;
+      padding: 9rem 0;
+
+      @media screen and (min-width: 768px) {
+        flex-direction: column;
+      }
       & img {
-        margin-left: -9rem;
+        width: 40rem;
+        height: 40rem;
+        @media screen and (min-width: 768px) {
+          width: 56rem;
+          height: 56rem;
+          margin-left: -9rem;
+        }
       }
       & h3 {
-        margin: 13rem 0 6rem;
-        font-size: 32rem;
+        order: 2;
+        font-size: 20rem;
         font-weight: 600;
         color: #1c1c1c;
+
+        @media screen and (min-width: 768px) {
+          order: 0;
+          margin: 13rem 0 6rem;
+          font-size: 32rem;
+        }
       }
       & p {
-        font-size: 16rem;
+        margin-right: auto;
+        margin-left: 12rem;
+        font-size: 15rem;
         font-weight: 500;
         color: #888e94;
-        text-align: center;
+
+        @media screen and (min-width: 768px) {
+          margin: 0;
+          font-size: 16rem;
+          text-align: center;
+        }
       }
     }
   }
 `;
 
 const ExamSection = styled(MainSection)`
-  background: url('../../pngs/beta-background.png') top left no-repeat;
-  background-size: cover;
+  background: #fff9f5;
+  @media screen and (min-width: 768px) {
+    background: url('../../pngs/beta-background.png') top left no-repeat;
+    background-size: cover;
+  }
   & > div {
-    padding: 122rem 0 96rem;
+    padding: 60rem 0 0;
+    @media screen and (min-width: 768px) {
+      padding: 122rem 0 96rem;
+    }
 
     & > h2 {
-      margin-bottom: 110rem;
-      font-size: 36rem;
+      margin-bottom: 72rem;
+      font-size: 20rem;
       font-weight: 700;
-      line-height: 56rem;
+      line-height: 28rem;
       color: #000000;
       text-align: center;
+
+      @media screen and (min-width: 768px) {
+        margin-bottom: 110rem;
+        font-size: 36rem;
+        line-height: 56rem;
+      }
       & > span {
         position: relative;
         & span {
@@ -185,54 +237,107 @@ const ExamSection = styled(MainSection)`
         }
         & div.bar {
           position: absolute;
-          top: 24rem;
+          top: 14rem;
           left: -5%;
           z-index: 10;
           width: 110%;
-          height: 15rem;
+          height: 8rem;
           background: rgba(255, 109, 58, 0.5);
           border-radius: 30px;
+          @media screen and (min-width: 768px) {
+            top: 24rem;
+            height: 15rem;
+          }
         }
       }
     }
     & > div {
       display: flex;
-      margin-bottom: 162rem;
-      & > div {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+
+      &.mobile {
         & img {
-          display: inline-block;
+          width: 274rem;
+          height: 274rem;
+          margin-right: -5rem;
+
+          &.beta-exam {
+            height: 503rem;
+          }
+
+          &.exam-icon {
+            width: 32rem;
+            height: 32rem;
+            margin-left: -10rem;
+          }
         }
-        & span {
-          margin-left: 10rem;
-          font-size: 22rem;
+        & > span {
+          margin: 8rem 0 17rem;
+          font-size: 16rem;
           font-weight: 600;
-          line-height: 33rem;
+          line-height: 19rem;
           color: #ff6d3a;
-          vertical-align: text-bottom;
+          &.is-blue {
+            color: #4181f0;
+          }
         }
-        & h3 {
-          margin: 13rem 0 32rem;
-          font-size: 34rem;
-          font-weight: 600;
-          line-height: 46rem;
-          color: #000000;
+
+        & > h3 {
+          margin: 38rem 0 16rem;
+          font-size: 22rem;
+          font-weight: 700;
+          line-height: 32rem;
         }
-        & p {
-          font-size: 18rem;
+
+        & > p {
+          margin-bottom: 119rem;
+          font-size: 14rem;
           font-weight: 500;
-          line-height: 26rem;
+          line-height: 20rem;
           color: #484f54;
         }
-        &.job {
-          padding: 56rem 0;
-          margin-left: 100rem;
-        }
-        &.exam {
-          padding: 178rem 0;
-          margin-right: 105rem;
-
+      }
+      @media screen and (min-width: 768px) {
+        flex-direction: row;
+        margin-bottom: 162rem;
+        & > div {
+          & img {
+            display: inline-block;
+          }
           & span {
-            color: #4181f0;
+            margin-left: 10rem;
+            font-size: 22rem;
+            font-weight: 600;
+            line-height: 33rem;
+            color: #ff6d3a;
+            vertical-align: text-bottom;
+          }
+          & h3 {
+            margin: 13rem 0 32rem;
+            font-size: 34rem;
+            font-weight: 600;
+            line-height: 46rem;
+            color: #000000;
+          }
+          & p {
+            font-size: 18rem;
+            font-weight: 500;
+            line-height: 26rem;
+            color: #484f54;
+          }
+          &.job {
+            padding: 56rem 0;
+            margin-left: 100rem;
+          }
+          &.exam {
+            padding: 178rem 0;
+            margin-right: 105rem;
+
+            & span {
+              color: #4181f0;
+            }
           }
         }
       }
@@ -241,61 +346,128 @@ const ExamSection = styled(MainSection)`
 `;
 
 const QuestionSection = styled(MainSection)`
-  padding: 137rem 0;
-  background: url('../../pngs/beta-background2.png') top left no-repeat;
-  background-size: cover;
+  padding: 65rem 0;
+  background: #ffffff;
+  @media screen and (min-width: 768px) {
+    padding: 137rem 0;
+    background: url('../../pngs/beta-background2.png') top left no-repeat;
+    background-size: cover;
+  }
   & > div {
     & h2 {
-      font-size: 38rem;
-      font-weight: 600;
-      line-height: 56rem;
-      color: #000000;
-      text-align: center;
-    }
-    & h3 {
-      margin: 30rem 0 86rem;
-      font-size: 18rem;
-      font-weight: 600;
+      font-size: 20rem;
+      font-weight: 700;
       line-height: 28rem;
       color: #000000;
       text-align: center;
+
+      @media screen and (min-width: 768px) {
+        font-size: 38rem;
+        font-weight: 600;
+        line-height: 56rem;
+      }
+    }
+    & h3 {
+      margin: 16rem 0 42rem;
+      font-size: 14rem;
+      font-weight: 500;
+      line-height: 20rem;
+      color: #484f54;
+      text-align: center;
+
+      @media screen and (min-width: 768px) {
+        margin: 30rem 0 86rem;
+        font-size: 18rem;
+        font-weight: 600;
+        line-height: 28rem;
+        color: #000000;
+      }
+    }
+    & > div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      & img {
+        width: 204rem;
+        height: 165rem;
+      }
+      & img + img {
+        margin-top: 50rem;
+      }
+      @media screen and (min-width: 768px) {
+        flex-direction: row;
+        justify-content: space-between;
+        & img {
+          width: 288rem;
+          height: 233rem;
+        }
+        & img + img {
+          margin-top: 0;
+        }
+      }
     }
   }
 `;
 
 const EndSection = styled(MainSection)`
-  padding: 126rem 0;
-  background: url('../../pngs/beta-background3.png') top left no-repeat;
-  background-size: cover;
+  padding: 64rem 0 68rem;
+  background: #fff3eb;
+
+  @media screen and (min-width: 768px) {
+    padding: 126rem 0;
+    background: url('../../pngs/beta-background3.png') top left no-repeat;
+    background-size: cover;
+  }
+
   & > div {
     text-align: center;
-
     & h2 {
-      margin-bottom: 52rem;
-      font-size: 38rem;
-      font-weight: 600;
-      line-height: 56rem;
+      margin-bottom: 23rem;
+      font-size: 22rem;
+      font-weight: 700;
+      line-height: 32rem;
       color: #000000;
-      text-align: center;
+      @media screen and (min-width: 768px) {
+        margin-bottom: 52rem;
+        font-size: 38rem;
+        font-weight: 600;
+        line-height: 56rem;
+      }
     }
     & button {
-      height: 64px;
-      border-radius: 8px;
+      height: 40rem;
+      font-size: 14rem;
+      font-weight: 700;
+      border-radius: 5rem;
+      @media screen and (min-width: 768px) {
+        height: 64rem;
+        font-size: 20px;
+        border-radius: 8rem;
+      }
     }
   }
 `;
 
 const LinkSection = styled(MainSection)`
-  padding: 54rem 0;
+  padding: 43rem 0;
   background: #ff6d3a;
+  @media screen and (min-width: 768px) {
+    padding: 54rem 0;
+  }
   & > div {
     & h2 {
-      margin-bottom: 24rem;
-      font-size: 28rem;
+      margin-bottom: 4rem;
+      font-size: 18rem;
       font-weight: 700;
-      line-height: 40rem;
+      line-height: 26rem;
       color: #ffffff;
       text-align: center;
+
+      @media screen and (min-width: 768px) {
+        margin-bottom: 24rem;
+        font-size: 28rem;
+        line-height: 40rem;
+      }
     }
     & div {
       display: flex;
@@ -308,7 +480,11 @@ const LinkSection = styled(MainSection)`
         margin-top: 20rem;
         cursor: pointer;
         &:first-of-type {
-          margin-right: 20rem;
+          margin-right: 22rem;
+
+          @media screen and (min-width: 768px) {
+            margin-right: 20rem;
+          }
         }
         & > button {
           width: 56rem;
