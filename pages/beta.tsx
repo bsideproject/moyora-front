@@ -10,6 +10,7 @@ import Banner from '@components/Beta/Banner';
 import B from '@components/Beta/Beta.styles';
 import Number from '@components/Beta/Number';
 import Exam from '@components/Beta/Exam';
+import Question from '@components/Beta/Question';
 
 const Beta: React.FC = () => {
   const router = useRouter();
@@ -22,19 +23,7 @@ const Beta: React.FC = () => {
       <Banner onClick={onClickStart} />
       <Number />
       <Exam />
-      <B.QuestionSection>
-        <div>
-          <h2>
-            초등학교 동창 친구들은 <br />
-            지금 뭐하고 지낼까?
-          </h2>
-          <h3>
-            moyora는 우리 학교 동창 친구들의 근황을 통계로 확인하고 <br />
-            방명록과 쪽지로 추억을 나눌 수 있는 서비스입니다.
-          </h3>
-          <Image src={betaImages.BetaExam2} alt="beta-exam2" />
-        </div>
-      </B.QuestionSection>
+      <Question />
       <B.EndSection>
         <div>
           <h2>

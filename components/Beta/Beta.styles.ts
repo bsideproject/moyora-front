@@ -346,24 +346,65 @@ const ExamSection = styled(MainSection)`
 `;
 
 const QuestionSection = styled(MainSection)`
-  padding: 137rem 0;
-  background: url('../../pngs/beta-background2.png') top left no-repeat;
-  background-size: cover;
+  padding: 65rem 0;
+  background: #ffffff;
+  @media screen and (min-width: 768px) {
+    padding: 137rem 0;
+    background: url('../../pngs/beta-background2.png') top left no-repeat;
+    background-size: cover;
+  }
   & > div {
     & h2 {
-      font-size: 38rem;
-      font-weight: 600;
-      line-height: 56rem;
-      color: #000000;
-      text-align: center;
-    }
-    & h3 {
-      margin: 30rem 0 86rem;
-      font-size: 18rem;
-      font-weight: 600;
+      font-size: 20rem;
+      font-weight: 700;
       line-height: 28rem;
       color: #000000;
       text-align: center;
+
+      @media screen and (min-width: 768px) {
+        font-size: 38rem;
+        font-weight: 600;
+        line-height: 56rem;
+      }
+    }
+    & h3 {
+      margin: 16rem 0 42rem;
+      font-size: 14rem;
+      font-weight: 500;
+      line-height: 20rem;
+      color: #484f54;
+      text-align: center;
+
+      @media screen and (min-width: 768px) {
+        margin: 30rem 0 86rem;
+        font-size: 18rem;
+        font-weight: 600;
+        line-height: 28rem;
+        color: #000000;
+      }
+    }
+    & > div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      & img {
+        width: 204rem;
+        height: 165rem;
+      }
+      & img + img {
+        margin-top: 50rem;
+      }
+      @media screen and (min-width: 768px) {
+        flex-direction: row;
+        justify-content: space-between;
+        & img {
+          width: 288rem;
+          height: 233rem;
+        }
+        & img + img {
+          margin-top: 0;
+        }
+      }
     }
   }
 `;
