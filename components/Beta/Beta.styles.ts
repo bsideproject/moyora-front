@@ -18,9 +18,14 @@ const MainSection = styled.section`
   width: 100%;
   min-width: 100vw;
   padding: 0 20rem;
+  & .web {
+    display: none;
+  }
   @media screen and (min-width: 768px) {
     min-width: 960rem;
-
+    & .web {
+      display: flex;
+    }
     & .mobile {
       display: none;
     }
@@ -200,18 +205,30 @@ const NumberSection = styled(MainSection)`
 `;
 
 const ExamSection = styled(MainSection)`
-  background: url('../../pngs/beta-background.png') top left no-repeat;
-  background-size: cover;
+  background: #fff9f5;
+  @media screen and (min-width: 768px) {
+    background: url('../../pngs/beta-background.png') top left no-repeat;
+    background-size: cover;
+  }
   & > div {
-    padding: 122rem 0 96rem;
+    padding: 60rem 0 0;
+    @media screen and (min-width: 768px) {
+      padding: 122rem 0 96rem;
+    }
 
     & > h2 {
-      margin-bottom: 110rem;
-      font-size: 36rem;
+      margin-bottom: 72rem;
+      font-size: 20rem;
       font-weight: 700;
-      line-height: 56rem;
+      line-height: 28rem;
       color: #000000;
       text-align: center;
+
+      @media screen and (min-width: 768px) {
+        margin-bottom: 110rem;
+        font-size: 36rem;
+        line-height: 56rem;
+      }
       & > span {
         position: relative;
         & span {
@@ -220,54 +237,107 @@ const ExamSection = styled(MainSection)`
         }
         & div.bar {
           position: absolute;
-          top: 24rem;
+          top: 14rem;
           left: -5%;
           z-index: 10;
           width: 110%;
-          height: 15rem;
+          height: 8rem;
           background: rgba(255, 109, 58, 0.5);
           border-radius: 30px;
+          @media screen and (min-width: 768px) {
+            top: 24rem;
+            height: 15rem;
+          }
         }
       }
     }
     & > div {
       display: flex;
-      margin-bottom: 162rem;
-      & > div {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+
+      &.mobile {
         & img {
-          display: inline-block;
+          width: 274rem;
+          height: 274rem;
+          margin-right: -5rem;
+
+          &.beta-exam {
+            height: 503rem;
+          }
+
+          &.exam-icon {
+            width: 32rem;
+            height: 32rem;
+            margin-left: -10rem;
+          }
         }
-        & span {
-          margin-left: 10rem;
-          font-size: 22rem;
+        & > span {
+          margin: 8rem 0 17rem;
+          font-size: 16rem;
           font-weight: 600;
-          line-height: 33rem;
+          line-height: 19rem;
           color: #ff6d3a;
-          vertical-align: text-bottom;
+          &.is-blue {
+            color: #4181f0;
+          }
         }
-        & h3 {
-          margin: 13rem 0 32rem;
-          font-size: 34rem;
-          font-weight: 600;
-          line-height: 46rem;
-          color: #000000;
+
+        & > h3 {
+          margin: 38rem 0 16rem;
+          font-size: 22rem;
+          font-weight: 700;
+          line-height: 32rem;
         }
-        & p {
-          font-size: 18rem;
+
+        & > p {
+          margin-bottom: 119rem;
+          font-size: 14rem;
           font-weight: 500;
-          line-height: 26rem;
+          line-height: 20rem;
           color: #484f54;
         }
-        &.job {
-          padding: 56rem 0;
-          margin-left: 100rem;
-        }
-        &.exam {
-          padding: 178rem 0;
-          margin-right: 105rem;
-
+      }
+      @media screen and (min-width: 768px) {
+        flex-direction: row;
+        margin-bottom: 162rem;
+        & > div {
+          & img {
+            display: inline-block;
+          }
           & span {
-            color: #4181f0;
+            margin-left: 10rem;
+            font-size: 22rem;
+            font-weight: 600;
+            line-height: 33rem;
+            color: #ff6d3a;
+            vertical-align: text-bottom;
+          }
+          & h3 {
+            margin: 13rem 0 32rem;
+            font-size: 34rem;
+            font-weight: 600;
+            line-height: 46rem;
+            color: #000000;
+          }
+          & p {
+            font-size: 18rem;
+            font-weight: 500;
+            line-height: 26rem;
+            color: #484f54;
+          }
+          &.job {
+            padding: 56rem 0;
+            margin-left: 100rem;
+          }
+          &.exam {
+            padding: 178rem 0;
+            margin-right: 105rem;
+
+            & span {
+              color: #4181f0;
+            }
           }
         }
       }
