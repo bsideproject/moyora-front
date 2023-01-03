@@ -36,7 +36,7 @@ const MainSection = styled.section`
     max-width: 390rem;
     margin: 0 auto;
     @media screen and (min-width: 768px) {
-      max-width: 920rem;
+      max-width: 960rem;
     }
   }
 `;
