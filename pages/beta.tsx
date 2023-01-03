@@ -8,6 +8,7 @@ import betaImages from '@configs/betaImages';
 
 import Banner from '@components/Beta/Banner';
 import B from '@components/Beta/Beta.styles';
+import Number from '@components/Beta/Number';
 
 const Beta: React.FC = () => {
   const router = useRouter();
@@ -18,25 +19,7 @@ const Beta: React.FC = () => {
     <div>
       <B.GlobalStyle />
       <Banner onClick={onClickStart} />
-      <B.NumberSection>
-        <div>
-          <div>
-            <Image src={betaImages.BetaHeart} alt="beta-heart" />
-            <h3>290명</h3>
-            <p>총 참여자 수</p>
-          </div>
-          <div>
-            <Image src={betaImages.BetaSchool} alt="beta-school" />
-            <h3>213개</h3>
-            <p>활성화된 학교 수</p>
-          </div>
-          <div>
-            <Image src={betaImages.BetaLetter} alt="beta-letter" />
-            <h3>156개</h3>
-            <p>누적 방명록 수</p>
-          </div>
-        </div>
-      </B.NumberSection>
+      <Number />
       <B.ExamSection>
         <div>
           <h2>
