@@ -20,8 +20,7 @@ const ListSection = styled.section`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  height: 100vh;
-  overflow-y: scroll;
+  height: calc(100vh-84rem);
   & > div {
     margin-bottom: 12rem;
   }
