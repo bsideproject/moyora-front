@@ -1,6 +1,8 @@
 import { Button } from 'antd';
 import styled from 'styled-components';
 
+const chartColors = ['#FF6D3A', '#4181F0', '#F4B95C', '#71BA9D', '#B8C6FB'];
+
 const StatisticsCardWrap = styled.div`
   display: flex;
   flex-direction: column;
@@ -20,6 +22,19 @@ const StatisticsCardWrap = styled.div`
   & > div.chart-area {
     width: 160rem;
     height: 160rem;
+  }
+  & > div.chart-area-bar {
+    width: 100%;
+    height: 24rem;
+    text-align: center;
+
+    & > canvas {
+      position: relative;
+      width: calc(100% - 22rem) !important;
+      height: 24rem !important;
+      margin: 0 auto;
+      border-radius: 40rem;
+    }
   }
 
   & > button {
@@ -44,25 +59,27 @@ const StatisticsCardWrap = styled.div`
 const StatisticsDetailWrap = styled.div`
   width: 100%;
   margin: 16rem 0 20rem;
-  & > div {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin-top: 12rem;
+`;
 
-    & span.chart-color {
-      display: inline-block;
-      width: 8rem;
-      height: 8rem;
-      margin-right: 12rem;
+const StatisticsDetailCard = styled.div<{ colorIndex: number }>`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 12rem;
 
-      background-color: ${({ theme }) => theme.primary};
+  & span.chart-color {
+    display: inline-block;
+    width: 8rem;
+    height: 8rem;
+    margin-right: 12rem;
 
-      border-radius: 4rem;
-    }
-    & h4 {
-      display: inline-block;
-    }
+    background-color: ${({ colorIndex }) =>
+      colorIndex <= 3 ? chartColors[colorIndex] : chartColors[4]};
+
+    border-radius: 4rem;
+  }
+  & h4 {
+    display: inline-block;
   }
 `;
 
@@ -86,6 +103,6 @@ const MoreStatisticsButton = styled(Button)<{ isToggle?: boolean }>`
   }
 `;
 
-const S = { StatisticsCardWrap, StatisticsDetailWrap, MoreStatisticsButton };
+const S = { StatisticsCardWrap, StatisticsDetailWrap, StatisticsDetailCard, MoreStatisticsButton };
 
 export default S;
