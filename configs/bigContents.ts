@@ -119,3 +119,94 @@ export const friendsTempList: IFriendsList[] = [
   { id: '9', name: '이지호', nickname: '이지', school: 'OO초등학교' },
   { id: '10', name: '김지후', nickname: '김지', school: 'OO초등학교' },
 ];
+
+export const dummyChartData = {
+  datasets: [
+    {
+      data: [19, 12, 5, 3, 2],
+      backgroundColor: ['#FF6D3A', '#4181F0', '#F4B95C', '#71BA9D', '#B8C6FB'],
+      borderWidth: 1,
+    },
+  ],
+};
+
+export const barOptions = {
+  responsive: false,
+  indexAxis: 'y' as const,
+  plugins: {
+    legend: {
+      position: 'right' as const,
+    },
+  },
+  scales: {
+    x: { stacked: true, display: false },
+    y: { stacked: true, display: false },
+  },
+};
+
+export const dummyBarChartData = {
+  labels: [''],
+  datasets: [
+    {
+      data: [40],
+      backgroundColor: '#FF6D3A',
+      borderRadius: 50,
+    },
+    {
+      data: [22],
+      backgroundColor: '#4181F0',
+    },
+    {
+      data: [18],
+      backgroundColor: '#F4B95C',
+    },
+    {
+      data: [15],
+      backgroundColor: '#71BA9D',
+    },
+    {
+      data: [5],
+      backgroundColor: '#B8C6FB',
+      borderRadius: 50,
+    },
+  ],
+};
+
+export const dummyJobsData = [
+  { title: '마케팅/광고/홍보', value: 50 },
+  { title: '디자인', value: 38 },
+  { title: '교육', value: 20 },
+  { title: '무역 유통', value: 18 },
+  { title: '무역 유통', value: 18 },
+  { title: '무역 유통', value: 18 },
+  { title: '무역 유통', value: 18 },
+  { title: '무역 유통', value: 18 },
+  { title: '무역 유통', value: 18 },
+];
+
+export const dummyLocationsData = [
+  { title: '서울시 동대문구', value: 50 },
+  { title: '성남시 분당구', value: 38 },
+  { title: '대전광역시 동구', value: 20 },
+  { title: '수원시 장안구', value: 18 },
+  { title: '수원시 장안구', value: 18 },
+  { title: '수원시 장안구', value: 18 },
+  { title: '수원시 장안구', value: 18 },
+  { title: '수원시 장안구', value: 18 },
+  { title: '수원시 장안구', value: 18 },
+  { title: '수원시 장안구', value: 18 },
+];
+
+export const dummyMBTIsData = [
+  { title: 'ISTJ', value: 50 },
+  { title: 'ENTP', value: 38 },
+  { title: 'ESFP', value: 20 },
+  { title: 'INFP', value: 18 },
+  { title: 'INFP', value: 18 },
+  { title: 'INFP', value: 18 },
+  { title: 'INFP', value: 18 },
+  { title: 'INFP', value: 18 },
+  { title: 'INFP', value: 18 },
+  { title: 'INFP', value: 18 },
+  { title: 'INFP', value: 18 },
+];

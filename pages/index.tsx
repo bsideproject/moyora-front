@@ -21,6 +21,9 @@ const Home: FC = () => {
       <CommonButton type="primary" size="large" block onClick={() => router.push('/beta')}>
         베타 출시
       </CommonButton>
+      <CommonButton size="large" block onClick={() => router.push('/statistics')}>
+        통계
+      </CommonButton>
     </div>
   );
 };

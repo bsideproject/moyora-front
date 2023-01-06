@@ -55,7 +55,7 @@
   },
   "overrides": [
     {
-      "files": ["./APIs/**", "./utils/**"],
+      "files": ["./APIs/**", "./utils/**", "./configs/**"],
       "rules": {
         "max-lines": "off",
         "max-lines-per-function": ["error", { "max": 100 }]
