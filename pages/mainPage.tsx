@@ -134,15 +134,7 @@ const MainPage: React.FC = () => {
           </Link>
         </M.contentTitle>
         {guestBookList ? (
-          <Swiper
-            spaceBetween={8}
-            preventClicksPropagation={true}
-            slidesPerView={(350 - 8) / 200}
-            onSlideChange={() => console.dir('slide change!!!')}
-            onClick={(swipe) => {
-              console.log(`${swipe.clickedIndex}번 클릭!`);
-            }}
-          >
+          <Swiper spaceBetween={8} preventClicksPropagation={true} slidesPerView={(350 - 8) / 200}>
             {guestBookList
               ? guestBookList.map((guestBook) => (
                   <SwiperSlide key={guestBook.id}>
