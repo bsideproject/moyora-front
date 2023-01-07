@@ -17,7 +17,7 @@ const Beta: React.FC = () => {
   const onClickStart = () => router.push('/login');
 
   return (
-    <div>
+    <div className="full-container">
       <B.GlobalStyle />
       <Banner onClick={onClickStart} />
       <Number />

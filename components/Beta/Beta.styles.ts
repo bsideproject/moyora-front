@@ -11,6 +11,9 @@ const GlobalStyle = createGlobalStyle`
         padding: 0;
         background-color: ${({ theme }) => theme.white};
       }
+      div.full-container{
+        padding: 0;
+      }
     }
 `;
 
@@ -509,7 +512,7 @@ const LinkSection = styled(MainSection)`
 `;
 
 const FooterSection = styled(MainSection)`
-  padding: 108rem 0 42rem;
+  padding: 108rem 20rem 42rem;
 
   & > div {
     display: flex;
