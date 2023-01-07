@@ -76,6 +76,18 @@ const SearchFriendWrapper = styled.div`
 
   & > div {
     margin-left: 12rem;
+    & h4 {
+      font-size: 16rem;
+      font-weight: 600;
+      line-height: 24rem;
+      color: ${({ theme }) => theme.gray900};
+    }
+    & p {
+      font-size: 14rem;
+      font-weight: 400;
+      line-height: 20rem;
+      color: ${({ theme }) => theme.gray600};
+    }
   }
 `;
 

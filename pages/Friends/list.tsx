@@ -9,19 +9,19 @@ import ProfileImage from '@components/Common/ProfileImage';
 
 const List: React.FC = () => {
   const router = useRouter();
-  const onClickFind = () => {
-    router.push('./find');
-  };
   const [friendsData, setFriendsData] = useState<IFriendsList[] | null>(null);
   useEffect(() => {
     setFriendsData(friendsTempList);
   });
+  const onClickSearchFriends = () => {
+    router.replace('/search', '', { shallow: true });
+  };
   return (
     <F.FriendsListWrapper>
       <LogoHeader headerIcons={true} />
       <div>
         <h1>동창 목록</h1>
-        <div onClick={onClickFind}>
+        <div onClick={onClickSearchFriends}>
           <Image src={SearchPr} alt="search-pr-icon" />
           <h2>동창 찾기</h2>
         </div>

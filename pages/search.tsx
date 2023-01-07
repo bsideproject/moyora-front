@@ -16,7 +16,7 @@ const Search: React.FC = () => {
   const [isSearch, onToggleSearch] = useToggle(false);
 
   const onClickCloseSearch = () => {
-    const href = isSchool ? '/signup/1' : '/';
+    const href = isSchool ? '/signup/1' : '/friends/list';
     router.replace(href, '', { shallow: true });
   };
 
@@ -40,6 +40,7 @@ const Search: React.FC = () => {
         prefix={<Image src={SearchPr} alt="search-pr-icon" />}
         suffix={<button onClick={onClickCloseSearch}>닫기</button>}
         onPressEnter={onSearch}
+        placeholder={!isSchool ? '찾고싶은 동창 이름을 검색하세요.' : ''}
       />
 
       {isSearch ? (
