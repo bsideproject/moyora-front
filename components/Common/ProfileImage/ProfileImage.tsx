@@ -7,7 +7,7 @@ import AutoHeightImage from '../AutoHeightImage/AutoHeightImage';
 const ProfileImage: React.FC<IProfileProps> = ({ ...props }) => {
   return (
     <>
-      <P.ProfileWrapper size={props.size}>
+      <P.ProfileWrapper size={props.size} url={props.url}>
         {props.url ? (
           <P.Profile size={props.size}>
             <AutoHeightImage src={props.url} alt="noProfileImage" />

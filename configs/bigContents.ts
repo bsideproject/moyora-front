@@ -210,3 +210,39 @@ export const dummyMBTIsData = [
   { title: 'INFP', value: 18 },
   { title: 'INFP', value: 18 },
 ];
+
+export const info = {
+  name: '홍길동',
+  profile: 'beta',
+  nickname: '별명',
+  school: '모여라',
+  graduation: '77',
+  jobCategory: '전문/특수직',
+  jobCategory2: '사회복지 · 요양보호 · 자원봉사',
+  region: '서울시 성동구',
+  mbti: 'ISTJ',
+  sns: {
+    facebook: '주소',
+    instagram: '주소',
+    youtube: '주소',
+  },
+  birthDay: '96.02.29',
+};
+
+export const info2 = {
+  name: '홍길순',
+  profile: '',
+  nickname: '별명',
+  school: '모여라',
+  graduation: '77',
+  jobCategory: '',
+  jobCategory2: '',
+  region: '',
+  mbti: '',
+  sns: {
+    facebook: '',
+    instagram: '',
+    youtube: '',
+  },
+  birthDay: '',
+};

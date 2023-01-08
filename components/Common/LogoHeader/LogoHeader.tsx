@@ -32,7 +32,7 @@ const LogoHeader: React.FC<IProps> = ({ headerIcons, backgroundPrimary, children
           <Button
             type="text"
             shape="circle"
-            onClick={() => router.replace(`/mainPage`, '', { shallow: true })}
+            onClick={() => router.replace(`/archive/myPage`, '', { shallow: true })}
           >
             <Image src={backgroundPrimary ? ArchiveIconPrimary : ArchiveIcon} alt="ArchiveIcon" />
           </Button>

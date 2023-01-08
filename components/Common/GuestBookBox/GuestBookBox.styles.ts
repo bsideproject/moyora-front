@@ -18,23 +18,25 @@ const G = styled.div`
       flex-direction: row;
       justify-content: space-between;
     }
-    & textarea {
-      width: 100%;
-      resize: none;
+    & > div {
+      & > textarea {
+        width: 100%;
+        resize: none;
 
-      margin-top: 16rem;
-      font-size: 14rem;
-      font-weight: 400;
-      line-height: 20rem;
-      color: ${({ theme }) => theme.gray850};
+        margin-top: 16rem;
+        font-size: 14rem;
+        font-weight: 400;
+        line-height: 20rem;
+        color: ${({ theme }) => theme.gray850};
 
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      word-wrap: break-word;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        word-wrap: break-word;
 
-      background-color: transparent;
-      border: none;
-      outline: none;
+        background-color: transparent;
+        border: none;
+        outline: none;
+      }
     }
   }
   & > section {
@@ -43,6 +45,20 @@ const G = styled.div`
     font-weight: 400;
     line-height: 18rem;
     color: ${({ theme }) => theme.gray600};
+  }
+  & > span:last-of-type {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: cneter;
+    & > div {
+      display: flex;
+      align-items: center;
+      font-size: 13rem;
+      font-weight: 400;
+      line-height: 18rem;
+      color: ${({ theme }) => theme.gray700};
+    }
   }
 `;
 
