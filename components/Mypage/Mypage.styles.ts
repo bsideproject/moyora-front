@@ -29,10 +29,26 @@ const ProfileWrap = styled.section`
   background-color: ${({ theme }) => theme.gray50};
 
   & span.ant-upload-wrapper {
+    position: relative;
+    width: 76rem;
     height: 76rem;
-    & img {
-      width: 76rem;
-      height: 76rem;
+    & div.ant-upload {
+      & img {
+        width: 76rem;
+        height: 76rem;
+      }
+      & div {
+        position: absolute;
+        right: 0rem;
+        bottom: 0rem;
+        padding: 4rem;
+        background-color: ${({ theme }) => theme.primary};
+        border-radius: 50%;
+        & img {
+          width: 16rem;
+          height: 16rem;
+        }
+      }
     }
   }
 
@@ -67,8 +83,41 @@ const ProfileWrap = styled.section`
     }
   }
 `;
-const LinkWrap = styled.section``;
-const LinkCard = styled(Link)``;
+const LinkWrap = styled.section`
+  & + & {
+    border-top: 8rem solid ${({ theme }) => theme.gray50};
+  }
+
+  & > h4 {
+    margin: 24rem 20rem 12rem;
+    font-size: 16rem;
+    font-weight: 700;
+    line-height: 24rem;
+    color: ${({ theme }) => theme.gray800};
+  }
+`;
+const LinkCard = styled(Link)`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12rem 20rem 16rem;
+
+  &:not(:last-child) {
+    border-bottom: 1rem solid ${({ theme }) => theme.gray50};
+  }
+
+  & p {
+    font-size: 16rem;
+    font-weight: 500;
+    line-height: 24rem;
+    color: ${({ theme }) => theme.gray750};
+  }
+
+  & img {
+    width: 20rem;
+    height: 20rem;
+  }
+`;
 
 const M = { GlobalStyle, MypageIndexWrapper, ProfileWrap, LinkWrap, LinkCard };
 
