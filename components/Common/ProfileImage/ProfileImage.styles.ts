@@ -20,7 +20,7 @@ const ProfileWrapper = styled.div<IProfileProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${({ theme }) => theme.gray300};
+  background-color: ${({ theme, url }) => (url ? '#B8C6FB' : theme.gray300)};
 `;
 
 const Profile = styled.div<IProfileProps>`
