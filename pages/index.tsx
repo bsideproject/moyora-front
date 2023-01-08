@@ -24,6 +24,9 @@ const Home: FC = () => {
       <CommonButton size="large" block onClick={() => router.push('/statistics')}>
         통계
       </CommonButton>
+      <CommonButton type="primary" size="large" block onClick={() => router.push('/mypage')}>
+        마이페이지
+      </CommonButton>
     </div>
   );
 };
