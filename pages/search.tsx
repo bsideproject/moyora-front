@@ -16,7 +16,7 @@ const Search: React.FC = () => {
   const [isSearch, onToggleSearch] = useToggle(false);
 
   const onClickCloseSearch = () => {
-    const href = isSchool ? '/signup/1' : '/friends/list';
+    const href = isSchool ?? '/friends/list';
     router.replace(href, '', { shallow: true });
   };
 
@@ -27,8 +27,8 @@ const Search: React.FC = () => {
   };
 
   const onClickSelectCard = (value: string) => () => {
-    const href = isSchool ? `/signup/1?school=${value}` : `/mainPage?friend=${value}`;
-    const as = isSchool ? '/signup/1' : '/mainPage';
+    const href = isSchool ? `${isSchool}?school=${value}` : `/mainPage?friend=${value}`;
+    const as = isSchool ? `${isSchool}` : '/mainPage';
     router.replace(href, as, { shallow: true });
   };
 

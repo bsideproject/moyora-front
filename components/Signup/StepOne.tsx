@@ -18,7 +18,7 @@ const StepOne: React.FC = () => {
   const onSelectGraduationYear = (value: unknown) => setGraduationYear(value as string);
 
   const onClickSearchSchool = () => {
-    router.replace('/search?isSchool=true', '/search', { shallow: true });
+    router.replace('/search?isSchool=/signup/1', '/search', { shallow: true });
   };
 
   const onClickAddSchool = () => {
@@ -32,6 +32,7 @@ const StepOne: React.FC = () => {
         <S.SearchButton
           readOnly
           bordered={false}
+          isFill={Boolean(school)}
           placeholder="학교 검색"
           value={school}
           onClick={onClickSearchSchool}
