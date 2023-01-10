@@ -17,7 +17,7 @@ const profileLinks = [
 ];
 
 const otherLinks = [
-  { name: '서비스 정보', link: '/mypage/edit-name' },
+  { name: '서비스 정보', link: '/mypage/service-info' },
   { name: '로그아웃', link: '/mypage?logout=true' },
 ];
 
