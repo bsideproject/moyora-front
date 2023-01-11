@@ -150,7 +150,7 @@ const MypageInputWrapper = styled.div`
     padding: 24rem 0 223rem;
   }
 
-  & > div {
+  & > div.form-section {
     padding: 24rem 0;
     border-top: 8rem solid ${({ theme }) => theme.gray50};
 

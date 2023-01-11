@@ -43,7 +43,7 @@ const EditProfile: React.FC = () => {
     <M.MypageInputWrapper>
       <LogoHeader headerIcons />
       <h2 className="custom-margin">프로필 정보 수정</h2>
-      <div>
+      <div className="form-section">
         <h4>필수 정보</h4>
         <h3>
           직업 분야<span> *</span>
@@ -128,7 +128,7 @@ const EditProfile: React.FC = () => {
           <p>비공개 시 통계 집계에는 포함되지만 프로필에는 공개되지 않습니다.</p>
         </M.MypageSwitchWrap>
       </div>
-      <div>
+      <div className="form-section">
         <h4>선택 정보</h4>
         <h3>MBTI</h3>
         <M.MypageSelect
