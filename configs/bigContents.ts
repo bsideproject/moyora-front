@@ -246,3 +246,24 @@ export const info2 = {
   },
   birthDay: '',
 };
+
+export const dummyMBTIOptions = [
+  { label: 'ISTJ', value: 'ISTJ' },
+  { label: 'ENTP', value: 'ENTP' },
+  { label: 'ESFP', value: 'ESFP' },
+  { label: 'INFP', value: 'INFP' },
+  { label: 'INFP', value: 'INFP' },
+  { label: 'INFP', value: 'INFP' },
+  { label: 'INFP', value: 'INFP' },
+  { label: 'INFP', value: 'INFP' },
+  { label: 'INFP', value: 'INFP' },
+  { label: 'INFP', value: 'INFP' },
+  { label: 'INFP', value: 'INFP' },
+];
+
+export const dummySNSOptions = [
+  { label: 'SNS 선택', value: '' },
+  { label: '인스타그램', value: 'instagram' },
+  { label: '유튜브', value: 'youtube' },
+  { label: '페이스북', value: 'facebook' },
+];

@@ -1,6 +1,7 @@
 import React from 'react';
-import { Upload } from 'antd';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
+import { Button, Upload } from 'antd';
 
 import LogoHeader from '@components/Common/LogoHeader';
 
@@ -22,6 +23,10 @@ const otherLinks = [
 ];
 
 const Mypage: React.FC = () => {
+  const router = useRouter();
+  const logout = router.query?.logout ?? false;
+  const onClickLogout = () => router.replace('/');
+  const onClickCancelLogout = () => router.replace('/mypage', '/mypage', { shallow: true });
   return (
     <M.MypageIndexWrapper className="full-container">
       <M.GlobalStyle />
@@ -61,6 +66,21 @@ const Mypage: React.FC = () => {
           </M.LinkCard>
         ))}
       </M.LinkWrap>
+      <M.LogoutModal
+        title="정말 로그아웃 하시겠어요?"
+        width={350}
+        open={Boolean(logout)}
+        closeIcon={<></>}
+        footer=""
+        centered
+      >
+        <Button block type="primary" onClick={onClickLogout}>
+          로그아웃
+        </Button>
+        <Button block onClick={onClickCancelLogout}>
+          취소
+        </Button>
+      </M.LogoutModal>
     </M.MypageIndexWrapper>
   );
 };
