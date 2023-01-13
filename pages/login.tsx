@@ -1,6 +1,5 @@
 import React from 'react';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 
 import Logo from '@public/svgs/moyora-logo.svg';
 import KakaoLogo from '@public/svgs/kakao-logo.svg';
@@ -8,13 +7,16 @@ import KakaoLogo from '@public/svgs/kakao-logo.svg';
 import L from '@components/Login/Login.styles';
 
 const Login: React.FC = () => {
-  const router = useRouter();
   const onClickLogin = () => {
-    router.replace('/signup/1');
+    if (!window?.Kakao?.isInitialized()) {
+      window?.Kakao?.init(process.env.NEXT_PUBLIC_KAKAO_KEY);
+      window?.Kakao.Auth.authorize({ redirectUri: 'http://localhost:3000/kakao' });
+    }
   };
+
   return (
     <L.LoginWrapper>
-      <Image src={Logo} alt="moyora-logo" />
+      <Image src={Logo} alt="moyora-logo" priority />
       <div>
         <h3>반가워요!</h3>
         <p>

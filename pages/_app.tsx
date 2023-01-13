@@ -2,8 +2,10 @@ import '@styles/global.css';
 
 import React from 'react';
 import Head from 'next/head';
+import Script from 'next/script';
 import localFont from '@next/font/local';
 import { AppProps } from 'next/app';
+import { ConfigProvider } from 'antd';
 import { ThemeProvider } from 'styled-components';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -11,7 +13,6 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import theme from '@styles/theme';
 
 import AppLayout from '@components/Layout/AppLayout';
-import { ConfigProvider } from 'antd';
 
 const client = new QueryClient({
   defaultOptions: {
@@ -48,6 +49,11 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => (
             content="width=device-width, initial-scale=1, maximum-scale=1, minimal-scale=1"
           />
         </Head>
+        <Script
+          src="https://t1.kakaocdn.net/kakao_js_sdk/2.1.0/kakao.min.js"
+          integrity="sha384-dpu02ieKC6NUeKFoGMOKz6102CLEWi9+5RQjWSV0ikYSFFd8M3Wp2reIcquJOemx"
+          crossOrigin="anonymous"
+        />
         <AppLayout>
           <main className={pretendard.className}>
             <Component {...pageProps} />
