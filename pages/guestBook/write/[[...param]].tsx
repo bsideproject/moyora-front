@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import W from '@components/GuestBook/WriteBeta.styles';
 import LogoHeader from '@components/Common/LogoHeader';
 import Image from 'next/image';
@@ -21,9 +21,10 @@ import QuotationMark4 from '@public/svgs/quotationMark-4.svg';
 import QuotationMark5 from '@public/svgs/quotationMark-5.svg';
 import { TStickerType } from '@configs/bigContents';
 import WarningIcon from '@public/svgs/icon-warning.svg';
-import { RadioChangeEvent } from 'antd';
+import { Checkbox, RadioChangeEvent } from 'antd';
 import { useToggle } from 'react-use';
 import { useRouter } from 'next/router';
+import type { CheckboxChangeEvent } from 'antd/es/checkbox';
 
 const stickers = {
   '1': { sticker: Sticker1, quotationMark: QuotationMark1 },
@@ -59,12 +60,21 @@ const WriteBeta: React.FC = () => {
       onToggleConfirm();
     }
   };
-  const onClickWrite = () => router.replace('/guestBook/list');
+  const [noteId, setNoteId] = useState('');
+  useEffect(() => {
+    const [id] = router.query.param ?? '';
+    if (id) setNoteId(id as string);
+  }, [router.query]);
+  const onClickWrite = () =>
+    noteId ? router.push(`/guestBook/list/${noteId}`) : router.push(`/guestBook/list`);
+  const onChange = (e: CheckboxChangeEvent) => {
+    console.log(`checked = ${e.target.checked}`);
+  };
   return (
     <>
       <W.GuestBookWriteWrapper>
         <LogoHeader headerIcons={true} />
-        <h1>우리 학교 방명록 남기기</h1>
+        <h1>{noteId ? `OO에게 쪽지 쓰기` : `우리 학교 방명록 남기기`}</h1>
         <W.TextAreaSection>
           <section>
             <div>
@@ -82,6 +92,7 @@ const WriteBeta: React.FC = () => {
             autoSize={{ minRows: 3, maxRows: 8 }}
             onChange={onChangeGuestBookText}
           />
+          {noteId ? <Checkbox onChange={onChange}>비공개로 작성하기</Checkbox> : ''}
         </W.TextAreaSection>
         <W.WarningSection>
           <Image src={WarningIcon} alt="warningIcon" />
