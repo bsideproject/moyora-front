@@ -262,13 +262,14 @@ const SignUpCompleteWrapper = styled.section`
 
     & > h2 {
       margin-top: 20rem;
+      font-family: GmarketSans;
       font-size: 28rem;
       font-weight: 700;
       color: ${({ theme }) => theme.gray900};
 
       & span {
         display: inline-block;
-        width: 37rem;
+        width: 40rem;
       }
     }
 
