@@ -6,15 +6,16 @@ import { useRouter } from 'next/router';
 import ListSection from './ListSection';
 const List: React.FC = () => {
   const router = useRouter();
+  const id = (router.query?.param as string) ?? '';
   const [noteId, setNoteId] = useState('');
   const [guestBookList, setGuestBookList] = useState<IGuestBookList[] | null>(null);
+
   useEffect(() => {
     setGuestBookList(guestBookTempList);
-  }, []);
-  useEffect(() => {
-    const [id] = router.query.param ?? [''];
-    setNoteId(id as string);
-  }, [router.query]);
+    setNoteId(id);
+  }, [id]);
+
+  useEffect(() => {}, [id, router.query]);
   return (
     <>
       <L.GuestBookListWrapper>
