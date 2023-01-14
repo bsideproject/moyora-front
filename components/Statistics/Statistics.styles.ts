@@ -7,33 +7,33 @@ const StatisticsCardWrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20rem 0 40rem;
-  border-bottom: 8rem solid ${({ theme }) => theme.gray50};
+  padding: 20px 0 40px;
+  border-bottom: 8px solid ${({ theme }) => theme.gray50};
 
   & h2 {
     width: 100%;
-    margin-bottom: 20rem;
-    font-size: 18rem;
+    margin-bottom: 20px;
+    font-size: 18px;
     font-weight: 700;
-    line-height: 26rem;
+    line-height: 26px;
     color: #1f2022;
   }
 
   & > div.chart-area {
-    width: 160rem;
-    height: 160rem;
+    width: 160px;
+    height: 160px;
   }
   & > div.chart-area-bar {
     width: 100%;
-    height: 24rem;
+    height: 24px;
     text-align: center;
 
     & > canvas {
       position: relative;
-      width: calc(100% - 22rem) !important;
-      height: 24rem !important;
+      width: calc(100% - 22px) !important;
+      height: 24px !important;
       margin: 0 auto;
-      border-radius: 40rem;
+      border-radius: 40px;
     }
   }
 
@@ -41,42 +41,42 @@ const StatisticsCardWrap = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 40rem;
-    font-size: 14rem;
+    height: 40px;
+    font-size: 14px;
     font-weight: 600;
 
     color: ${({ theme }) => theme.gray650};
 
-    border-radius: 4rem;
+    border-radius: 4px;
 
     & img {
       display: inline-block;
-      margin-left: 2rem;
+      margin-left: 2px;
     }
   }
 `;
 
 const StatisticsDetailWrap = styled.div`
   width: 100%;
-  margin: 16rem 0 20rem;
+  margin: 16px 0 20px;
 `;
 
 const StatisticsDetailCard = styled.div<{ colorIndex: number }>`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin-top: 12rem;
+  margin-top: 12px;
 
   & span.chart-color {
     display: inline-block;
-    width: 8rem;
-    height: 8rem;
-    margin-right: 12rem;
+    width: 8px;
+    height: 8px;
+    margin-right: 12px;
 
     background-color: ${({ colorIndex }) =>
       colorIndex <= 3 ? chartColors[colorIndex] : chartColors[4]};
 
-    border-radius: 4rem;
+    border-radius: 4px;
   }
   & h4 {
     display: inline-block;
@@ -87,18 +87,18 @@ const MoreStatisticsButton = styled(Button)<{ isToggle?: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 40rem;
-  font-size: 14rem;
+  height: 40px;
+  font-size: 14px;
   font-weight: 600;
 
   color: ${({ theme }) => theme.gray650} !important;
   border-color: ${({ theme }) => theme.gray400} !important;
 
-  border-radius: 4rem;
+  border-radius: 4px;
 
   & img {
     display: inline-block;
-    margin-left: 2rem;
+    margin-left: 2px;
     rotate: ${({ isToggle }) => (isToggle ? 0 : 180)}deg;
   }
 `;

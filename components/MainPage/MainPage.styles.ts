@@ -10,16 +10,16 @@ const MainPageWrapper = styled.section`
   align-items: center;
   & h1 {
     display: inline;
-    font-size: 20rem;
+    font-size: 20px;
     font-weight: 700;
-    line-height: 28rem;
+    line-height: 28px;
     color: ${({ theme }) => theme.gray900};
   }
   & h2 {
     display: inline;
-    font-size: 16rem;
+    font-size: 16px;
     font-weight: 700;
-    line-height: 24rem;
+    line-height: 24px;
     color: ${({ theme }) => theme.primary};
   }
   & h3 {
@@ -27,51 +27,51 @@ const MainPageWrapper = styled.section`
   }
   & p {
     display: inline;
-    font-size: 14rem;
+    font-size: 14px;
     font-weight: 500;
-    line-height: 20rem;
+    line-height: 20px;
     color: ${({ theme }) => theme.gray600};
   }
 `;
 
 const mySchoolSection = styled.div`
   width: 100%;
-  height: 94rem;
-  margin: 20rem 0;
+  height: 94px;
+  margin: 20px 0;
   & > p {
-    font-size: 13rem;
+    font-size: 13px;
     font-weight: 400;
-    line-height: 18rem;
+    line-height: 18px;
     color: ${({ theme }) => theme.gray500};
   }
   & > div {
-    width: 100%;
-    height: 58rem;
     display: flex;
-    justify-content: center;
     align-items: center;
-    border: 1rem solid ${({ theme }) => theme.gray200};
-    border-radius: 12rem;
-    margin-top: 12rem;
+    justify-content: center;
+    width: 100%;
+    height: 58px;
+    margin-top: 12px;
+    border: 1px solid ${({ theme }) => theme.gray200};
+    border-radius: 12px;
     & h1 {
+      margin-right: 8px;
+      font-size: 18px;
       font-weight: 700;
-      font-size: 18rem;
-      line-height: 26rem;
-      margin-right: 8rem;
+      line-height: 26px;
       color: ${({ theme }) => theme.gray800};
     }
     & p {
+      font-size: 14px;
       font-weight: 400;
-      font-size: 14rem;
-      line-height: 20rem;
+      line-height: 20px;
       color: ${({ theme }) => theme.gray600};
     }
     & div:not(:last-of-type) {
-      margin-right: 20rem;
+      margin-right: 20px;
     }
     & div:nth-last-of-type(2n) {
-      height: 16rem;
-      border-right: 1rem solid ${({ theme }) => theme.gray200};
+      height: 16px;
+      border-right: 1px solid ${({ theme }) => theme.gray200};
     }
   }
 `;
@@ -80,27 +80,27 @@ const contentTitle = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 20rem 0 16rem 0;
+  margin: 20px 0 16px 0;
 `;
 
 const content = styled.div`
-  padding: 16rem 20rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 16px 20px;
   & section {
-    background-color: ${({ theme }) => theme.gray50};
-    width: 54rem;
-    height: 24rem;
-    border-radius: 20rem;
     display: flex;
-    justify-content: space-around;
     align-items: center;
-    padding: 4rem 8rem;
+    justify-content: space-around;
+    width: 54px;
+    height: 24px;
+    padding: 4px 8px;
+    background-color: ${({ theme }) => theme.gray50};
+    border-radius: 20px;
     & h3 {
-      font-size: 12rem;
+      font-size: 12px;
       font-weight: 600;
-      line-height: 16rem;
+      line-height: 16px;
       color: ${({ theme }) => theme.gray800};
     }
   }
@@ -114,42 +114,42 @@ const content = styled.div`
 
 const ourSchoolStatisticsSection = styled.div`
   width: 100%;
-  height: 236rem;
+  height: 236px;
   & > div:last-of-type {
     width: 100%;
-    height: 144rem;
+    height: 144px;
     background-color: #fff4ec;
-    border-radius: 20rem;
+    border-radius: 20px;
   }
 `;
 
 const ourSchoolGuestBookSection = styled.div`
   width: 100%;
-  height: 284rem;
+  height: 284px;
   overflow: hidden;
   .swiper-wrapper {
     display: flex;
-    margin-top: 16rem;
+    margin-top: 16px;
   }
   & > div:last-of-type:not(.swiper) {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    height: 200px;
     text-align: center;
-    height: 200rem;
     background-color: ${({ theme }) => theme.gray50};
-    border: 1rem solid ${({ theme }) => theme.gray100};
-    border-radius: 20rem;
+    border: 1px solid ${({ theme }) => theme.gray100};
+    border-radius: 20px;
     & h4 {
-      font-size: 14rem;
+      font-size: 14px;
       font-weight: 500;
-      line-height: 20rem;
+      line-height: 20px;
       color: ${({ theme }) => theme.gray600};
     }
     & p {
-      font-size: 14rem;
+      font-size: 14px;
       font-weight: 500;
-      line-height: 20rem;
+      line-height: 20px;
       color: ${({ theme }) => theme.gray500};
     }
   }

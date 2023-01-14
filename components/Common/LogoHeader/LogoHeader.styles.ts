@@ -8,11 +8,11 @@ const HeaderIcons = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 104rem;
+  width: 104px;
   & button {
+    width: 24px;
+    height: 24px;
     padding: 0;
-    height: 24rem;
-    width: 24rem;
     & img {
       margin: auto;
     }
@@ -24,7 +24,7 @@ const LogoHeaderWrapper = styled.section<IProps>`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: 56rem;
+  height: 56px;
   background-color: ${({ theme, backgroundPrimary }) =>
     backgroundPrimary ? theme.primary : 'transparent'};
 `;

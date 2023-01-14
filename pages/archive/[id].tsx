@@ -167,7 +167,7 @@ const Archive: React.FC = () => {
             guestBookTempList.map((guestBook) => (
               <GuestBookBox
                 info={{ id: id, name: '이름', nickname: '별명', lock: guestBook.lock }}
-                size={{ width: '200rem', height: '220rem', line: '3' }}
+                size={{ width: '200px', height: '220px', line: '3' }}
                 text={guestBook.text}
                 date={guestBook.date}
                 key={guestBook.id}

@@ -20,7 +20,7 @@ const Home: FC = () => {
     return (
       <div>
         <h2
-          style={{ fontSize: '32rem', fontWeight: 'bold', textAlign: 'center', marginTop: '30rem' }}
+          style={{ fontSize: '32px', fontWeight: 'bold', textAlign: 'center', marginTop: '30px' }}
         >
           페이지 이동하기
         </h2>

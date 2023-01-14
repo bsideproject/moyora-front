@@ -1,16 +1,16 @@
 import styled from 'styled-components';
 
 const G = styled.div`
-  background-color: ${({ theme }) => theme.gray50};
-  border: 1rem solid ${({ theme }) => theme.gray100};
-  border-radius: 20rem;
-  padding: 20rem 16rem;
-  width: 200rem;
-  height: 200rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: flex-start;
+  justify-content: space-between;
+  width: 200px;
+  height: 200px;
+  padding: 20px 16px;
+  background-color: ${({ theme }) => theme.gray50};
+  border: 1px solid ${({ theme }) => theme.gray100};
+  border-radius: 20px;
   & > div {
     width: 100%;
     & > section {
@@ -19,52 +19,51 @@ const G = styled.div`
     }
     & > div {
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       & > span {
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
       }
       & > textarea {
-        width: 100%;
-        resize: none;
-
-        margin-top: 16rem;
-        font-size: 14rem;
-        font-weight: 400;
-        line-height: 20rem;
-        color: ${({ theme }) => theme.gray850};
-
         display: -webkit-box;
-        -webkit-box-orient: vertical;
+        width: 100%;
+
+        margin-top: 16px;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+        color: ${({ theme }) => theme.gray850};
         word-wrap: break-word;
+        resize: none;
 
         background-color: transparent;
         border: none;
         outline: none;
+        -webkit-box-orient: vertical;
       }
     }
   }
   & > section {
     align-self: flex-end;
-    font-size: 13rem;
+    font-size: 13px;
     font-weight: 400;
-    line-height: 18rem;
+    line-height: 18px;
     color: ${({ theme }) => theme.gray600};
   }
   & > span:last-of-type {
-    width: 100%;
     display: flex;
-    justify-content: space-between;
     align-items: cneter;
+    justify-content: space-between;
+    width: 100%;
     & > div {
       display: flex;
       align-items: center;
-      font-size: 13rem;
+      font-size: 13px;
       font-weight: 400;
-      line-height: 18rem;
+      line-height: 18px;
       color: ${({ theme }) => theme.gray700};
     }
   }
