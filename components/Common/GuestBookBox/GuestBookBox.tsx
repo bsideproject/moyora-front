@@ -10,7 +10,7 @@ import Image from 'next/image';
 dayjs.locale('ko');
 
 interface IProps {
-  info?: { name: string; nickname?: string; lock?: boolean };
+  info?: { id: string; name: string; nickname?: string; lock?: boolean };
   size: { width: string; height: string; line: string | false };
   text: string;
   date?: string;
@@ -22,47 +22,36 @@ const GuestBookBox: React.FC<IProps> = ({ info, size, text, date, onClick, child
   const formattedDate = date ? dayjs(date).format('YYYY/MM/DD') : '';
   return (
     <>
-      <G style={{ width: size.width, height: size.height }} onClick={onClick}>
+      <G.GuestBookBoxWrapper size={size} onClick={onClick}>
+        <G.StickerDiv>{children}</G.StickerDiv>
         <div>
-          <section>{children}</section>
-          <div>
-            <textarea
-              disabled
-              value={text}
-              style={
-                size.line
-                  ? {
-                      WebkitLineClamp: size.line,
-                      height: `${parseInt(size.line) * 20}rem`,
-                      width: `${parseInt(size.width) - 32}rem`,
-                      overflow: 'hidden',
-                      textOverflow: 'ellipsis',
-                    }
-                  : {
-                      height: '200rem',
-                      width: `${parseInt(size.width) - 32}rem`,
-                      overflow: 'auto',
-                    }
-              }
-            />
-          </div>
+          {info?.lock && info.id != 'myPage' ? (
+            <G.LockTextArea size={size}>
+              <Image src={Lock} alt="lock" width={16} />
+              <br />
+              비공개 쪽지
+            </G.LockTextArea>
+          ) : (
+            <G.Textarea disabled size={size} value={text} />
+          )}
         </div>
-        {info?.name ? (
-          <span>
-            <div>
-              <Image src={Lock} alt="lock" />
-            </div>
-            <div>
-              <Image src={User} alt="user" />
-              &nbsp;{info.name}({info.nickname ?? info.name})
-            </div>
-          </span>
-        ) : (
-          <section>{formattedDate}</section>
-        )}
-      </G>
+        <G.BoxInfo lock={info?.lock}>
+          <div>{info?.name && !info?.lock ? <Image src={Lock} alt="lock" /> : ''}</div>
+          <div>
+            {info?.name ? (
+              <>
+                <Image src={User} alt="user" />
+                &nbsp;{info.name}({info.nickname ?? info.name})
+                {parseInt(size.width) >= 350 ? <div> · {formattedDate}</div> : ''}
+              </>
+            ) : (
+              <div>{formattedDate}</div>
+            )}
+            {}
+          </div>
+        </G.BoxInfo>
+      </G.GuestBookBoxWrapper>
     </>
   );
 };
-
 export default memo(GuestBookBox, equal);
