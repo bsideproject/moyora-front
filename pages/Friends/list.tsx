@@ -12,7 +12,7 @@ const List: React.FC = () => {
   const [friendsData, setFriendsData] = useState<IFriendsList[] | null>(null);
   useEffect(() => {
     setFriendsData(friendsTempList);
-  });
+  }, []);
   const onClickSearchFriends = () => {
     router.push('/search', '', { shallow: true });
   };

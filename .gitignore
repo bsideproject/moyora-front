@@ -38,3 +38,5 @@ antd.css
 
 robots.txt
 /public/sitemap*
+
+.env
