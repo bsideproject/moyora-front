@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import L from '@components/GuestBook/List.styles';
 import Image from 'next/image';
 import GuestBookBox from '@components/Common/GuestBookBox';

@@ -268,7 +268,7 @@ const SignUpCompleteWrapper = styled.section`
 
       & span {
         display: inline-block;
-        width: 35rem;
+        width: 37rem;
       }
     }
 
