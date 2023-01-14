@@ -5,6 +5,7 @@ export interface IGuestBookList {
   sticker: TStickerType;
   date?: string;
   text: string;
+  lock?: boolean;
 }
 
 export const blurDataURL =
@@ -16,6 +17,7 @@ export const guestBookTempList: IGuestBookList[] = [
     sticker: '1',
     date: '20220101',
     text: '안녕 누구야! 잘 지내지? 나 누구야~ 기억하니! 여기서 보니 너무 반갑다! 너무 너무 반가워 우리 그때 재밌었잖아',
+    lock: true,
   },
   {
     id: '1',
@@ -29,6 +31,7 @@ export const guestBookTempList: IGuestBookList[] = [
     sticker: '8',
     date: '20220303',
     text: '안녕 누구야! 잘 지내지? 나 누구야~ 기억하니! 여기서 보니 너무 반갑다! 너무 너무 반가워 우리 그때 재밌었잖아 안녕 누구야! 잘 지내지? 나 누구야~ 기억하니! 여기서 보니 너무 반갑다! 너무 너무 반가워 우리 그때 재밌었잖아 안녕 누구야! 잘 지내지? 나 누구야~ 기억하니! 여기서 보니 너무 반갑다! 너무 너무 반가워 우리 그때 재밌었잖아 200자임',
+    lock: true,
   },
   {
     id: '4',

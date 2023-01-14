@@ -163,25 +163,30 @@ const GrayDiv = styled.div`
 
 const Note = styled.div`
   margin-top: 24rem;
-  & h1 {
-    font-size: 20rem;
-    font-weight: 700;
-    line-height: 28rem;
-    color: ${({ theme }) => theme.gray950};
-  }
-  & p {
-    font-size: 14rem;
-    font-weight: 500;
-    line-height: 20rem;
-    color: ${({ theme }) => theme.gray600};
-  }
+
   & > div:first-of-type {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    & h1 {
+      font-size: 20rem;
+      font-weight: 700;
+      line-height: 28rem;
+      color: ${({ theme }) => theme.gray950};
+    }
+    & p {
+      font-size: 14rem;
+      font-weight: 500;
+      line-height: 20rem;
+      color: ${({ theme }) => theme.gray600};
+    }
   }
   & > p {
     margin-top: 6rem;
+    font-size: 14rem;
+    font-weight: 500;
+    line-height: 20rem;
+    color: ${({ theme }) => theme.gray600};
   }
   & > div:last-of-type {
     margin-top: 16rem;

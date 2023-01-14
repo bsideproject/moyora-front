@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { FloatButton, Drawer, Button } from 'antd';
+import { FloatButton, Drawer, Button, Modal } from 'antd';
+
 const GuestBookListWrapper = styled.section`
   & > div:first-of-type {
     align-self: flex-start;
@@ -79,7 +80,7 @@ const GuestBookDrawer = styled(Drawer)`
   }
 `;
 
-const writeButton = styled(Button)`
+const BottomButton = styled(Button)`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -92,12 +93,59 @@ const writeButton = styled(Button)`
   line-height: 22rem;
 `;
 
+const AlertModal = styled(Modal)`
+  & div.ant-modal-content {
+    height: 226rem;
+    width: 350rem;
+    margin: auto;
+    border-radius: 16rem;
+    padding: 28rem 24rem;
+  }
+  & div.ant-modal-body {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: space-between;
+    text-align: center;
+    & > div:first-of-type {
+      height: 48rem;
+      width: 48rem;
+      background-color: #fff4ec;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: auto;
+    }
+    & > h2 {
+      font-size: 18rem;
+      font-weight: 700;
+      line-height: 26rem;
+      color: ${({ theme }) => theme.gray950};
+      margin-top: 24rem;
+    }
+  }
+`;
+
+const ModalButton = styled(Button)`
+  height: 44rem;
+  margin-top: 32rem;
+  & p {
+    font-size: 15rem;
+    font-weight: 600;
+    line-height: 22rem;
+  }
+`;
+
 const L = {
   GuestBookListWrapper,
   ListSection,
   FloatingButton,
   GuestBookDrawer,
-  writeButton,
+  BottomButton,
+  AlertModal,
+  ModalButton,
 };
 
 export default L;

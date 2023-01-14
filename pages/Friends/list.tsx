@@ -12,9 +12,12 @@ const List: React.FC = () => {
   const [friendsData, setFriendsData] = useState<IFriendsList[] | null>(null);
   useEffect(() => {
     setFriendsData(friendsTempList);
-  });
+  }, []);
   const onClickSearchFriends = () => {
-    router.replace('/search', '', { shallow: true });
+    router.push('/search', '', { shallow: true });
+  };
+  const onClickRouter = () => {
+    router.push(`/archive/friendId`, '', { shallow: true });
   };
   return (
     <F.FriendsListWrapper>
@@ -29,7 +32,7 @@ const List: React.FC = () => {
       <F.FriendsList>
         {friendsData ? (
           friendsData.map((friend) => (
-            <div key={friend.id}>
+            <div key={friend.id} onClick={onClickRouter}>
               <ProfileImage size="small" url="" />
               <div>
                 <h3>

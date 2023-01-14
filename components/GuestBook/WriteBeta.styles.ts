@@ -37,6 +37,12 @@ const TextAreaSection = styled.section`
     border: 1rem solid ${({ theme }) => theme.primary};
     transition: all 0.2s;
   }
+  & > label {
+    font-size: 14rem;
+    font-weight: 500;
+    line-height: 20rem;
+    color: ${({ theme }) => theme.gray600};
+  }
 `;
 
 const TextArea = styled(Input.TextArea)`

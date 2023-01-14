@@ -45,6 +45,8 @@ const FriendsList = styled.div`
     display: flex;
     justify-content: flex-start;
     align-items: center;
+
+    cursor: pointer;
     & > div {
       margin-left: 12rem;
     }

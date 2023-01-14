@@ -36,7 +36,6 @@ const Archive: React.FC = () => {
   const [infoData, setInfoData] = useState(info);
   useEffect(() => {
     if (id != 'myPage') {
-      info2.name = id;
       setInfoData(info2);
     }
   }, [id]);
@@ -59,6 +58,7 @@ const Archive: React.FC = () => {
     '11': { sticker: Sticker11, quotationMark: QuotationMark5 },
     '12': { sticker: Sticker12, quotationMark: QuotationMark5 },
   };
+  const onClickNote = () => router.push(`/guestBook/list/${id}`, '', { shallow: true });
   return (
     <A.ArchiveWrapper>
       <A.PrimaryBackgroundSection>
@@ -153,9 +153,9 @@ const Archive: React.FC = () => {
       <A.Note>
         <div>
           <h1>{id === 'myPage' ? '내 쪽지' : `${infoData.name}님의 쪽지`}</h1>
-          <Link href="/archive/myPage">
+          <button onClick={onClickNote}>
             <p>자세히 보기 &gt;</p>
-          </Link>
+          </button>
         </div>
         {id === 'myPage' ? (
           <p>친구들이 남긴 쪽지를 확인해 보세요 :)</p>
@@ -166,7 +166,7 @@ const Archive: React.FC = () => {
           {guestBookTempList && id === 'myPage' ? (
             guestBookTempList.map((guestBook) => (
               <GuestBookBox
-                info={{ name: '이름', nickname: '별명', lock: guestBook.id === '0' ? true : false }}
+                info={{ id: id, name: '이름', nickname: '별명', lock: guestBook.lock }}
                 size={{ width: '200rem', height: '220rem', line: '3' }}
                 text={guestBook.text}
                 date={guestBook.date}
