@@ -306,6 +306,7 @@ const ExamSection = styled(MainSection)`
         flex-direction: row;
         margin-bottom: 162rem;
         & > div {
+          text-align: left;
           & img {
             display: inline-block;
           }
