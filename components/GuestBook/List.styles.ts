@@ -5,7 +5,7 @@ const GuestBookListWrapper = styled.section`
   & > div:first-of-type {
     align-self: flex-start;
     margin: 20rem 0;
-    & p {
+    & > div {
       font-size: 20rem;
       font-weight: 700;
       line-height: 28rem;

@@ -47,7 +47,6 @@ const GuestBookBox: React.FC<IProps> = ({ info, size, text, date, onClick, child
             ) : (
               <div>{formattedDate}</div>
             )}
-            {}
           </div>
         </G.BoxInfo>
       </G.GuestBookBoxWrapper>

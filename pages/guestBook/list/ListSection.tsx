@@ -42,17 +42,14 @@ const stickers = {
 
 interface IProps {
   guestBookList?: IGuestBookList[];
-  noteId: string;
+  noteId?: string;
 }
 const ListSection: React.FC<IProps> = ({ guestBookList, noteId }) => {
   const router = useRouter();
   const [alert, onToggleAlert] = useToggle(false);
   const [isSelect, onToggle] = useToggle(false);
   const [selectedBox, setSelectedBox] = useState<IGuestBookList | null>(null);
-  const onClickRoute = () =>
-    noteId
-      ? router.push(`/guestBook/write/${noteId}`, '', { shallow: true })
-      : router.push('/guestBook/write/', '', { shallow: true });
+  const onClickRoute = () => router.push(`/guestBook/write/${noteId}`, '', { shallow: true });
   const onClickGuestBookBox = (id: string) => () => {
     const selBox = guestBookList ? guestBookList?.filter((guestBook) => guestBook.id === id) : null;
     if (selBox) {
@@ -76,14 +73,14 @@ const ListSection: React.FC<IProps> = ({ guestBookList, noteId }) => {
                 key={guestBook.id}
                 onClick={onClickGuestBookBox(guestBook.id)}
                 info={
-                  noteId
-                    ? {
-                        id: noteId,
+                  noteId === 'mySchool'
+                    ? { id: '', name: '' }
+                    : {
+                        id: noteId ?? '',
                         name: '이름',
                         nickname: '별명',
                         lock: guestBook.lock,
                       }
-                    : { id: noteId, name: '' }
                 }
               >
                 <>
@@ -98,7 +95,7 @@ const ListSection: React.FC<IProps> = ({ guestBookList, noteId }) => {
             ))
           : ''}
         <div>
-          {noteId == 'myPage' ? (
+          {noteId === 'myPage' ? (
             ''
           ) : (
             <L.FloatingButton
@@ -110,7 +107,7 @@ const ListSection: React.FC<IProps> = ({ guestBookList, noteId }) => {
           )}
         </div>
         <L.GuestBookDrawer
-          title={noteId ? '쪽지 보기' : '방명록 보기'}
+          title={noteId === 'mySchool' ? '방명록 보기' : '쪽지 보기'}
           placement="bottom"
           height="600rem"
           maskStyle={{ width: '100vw', marginLeft: 'calc(-50vw + 50%)' }}
@@ -123,14 +120,14 @@ const ListSection: React.FC<IProps> = ({ guestBookList, noteId }) => {
               text={selectedBox.text}
               date={selectedBox.date}
               info={
-                noteId
-                  ? {
-                      id: noteId,
+                noteId === 'mySchool'
+                  ? { id: noteId ?? '', name: '' }
+                  : {
+                      id: noteId ?? '',
                       name: '이름',
                       nickname: '별명',
                       lock: selectedBox.id == '0' ? true : false,
                     }
-                  : { id: noteId, name: '' }
               }
             >
               <>
@@ -145,19 +142,17 @@ const ListSection: React.FC<IProps> = ({ guestBookList, noteId }) => {
           ) : (
             ''
           )}
-          {noteId ? (
-            noteId === 'myPage' ? (
-              <L.BottomButton type="primary" onClick={onToggle}>
-                닫기
-              </L.BottomButton>
-            ) : (
-              <L.BottomButton type="primary" onClick={onClickRoute}>
-                <Image src={Write} alt="" /> &nbsp;나도 쪽지 남기기
-              </L.BottomButton>
-            )
-          ) : (
+          {noteId === 'mySchool' ? (
             <L.BottomButton type="primary" onClick={onClickRoute}>
               <Image src={Write} alt="" /> &nbsp;나도 방명록 쓰러가기
+            </L.BottomButton>
+          ) : noteId === 'myPage' ? (
+            <L.BottomButton type="primary" onClick={onToggle}>
+              닫기
+            </L.BottomButton>
+          ) : (
+            <L.BottomButton type="primary" onClick={onClickRoute}>
+              <Image src={Write} alt="" /> &nbsp;나도 쪽지 남기기
             </L.BottomButton>
           )}
         </L.GuestBookDrawer>
