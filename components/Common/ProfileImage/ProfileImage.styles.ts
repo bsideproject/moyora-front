@@ -3,9 +3,9 @@ import styled from 'styled-components';
 type TSizeType = 'small' | 'medium' | 'large';
 
 export const sizes = {
-  small: { divSize: '44rem', imgSize: '22rem' },
-  medium: { divSize: '60rem', imgSize: '32rem' },
-  large: { divSize: '76rem', imgSize: '38rem' },
+  small: { divSize: '44px', imgSize: '22px' },
+  medium: { divSize: '60px', imgSize: '32px' },
+  large: { divSize: '76px', imgSize: '38px' },
 };
 
 export interface IProfileProps {
@@ -14,13 +14,13 @@ export interface IProfileProps {
 }
 
 const ProfileWrapper = styled.div<IProfileProps>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: ${({ size }) => sizes[size].divSize};
   height: ${({ size }) => sizes[size].divSize};
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background-color: ${({ theme, url }) => (url ? '#B8C6FB' : theme.gray300)};
+  border-radius: 50%;
 `;
 
 const Profile = styled.div<IProfileProps>`

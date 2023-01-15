@@ -5,20 +5,20 @@ const LoginWrapper = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 96rem;
+  margin-top: 96px;
 
   & > div {
-    margin: 30.5rem 0 64rem;
+    margin: 30.5px 0 64px;
     text-align: center;
 
     & h3 {
-      font-size: 22rem;
+      font-size: 22px;
       font-weight: 700;
     }
 
     & p {
-      margin-top: 8rem;
-      font-size: 16rem;
+      margin-top: 8px;
+      font-size: 16px;
       font-weight: 400;
       color: ${({ theme }) => theme.gray600};
     }
@@ -28,7 +28,7 @@ const LoginWrapper = styled.section`
 const KakaoLogin = styled(Button)`
   justify-content: center;
   width: 100%;
-  height: 56rem;
+  height: 56px;
   font-weight: 700;
   background-color: #fce750;
   border: 0;
@@ -39,7 +39,7 @@ const KakaoLogin = styled(Button)`
     justify-content: center;
     color: #000 !important;
     & img {
-      margin-right: 9rem;
+      margin-right: 9px;
     }
   }
 `;

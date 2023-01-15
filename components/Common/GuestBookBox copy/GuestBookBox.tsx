@@ -40,14 +40,14 @@ const GuestBookBox: React.FC<IProps> = ({ info, size, text, date, onClick, child
                   size.line
                     ? {
                         WebkitLineClamp: size.line,
-                        height: `${parseInt(size.line) * 20}rem`,
-                        width: `${parseInt(size.width) - 32}rem`,
+                        height: `${parseInt(size.line) * 20}px`,
+                        width: `${parseInt(size.width) - 32}px`,
                         overflow: 'hidden',
                         textOverflow: 'ellipsis',
                       }
                     : {
-                        height: '200rem',
-                        width: `${parseInt(size.width) - 32}rem`,
+                        height: '200px',
+                        width: `${parseInt(size.width) - 32}px`,
                         overflow: 'auto',
                       }
                 }

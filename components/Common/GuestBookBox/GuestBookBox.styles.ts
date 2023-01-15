@@ -9,20 +9,20 @@ interface ILockProps {
 }
 
 const GuestBookBoxWrapper = styled.div<IProps>`
-  width: ${({ size }) => size.width};
-  height: ${({ size }) => size.height};
-  padding: 20rem 16rem;
-  background-color: ${({ theme }) => theme.gray50};
-  border: 1rem solid ${({ theme }) => theme.gray100};
-  border-radius: 20rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: ${({ size }) => size.width};
+  height: ${({ size }) => size.height};
+  padding: 20px 16px;
+  background-color: ${({ theme }) => theme.gray50};
+  border: 1px solid ${({ theme }) => theme.gray100};
+  border-radius: 20px;
   & > section {
     align-self: flex-end;
-    font-size: 13rem;
+    font-size: 13px;
     font-weight: 400;
-    line-height: 18rem;
+    line-height: 18px;
     color: ${({ theme }) => theme.gray600};
   }
 `;
@@ -33,55 +33,55 @@ const StickerDiv = styled.div`
 `;
 
 const Textarea = styled.textarea<IProps>`
-  resize: none;
-  font-size: ${({ size }) => (size.line ? '14rem' : '16rem')};
-  font-weight: 400;
-  line-height: ${({ size }) => (size.line ? '20rem' : '24rem')};
-  color: ${({ theme }) => theme.gray850};
   display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: ${({ size }) => size.line};
-  height: ${({ size }) => (size.line ? `${parseInt(size.line) * 20}rem` : '200rem')} !important;
   width: ${({ size }) =>
-    size.line ? `${parseInt(size.width) - 32}rem` : `${parseInt(size.width) - 32}rem`} !important;
+    size.line ? `${parseInt(size.width) - 32}px` : `${parseInt(size.width) - 32}px`} !important;
+  height: ${({ size }) => (size.line ? `${parseInt(size.line) * 20}px` : '200px')} !important;
+  overflow: ${({ size }) => (size.line ? 'hidden' : 'auto')};
+  font-size: ${({ size }) => (size.line ? '14px' : '16px')};
+  font-weight: 400;
+  line-height: ${({ size }) => (size.line ? '20px' : '24px')};
+  color: ${({ theme }) => theme.gray850};
   text-overflow: ellipsis;
   word-wrap: break-word;
+  resize: none;
   background-color: transparent;
   border: none;
   outline: none;
-  overflow: ${({ size }) => (size.line ? 'hidden' : 'auto')};
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: ${({ size }) => size.line};
 `;
 
 const LockTextArea = styled.div<IProps>`
-  height: ${({ size }) => (size.line ? `${parseInt(size.line) * 20}rem` : '200rem')};
-  width: ${({ size }) =>
-    size.line ? `${parseInt(size.width) - 32}rem` : `${parseInt(size.width) - 32}rem`};
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  font-size: 13rem;
+  justify-content: center;
+  width: ${({ size }) =>
+    size.line ? `${parseInt(size.width) - 32}px` : `${parseInt(size.width) - 32}px`};
+  height: ${({ size }) => (size.line ? `${parseInt(size.line) * 20}px` : '200px')};
+  font-size: 13px;
   font-weight: 400;
-  line-height: 18rem;
+  line-height: 18px;
   color: ${({ theme }) => theme.gray800};
 `;
 
 const BoxInfo = styled.div<ILockProps>`
   display: flex;
-  justify-content: space-between;
   /* justify-content: ${({ lock }) => (lock ? 'flex-end' : 'space-between')}; */
   align-items: cneter;
-  font-size: 13rem;
+  justify-content: space-between;
+  font-size: 13px;
   font-weight: 400;
-  line-height: 18rem;
+  line-height: 18px;
   color: ${({ theme }) => theme.gray700};
   & > div {
     display: flex;
-    justify-content: center;
     align-items: center;
-    font-size: 13rem;
+    justify-content: center;
+    font-size: 13px;
     font-weight: 400;
-    line-height: 18rem;
+    line-height: 18px;
     color: ${({ theme }) => theme.gray700};
   }
 `;

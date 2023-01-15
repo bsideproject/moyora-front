@@ -20,84 +20,84 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const MypageIndexWrapper = styled.div`
-  padding: 56rem 0;
+  padding: 56px 0;
 
   & > div {
-    padding: 0 20rem;
+    padding: 0 20px;
   }
 `;
 
 const ProfileWrap = styled.section`
   display: flex;
   align-items: center;
-  padding: 22rem;
+  padding: 22px;
   background-color: ${({ theme }) => theme.gray50};
 
   & span.ant-upload-wrapper {
     position: relative;
-    width: 76rem;
-    height: 76rem;
+    width: 76px;
+    height: 76px;
     & div.ant-upload {
       & img {
-        width: 76rem;
-        height: 76rem;
+        width: 76px;
+        height: 76px;
       }
       & div {
         position: absolute;
-        right: 0rem;
-        bottom: 0rem;
-        padding: 4rem;
+        right: 0px;
+        bottom: 0px;
+        padding: 4px;
         background-color: ${({ theme }) => theme.primary};
         border-radius: 50%;
         & img {
-          width: 16rem;
-          height: 16rem;
+          width: 16px;
+          height: 16px;
         }
       }
     }
   }
 
   & > div {
-    margin-left: 26rem;
+    margin-left: 26px;
 
     & > div {
       display: flex;
       align-items: center;
-      margin-bottom: 4rem;
+      margin-bottom: 4px;
 
       & > h2 {
-        font-size: 24rem;
+        font-size: 24px;
         font-weight: 700;
-        line-height: 34rem;
+        line-height: 34px;
         color: ${({ theme }) => theme.gray900};
       }
       & > h3 {
-        margin-left: 8rem;
-        font-size: 20rem;
+        margin-left: 8px;
+        font-size: 20px;
         font-weight: 400;
-        line-height: 28rem;
+        line-height: 28px;
         color: ${({ theme }) => theme.gray700};
       }
     }
 
     & > p {
-      font-size: 14rem;
+      font-size: 14px;
       font-weight: 400;
-      line-height: 20rem;
+      line-height: 20px;
       color: ${({ theme }) => theme.gray600};
     }
   }
 `;
 const LinkWrap = styled.section`
   & + & {
-    border-top: 8rem solid ${({ theme }) => theme.gray50};
+    border-top: 8px solid ${({ theme }) => theme.gray50};
   }
 
   & > h4 {
-    margin: 24rem 20rem 12rem;
-    font-size: 16rem;
+    margin: 24px 20px 12px;
+    font-size: 16px;
     font-weight: 700;
-    line-height: 24rem;
+    line-height: 24px;
     color: ${({ theme }) => theme.gray800};
   }
 `;
@@ -105,38 +105,38 @@ const LinkCard = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12rem 20rem 16rem;
+  padding: 12px 20px 16px;
 
   &:not(:last-child) {
-    border-bottom: 1rem solid ${({ theme }) => theme.gray50};
+    border-bottom: 1px solid ${({ theme }) => theme.gray50};
   }
 
   & p {
-    font-size: 16rem;
+    font-size: 16px;
     font-weight: 500;
-    line-height: 24rem;
+    line-height: 24px;
     color: ${({ theme }) => theme.gray750};
   }
 
   & img {
-    width: 20rem;
-    height: 20rem;
+    width: 20px;
+    height: 20px;
   }
 `;
 
 const LogoutModal = styled(Modal)`
-  min-width: 350rem;
+  min-width: 350px;
   & div.ant-modal-content {
-    padding: 28rem;
+    padding: 28px;
     & div.ant-modal-body {
-      margin-top: 32rem;
+      margin-top: 32px;
       & button {
-        height: 44rem;
-        font-size: 15rem;
-        line-height: 22rem;
+        height: 44px;
+        font-size: 15px;
+        line-height: 22px;
       }
       & button + button {
-        margin-top: 8rem;
+        margin-top: 8px;
       }
     }
   }
@@ -147,36 +147,36 @@ const MypageInputWrapper = styled.div`
   min-height: 100vh;
 
   & > div + div {
-    padding: 24rem 0 223rem;
+    padding: 24px 0 223px;
   }
 
   & > div.form-section {
-    padding: 24rem 0;
-    border-top: 8rem solid ${({ theme }) => theme.gray50};
+    padding: 24px 0;
+    border-top: 8px solid ${({ theme }) => theme.gray50};
 
     & > h4 {
-      font-size: 16rem;
+      font-size: 16px;
       font-weight: 700;
-      line-height: 24rem;
+      line-height: 24px;
       color: ${({ theme }) => theme.gray800};
     }
   }
 
   & > h2 {
-    padding-top: 20rem;
-    font-size: 20rem;
+    padding-top: 20px;
+    font-size: 20px;
     font-weight: 700;
-    line-height: 28rem;
+    line-height: 28px;
     color: ${({ theme }) => theme.gray900};
-    border-top: 1rem solid ${({ theme }) => theme.gray100};
+    border-top: 1px solid ${({ theme }) => theme.gray100};
     &.custom-margin {
-      margin-bottom: 20rem;
+      margin-bottom: 20px;
     }
   }
 
   & h3 {
-    margin: 24rem 0 12rem;
-    font-size: 16rem;
+    margin: 24px 0 12px;
+    font-size: 16px;
     font-weight: 500;
     color: ${({ theme }) => theme.gray800};
     text-align: left;
@@ -187,24 +187,24 @@ const MypageInputWrapper = styled.div`
   }
 
   & > p {
-    margin: 72rem 0 12rem;
-    font-size: 14rem;
+    margin: 72px 0 12px;
+    font-size: 14px;
     font-weight: 400;
-    line-height: 20rem;
+    line-height: 20px;
     color: ${({ theme }) => theme.gray600};
     text-align: center;
   }
 
   & div.select-group {
     display: flex;
-    margin: 0 -4rem;
+    margin: 0 -4px;
   }
 
   & h5 {
-    margin-top: 16rem;
-    font-size: 14rem;
+    margin-top: 16px;
+    font-size: 14px;
     font-weight: 500;
-    line-height: 20rem;
+    line-height: 20px;
     color: ${({ theme }) => theme.primary};
     cursor: pointer;
   }
@@ -213,30 +213,30 @@ const MypageInputWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: right;
-    margin-top: 8rem;
-    font-size: 14rem;
+    margin-top: 8px;
+    font-size: 14px;
     font-weight: 400;
-    line-height: 15rem;
+    line-height: 15px;
     color: ${({ theme }) => theme.negative};
     & img {
-      margin-right: 9rem;
+      margin-right: 9px;
     }
   }
 `;
 
 const MypageInput = styled(Input)<IInputPublicProps>`
-  padding: 9rem 10rem;
+  padding: 9px 10px;
   font-weight: 400;
-  border: 1rem solid ${({ theme, isFill }) => (isFill ? theme.gray500 : theme.gray200)};
-  border-radius: 8rem;
+  border: 1px solid ${({ theme, isFill }) => (isFill ? theme.gray500 : theme.gray200)};
+  border-radius: 8px;
 
   & + & {
-    margin-top: 12rem;
+    margin-top: 12px;
   }
 
   &.ant-input-affix-wrapper-readonly {
     &:hover {
-      border: 1rem solid ${({ theme }) => theme.gray200};
+      border: 1px solid ${({ theme }) => theme.gray200};
     }
     & * {
       cursor: pointer;
@@ -245,13 +245,13 @@ const MypageInput = styled(Input)<IInputPublicProps>`
 `;
 
 const SearchButton = styled(Input.Search)<IInputPublicProps>`
-  padding: 5rem 0;
+  padding: 5px 0;
   font-weight: 400;
   & input {
     cursor: pointer;
   }
-  border: 1rem solid ${({ theme, isFill }) => (isFill ? theme.gray500 : theme.gray200)};
-  border-radius: 8rem;
+  border: 1px solid ${({ theme, isFill }) => (isFill ? theme.gray500 : theme.gray200)};
+  border-radius: 8px;
   & button {
     border: 0;
     & svg {
@@ -262,7 +262,7 @@ const SearchButton = styled(Input.Search)<IInputPublicProps>`
 
 const MypageSelect = styled(Select)<IInputPublicProps>`
   width: 100%;
-  height: 44rem;
+  height: 44px;
   text-align: left;
 
   & div.ant-select-selector {
@@ -271,7 +271,7 @@ const MypageSelect = styled(Select)<IInputPublicProps>`
 
   &.half {
     width: 50%;
-    margin: 0 4rem;
+    margin: 0 4px;
   }
 
   & > div {
@@ -279,7 +279,7 @@ const MypageSelect = styled(Select)<IInputPublicProps>`
     font-weight: 400;
 
     & span {
-      margin-top: 6rem;
+      margin-top: 6px;
     }
   }
 `;
@@ -288,10 +288,10 @@ const JobDrawer = styled(Drawer)`
   position: absolute;
   right: 0;
   left: 0;
-  left: -21rem;
-  width: 390rem !important;
+  left: -21px;
+  width: 390px !important;
   height: 80%;
-  border-radius: 24rem 24rem 0 0;
+  border-radius: 24px 24px 0 0;
 
   & div.ant-drawer-header {
     border: 0;
@@ -301,7 +301,7 @@ const JobDrawer = styled(Drawer)`
         margin-right: 0;
       }
       & div {
-        margin-left: 12rem;
+        margin-left: 12px;
       }
     }
   }
@@ -316,21 +316,21 @@ const MypageCollapse = styled(Collapse)`
     }
   }
   & div.ant-collapse-header {
-    padding: 15.5rem 4rem !important;
-    border-bottom: 1rem solid ${({ theme }) => theme.gray50};
+    padding: 15.5px 4px !important;
+    border-bottom: 1px solid ${({ theme }) => theme.gray50};
     & span {
-      font-size: 16rem;
+      font-size: 16px;
       font-weight: 500;
     }
   }
 
   & div.ant-collapse-content-box {
-    padding: 16rem 4rem !important;
+    padding: 16px 4px !important;
     background-color: ${({ theme }) => theme.gray50};
 
     & li {
-      padding: 10rem 24rem;
-      font-size: 16rem;
+      padding: 10px 24px;
+      font-size: 16px;
       font-weight: 500;
       cursor: pointer;
 
@@ -343,24 +343,24 @@ const MypageCollapse = styled(Collapse)`
 
 const Panel = styled(Collapse.Panel)`
   text-align: left;
-  border-bottom: 1rem solid ${({ theme }) => theme.gray200};
+  border-bottom: 1px solid ${({ theme }) => theme.gray200};
 `;
 
 const MypageSwitchWrap = styled.div`
-  margin-top: 40rem;
+  margin-top: 40px;
   & > div {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 12rem;
+    margin-bottom: 12px;
 
     & button {
-      min-width: 38rem;
-      height: 22rem;
+      min-width: 38px;
+      height: 22px;
       & div.ant-switch-handle {
-        top: 3rem;
-        width: 16rem;
-        height: 16rem;
+        top: 3px;
+        width: 16px;
+        height: 16px;
       }
     }
 
@@ -370,9 +370,9 @@ const MypageSwitchWrap = styled.div`
   }
 
   & p {
-    font-size: 13rem;
+    font-size: 13px;
     font-weight: 400;
-    line-height: 18rem;
+    line-height: 18px;
 
     color: ${({ theme }) => theme.gray800};
   }
@@ -380,18 +380,18 @@ const MypageSwitchWrap = styled.div`
 
 const ServiceInfoWrapper = styled.div`
   & > div {
-    padding: 0 20rem;
+    padding: 0 20px;
   }
 
   & > h2 {
-    padding: 20rem 20rem 16rem;
-    font-size: 20rem;
+    padding: 20px 20px 16px;
+    font-size: 20px;
     font-weight: 700;
-    line-height: 28rem;
+    line-height: 28px;
     color: ${({ theme }) => theme.gray900};
-    border-top: 1rem solid ${({ theme }) => theme.gray100};
+    border-top: 1px solid ${({ theme }) => theme.gray100};
     &.custom-margin {
-      margin-bottom: 20rem;
+      margin-bottom: 20px;
     }
   }
 `;
@@ -400,8 +400,8 @@ const ServiceInfoTextWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16rem 20rem !important;
-  border-bottom: 1rem solid ${({ theme }) => theme.gray100};
+  padding: 16px 20px !important;
+  border-bottom: 1px solid ${({ theme }) => theme.gray100};
 
   & > p {
     font-size: 16px;

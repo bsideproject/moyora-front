@@ -23,7 +23,7 @@ const client = new QueryClient({
 });
 
 const pretendard = localFont({
-  src: '../public/font/PretendardVariable.ttf',
+  src: '../public/font/PretendardVariable.woff2',
 });
 
 const antdTheme = {
@@ -46,7 +46,7 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => (
           <title>moyora - 우리학교 다시 모여라!</title>
           <meta
             name="viewport"
-            content="width=device-width, initial-scale=1, maximum-scale=1, minimal-scale=1"
+            content="width=device-width, initial-scale=1, maximum-scale=1, minimal-scale=1 user-scalable=no"
           />
         </Head>
         <Script
