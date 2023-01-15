@@ -4,6 +4,7 @@ import React from 'react';
 import Head from 'next/head';
 import localFont from '@next/font/local';
 import { AppProps } from 'next/app';
+import { ConfigProvider } from 'antd';
 import { ThemeProvider } from 'styled-components';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -11,7 +12,6 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import theme from '@styles/theme';
 
 import AppLayout from '@components/Layout/AppLayout';
-import { ConfigProvider } from 'antd';
 
 const client = new QueryClient({
   defaultOptions: {
