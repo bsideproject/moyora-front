@@ -10,7 +10,7 @@ export type AxiosErrorType = AxiosError<IError>;
 
 const baseURL =
   process.env.NODE_ENV !== 'production'
-    ? 'http://localhost:3000'
+    ? process.env.NEXT_PUBLIC_SERVER_DEV_URL
     : process.env.NEXT_PUBLIC_SERVER_URL;
 
 export const fetch: AxiosInstance = axios.create({
