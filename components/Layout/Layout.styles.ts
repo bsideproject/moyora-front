@@ -12,6 +12,14 @@ const Container = styled.div`
     min-height: 100vh;
     padding: 0 20px;
     background-color: ${({ theme }) => theme.white};
+
+    & .loading-page {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+    }
   }
 
   @media screen and (min-width: 768px) {
