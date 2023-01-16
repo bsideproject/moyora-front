@@ -67,7 +67,7 @@ const ListSection: React.FC<IProps> = ({ guestBookList, noteId }) => {
         {guestBookList
           ? guestBookList.map((guestBook) => (
               <GuestBookBox
-                size={{ width: '171rem', height: '218rem', line: '4' }}
+                size={{ width: '171px', height: '218px', line: '4' }}
                 text={guestBook.text}
                 date={guestBook.date}
                 key={guestBook.id}
@@ -109,14 +109,14 @@ const ListSection: React.FC<IProps> = ({ guestBookList, noteId }) => {
         <L.GuestBookDrawer
           title={noteId === 'mySchool' ? '방명록 보기' : '쪽지 보기'}
           placement="bottom"
-          height="600rem"
+          height="600px"
           maskStyle={{ width: '100vw', marginLeft: 'calc(-50vw + 50%)' }}
           onClose={onToggle}
           open={isSelect}
         >
           {selectedBox ? (
             <GuestBookBox
-              size={{ width: '350rem', height: '368rem', line: false }}
+              size={{ width: '350px', height: '368px', line: false }}
               text={selectedBox.text}
               date={selectedBox.date}
               info={

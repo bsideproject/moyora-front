@@ -3,109 +3,108 @@ import { Input, Button, Radio, Modal } from 'antd';
 
 const GuestBookWriteWrapper = styled.section`
   & h1 {
-    font-size: 20rem;
+    margin: 20px 0 16px 0;
+    font-size: 20px;
     font-weight: 700;
-    line-height: 28rem;
+    line-height: 28px;
     color: ${({ theme }) => theme.gray900};
-    margin: 20rem 0 16rem 0;
   }
   & p {
-    font-size: 15rem;
+    font-size: 15px;
     font-weight: 600;
-    line-height: 22rem;
+    line-height: 22px;
   }
 `;
 
 const TextAreaSection = styled.section`
-  height: auto;
-  overflow: hidden;
-  border: 1rem solid ${({ theme }) => theme.gray300};
-  transition: all 0.2s;
-  border-radius: 20rem;
-  padding: 20rem 20rem 50rem 20rem;
   width: 100%;
+  height: auto;
+  padding: 20px 20px 50px 20px;
+  overflow: hidden;
+  border: 1px solid ${({ theme }) => theme.gray300};
+  border-radius: 20px;
+  transition: all 0.2s;
   & > section {
     display: flex;
     justify-content: space-between;
   }
 
   &:focus-within {
-    border: 1rem solid ${({ theme }) => theme.primary};
+    border: 1px solid ${({ theme }) => theme.primary};
     transition: all 0.2s;
   }
   &:hover {
-    border: 1rem solid ${({ theme }) => theme.primary};
+    border: 1px solid ${({ theme }) => theme.primary};
     transition: all 0.2s;
   }
   & > label {
-    font-size: 14rem;
+    font-size: 14px;
     font-weight: 500;
-    line-height: 20rem;
+    line-height: 20px;
     color: ${({ theme }) => theme.gray600};
   }
 `;
 
 const TextArea = styled(Input.TextArea)`
   & textarea {
-    font-size: 16rem;
-    font-weight: 400;
-    line-height: 24rem;
-    color: ${({ theme }) => theme.gray750};
-    margin-top: 12rem;
     box-sizing: border-box;
     padding: 0;
+    margin-top: 12px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: ${({ theme }) => theme.gray750};
   }
   & textarea::placeholder {
     color: ${({ theme }) => theme.gray600};
   }
   &::after {
     position: relative;
-    bottom: 20rem;
+    bottom: 20px;
     float: right;
-    font-size: 14rem;
+    font-size: 14px;
     font-weight: 400;
-    line-height: 20rem;
+    line-height: 20px;
     color: ${({ theme }) => theme.gray600};
   }
 `;
 
 const WarningSection = styled.div`
   display: flex;
-  justify-content: flex-end;
   align-items: center;
-  margin-top: 8rem;
+  justify-content: flex-end;
+  margin-top: 8px;
 
-  font-size: 13rem;
+  font-size: 13px;
   font-weight: 400;
-  line-height: 18rem;
+  line-height: 18px;
   color: ${({ theme }) => theme.gray600};
 `;
 
 const SelectStarSection = styled.section`
-  margin-top: 24rem;
+  margin-top: 24px;
 `;
 
 const StarGroup = styled(Radio.Group)`
-  margin-top: 16rem;
-  padding: 20rem;
-  height: 296rem;
-  border: 1rem solid ${({ theme }) => theme.gray200};
-  border-radius: 16rem;
-
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   align-items: space-between;
+  justify-content: space-between;
+  height: 296px;
+  padding: 20px;
+  margin-top: 16px;
+  border: 1px solid ${({ theme }) => theme.gray200};
+  border-radius: 16px;
 `;
 
 const Star = styled(Radio.Button)`
   display: flex;
-  justify-content: center;
   align-items: center;
-  border: 1rem solid ${({ theme }) => theme.gray200};
-  border-radius: 16rem !important;
-  height: 72rem;
-  width: 72rem;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  border: 1px solid ${({ theme }) => theme.gray200};
+  border-radius: 16px !important;
   & img {
     max-width: none;
   }
@@ -116,85 +115,85 @@ const Star = styled(Radio.Button)`
 
 const FinishButton = styled(Button)`
   position: sticky;
-  bottom: 24rem;
-  width: 100%;
-  height: 44rem;
+  bottom: 24px;
   z-index: 1;
+  width: 100%;
+  height: 44px;
 `;
 
 const AlertModal = styled(Modal)`
   & div.ant-modal-content {
-    height: 226rem;
-    width: 350rem;
+    width: 350px;
+    height: 226px;
+    padding: 28px 24px;
     margin: auto;
-    border-radius: 16rem;
-    padding: 28rem 24rem;
+    border-radius: 16px;
   }
   & div.ant-modal-body {
     display: flex;
-    height: 100%;
     flex-direction: column;
-    justify-content: center;
     align-items: space-between;
+    justify-content: center;
+    height: 100%;
     text-align: center;
     & > img {
       display: block;
       margin: auto;
     }
     & > h2 {
-      font-size: 18rem;
+      margin-top: 24px;
+      font-size: 18px;
       font-weight: 700;
-      line-height: 26rem;
+      line-height: 26px;
       color: ${({ theme }) => theme.gray950};
-      margin-top: 24rem;
     }
   }
 `;
 
 const ConfirmModal = styled(Modal)`
   & div.ant-modal-content {
-    height: 308rem;
-    width: 350rem;
+    width: 350px;
+    height: 308px;
+    padding: 28px;
     margin: auto;
-    border-radius: 16rem;
-    padding: 28rem;
+    border-radius: 16px;
   }
   & div.ant-modal-body {
     display: flex;
-    height: 100%;
     flex-direction: column;
-    justify-content: center;
     align-items: space-between;
+    justify-content: center;
+    height: 100%;
     text-align: center;
     & > img {
       display: block;
       margin: auto;
     }
     & > h2 {
-      font-size: 18rem;
+      margin: 24px 0 12px 0;
+      font-size: 18px;
       font-weight: 700;
-      line-height: 26rem;
+      line-height: 26px;
       color: ${({ theme }) => theme.gray950};
-      margin: 24rem 0 12rem 0;
     }
     & > h3 {
-      font-size: 15rem;
+      font-size: 15px;
       font-weight: 500;
-      line-height: 22rem;
+      line-height: 22px;
     }
     & > button:not(:first-of-type) {
-      margin-top: 8rem;
+      margin-top: 8px;
     }
   }
 `;
 
 const ModalButton = styled(Button)`
-  height: 44rem;
-  margin-top: 32rem;
+  height: 44px;
+  margin-top: 32px;
   & p {
-    font-size: 15rem;
+    font-size: 15px;
     font-weight: 600;
-    line-height: 22rem;
+    line-height: 22px;
   }
 `;
 

@@ -139,7 +139,7 @@ const MainPage: React.FC = () => {
               ? guestBookList.map((guestBook) => (
                   <SwiperSlide key={guestBook.id}>
                     <GuestBookBox
-                      size={{ width: '200rem', height: '200rem', line: '3' }}
+                      size={{ width: '200px', height: '200px', line: '3' }}
                       text={guestBook.text}
                       date={guestBook.date}
                     >

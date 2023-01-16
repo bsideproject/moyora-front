@@ -4,6 +4,7 @@ import React from 'react';
 import Head from 'next/head';
 import localFont from '@next/font/local';
 import { AppProps } from 'next/app';
+import { ConfigProvider } from 'antd';
 import { ThemeProvider } from 'styled-components';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -11,7 +12,6 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import theme from '@styles/theme';
 
 import AppLayout from '@components/Layout/AppLayout';
-import { ConfigProvider } from 'antd';
 
 const client = new QueryClient({
   defaultOptions: {
@@ -22,7 +22,7 @@ const client = new QueryClient({
 });
 
 const pretendard = localFont({
-  src: '../public/font/PretendardVariable.ttf',
+  src: '../public/font/PretendardVariable.woff2',
 });
 
 const antdTheme = {
@@ -45,7 +45,7 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => (
           <title>moyora - 우리학교 다시 모여라!</title>
           <meta
             name="viewport"
-            content="width=device-width, initial-scale=1, maximum-scale=1, minimal-scale=1"
+            content="width=device-width, initial-scale=1, maximum-scale=1, minimal-scale=1 user-scalable=no"
           />
         </Head>
         <AppLayout>

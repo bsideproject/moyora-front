@@ -4,11 +4,11 @@ import { FloatButton, Drawer, Button, Modal } from 'antd';
 const GuestBookListWrapper = styled.section`
   & > div:first-of-type {
     align-self: flex-start;
-    margin: 20rem 0;
+    margin: 20px 0;
     & > div {
-      font-size: 20rem;
+      font-size: 20px;
       font-weight: 700;
-      line-height: 28rem;
+      line-height: 28px;
       color: ${({ theme }) => theme.gray900};
     }
     & b {
@@ -21,37 +21,37 @@ const ListSection = styled.section`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  height: calc(100vh-84rem);
+  height: calc(100vh-84px);
   & > div {
-    margin-bottom: 12rem;
+    margin-bottom: 12px;
   }
 `;
 
 const FloatingButton = styled(FloatButton)`
-  width: 56rem;
-  height: 56rem;
+  width: 56px;
+  height: 56px;
   & div {
-    width: 56rem !important;
-    height: 56rem !important;
-    margin: 0 !important;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    width: 56px !important;
+    height: 56px !important;
+    margin: 0 !important;
   }
 `;
 
 const GuestBookDrawer = styled(Drawer)`
   position: sticky;
-  left: 0;
   bottom: 0;
-  width: 390rem !important;
+  left: 0;
+  width: 390px !important;
   margin: auto;
-  border-radius: 24rem 24rem 0 0;
+  border-radius: 24px 24px 0 0;
   & div.ant-drawer-header {
-    border: 0;
-    height: 72rem;
-    padding: 28rem 20rem;
+    height: 72px;
+    padding: 28px 20px;
     text-align: center;
+    border: 0;
     & div.ant-drawer-header-title {
       justify-content: center;
       & button {
@@ -59,9 +59,9 @@ const GuestBookDrawer = styled(Drawer)`
         margin-right: 0;
       }
       & div {
-        font-size: 18rem;
+        font-size: 18px;
         font-weight: 600;
-        line-height: 26rem;
+        line-height: 26px;
         color: ${({ theme }) => theme.gray900};
       }
     }
@@ -70,71 +70,71 @@ const GuestBookDrawer = styled(Drawer)`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 0 20rem;
+    padding: 0 20px;
     & > div {
-      padding: 20rem;
+      padding: 20px;
       background-color: transparent;
-      border: 1rem solid ${({ theme }) => theme.gray200};
-      border-radius: 16rem;
+      border: 1px solid ${({ theme }) => theme.gray200};
+      border-radius: 16px;
     }
   }
 `;
 
 const BottomButton = styled(Button)`
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   width: 100%;
-  height: 44rem;
-  margin-bottom: 35rem;
+  height: 44px;
+  margin-bottom: 35px;
 
-  font-size: 15rem;
+  font-size: 15px;
   font-weight: 600;
-  line-height: 22rem;
+  line-height: 22px;
 `;
 
 const AlertModal = styled(Modal)`
   & div.ant-modal-content {
-    height: 226rem;
-    width: 350rem;
+    width: 350px;
+    height: 226px;
+    padding: 28px 24px;
     margin: auto;
-    border-radius: 16rem;
-    padding: 28rem 24rem;
+    border-radius: 16px;
   }
   & div.ant-modal-body {
     display: flex;
-    height: 100%;
     flex-direction: column;
-    justify-content: center;
     align-items: space-between;
+    justify-content: center;
+    height: 100%;
     text-align: center;
     & > div:first-of-type {
-      height: 48rem;
-      width: 48rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      margin: auto;
       background-color: #fff4ec;
       border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: auto;
     }
     & > h2 {
-      font-size: 18rem;
+      margin-top: 24px;
+      font-size: 18px;
       font-weight: 700;
-      line-height: 26rem;
+      line-height: 26px;
       color: ${({ theme }) => theme.gray950};
-      margin-top: 24rem;
     }
   }
 `;
 
 const ModalButton = styled(Button)`
-  height: 44rem;
-  margin-top: 32rem;
+  height: 44px;
+  margin-top: 32px;
   & p {
-    font-size: 15rem;
+    font-size: 15px;
     font-weight: 600;
-    line-height: 22rem;
+    line-height: 22px;
   }
 `;
 
