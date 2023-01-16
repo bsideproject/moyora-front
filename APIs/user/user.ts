@@ -13,7 +13,9 @@ export const useLogin = (options?: QueryOptions) => {
 
   const queryKey = `${baseUrl}/signin`;
   const queryFn = (code: string) =>
-    fetch.post(queryKey, null, { headers: { Authorization: code } }).then((res) => res.data);
+    fetch
+      .post(queryKey, null, { headers: { Authorization: 'Bearer ' + code } })
+      .then((res) => res.data);
 
   const onSuccess = ({ isFirst, accessToken }: ISignin) => {
     if (isFirst) router.push('/signup/1');
