@@ -111,6 +111,7 @@ const BannerSection = styled(MainSection)`
           & span {
             display: inline-block;
             width: 34px;
+            font-family: GmarketSans;
             text-align: center;
           }
           @media screen and (min-width: 768px) {

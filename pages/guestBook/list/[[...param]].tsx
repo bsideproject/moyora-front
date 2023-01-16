@@ -6,32 +6,29 @@ import { useRouter } from 'next/router';
 import ListSection from './ListSection';
 const List: React.FC = () => {
   const router = useRouter();
-  const id = (router.query?.param as string) ?? '';
   const [noteId, setNoteId] = useState('');
+  const [id] = router.query.param ?? '';
   const [guestBookList, setGuestBookList] = useState<IGuestBookList[] | null>(null);
-
   useEffect(() => {
     setGuestBookList(guestBookTempList);
-    setNoteId(id);
-  }, [id]);
-
-  useEffect(() => {}, [id, router.query]);
+    if (id) setNoteId(id as string);
+  }, [router.query]);
   return (
     <>
       <L.GuestBookListWrapper>
         <LogoHeader headerIcons={true} />
         <div>
-          <p>
+          <div>
             {guestBookList ? (
               <>
-                {noteId ? (
+                {noteId === 'mySchool' ? (
                   <>
-                    {noteId === 'myPage' ? '내 ' : ''}쪽지가 <b>{guestBookList.length}개</b> 있어요!
+                    우리 학교 방명록이 <b>{guestBookList.length}개</b> 있어요!
                     <ListSection guestBookList={guestBookList} noteId={noteId} />
                   </>
                 ) : (
                   <>
-                    우리 학교 방명록이 <b>{guestBookList.length}개</b> 있어요!
+                    {noteId === 'myPage' ? '내 ' : ''}쪽지가 <b>{guestBookList.length}개</b> 있어요!
                     <ListSection guestBookList={guestBookList} noteId={noteId} />
                   </>
                 )}
@@ -39,22 +36,22 @@ const List: React.FC = () => {
             ) : (
               <>
                 <br />
-                {noteId ? (
-                  <>
-                    아직 작성된 방명록이 없어요.
-                    <br />
-                    가장 먼저 방명록에 글을 남겨보세요!
-                  </>
-                ) : (
+                {noteId === 'mySchool' ? (
                   <>
                     아직 작성된 방명록이 없어요.
                     <br />
                     가장 먼저 우리 학교 방명록에 글을 남겨보세요!
                   </>
+                ) : (
+                  <>
+                    아직 작성된 방명록이 없어요.
+                    <br />
+                    가장 먼저 방명록에 글을 남겨보세요!
+                  </>
                 )}
               </>
             )}
-          </p>
+          </div>
         </div>
       </L.GuestBookListWrapper>
     </>
