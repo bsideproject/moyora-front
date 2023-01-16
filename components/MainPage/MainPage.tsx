@@ -91,7 +91,7 @@ const MainPage: React.FC = () => {
       <M.ourSchoolStatisticsSection>
         <M.contentTitle>
           <h1>우리 학교 통계</h1>
-          <Link href="/mainPage">
+          <Link href="/statistics">
             <p>자세히 보기 &gt;</p>
           </Link>
         </M.contentTitle>
@@ -129,7 +129,7 @@ const MainPage: React.FC = () => {
       <M.ourSchoolGuestBookSection>
         <M.contentTitle>
           <h1>우리 학교 방명록</h1>
-          <Link href="/guestBook/list">
+          <Link href="/guestBook/list/mySchool">
             <p>자세히 보기 &gt;</p>
           </Link>
         </M.contentTitle>
