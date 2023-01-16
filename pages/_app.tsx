@@ -5,7 +5,7 @@ import Head from 'next/head';
 import localFont from '@next/font/local';
 import { AppProps } from 'next/app';
 import { ConfigProvider } from 'antd';
-import { ThemeProvider } from 'styled-components';
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
@@ -22,8 +22,36 @@ const client = new QueryClient({
 });
 
 const pretendard = localFont({
-  src: '../public/font/PretendardVariable.woff2',
+  src: [
+    { path: '../public/font/Pretendard-Thin.woff2', weight: '100' },
+    { path: '../public/font/Pretendard-ExtraLight.woff2', weight: '200' },
+    { path: '../public/font/Pretendard-Light.woff2', weight: '300' },
+    { path: '../public/font/Pretendard-Regular.woff2', weight: '400' },
+    { path: '../public/font/Pretendard-Medium.woff2', weight: '500' },
+    { path: '../public/font/Pretendard-SemiBold.woff2', weight: '600' },
+    { path: '../public/font/Pretendard-Bold.woff2', weight: '700' },
+    { path: '../public/font/Pretendard-ExtraBold.woff2', weight: '800' },
+    { path: '../public/font/Pretendard-Black.woff2', weight: '900' },
+  ],
+  display: 'swap',
+  fallback: [
+    '-apple-system',
+    'BlinkMacSystemFont',
+    'system-ui',
+    'Roboto',
+    'Helvetica Neue',
+    'Segoe UI',
+    'Apple SD Gothic Neo',
+    'Malgun Gothic',
+    'sans-serif',
+  ],
 });
+
+const GlobalStyle = createGlobalStyle`
+  * {
+  font-family: ${pretendard.style.fontFamily};
+  }
+`;
 
 const antdTheme = {
   token: {
@@ -36,6 +64,7 @@ const antdTheme = {
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => (
   <QueryClientProvider client={client}>
+    <GlobalStyle />
     {process.env.NODE_ENV !== 'production' ? <ReactQueryDevtools initialIsOpen={false} /> : null}
     <ConfigProvider theme={antdTheme}>
       <ThemeProvider theme={theme}>
@@ -47,7 +76,7 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => (
           />
         </Head>
         <AppLayout>
-          <main className={pretendard.className}>
+          <main>
             <Component {...pageProps} />
           </main>
         </AppLayout>
