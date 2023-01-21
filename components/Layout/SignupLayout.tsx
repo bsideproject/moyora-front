@@ -12,14 +12,12 @@ import Step2Active from '@public/svgs/step2-active.svg';
 import Step3Active from '@public/svgs/step3-active.svg';
 import Step4Active from '@public/svgs/step4-active.svg';
 
-import S from '@components/Signup/Signup.styles';
 import L from './Layout.styles';
 
 type TStep = '1' | '2' | '3' | '4';
 
 interface IProps {
   step: TStep;
-  onClick: () => void;
   isAddSchool?: string;
   children: React.ReactElement;
 }
@@ -31,7 +29,7 @@ const StepContents = {
   '4': { disabled: Step4Disabled, active: Step4Active, title: '어디에 거주하고 계시나요?' },
 };
 
-const SignupLayout: React.FC<IProps> = ({ step, onClick, isAddSchool, children }) => {
+const SignupLayout: React.FC<IProps> = ({ step, children }) => {
   return (
     <L.SignupStepWrapper>
       <Image src={Moyora} alt="moyora-logo" />
@@ -61,9 +59,6 @@ const SignupLayout: React.FC<IProps> = ({ step, onClick, isAddSchool, children }
       </L.SignupStepWrap>
       <h2>{StepContents[step].title}</h2>
       <section>{children}</section>
-      <S.SignupButton type="primary" onClick={onClick}>
-        {isAddSchool ? '등록' : '다음'}
-      </S.SignupButton>
     </L.SignupStepWrapper>
   );
 };

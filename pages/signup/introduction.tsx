@@ -1,25 +1,36 @@
 import React, { useState } from 'react';
-import Link from 'next/link';
+import { message } from 'antd';
 import { useRouter } from 'next/router';
 
-import LogoSmallSection from '@components/Common/LogoHeader/LogoHeader';
+import { useSignup, ISignup } from '@APIs/user';
+import useStore from '@reducers/store';
 
+import LogoSmallSection from '@components/Common/LogoHeader/LogoHeader';
 import S from '@components/Signup/Signup.styles';
 
 const Introduction: React.FC = () => {
   const router = useRouter();
+  const { me } = useStore();
+  const { mutate } = useSignup();
   const [introduction, setIntroduction] = useState('');
   const onChangeIntroduction: React.ChangeEventHandler<HTMLTextAreaElement> = (e) =>
     setIntroduction(e.target.value);
 
-  const onClickRoute = () => router.replace('/signup/complete');
+  const onClickSignup = (isSave?: boolean) => () => {
+    if (me === null) {
+      message.error('회원가입에 문제가 발생했습니다.\n다시 시도해 주세요 :(');
+      router.replace('/login');
+    } else {
+      let data = me;
+      if (isSave) data = { ...me, introduction };
+      mutate(data as ISignup);
+    }
+  };
 
   return (
     <S.IntroductionWrapper>
       <LogoSmallSection>
-        <Link href="/signup/complete" replace>
-          <p>건너뛰기</p>
-        </Link>
+        <p onClick={onClickSignup()}>건너뛰기</p>
       </LogoSmallSection>
       <h2>
         전체 학교 동창 친구들에게
@@ -34,7 +45,11 @@ const Introduction: React.FC = () => {
         onChange={onChangeIntroduction}
         placeholder="200자 이내로 입력해 주세요."
       />
-      <S.SignupButton type="primary" onClick={onClickRoute} disabled={!Boolean(introduction)}>
+      <S.SignupButton
+        type="primary"
+        onClick={onClickSignup(true)}
+        disabled={!Boolean(introduction)}
+      >
         다음
       </S.SignupButton>
     </S.IntroductionWrapper>
