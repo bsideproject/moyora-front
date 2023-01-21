@@ -28,7 +28,7 @@ const StepOne: React.FC = () => {
   );
 
   const onClickNext = () => {
-    onSaveSignup({ schoolName, schoolCode, graduationYear });
+    onSaveSignup({ schoolName, schoolCode, graduationYear: +graduationYear });
     router.push('/signup/2');
   };
 
