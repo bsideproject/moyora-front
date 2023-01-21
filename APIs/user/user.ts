@@ -1,10 +1,11 @@
+import { message } from 'antd';
 import { useRouter } from 'next/router';
 import { useCookies } from 'react-cookie';
-import { QueryOptions, useMutation, useQuery } from '@tanstack/react-query';
+import { AxiosError, AxiosResponse } from 'axios';
+import { QueryOptions, useMutation, UseMutationOptions } from '@tanstack/react-query';
 
 import { fetch } from '@configs/axios';
-import { ISignin, IUser } from './user.types';
-import { message } from 'antd';
+import { ISignin, ISignup } from './user.types';
 
 export const baseUrl = '/user';
 
@@ -53,14 +54,22 @@ export const useLogin = (options?: QueryOptions) => {
   return useMutation([queryKey], queryFn, { onSuccess, onError, ...options });
 };
 
-export const useGetUser = async (userId: string, options: QueryOptions) => {
-  const queryKey = `${baseUrl}/user`;
-  const queryFn = await fetch.get(`${queryKey}?userId=${userId}`).then((res) => res.data);
-  return useQuery([queryKey, userId], queryFn, { ...options });
-};
+export const useSignup = (
+  options?: UseMutationOptions<AxiosResponse<string>, AxiosError, ISignup>,
+) => {
+  const router = useRouter();
+  const [, setCookie] = useCookies();
 
-export const usePutUser = async (data: IUser, options: QueryOptions) => {
-  const queryKey = `${baseUrl}/user`;
-  const queryFn = await fetch.put(`${queryKey}?userId=${data.id}`, data).then((res) => res.data);
-  return useMutation([queryKey, data.id], queryFn, { ...options });
+  const queryKey = `${baseUrl}/signup`;
+  const queryFn = (data: ISignup) => fetch.post(queryKey, data).then((res) => res.data);
+  const onSuccess = (accessToken: AxiosResponse<string>) => {
+    setCookie('moyora', accessToken, {
+      path: '/',
+      sameSite: 'lax',
+      secure: true,
+    });
+    router.replace('/signup/complete');
+  };
+  const onError = () => message.error('회원가입에 문제가 발생했습니다.\n다시 시도해 주세요 :(');
+  return useMutation([queryKey], queryFn, { onSuccess, onError, ...options });
 };
