@@ -44,10 +44,18 @@ const SignupInputWrapper = styled.div`
     text-align: center;
   }
 
+  & > h4 {
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    color: ${({ theme }) => theme.gray600};
+    text-align: left;
+  }
+
   & > button {
     font-size: 14px;
     font-weight: 500;
-    color: ${({ theme }) => theme.gray700};
     text-decoration: underline;
   }
 
@@ -97,7 +105,10 @@ const SignupSelect = styled(Select)<IInputPublicProps>`
   width: 100%;
   height: 44px;
   text-align: left;
-  border-color: ${({ theme, isFill }) => (isFill ? theme.gray500 : theme.gray200)};
+
+  & div.ant-select-selector {
+    border-color: ${({ theme, isFill }) => (isFill ? theme.gray500 : theme.gray200)} !important;
+  }
 
   &.half {
     width: 50%;

@@ -2,6 +2,7 @@ import '@styles/global.css';
 
 import React from 'react';
 import Head from 'next/head';
+import Script from 'next/script';
 import localFont from '@next/font/local';
 import { AppProps } from 'next/app';
 import { ConfigProvider } from 'antd';
@@ -75,6 +76,11 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => (
             content="width=device-width, initial-scale=1, maximum-scale=1, minimal-scale=1 user-scalable=no"
           />
         </Head>
+        <Script
+          src="https://t1.kakaocdn.net/kakao_js_sdk/2.1.0/kakao.min.js"
+          integrity="sha384-dpu02ieKC6NUeKFoGMOKz6102CLEWi9+5RQjWSV0ikYSFFd8M3Wp2reIcquJOemx"
+          crossOrigin="anonymous"
+        />
         <AppLayout>
           <main>
             <Component {...pageProps} />
