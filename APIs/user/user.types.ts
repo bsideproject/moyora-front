@@ -2,12 +2,10 @@ export interface ISignup {
   graduationYear: number;
   name: string;
   nickname: string;
-  category: string;
   job: string;
-  parentRegion: string;
-  childRegion: string;
+  regionId: number;
   schoolCode: string;
-  introduction?: string;
+  schoolComment: string;
 }
 
 export interface ISignin {
