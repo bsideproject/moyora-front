@@ -1,7 +1,7 @@
 import { QueryOptions, useMutation, useQuery, UseQueryOptions } from '@tanstack/react-query';
 
 import { fetch } from '@configs/axios';
-import { IJobCategory, ISchool } from './search.types';
+import { IJobCategory, IRegion, ISchool } from './search.types';
 import { AxiosError, AxiosResponse } from 'axios';
 
 export const baseSchoolUrl = '/school';
@@ -36,7 +36,7 @@ export const useGetJobs = (
 };
 
 export const useGetState = (
-  options?: UseQueryOptions<AxiosResponse<string[]>, AxiosError, string[], string[]>,
+  options?: UseQueryOptions<AxiosResponse<IRegion[]>, AxiosError, IRegion[], string[]>,
 ) => {
   const queryKey = `${baseRegionUrl}/state`;
   const queryFn = () => fetch(queryKey).then((res) => res.data);
@@ -45,7 +45,7 @@ export const useGetState = (
 
 export const useGetCity = (
   state: string,
-  options?: UseQueryOptions<AxiosResponse<string[]>, AxiosError, string[], string[]>,
+  options?: UseQueryOptions<AxiosResponse<IRegion[]>, AxiosError, IRegion[], string[]>,
 ) => {
   const queryKey = `${baseRegionUrl}/city?state=${state}`;
   const queryFn = () => fetch(queryKey).then((res) => res.data);

@@ -9,3 +9,8 @@ export interface ISchool {
 export interface IJobCategory {
   name: string;
 }
+
+export interface IRegion {
+  id: number;
+  regionName: string;
+}
