@@ -3,23 +3,21 @@ import Image from 'next/image';
 import { useToggle } from 'react-use';
 import { useRouter } from 'next/router';
 
+import useStore from '@reducers/store';
 import { useGetJobCategory, useGetJobs } from '@APIs/search';
 
-import useStore from '@reducers/store';
 import CommonButton from '@atoms/CommonButton';
-
 import ChevronRight from '@public/svgs/chevron-right.svg';
-
 import S from './Signup.styles';
 
 const StepThree: React.FC = () => {
   const router = useRouter();
-  const { onSaveSignup } = useStore();
+  const { me, onSaveSignup } = useStore();
 
   const { data: jobCategories } = useGetJobCategory();
 
-  const [jobCategory, setJobCategory] = useState(jobCategories?.[0].name ?? '');
-  const [job, setJob] = useState('');
+  const [jobCategory, setJobCategory] = useState(me?.category ?? '');
+  const [job, setJob] = useState(me?.job ?? '');
   const [isSelect, onToggle] = useToggle(false);
 
   const { data: jobs } = useGetJobs(jobCategory, { enabled: Boolean(jobCategory) });
@@ -48,6 +46,7 @@ const StepThree: React.FC = () => {
         readOnly
         bordered={false}
         placeholder="직군/직무를 선택하기"
+        isfill={jobCategory}
         value={jobCategory}
         suffix={<Image src={ChevronRight} alt="chevron-right" />}
         onClick={onToggle}
@@ -57,6 +56,7 @@ const StepThree: React.FC = () => {
           readOnly
           bordered={false}
           placeholder="직군/직무를 선택하기"
+          isfill={job}
           value={job}
           suffix={<Image src={ChevronRight} alt="chevron-right" />}
           onClick={onToggle}

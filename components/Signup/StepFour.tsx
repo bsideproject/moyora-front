@@ -1,43 +1,63 @@
 import React, { useMemo, useState } from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
+import { BaseOptionType } from 'antd/es/select';
+
+import useStore from '@reducers/store';
+import { useGetCity, useGetState } from '@APIs/search';
+
+import CommonButton from '@atoms/CommonButton';
 
 import SelectAllow from '@public/svgs/select-allow.svg';
-
 import S from './Signup.styles';
-import { useRouter } from 'next/router';
-import CommonButton from '@atoms/CommonButton';
-import { useGetCity, useGetState } from '@APIs/search';
-import useStore from '@reducers/store';
+
+interface ICity {
+  label: string;
+  value: number;
+}
 
 const StepFour: React.FC = () => {
   const router = useRouter();
-  const { onSaveSignup } = useStore();
+  const { me, onSaveSignup } = useStore();
 
-  const [parentRegion, setParentRegion] = useState('');
-  const [childRegion, setChildRegion] = useState('');
+  const [parentRegion, setParentRegion] = useState<string | null>(me?.parentRegion || null);
+  const [childRegion, setChildRegion] = useState<ICity | null>(
+    me?.childRegion ? { label: me?.childRegion ?? '', value: me?.regionId ?? 0 } : null,
+  );
 
   const { data: stateData } = useGetState();
-  const { data: cityData } = useGetCity(parentRegion, { enabled: Boolean(parentRegion) });
+  const { data: cityData } = useGetCity(parentRegion ?? '', { enabled: Boolean(parentRegion) });
 
   const stateOptions = useMemo(
-    () => (stateData?.length ? stateData.map((v) => ({ label: v, value: v })) : []),
+    () =>
+      stateData?.length
+        ? stateData.map(({ regionName }) => ({ label: regionName, value: regionName }))
+        : [],
     [stateData],
   );
 
   const cityOptions = useMemo(
-    () => (cityData?.length ? cityData.map((v) => ({ label: v, value: v })) : []),
+    () =>
+      cityData?.length
+        ? cityData.map(({ id, regionName }) => ({ label: regionName, value: id }))
+        : [],
     [cityData],
   );
 
   const onChangeState = (v: unknown) => {
-    setChildRegion('');
+    setChildRegion(null);
     setParentRegion(v as string);
   };
 
-  const onChangeCity = (v: unknown) => setChildRegion(v as string);
+  const onChangeCity = (_: unknown, option: BaseOptionType) =>
+    setChildRegion(option as unknown as ICity);
 
   const onClickNext = () => {
-    onSaveSignup({ parentRegion, childRegion });
+    onSaveSignup({
+      parentRegion: parentRegion ?? '',
+      childRegion: childRegion?.label,
+      regionId: childRegion?.value,
+    });
     router.push('/signup/introduction');
   };
 
@@ -48,16 +68,20 @@ const StepFour: React.FC = () => {
         <S.SignupSelect
           className="half"
           placeholder="시/도"
+          isfill={parentRegion}
+          value={parentRegion}
           options={stateOptions}
-          suffixIcon={<Image src={SelectAllow} alt="select-allow" />}
           onChange={onChangeState}
+          suffixIcon={<Image src={SelectAllow} alt="select-allow" />}
         />
         <S.SignupSelect
           className="half"
           placeholder="시/구"
+          isfill={childRegion}
+          value={childRegion}
           options={cityOptions}
-          suffixIcon={<Image src={SelectAllow} alt="select-allow" />}
           onChange={onChangeCity}
+          suffixIcon={<Image src={SelectAllow} alt="select-allow" />}
         />
       </div>
       <CommonButton type="primary" onClick={onClickNext}>
