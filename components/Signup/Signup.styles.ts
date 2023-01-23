@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Button, Collapse, Drawer, Input, Select } from 'antd';
 
 interface IInputPublicProps {
-  isFill?: boolean;
+  isfill?: string | number | object | null;
 }
 
 const SignupButton = styled(Button)`
@@ -71,7 +71,7 @@ const SearchButton = styled(Input.Search)<IInputPublicProps>`
   & input {
     cursor: pointer;
   }
-  border: 1px solid ${({ theme, isFill }) => (isFill ? theme.gray500 : theme.gray200)};
+  border: 1px solid ${({ theme, isfill }) => (isfill ? theme.gray500 : theme.gray200)};
   border-radius: 8px;
   & button {
     border: 0;
@@ -84,7 +84,7 @@ const SearchButton = styled(Input.Search)<IInputPublicProps>`
 const SignupInput = styled(Input)<IInputPublicProps>`
   padding: 9px 10px;
   font-weight: 400;
-  border: 1px solid ${({ theme, isFill }) => (isFill ? theme.gray500 : theme.gray200)};
+  border: 1px solid ${({ theme, isfill }) => (isfill ? theme.gray500 : theme.gray200)};
   border-radius: 8px;
 
   & + & {
@@ -107,7 +107,7 @@ const SignupSelect = styled(Select)<IInputPublicProps>`
   text-align: left;
 
   & div.ant-select-selector {
-    border-color: ${({ theme, isFill }) => (isFill ? theme.gray500 : theme.gray200)} !important;
+    border-color: ${({ theme, isfill }) => (isfill ? theme.gray500 : theme.gray200)} !important;
   }
 
   &.half {
