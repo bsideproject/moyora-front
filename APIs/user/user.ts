@@ -35,15 +35,13 @@ export const useLogin = (options?: QueryOptions) => {
       });
 
   const onSuccess = ({ isFirst, accessToken }: ISignin) => {
+    setCookie('moyora', accessToken, {
+      path: '/',
+      sameSite: 'lax',
+      secure: true,
+    });
     if (isFirst) router.push('/signup/1');
-    else {
-      setCookie('moyora', accessToken, {
-        path: '/',
-        sameSite: 'lax',
-        secure: true,
-      });
-      router.replace('/');
-    }
+    else router.replace('/');
   };
 
   const onError = () =>
@@ -58,18 +56,23 @@ export const useSignup = (
   options?: UseMutationOptions<AxiosResponse<string>, AxiosError, ISignup>,
 ) => {
   const router = useRouter();
-  const [, setCookie] = useCookies();
+  const [cookies] = useCookies(['moyora']);
 
   const queryKey = `${baseUrl}/signup`;
-  const queryFn = (data: ISignup) => fetch.post(queryKey, data).then((res) => res.data);
-  const onSuccess = (accessToken: AxiosResponse<string>) => {
-    setCookie('moyora', accessToken, {
-      path: '/',
-      sameSite: 'lax',
-      secure: true,
-    });
+  const queryFn = (data: ISignup) =>
+    fetch
+      .post(queryKey, data, {
+        headers: { Authorization: 'Bearer ' + cookies.moyora },
+      })
+      .then((res) => res.data);
+
+  const onSuccess = (v: AxiosResponse<string>) => {
+    console.log(v);
     router.replace('/signup/complete');
   };
-  const onError = () => message.error('회원가입에 문제가 발생했습니다.\n다시 시도해 주세요 :(');
+  const onError = (e: AxiosError) =>
+    message.error(
+      (e.response?.data as string) || '회원가입에 문제가 발생했습니다.\n다시 시도해 주세요 :(',
+    );
   return useMutation([queryKey], queryFn, { onSuccess, onError, ...options });
 };
