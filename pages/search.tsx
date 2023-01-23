@@ -48,7 +48,7 @@ const Search: React.FC = () => {
         value={searchText}
         onChange={onChangeSearchText}
         onPressEnter={onSearch}
-        placeholder={!isSchool ? '찾고싶은 동창 이름을 검색하세요.' : ''}
+        placeholder={!isSchool ? '찾고싶은 동창 이름을 검색하세요.' : '학교를 검색하세요'}
       />
 
       {searchData?.length ? (

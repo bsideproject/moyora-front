@@ -4,12 +4,13 @@ const FriendsListWrapper = styled.section`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 66px;
-    padding: 20px 0;
+    height: 64px;
+    padding: 20px 0 16px 0;
     & h1 {
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 700;
-      line-height: 26px;
+      line-height: 28px;
+      color: ${({ theme }) => theme.gray900};
     }
     & h2 {
       font-size: 16px;
@@ -18,6 +19,8 @@ const FriendsListWrapper = styled.section`
       color: ${({ theme }) => theme.primary};
     }
     & > div {
+      width: 92px;
+      height: 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -31,24 +34,20 @@ const FriendsList = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  height: calc(100vh - 144px);
-  margin-top: 8px;
+  height: calc(100vh - 120px);
   overflow: scroll;
   & > div {
+    &:not(:first-of-type) {
+      margin-top: 12px;
+    }
     display: flex;
     align-items: center;
-    justify-content: flex-start;
     width: 350px;
     height: 80px;
-    padding: 16px 20px;
-    margin-top: 12px;
-
-    cursor: pointer;
+    padding: 18px 20px;
     background: #fff4ec;
     border-radius: 16px;
-    & > div {
-      margin-left: 12px;
-    }
+    cursor: pointer;
     & h3 {
       font-size: 16px;
       font-weight: 400;

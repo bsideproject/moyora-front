@@ -37,8 +37,10 @@ const Archive: React.FC = () => {
   useEffect(() => {
     if (id != 'myPage') {
       setInfoData(info2);
+    } else {
+      setInfoData(info);
     }
-  }, [id]);
+  }, [router.query]);
   const snsImages = {
     instagram: <Image src={Instagram} alt="instagram" />,
     youtube: <Image src={Youtube} alt="youtube" />,
@@ -110,43 +112,38 @@ const Archive: React.FC = () => {
       </A.PrimaryBackgroundSection>
       <A.EtcInfo>
         <div>
-          <span>
-            <h4>{infoData.mbti ? infoData.mbti : '-'}</h4>
-            <br />
-            <p>MBTI</p>
-          </span>
-          <span></span>
-          <span>
-            {(infoData.sns.instagram || infoData.sns.youtube || infoData.sns.facebook) === '' ? (
-              <h4>-</h4>
-            ) : (
-              <div>
-                {infoData.sns.instagram ? (
-                  <Link href={infoData.sns.instagram}>{snsImages.instagram}</Link>
-                ) : (
-                  ''
-                )}
-                {infoData.sns.youtube ? (
-                  <Link href={infoData.sns.youtube}>{snsImages.youtube}</Link>
-                ) : (
-                  ''
-                )}
-                {infoData.sns.facebook ? (
-                  <Link href={infoData.sns.facebook}>{snsImages.facebook}</Link>
-                ) : (
-                  ''
-                )}
-              </div>
-            )}
-            <br />
-            <p>SNS</p>
-          </span>
-          <span></span>
-          <span>
-            <h4>{infoData.birthDay ? infoData.birthDay : '-'}</h4>
-            <br />
-            <p>생일</p>
-          </span>
+          <h4>{infoData.mbti ? infoData.mbti : '-'}</h4>
+          <p>MBTI</p>
+        </div>
+        <span></span>
+        <div>
+          {(infoData.sns.instagram || infoData.sns.youtube || infoData.sns.facebook) === '' ? (
+            <h4>-</h4>
+          ) : (
+            <div>
+              {infoData.sns.instagram ? (
+                <Link href={infoData.sns.instagram}>{snsImages.instagram}</Link>
+              ) : (
+                ''
+              )}
+              {infoData.sns.youtube ? (
+                <Link href={infoData.sns.youtube}>{snsImages.youtube}</Link>
+              ) : (
+                ''
+              )}
+              {infoData.sns.facebook ? (
+                <Link href={infoData.sns.facebook}>{snsImages.facebook}</Link>
+              ) : (
+                ''
+              )}
+            </div>
+          )}
+          <p>SNS</p>
+        </div>
+        <span></span>
+        <div>
+          <h4>{infoData.birthDay ? infoData.birthDay : '-'}</h4>
+          <p>생일</p>
         </div>
       </A.EtcInfo>
       <A.GrayDiv />
