@@ -39,6 +39,7 @@ const PrimaryBackgroundSection = styled.section`
 const Info = styled.div`
   height: 268px;
   & > div:first-of-type {
+    padding-top: 20px;
     & > span:first-of-type {
       display: flex;
       align-items: center;
@@ -101,10 +102,37 @@ const Info = styled.div`
 `;
 
 const EtcInfo = styled.div`
-  width: 100%;
-  height: 134px;
+  margin: 20px auto;
   padding: 20px 0 24px 0;
-
+  width: 350px;
+  height: 86px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 18px 20px;
+  text-align: center;
+  background-color: #fff4ec;
+  border-radius: 20px;
+  & > div {
+    width: 73px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  & > div > div {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 84px;
+    height: 28px;
+  }
+  & > span {
+    height: 28px;
+    width: 1px;
+    background-color: rgba(255, 109, 58, 0.16);
+  }
   & h4 {
     font-size: 16px;
     font-weight: 700;
@@ -116,41 +144,6 @@ const EtcInfo = styled.div`
     font-weight: 400;
     line-height: 20px;
     color: ${({ theme }) => theme.gray600};
-  }
-  & > div {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    padding: 18px 20px;
-    text-align: center;
-    background-color: #fff4ec;
-    border-radius: 20px;
-    & > span:nth-last-of-type(2n) {
-      height: 28px;
-      border-right: 1px solid rgba(255, 109, 58, 0.16);
-    }
-    & > span {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-    }
-    & > span:nth-of-type(3) {
-      width: 84px;
-      height: 50px;
-    }
-    & > span:first-of-type {
-      width: 73px;
-      height: 50px;
-    }
-    & > span:last-of-type {
-      width: 73px;
-      height: 50px;
-    }
-    & > span > div {
-      display: flex;
-      justify-content: space-around;
-    }
   }
 `;
 
