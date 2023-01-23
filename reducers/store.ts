@@ -1,7 +1,7 @@
 import create from 'zustand';
 import { devtools } from 'zustand/middleware';
 
-interface ISignupData {
+export interface ISignupData {
   schoolCode?: string;
   schoolName?: string;
   graduationYear?: number;
@@ -9,9 +9,10 @@ interface ISignupData {
   nickname?: string;
   category?: string;
   job?: string;
+  regionId?: number;
   parentRegion?: string;
   childRegion?: string;
-  introduction?: string;
+  schoolComment?: string;
 }
 
 interface IStore {
