@@ -5,6 +5,7 @@ import dayjs from 'dayjs';
 import Image from 'next/image';
 import { Button } from 'antd';
 import { useRouter } from 'next/router';
+import { GetServerSideProps } from 'next';
 
 import fillZero from '@utils/fillZero';
 
@@ -107,3 +108,12 @@ const SignUpComplete: React.FC = () => {
 };
 
 export default SignUpComplete;
+
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  if (!req.headers.referer) {
+    res.statusCode = 302;
+    res.setHeader('Location', `/login`);
+    res.end();
+  }
+  return { props: {} };
+};

@@ -1,28 +1,32 @@
 import React, { useState } from 'react';
 import { message } from 'antd';
 import { useRouter } from 'next/router';
+import { GetServerSideProps } from 'next';
 
+import useStore, { ISignupData } from '@reducers/store';
 import { useSignup, ISignup } from '@APIs/user';
-import useStore from '@reducers/store';
 
 import LogoSmallSection from '@components/Common/LogoHeader/LogoHeader';
 import S from '@components/Signup/Signup.styles';
 
 const Introduction: React.FC = () => {
   const router = useRouter();
-  const { me } = useStore();
+  const { me, onResetSignup } = useStore();
+  const { graduationYear, job, name, nickname, regionId, schoolCode } = me as ISignupData;
   const { mutate } = useSignup();
   const [introduction, setIntroduction] = useState('');
+
   const onChangeIntroduction: React.ChangeEventHandler<HTMLTextAreaElement> = (e) =>
     setIntroduction(e.target.value);
 
   const onClickSignup = (isSave?: boolean) => () => {
     if (me === null) {
       message.error('회원가입에 문제가 발생했습니다.\n다시 시도해 주세요 :(');
+      onResetSignup();
       router.replace('/login');
     } else {
-      let data = me;
-      if (isSave) data = { ...me, introduction };
+      const schoolComment = isSave ? introduction : '';
+      const data = { graduationYear, job, name, nickname, regionId, schoolCode, schoolComment };
       mutate(data as ISignup);
     }
   };
@@ -57,3 +61,12 @@ const Introduction: React.FC = () => {
 };
 
 export default Introduction;
+
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  if (!req.headers.referer) {
+    res.statusCode = 302;
+    res.setHeader('Location', `/login`);
+    res.end();
+  }
+  return { props: {} };
+};
