@@ -3,9 +3,11 @@ import 'dayjs/locale/ko';
 import React, { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import Image from 'next/image';
-import { Button } from 'antd';
+import { useToggle } from 'react-use';
 import { useRouter } from 'next/router';
 import { GetServerSideProps } from 'next';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { Button, message } from 'antd';
 
 import fillZero from '@utils/fillZero';
 
@@ -21,6 +23,10 @@ dayjs.locale('ko');
 
 const DDAY = '2023-02-06';
 const toDay = dayjs().format('YYYY-MM-DD');
+const URL =
+  process.env.NODE_ENV === 'production'
+    ? process.env.NEXT_PUBLIC_URL ?? ''
+    : 'http://localhost:3000';
 
 const SignUpComplete: React.FC = () => {
   const router = useRouter();
@@ -29,9 +35,25 @@ const SignUpComplete: React.FC = () => {
   const [counterHour, setCounterHour] = useState('00');
   const [counterMinute, setCounterMinute] = useState('00');
   const [counterSecond, setCounterSecond] = useState('00');
+  const [isCopy, isToggleCopy] = useToggle(false);
 
   const onClickRoute = () => router.replace('/');
 
+  const onClickKakaoShare = () => {
+    if (!window?.Kakao?.isInitialized()) {
+      window?.Kakao?.init(process.env.NEXT_PUBLIC_KAKAO_KEY);
+      window.Kakao?.Share?.createScrapButton({
+        container: '#kakaotalk-sharing-btn',
+        requestUrl: URL,
+      });
+    }
+  };
+  const onClickCopy = () => {
+    if (!isCopy) {
+      message.success('주소가 복사되었습니다!');
+      isToggleCopy();
+    }
+  };
   useEffect(() => {
     const timer = setInterval(() => {
       const nowDate = dayjs();
@@ -54,6 +76,7 @@ const SignUpComplete: React.FC = () => {
     [counterDay, counterHour, counterMinute, counterSecond].every((isLoading) => isLoading === '00')
   )
     return null;
+
   return (
     <S.SignUpCompleteWrapper>
       <LogoHeader />
@@ -76,17 +99,19 @@ const SignUpComplete: React.FC = () => {
               <br />
               <div>
                 <div>
-                  <Button shape="circle">
+                  <Button id="kakaotalk-sharing-btn" shape="circle" onClick={onClickKakaoShare}>
                     <Image src={KakaoIcon} alt="kakao-icon" />
                   </Button>
                   <p>카카오톡</p>
                 </div>
-                <div>
-                  <Button shape="circle">
-                    <Image src={LinkIcon} alt="link-icon" />
-                  </Button>
-                  <p>링크 복사</p>
-                </div>
+                <CopyToClipboard text={URL} onCopy={onClickCopy}>
+                  <div>
+                    <Button shape="circle">
+                      <Image src={LinkIcon} alt="link-icon" />
+                    </Button>
+                    <p>링크 복사</p>
+                  </div>
+                </CopyToClipboard>
               </div>
             </S.SignupCompleteWrap>
           </>
