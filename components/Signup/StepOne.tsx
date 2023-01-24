@@ -12,7 +12,7 @@ import S from './Signup.styles';
 const StepOne: React.FC = () => {
   const router = useRouter();
   const schoolName = router.query?.schoolName as string | undefined;
-  const schoolCode = router.query?.schoolName as string | undefined;
+  const schoolCode = router.query?.schoolCode as string | undefined;
 
   const { me, onSaveSignup } = useStore();
 

@@ -281,6 +281,8 @@ const SignUpCompleteWrapper = styled.section`
       & span {
         display: inline-block;
         width: 40px;
+        font-family: GmarketSans;
+        vertical-align: middle;
       }
     }
 
