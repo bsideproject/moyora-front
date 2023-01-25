@@ -4,15 +4,10 @@ import LogoHeader from '@components/Common/LogoHeader';
 import Image from 'next/image';
 import { Col, Row } from 'antd';
 import GuestBookBox from '@components/Common/GuestBookBox';
-
-import { Swiper, SwiperSlide } from 'swiper/react';
-
 import Link from 'next/link';
-
 import Crown1 from '@public/svgs/crown-1.svg';
 import Crown2 from '@public/svgs/crown-2.svg';
 import Crown3 from '@public/svgs/crown-3.svg';
-
 import Sticker1 from '@public/svgs/sticker-1.svg';
 import Sticker2 from '@public/svgs/sticker-2.svg';
 import Sticker3 from '@public/svgs/sticker-3.svg';
@@ -25,7 +20,6 @@ import Sticker9 from '@public/svgs/sticker-9.svg';
 import Sticker10 from '@public/svgs/sticker-10.svg';
 import Sticker11 from '@public/svgs/sticker-11.svg';
 import Sticker12 from '@public/svgs/sticker-12.svg';
-
 import QuotationMark1 from '@public/svgs/quotationMark-1.svg';
 import QuotationMark2 from '@public/svgs/quotationMark-2.svg';
 import QuotationMark3 from '@public/svgs/quotationMark-3.svg';
@@ -133,41 +127,32 @@ const MainPage: React.FC = () => {
             <p>자세히 보기 &gt;</p>
           </Link>
         </M.contentTitle>
-        {guestBookList ? (
-          <Swiper spaceBetween={8} preventClicksPropagation={true} slidesPerView={(350 - 8) / 200}>
-            {guestBookList
-              ? guestBookList.map((guestBook) => (
-                  <SwiperSlide key={guestBook.id}>
-                    <GuestBookBox
-                      size={{ width: '200px', height: '200px', line: '3' }}
-                      text={guestBook.text}
-                      date={guestBook.date}
-                    >
-                      <>
-                        <div>
-                          <Image
-                            src={stickers[guestBook.sticker].quotationMark}
-                            alt="quotationMark"
-                          />
-                        </div>
-                        <div>
-                          <Image src={stickers[guestBook.sticker].sticker} alt="sticker" />
-                        </div>
-                      </>
-                    </GuestBookBox>
-                  </SwiperSlide>
-                ))
-              : ''}
-          </Swiper>
-        ) : (
-          <div>
-            <div>
-              <h4>아직 작성된 방명록이 없어요</h4>
-              <br />
+        <M.GuestBook>
+          {guestBookList ? (
+            guestBookList.map((guestBook) => (
+              <GuestBookBox
+                key={guestBook.id}
+                size={{ width: '200px', height: '200px', line: '3' }}
+                text={guestBook.text}
+                date={guestBook.date}
+              >
+                <>
+                  <div>
+                    <Image src={stickers[guestBook.sticker].quotationMark} alt="quotationMark" />
+                  </div>
+                  <div>
+                    <Image src={stickers[guestBook.sticker].sticker} alt="sticker" />
+                  </div>
+                </>
+              </GuestBookBox>
+            ))
+          ) : (
+            <span>
+              <h5>아직 작성된 방명록이 없어요</h5>
               <p>학교 방명록을 입력해 보세요!</p>
-            </div>
-          </div>
-        )}
+            </span>
+          )}
+        </M.GuestBook>
       </M.ourSchoolGuestBookSection>
     </M.MainPageWrapper>
   );
