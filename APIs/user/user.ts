@@ -4,7 +4,7 @@ import { useCookies } from 'react-cookie';
 import { AxiosError, AxiosResponse } from 'axios';
 import { QueryOptions, useMutation, UseMutationOptions } from '@tanstack/react-query';
 
-import { fetch } from '@configs/axios';
+import { fetch, fetchWithToken } from '@configs/axios';
 import { ISignin, ISignup } from './user.types';
 
 export const baseUrl = '/user';
@@ -56,15 +56,9 @@ export const useSignup = (
   options?: UseMutationOptions<AxiosResponse<string>, AxiosError, ISignup>,
 ) => {
   const router = useRouter();
-  const [cookies] = useCookies(['moyora']);
 
   const queryKey = `${baseUrl}/signup`;
-  const queryFn = (data: ISignup) =>
-    fetch
-      .post(queryKey, data, {
-        headers: { Authorization: 'Bearer ' + cookies.moyora },
-      })
-      .then((res) => res.data);
+  const queryFn = (data: ISignup) => fetchWithToken.post(queryKey, data).then((res) => res.data);
 
   const onSuccess = (v: AxiosResponse<string>) => {
     console.log(v);
