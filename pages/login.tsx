@@ -10,7 +10,13 @@ const Login: React.FC = () => {
   const onClickLogin = () => {
     if (!window?.Kakao?.isInitialized()) {
       window?.Kakao?.init(process.env.NEXT_PUBLIC_KAKAO_KEY);
-      window?.Kakao.Auth.authorize({ redirectUri: 'http://localhost:3000/kakao' });
+      window?.Kakao.Auth.authorize({
+        redirectUri: `${
+          process.env.NODE_ENV === 'production'
+            ? process.env.NEXT_PUBLIC_DOMAIN_URL
+            : 'http://localhost:3000'
+        }/kakao`,
+      });
     }
   };
 

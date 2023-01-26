@@ -1,9 +1,5 @@
 import styled from 'styled-components';
 
-import 'swiper/css';
-// import "swiper/css/free-mode";
-import 'swiper/css/bundle';
-
 const MainPageWrapper = styled.section`
   display: flex;
   flex-direction: column;
@@ -125,28 +121,34 @@ const ourSchoolStatisticsSection = styled.div`
 
 const ourSchoolGuestBookSection = styled.div`
   width: 100%;
-  height: 284px;
-  overflow: hidden;
-  .swiper-wrapper {
-    display: flex;
-    margin-top: 16px;
+`;
+
+const GuestBook = styled.div`
+  margin-top: 24px;
+  height: 200px;
+  overflow: auto;
+  display: flex;
+  flex-direction: row;
+  & > div:not(:last-of-type) {
+    margin-right: 8px;
   }
-  & > div:last-of-type:not(.swiper) {
+  & > span {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
-    height: 200px;
-    text-align: center;
+    align-items: center;
+    width: 350px;
     background-color: ${({ theme }) => theme.gray50};
     border: 1px solid ${({ theme }) => theme.gray100};
     border-radius: 20px;
-    & h4 {
+    & h5 {
       font-size: 14px;
       font-weight: 500;
       line-height: 20px;
       color: ${({ theme }) => theme.gray600};
     }
     & p {
+      margin-top: 8px;
       font-size: 14px;
       font-weight: 500;
       line-height: 20px;
@@ -162,6 +164,7 @@ const M = {
   contentTitle,
   content,
   ourSchoolGuestBookSection,
+  GuestBook,
 };
 
 export default M;
