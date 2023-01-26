@@ -25,7 +25,7 @@ const DDAY = '2023-02-06';
 const toDay = dayjs().format('YYYY-MM-DD');
 const URL =
   process.env.NODE_ENV === 'production'
-    ? process.env.NEXT_PUBLIC_URL ?? ''
+    ? process.env.NEXT_PUBLIC_DOMAIN_URL ?? ''
     : 'http://localhost:3000';
 
 const SignUpComplete: React.FC = () => {
