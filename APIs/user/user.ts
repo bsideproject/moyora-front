@@ -27,7 +27,12 @@ export const useLogin = (options?: QueryOptions) => {
         {
           grant_type: 'authorization_code',
           client_id: process.env.NEXT_PUBLIC_KAKAO_KEY,
-          redirect_uri: 'http://localhost:3000/kakao',
+          redirect_uri: `${
+            process.env.NODE_ENV === 'production'
+              ? process.env.NEXT_PUBLIC_DOMAIN_URL
+              : 'http://localhost:3000'
+          }/kakao`,
+
           code,
         },
         { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } },

@@ -80,7 +80,7 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => (
           <title>moyora - 우리학교 다시 모여라!</title>
           <meta
             name="viewport"
-            content="width=device-width, initial-scale=1, maximum-scale=1, minimal-scale=1 user-scalable=no"
+            content="width=device-width, initial-scale=1, maximum-scale=1, minimal-scale=1"
           />
         </Head>
         <Script

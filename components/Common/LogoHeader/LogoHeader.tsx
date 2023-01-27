@@ -29,7 +29,7 @@ const LogoHeader: React.FC<IProps> = ({ headerIcons, backgroundPrimary, children
   const onClickLogout = () => router.replace('/');
   return (
     <L.LogoHeaderWrapper backgroundPrimary={backgroundPrimary}>
-      <Link href="/mainPage">
+      <Link href="/">
         <Image src={backgroundPrimary ? SmallLogoPrimary : SmallLogo} alt="moyora-logo" />
       </Link>
       <div>{children}</div>

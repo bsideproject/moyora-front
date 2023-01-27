@@ -1,6 +1,6 @@
 # Moyora Front Project
 
-B-Side 13기 7팀 반갑다 친구야(Moyora)의 Front-end Repository.
+B-Side 13기 7팀 반갑다 친구야(Moyora)의 Front-end Repository
 
 ## Quick start
 
