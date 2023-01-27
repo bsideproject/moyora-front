@@ -2,10 +2,16 @@ import { message } from 'antd';
 import { useRouter } from 'next/router';
 import { useCookies } from 'react-cookie';
 import { AxiosError, AxiosResponse } from 'axios';
-import { QueryOptions, useMutation, UseMutationOptions } from '@tanstack/react-query';
+import {
+  QueryOptions,
+  useMutation,
+  UseMutationOptions,
+  useQuery,
+  UseQueryOptions,
+} from '@tanstack/react-query';
 
 import { fetch, fetchWithToken } from '@configs/axios';
-import { ISignin, ISignup } from './user.types';
+import { ISignin, ISignup, IUser } from './user.types';
 
 export const baseUrl = '/user';
 
@@ -65,8 +71,7 @@ export const useSignup = (
   const queryKey = `${baseUrl}/signup`;
   const queryFn = (data: ISignup) => fetchWithToken.post(queryKey, data).then((res) => res.data);
 
-  const onSuccess = (v: AxiosResponse<string>) => {
-    console.log(v);
+  const onSuccess = () => {
     router.replace('/signup/complete');
   };
   const onError = (e: AxiosError) =>
@@ -74,4 +79,12 @@ export const useSignup = (
       (e.response?.data as string) || '회원가입에 문제가 발생했습니다.\n다시 시도해 주세요 :(',
     );
   return useMutation([queryKey], queryFn, { onSuccess, onError, ...options });
+};
+
+export const useMyInfo = (
+  options?: UseQueryOptions<AxiosResponse<IUser>, AxiosError, IUser, string[]>,
+) => {
+  const queryKey = `${baseUrl}/myinfo`;
+  const queryFn = () => fetchWithToken.get(queryKey).then((res) => res.data);
+  return useQuery([queryKey], queryFn, { ...options });
 };
