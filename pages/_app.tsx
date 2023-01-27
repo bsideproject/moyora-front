@@ -1,18 +1,25 @@
 import '@styles/global.css';
 
 import React from 'react';
+import axios from 'axios';
 import Head from 'next/head';
 import Script from 'next/script';
 import localFont from '@next/font/local';
 import { AppProps } from 'next/app';
 import { ConfigProvider } from 'antd';
-import { createGlobalStyle, ThemeProvider } from 'styled-components';
+import { GetServerSideProps } from 'next';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
+import { dehydrate, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import theme from '@styles/theme';
 
 import AppLayout from '@components/Layout/AppLayout';
+
+const baseURL =
+  process.env.NODE_ENV !== 'production'
+    ? process.env.NEXT_PUBLIC_SERVER_DEV_URL
+    : process.env.NEXT_PUBLIC_SERVER_URL;
 
 const client = new QueryClient({
   defaultOptions: {
@@ -92,3 +99,29 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => (
 );
 
 export default App;
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  try {
+    const moyoraCookie = context?.req?.cookies?.moyora;
+    const queryClient = new QueryClient();
+    const queryKey = `${baseURL}/user/myinfo`;
+    const getMyInfo = await axios
+      .get(queryKey, {
+        headers: { Authorization: `Bearer ${moyoraCookie}` },
+      })
+      .then((res) => res.data);
+    console.log(getMyInfo);
+    if (getMyInfo) {
+      await queryClient.fetchQuery([queryKey], getMyInfo);
+
+      return {
+        props: {
+          dehydratedState: dehydrate(queryClient),
+        },
+      };
+    } else throw new Error('Not Login');
+  } catch (error) {
+    console.error(error);
+    return { props: {} };
+  }
+};
