@@ -5,9 +5,8 @@ import axios from 'axios';
 import Head from 'next/head';
 import Script from 'next/script';
 import localFont from '@next/font/local';
-import { AppProps } from 'next/app';
+import { AppContext, AppProps } from 'next/app';
 import { ConfigProvider } from 'antd';
-import { GetServerSideProps } from 'next';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { dehydrate, QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -70,7 +69,7 @@ const antdTheme = {
   },
 };
 
-const App: React.FC<AppProps> = ({ Component, pageProps }) => (
+const App = ({ Component, pageProps }: AppProps) => (
   <QueryClientProvider client={client}>
     <GlobalStyle />
     {process.env.NODE_ENV !== 'production' ? <ReactQueryDevtools initialIsOpen={false} /> : null}
@@ -100,9 +99,12 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => (
 
 export default App;
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+App.getInitialProps = async ({ ctx }: AppContext) => {
   try {
-    const moyoraCookie = context?.req?.cookies?.moyora;
+    const moyoraCookie =
+      (ctx?.req as unknown as { cookies: { moyora: string } })?.cookies?.moyora || '';
+
+    if (!moyoraCookie) throw new Error('Not Login');
     const queryClient = new QueryClient();
     const queryKey = `${baseURL}/user/myinfo`;
     const getMyInfo = await axios
@@ -110,7 +112,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         headers: { Authorization: `Bearer ${moyoraCookie}` },
       })
       .then((res) => res.data);
-    console.log(getMyInfo);
     if (getMyInfo) {
       await queryClient.fetchQuery([queryKey], getMyInfo);
 
@@ -121,7 +122,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       };
     } else throw new Error('Not Login');
   } catch (error) {
-    console.error(error);
+    console.log(error);
     return { props: {} };
   }
 };
