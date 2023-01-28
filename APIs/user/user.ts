@@ -11,7 +11,16 @@ import {
 } from '@tanstack/react-query';
 
 import { fetch, fetchWithToken } from '@configs/axios';
-import { ISignin, ISignup, IUser } from './user.types';
+
+import {
+  IEditName,
+  IEditProfile,
+  IEditSchool,
+  ISignin,
+  ISignup,
+  IUser,
+  IUsers,
+} from './user.types';
 
 export const baseUrl = '/user';
 
@@ -87,4 +96,68 @@ export const useMyInfo = (
   const queryKey = `${baseUrl}/myinfo`;
   const queryFn = () => fetchWithToken.get(queryKey).then((res) => res.data);
   return useQuery([queryKey], queryFn, { ...options });
+};
+
+export const useGetClassMates = (
+  options?: UseQueryOptions<AxiosResponse<IUsers[]>, AxiosError, IUsers[], string[]>,
+) => {
+  const queryKey = `${baseUrl}/classmates`;
+  const queryFn = () => fetchWithToken.get(queryKey).then((res) => res.data);
+  return useQuery([queryKey], queryFn, { ...options });
+};
+
+export const useGetClassMate = (
+  schoolmate_id: string,
+  options?: UseQueryOptions<AxiosResponse<IUser>, AxiosError, IUser, string[]>,
+) => {
+  const queryKey = `${baseUrl}/classmate/detail?schoolmate_id=${schoolmate_id}`;
+  const queryFn = () => fetchWithToken.get(queryKey).then((res) => res.data);
+  return useQuery([queryKey], queryFn, { ...options });
+};
+
+export const useEditImage = (
+  options?: UseMutationOptions<AxiosResponse<string>, AxiosError, File>,
+) => {
+  const queryKey = `${baseUrl}/image`;
+  const queryFn = (data: File) => fetchWithToken.put(queryKey, data).then((res) => res.data);
+
+  const onError = (e: AxiosError) =>
+    message.error(
+      (e.response?.data as string) || '프로필 수정에 실패하셨습니다.\n다시 시도해 주세요 :(',
+    );
+  return useMutation([queryKey], queryFn, { onError, ...options });
+};
+
+export const useEditName = (
+  options?: UseMutationOptions<AxiosResponse<string>, AxiosError, IEditName>,
+) => {
+  const queryKey = `${baseUrl}/name`;
+  const queryFn = (data: IEditName) => fetchWithToken.put(queryKey, data).then((res) => res.data);
+
+  const onError = (e: AxiosError) =>
+    message.error((e.response?.data as string) || '수정에 실패하셨습니다.\n다시 시도해 주세요 :(');
+  return useMutation([queryKey], queryFn, { onError, ...options });
+};
+
+export const useEditProfile = (
+  options?: UseMutationOptions<AxiosResponse<string>, AxiosError, IEditProfile>,
+) => {
+  const queryKey = `${baseUrl}/profile`;
+  const queryFn = (data: IEditProfile) =>
+    fetchWithToken.put(queryKey, data).then((res) => res.data);
+
+  const onError = (e: AxiosError) =>
+    message.error((e.response?.data as string) || '수정에 실패하셨습니다.\n다시 시도해 주세요 :(');
+  return useMutation([queryKey], queryFn, { onError, ...options });
+};
+
+export const useEditSchool = (
+  options?: UseMutationOptions<AxiosResponse<string>, AxiosError, IEditSchool>,
+) => {
+  const queryKey = `${baseUrl}/school`;
+  const queryFn = (data: IEditSchool) => fetchWithToken.put(queryKey, data).then((res) => res.data);
+
+  const onError = (e: AxiosError) =>
+    message.error((e.response?.data as string) || '수정에 실패하셨습니다.\n다시 시도해 주세요 :(');
+  return useMutation([queryKey], queryFn, { onError, ...options });
 };
