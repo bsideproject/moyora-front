@@ -29,3 +29,32 @@ export interface IUser {
   schoolName: string;
   youtube?: string;
 }
+
+export interface IUsers {
+  id: number;
+  nickname: string;
+  profile?: string;
+  schoolName: string;
+  username: string;
+}
+
+export interface IEditName {
+  name?: string;
+  nickname?: string;
+}
+
+export interface IEditProfile {
+  birthDate?: string;
+  facebook?: string;
+  instagram?: string;
+  isPublic?: boolean;
+  job?: string;
+  mbti?: string;
+  youtube?: string;
+  regionId?: number;
+}
+
+export interface IEditSchool {
+  graduationYear?: number;
+  schoolCode?: string;
+}

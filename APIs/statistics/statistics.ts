@@ -1,7 +1,10 @@
-import { useQueries } from '@tanstack/react-query';
+import { AxiosError, AxiosResponse } from 'axios';
+import { useQueries, useQuery, UseQueryOptions } from '@tanstack/react-query';
 
 import { fetch } from '@configs/axios';
+import { IChart } from './statistics.types';
 
+export const baseUrl = '/school';
 export const baseCountUrl = '/count';
 
 export const useGetCounts = () => {
@@ -39,4 +42,31 @@ export const useGetCounts = () => {
       },
     ],
   });
+};
+
+export const useGetMbti = (
+  schoolId: string,
+  options?: UseQueryOptions<AxiosResponse<IChart>, AxiosError, IChart, string[]>,
+) => {
+  const queryKey = `${baseUrl}Mbti/${schoolId}`;
+  const queryFn = () => fetch.get(`${queryKey}`).then((res) => res.data);
+  return useQuery([queryKey], queryFn, { ...options });
+};
+
+export const useGetRegion = (
+  schoolId: string,
+  options?: UseQueryOptions<AxiosResponse<IChart>, AxiosError, IChart, string[]>,
+) => {
+  const queryKey = `${baseUrl}Region/${schoolId}`;
+  const queryFn = () => fetch.get(`${queryKey}`).then((res) => res.data);
+  return useQuery([queryKey], queryFn, { ...options });
+};
+
+export const useGetJob = (
+  schoolId: string,
+  options?: UseQueryOptions<AxiosResponse<IChart>, AxiosError, IChart, string[]>,
+) => {
+  const queryKey = `${baseUrl}Job/${schoolId}`;
+  const queryFn = () => fetch.get(`${queryKey}`).then((res) => res.data);
+  return useQuery([queryKey], queryFn, { ...options });
 };
