@@ -1,10 +1,9 @@
+import { message } from 'antd';
+import { AxiosError, AxiosResponse } from 'axios';
 import { useMutation, UseMutationOptions, useQuery, UseQueryOptions } from '@tanstack/react-query';
 
 import { fetch, fetchWithToken } from '@configs/axios';
-
 import { IEditNote, INote, INotes } from './note.types';
-import { AxiosError, AxiosResponse } from 'axios';
-import { message } from 'antd';
 
 export const baseUrl = '/user/note';
 
