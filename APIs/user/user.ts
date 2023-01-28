@@ -2,13 +2,7 @@ import { message } from 'antd';
 import { useRouter } from 'next/router';
 import { useCookies } from 'react-cookie';
 import { AxiosError, AxiosResponse } from 'axios';
-import {
-  QueryOptions,
-  useMutation,
-  UseMutationOptions,
-  useQuery,
-  UseQueryOptions,
-} from '@tanstack/react-query';
+import { useMutation, UseMutationOptions, useQuery, UseQueryOptions } from '@tanstack/react-query';
 
 import { fetch, fetchWithToken } from '@configs/axios';
 
@@ -24,7 +18,7 @@ import {
 
 export const baseUrl = '/user';
 
-export const useLogin = (options?: QueryOptions) => {
+export const useLogin = (options?: UseMutationOptions<ISignin, AxiosError, string>) => {
   const router = useRouter();
   const [, setCookie] = useCookies();
 
