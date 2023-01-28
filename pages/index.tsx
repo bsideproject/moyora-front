@@ -6,7 +6,7 @@ import dayjs from 'dayjs';
 import Beta from '@components/Beta/Beta';
 import MainPage from '@components/MainPage/MainPage';
 
-const DDAY = '2023-02-06';
+const DDAY = '2023-02-08';
 const toDay = dayjs().format('YYYY-MM-DD');
 
 dayjs.locale('ko');

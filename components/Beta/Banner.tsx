@@ -25,7 +25,7 @@ const Banner: React.FC<IProps> = ({ onClick }) => {
   useEffect(() => {
     const timer = setInterval(() => {
       const nowDate = dayjs();
-      const releaseDate = dayjs('2023-02-06', 'YYYY-MM-DD');
+      const releaseDate = dayjs('2023-02-08', 'YYYY-MM-DD');
       const timerDate = releaseDate.diff(nowDate, 's');
       const lastDay = fillZero(timerDate / 3600 / 24);
       const lastHour = fillZero((timerDate / 3600) % 24);
@@ -49,7 +49,7 @@ const Banner: React.FC<IProps> = ({ onClick }) => {
           <div>
             <h4>우리 학교 온라인 동창회, 모여라</h4>
             <h3>
-              2023년 2월 6일
+              2023년 2월 8일
               <br />
               전국민 온라인 동창회가 <br className="mobile" />
               열립니다!

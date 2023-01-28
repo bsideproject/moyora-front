@@ -21,7 +21,7 @@ import S from '@components/Signup/Signup.styles';
 
 dayjs.locale('ko');
 
-const DDAY = '2023-02-06';
+const DDAY = '2023-02-08';
 const toDay = dayjs().format('YYYY-MM-DD');
 const URL =
   process.env.NODE_ENV === 'production'
