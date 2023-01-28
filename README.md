@@ -5,8 +5,8 @@ B-Side 13기 7팀 반갑다 친구야(Moyora)의 Front-end Repository
 ## Quick start
 
 ```
-https://github.com/Kir93/moyora-front.git use this template and make project
-git clone https://github.com/moyora/moyora-front.git
+git clone https://github.com/bsideproject/moyora-front
+cd moyora-front
 ```
 
 1. npm install
