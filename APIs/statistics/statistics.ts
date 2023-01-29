@@ -13,7 +13,7 @@ export const useGetCounts = () => {
       {
         queryKey: [schoolKey],
         queryFn: () =>
-          fetch(schoolKey).then((res) => ({
+          fetch.get(schoolKey).then((res) => ({
             schoolCount: res?.data,
           })),
         keepPreviousData: true,
@@ -23,7 +23,7 @@ export const useGetCounts = () => {
       {
         queryKey: [schoolGuestBookKey],
         queryFn: () =>
-          fetch(schoolGuestBookKey).then((res) => ({
+          fetch.get(schoolGuestBookKey).then((res) => ({
             schoolGuestBookKeyCount: res?.data,
           })),
         keepPreviousData: true,
@@ -32,7 +32,7 @@ export const useGetCounts = () => {
       },
       {
         queryKey: [userKey],
-        queryFn: () => fetch(userKey).then((res) => ({ userCount: res.data })),
+        queryFn: () => fetch.get(userKey).then((res) => ({ userCount: res.data })),
         keepPreviousData: true,
         staleTime: 1000 * 60 * 5,
         cacheTime: 1000 * 60 * 5,

@@ -77,8 +77,7 @@ export const useSignup = (
       })
       .then((res) => res.data);
 
-  const onSuccess = (v: AxiosResponse<string>) => {
-    console.log(v);
+  const onSuccess = () => {
     router.replace('/signup/complete');
   };
   const onError = (e: AxiosError) =>
