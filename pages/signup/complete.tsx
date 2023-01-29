@@ -86,8 +86,8 @@ const SignUpComplete: React.FC = () => {
         {DDAY >= toDay ? (
           <>
             <h2>
-              <span>{counterDay}</span>일 : <span>{counterHour}</span>시 :{' '}
-              <span>{counterMinute}</span>분 : <span>{counterSecond}</span>초
+              <span>{counterDay}일</span>:<span>{counterHour}시</span>:
+              <span>{counterMinute}분</span>:<span>{counterSecond}초</span>
             </h2>
             <p>2월 8일에 정식 버전으로 만나요!</p>
             <S.SignupCompleteWrap>
@@ -134,11 +134,13 @@ const SignUpComplete: React.FC = () => {
 
 export default SignUpComplete;
 
-export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-  if (!req.headers.referer) {
-    res.statusCode = 302;
-    res.setHeader('Location', `/login`);
-    res.end();
-  }
-  return { props: {} };
-};
+/*
+ * export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+ *   if (!req.headers.referer) {
+ *     res.statusCode = 302;
+ *     res.setHeader('Location', `/login`);
+ *     res.end();
+ *   }
+ *   return { props: {} };
+ * };
+ */

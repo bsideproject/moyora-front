@@ -272,7 +272,7 @@ const SignUpCompleteWrapper = styled.section`
     }
 
     & > h2 {
-      margin-top: 20px;
+      margin: 20px -3px 0;
       font-family: GmarketSans;
       font-size: 28px;
       font-weight: 700;
@@ -280,9 +280,10 @@ const SignUpCompleteWrapper = styled.section`
 
       & span {
         display: inline-block;
-        width: 40px;
+        width: 69px;
+        margin: 0 3px;
         font-family: GmarketSans;
-        vertical-align: middle;
+        vertical-align: baseline;
       }
     }
 
