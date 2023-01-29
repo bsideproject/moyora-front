@@ -89,7 +89,7 @@ const SignUpComplete: React.FC = () => {
               <span>{counterDay}</span>일 : <span>{counterHour}</span>시 :{' '}
               <span>{counterMinute}</span>분 : <span>{counterSecond}</span>초
             </h2>
-            <p>2월 6일에 정식 버전으로 만나요!</p>
+            <p>2월 8일에 정식 버전으로 만나요!</p>
             <S.SignupCompleteWrap>
               <p>
                 더 많은 동창 친구들이 모일 수 있도록
