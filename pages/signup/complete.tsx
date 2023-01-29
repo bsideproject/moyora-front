@@ -134,13 +134,11 @@ const SignUpComplete: React.FC = () => {
 
 export default SignUpComplete;
 
-/*
- * export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
- *   if (!req.headers.referer) {
- *     res.statusCode = 302;
- *     res.setHeader('Location', `/login`);
- *     res.end();
- *   }
- *   return { props: {} };
- * };
- */
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  if (!req.headers.referer) {
+    res.statusCode = 302;
+    res.setHeader('Location', `/login`);
+    res.end();
+  }
+  return { props: {} };
+};
