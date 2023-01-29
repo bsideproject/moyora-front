@@ -95,7 +95,7 @@ const App = ({ Component, pageProps }: AppProps) => (
             property="og:description"
             content="초등학교 온라인 동창회, 우리 학교 여기여기 모여라!"
           />
-          <meta property="og:image" content="/thumbnail.png" />
+          <meta property="og:image" content="https://www.moyorafriends.co.kr/thumbnail.png" />
 
           <meta property="twitter:card" content="summary_large_image" />
           <meta property="twitter:url" content="https://www.moyorafriends.co.kr/" />
@@ -104,7 +104,7 @@ const App = ({ Component, pageProps }: AppProps) => (
             property="twitter:description"
             content="초등학교 온라인 동창회, 우리 학교 여기여기 모여라!"
           />
-          <meta property="twitter:image" content="/thumbnail.png" />
+          <meta property="twitter:image" content="https://www.moyorafriends.co.kr/thumbnail.png" />
         </Head>
         <Script
           src="https://t1.kakaocdn.net/kakao_js_sdk/2.1.0/kakao.min.js"
