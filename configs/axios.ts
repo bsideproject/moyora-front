@@ -1,4 +1,5 @@
 import axios, { AxiosInstance, AxiosError } from 'axios';
+import { Cookies } from 'react-cookie';
 
 interface IError {
   code: number;
@@ -16,4 +17,15 @@ const baseURL =
 export const fetch: AxiosInstance = axios.create({
   baseURL,
   withCredentials: false,
+});
+
+export const fetchWithToken: AxiosInstance = axios.create({
+  baseURL,
+  withCredentials: false,
+});
+
+fetchWithToken.interceptors.request.use((config) => {
+  const cookies = new Cookies();
+  const token = cookies.get('moyora');
+  return { ...config, headers: { Authorization: `Bearer ${token}` } };
 });
