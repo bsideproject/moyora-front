@@ -280,7 +280,7 @@ const SignUpCompleteWrapper = styled.section`
 
       & span {
         display: inline-block;
-        width: 69px;
+        width: 73px;
         margin: 0 3px;
         font-family: GmarketSans;
         vertical-align: baseline;
@@ -288,7 +288,7 @@ const SignUpCompleteWrapper = styled.section`
     }
 
     & > p {
-      margin-top: 8px;
+      margin: 8px 0 108px;
       font-size: 16px;
       font-weight: 400;
       line-height: 24px;
@@ -308,11 +308,9 @@ const SignUpCompleteWrapper = styled.section`
 `;
 
 const SignupCompleteWrap = styled.div`
-  position: absolute;
-  bottom: 67px;
-  left: 0;
   justify-content: center;
   width: 100%;
+  margin-bottom: 67px;
 
   & > p {
     font-size: 16px;
