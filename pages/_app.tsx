@@ -138,7 +138,7 @@ App.getInitialProps = async ({ ctx }: AppContext) => {
         })
         .then((res) => res.data);
       if (getMyInfo) {
-        await queryClient.fetchQuery(['/user/myinfo'], getMyInfo);
+        await queryClient.setQueryData(['/user/myinfo'], getMyInfo);
         return {
           props: {
             dehydratedState: dehydrate(queryClient),
