@@ -73,7 +73,7 @@ const LogoHeader: React.FC<IProps> = ({ headerIcons, backgroundPrimary, children
                 <p>모여라 초등학교 (77회 졸업)</p>
               </div>
             </L.ProfileWrap>
-            <Link href="/mypage">프로필</Link>
+            <Link href="/mypage">프로필 및 설정</Link>
             <span></span>
             <Link href="/archive/myPage">내 사물함</Link>
             <Link href="/guestBook/list/myPage">내 쪽지</Link>
