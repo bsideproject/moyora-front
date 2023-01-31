@@ -415,6 +415,22 @@ const ServiceInfoTextWrap = styled.div`
   }
 `;
 
+const ServiceTermsTextWrap = styled.div`
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 17px;
+  & h2 {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20px;
+  }
+  & h3 {
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 17px;
+  }
+`;
+
 const M = {
   GlobalStyle,
   MypageIndexWrapper,
@@ -432,6 +448,7 @@ const M = {
   MypageSwitchWrap,
   ServiceInfoWrapper,
   ServiceInfoTextWrap,
+  ServiceTermsTextWrap,
 };
 
 export default M;

@@ -18,12 +18,16 @@ const ServiceInfo: React.FC = () => {
         <p>서비스 버전</p>
         <p className="primary-text">1.0.0</p>
       </M.ServiceInfoTextWrap>
-      <M.LinkCard href="">
+      <M.LinkCard href="/mypage/service-terms">
         <p>서비스 이용약관</p>
         <Image src={ChevronRight} alt="chevron-right" />
       </M.LinkCard>
-      <M.LinkCard href="">
+      <M.LinkCard href="/mypage/service-privacy">
         <p>개인정보 처리방침</p>
+        <Image src={ChevronRight} alt="chevron-right" />
+      </M.LinkCard>
+      <M.LinkCard href="/mypage/service-content">
+        <p>콘텐츠 이용 규칙</p>
         <Image src={ChevronRight} alt="chevron-right" />
       </M.LinkCard>
       <M.ServiceInfoTextWrap>
