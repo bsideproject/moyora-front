@@ -5,7 +5,7 @@ import { useMutation, UseMutationOptions, useQuery, UseQueryOptions } from '@tan
 import { fetch, fetchWithToken } from '@configs/axios';
 import { IEditSchoolGuestBook, ISchoolGuestBook, ISchoolGuestBooks } from './schoolGuestBook.types';
 
-export const baseUrl = '/user/schoolGuestBook';
+export const baseUrl = '/schoolGuestBook';
 
 export const useGetSchoolGuestBook = (
   schoolId: string,
@@ -16,7 +16,7 @@ export const useGetSchoolGuestBook = (
     string[]
   >,
 ) => {
-  const queryKey = `${baseUrl}/schoolGuestBook/${schoolId}`;
+  const queryKey = `${baseUrl}/${schoolId}`;
   const queryFn = () => fetch.get(queryKey).then((res) => res.data);
   return useQuery([queryKey], queryFn, { ...options });
 };
@@ -29,7 +29,7 @@ export const useGetMySchoolGuestBooks = (
     string[]
   >,
 ) => {
-  const queryKey = `${baseUrl}/schoolGuestBooks/me`;
+  const queryKey = `${baseUrl}/me`;
   const queryFn = () => fetch.get(`${queryKey}`).then((res) => res.data);
   return useQuery([queryKey], queryFn, { ...options });
 };
@@ -37,7 +37,7 @@ export const useGetMySchoolGuestBooks = (
 export const useAddSchoolGuestBook = (
   options?: UseMutationOptions<AxiosResponse<string>, AxiosError, ISchoolGuestBook>,
 ) => {
-  const queryKey = `${baseUrl}/schoolGuestBook`;
+  const queryKey = `${baseUrl}`;
   const queryFn = (data: ISchoolGuestBook) =>
     fetchWithToken.post(queryKey, data).then((res) => res.data);
 
@@ -49,7 +49,7 @@ export const useAddSchoolGuestBook = (
 export const useEditSchoolGuestBook = (
   options?: UseMutationOptions<AxiosResponse<string>, AxiosError, IEditSchoolGuestBook>,
 ) => {
-  const queryKey = `${baseUrl}/schoolGuestBook`;
+  const queryKey = `${baseUrl}`;
   const queryFn = (data: IEditSchoolGuestBook) =>
     fetchWithToken.put(queryKey, data).then((res) => res.data);
 
@@ -61,7 +61,7 @@ export const useEditSchoolGuestBook = (
 export const useDeleteSchoolGuestBook = (
   options?: UseMutationOptions<AxiosResponse<string>, AxiosError, string>,
 ) => {
-  const queryKey = `${baseUrl}/schoolGuestBook`;
+  const queryKey = `${baseUrl}`;
   const queryFn = (SchoolGuestBookId: string) =>
     fetchWithToken
       .delete(`${queryKey}?SchoolGuestBookId=${SchoolGuestBookId}`)

@@ -38,14 +38,14 @@ const LogoHeader: React.FC<IProps> = ({ headerIcons, backgroundPrimary, children
           <Button
             type="text"
             shape="circle"
-            onClick={() => router.replace(`/archive/myPage`, '', { shallow: true })}
+            onClick={() => router.push(`/archive/myPage`, '', { shallow: true })}
           >
             <Image src={backgroundPrimary ? ArchiveIconPrimary : ArchiveIcon} alt="ArchiveIcon" />
           </Button>
           <Button
             type="text"
             shape="circle"
-            onClick={() => router.replace(`/friends/list`, '', { shallow: true })}
+            onClick={() => router.push(`/friends/list`, '', { shallow: true })}
           >
             <Image src={backgroundPrimary ? UserIconPrimary : UserIcon} alt="UserIcon" />
           </Button>

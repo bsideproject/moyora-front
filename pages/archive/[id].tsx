@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import A from '@components/Archive/archive.styles';
 import LogoHeader from '@components/Common/LogoHeader';
 import Image from 'next/image';
@@ -11,55 +11,24 @@ import JobCategory from '@public/svgs/icon-info-jobCategory.svg';
 import Region from '@public/svgs/icon-info-region.svg';
 import BetaProfileImage from '@public/svgs/beta-profile.svg';
 import Link from 'next/link';
-import { info, info2, guestBookTempList } from '@configs/bigContents';
+import { info2, guestBookTempList } from '@configs/bigContents';
 import GuestBookBox from '@components/Common/GuestBookBox';
-import Sticker1 from '@public/svgs/sticker-1.svg';
-import Sticker2 from '@public/svgs/sticker-2.svg';
-import Sticker3 from '@public/svgs/sticker-3.svg';
-import Sticker4 from '@public/svgs/sticker-4.svg';
-import Sticker5 from '@public/svgs/sticker-5.svg';
-import Sticker6 from '@public/svgs/sticker-6.svg';
-import Sticker7 from '@public/svgs/sticker-7.svg';
-import Sticker8 from '@public/svgs/sticker-8.svg';
-import Sticker9 from '@public/svgs/sticker-9.svg';
-import Sticker10 from '@public/svgs/sticker-10.svg';
-import Sticker11 from '@public/svgs/sticker-11.svg';
-import Sticker12 from '@public/svgs/sticker-12.svg';
-import QuotationMark1 from '@public/svgs/quotationMark-1.svg';
-import QuotationMark2 from '@public/svgs/quotationMark-2.svg';
-import QuotationMark3 from '@public/svgs/quotationMark-3.svg';
-import QuotationMark4 from '@public/svgs/quotationMark-4.svg';
-import QuotationMark5 from '@public/svgs/quotationMark-5.svg';
+import { useMyInfo } from '@APIs/user';
+import { useGetMyNotes } from '@APIs/note';
+import stickers from '@configs/stickers';
+
 const Archive: React.FC = () => {
   const router = useRouter();
   const id = (router.query?.id ?? 'myPage') as string;
-  const [infoData, setInfoData] = useState(info);
-  useEffect(() => {
-    if (id != 'myPage') {
-      setInfoData(info2);
-    } else {
-      setInfoData(info);
-    }
-  }, [router.query]);
+  const { data: infoData } = useMyInfo({ enabled: id === 'myPage' });
+  const { data: notes } = useGetMyNotes({ enabled: id === 'myPage' });
+
   const snsImages = {
     instagram: <Image src={Instagram} alt="instagram" />,
     youtube: <Image src={Youtube} alt="youtube" />,
     facebook: <Image src={Facebook} alt="facebook" />,
   };
-  const stickers = {
-    '1': { sticker: Sticker1, quotationMark: QuotationMark1 },
-    '2': { sticker: Sticker2, quotationMark: QuotationMark1 },
-    '3': { sticker: Sticker3, quotationMark: QuotationMark1 },
-    '4': { sticker: Sticker4, quotationMark: QuotationMark1 },
-    '5': { sticker: Sticker5, quotationMark: QuotationMark2 },
-    '6': { sticker: Sticker6, quotationMark: QuotationMark2 },
-    '7': { sticker: Sticker7, quotationMark: QuotationMark3 },
-    '8': { sticker: Sticker8, quotationMark: QuotationMark3 },
-    '9': { sticker: Sticker9, quotationMark: QuotationMark4 },
-    '10': { sticker: Sticker10, quotationMark: QuotationMark4 },
-    '11': { sticker: Sticker11, quotationMark: QuotationMark5 },
-    '12': { sticker: Sticker12, quotationMark: QuotationMark5 },
-  };
+
   const onClickNote = () => router.push(`/guestBook/list/${id}`, '', { shallow: true });
   return (
     <A.ArchiveWrapper>
@@ -68,22 +37,20 @@ const Archive: React.FC = () => {
         <A.Info>
           <div>
             <span>
-              {infoData.profile === 'beta' ? (
+              {!infoData?.profile?.startsWith('http') ? (
                 <span>
                   <Image src={BetaProfileImage} alt="betaProfile" />
                 </span>
               ) : (
-                <ProfileImage size="medium" url={infoData.profile} />
+                <ProfileImage size="medium" url={infoData?.profile} />
               )}
             </span>
             <span>
               <div>
-                <h1>{infoData.name}</h1>
-                <h3>{infoData.nickname}</h3>
+                <h1>{infoData?.name}</h1>
+                <h3>{infoData?.nickname}</h3>
               </div>
-              <h3>
-                {infoData.school} 초등학교 ({infoData.graduation}회 졸업)
-              </h3>
+              <h3>{infoData?.schoolName}</h3>
             </span>
           </div>
           <div>
@@ -91,11 +58,11 @@ const Archive: React.FC = () => {
               <Image src={JobCategory} alt="jobCategory" />
               <p>직업분야</p>
             </span>
-            {infoData.jobCategory ? (
+            {infoData?.job ? (
               <div>
-                <h2>{infoData.jobCategory}</h2>
+                <h2>{infoData?.job}</h2>
                 <p>|</p>
-                <h2>{infoData.jobCategory2}</h2>
+                <h2>{infoData?.job}</h2>
               </div>
             ) : (
               <div>
@@ -106,33 +73,29 @@ const Archive: React.FC = () => {
               <Image src={Region} alt="region" />
               <p>거주 지역</p>
             </span>
-            <h2>{infoData.region || '비공개'}</h2>
+            <h2>{infoData?.residence || '비공개'}</h2>
           </div>
         </A.Info>
       </A.PrimaryBackgroundSection>
       <A.EtcInfo>
         <div>
-          <h4>{infoData.mbti ? infoData.mbti : '-'}</h4>
+          <h4>{infoData?.mbti ? infoData?.mbti : '-'}</h4>
           <p>MBTI</p>
         </div>
         <span></span>
         <div>
-          {(infoData.sns.instagram || infoData.sns.youtube || infoData.sns.facebook) === '' ? (
+          {(infoData?.instagram || infoData?.youtube || infoData?.facebook) === '' ? (
             <h4>-</h4>
           ) : (
             <div>
-              {infoData.sns.instagram ? (
-                <Link href={infoData.sns.instagram}>{snsImages.instagram}</Link>
+              {infoData?.instagram ? (
+                <Link href={infoData?.instagram}>{snsImages.instagram}</Link>
               ) : (
                 ''
               )}
-              {infoData.sns.youtube ? (
-                <Link href={infoData.sns.youtube}>{snsImages.youtube}</Link>
-              ) : (
-                ''
-              )}
-              {infoData.sns.facebook ? (
-                <Link href={infoData.sns.facebook}>{snsImages.facebook}</Link>
+              {infoData?.youtube ? <Link href={infoData?.youtube}>{snsImages.youtube}</Link> : ''}
+              {infoData?.facebook ? (
+                <Link href={infoData?.facebook}>{snsImages.facebook}</Link>
               ) : (
                 ''
               )}
@@ -142,14 +105,14 @@ const Archive: React.FC = () => {
         </div>
         <span></span>
         <div>
-          <h4>{infoData.birthDay ? infoData.birthDay : '-'}</h4>
+          <h4>{infoData?.birthDate ? infoData?.birthDate : '-'}</h4>
           <p>생일</p>
         </div>
       </A.EtcInfo>
       <A.GrayDiv />
       <A.Note>
         <div>
-          <h1>{id === 'myPage' ? '내 쪽지' : `${infoData.name}님의 쪽지`}</h1>
+          <h1>{id === 'myPage' ? '내 쪽지' : `${infoData?.name}님의 쪽지`}</h1>
           <button onClick={onClickNote}>
             <p>자세히 보기 &gt;</p>
           </button>
@@ -160,21 +123,26 @@ const Archive: React.FC = () => {
           <p>친구에게 하고 싶은 말을 쪽지에 남겨보세요 :)</p>
         )}
         <div>
-          {guestBookTempList && id === 'myPage' ? (
-            guestBookTempList.map((guestBook) => (
+          {notes?.length && id === 'myPage' ? (
+            notes?.map((guestBook) => (
               <GuestBookBox
-                info={{ id: id, name: '이름', nickname: '별명', lock: guestBook.lock }}
+                info={{
+                  id: id,
+                  name: guestBook?.username,
+                  nickname: guestBook?.nickname,
+                  lock: guestBook?.isPublic,
+                }}
                 size={{ width: '200px', height: '220px', line: '3' }}
-                text={guestBook.text}
-                date={guestBook.date}
-                key={guestBook.id}
+                text={guestBook?.content}
+                date={guestBook?.createdDate}
+                key={guestBook?.noteId}
               >
                 <>
                   <div>
-                    <Image src={stickers[guestBook.sticker].quotationMark} alt="quotationMark" />
+                    <Image src={stickers[guestBook?.sticker].quotationMark} alt="quotationMark" />
                   </div>
                   <div>
-                    <Image src={stickers[guestBook.sticker].sticker} alt="sticker" />
+                    <Image src={stickers[guestBook?.sticker].sticker} alt="sticker" />
                   </div>
                 </>
               </GuestBookBox>

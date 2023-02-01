@@ -1,18 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import F from '@components/Friends/List.styles';
 import LogoHeader from '@components/Common/LogoHeader';
 import Image from 'next/image';
 import SearchPr from '@public/svgs/search-pr-icon.svg';
 import { useRouter } from 'next/router';
-import { friendsTempList, IFriendsList } from '@configs/bigContents';
 import ProfileImage from '@components/Common/ProfileImage';
+import { useGetClassMates } from '@APIs/user';
 
 const List: React.FC = () => {
   const router = useRouter();
-  const [friendsData, setFriendsData] = useState<IFriendsList[] | null>(null);
-  useEffect(() => {
-    setFriendsData(friendsTempList);
-  }, []);
+  const { data: friendsData } = useGetClassMates();
+
   const onClickSearchFriends = () => {
     router.push('/search', '', { shallow: true });
   };
@@ -30,16 +28,19 @@ const List: React.FC = () => {
         </div>
       </div>
       <F.FriendsList>
-        {friendsData ? (
+        {friendsData?.length ? (
           friendsData.map((friend) => (
             <div key={friend.id} onClick={onClickRouter}>
-              <ProfileImage size="small" url="" />
+              <ProfileImage
+                size="small"
+                url={friend?.profile?.startsWith('http') ? friend.profile : ''}
+              />
               <div>
                 <h3>
-                  {friend.name}
+                  {friend.username}
                   {friend.nickname ? ` (${friend.nickname})` : ''}
                 </h3>
-                <p>{friend.school}</p>
+                <p>{friend.schoolName}</p>
               </div>
             </div>
           ))

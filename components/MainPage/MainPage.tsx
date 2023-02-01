@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useMemo } from 'react';
 import M from '@components/MainPage/MainPage.styles';
 import LogoHeader from '@components/Common/LogoHeader';
 import Image from 'next/image';
@@ -8,76 +8,50 @@ import Link from 'next/link';
 import Crown1 from '@public/svgs/crown-1.svg';
 import Crown2 from '@public/svgs/crown-2.svg';
 import Crown3 from '@public/svgs/crown-3.svg';
-import Sticker1 from '@public/svgs/sticker-1.svg';
-import Sticker2 from '@public/svgs/sticker-2.svg';
-import Sticker3 from '@public/svgs/sticker-3.svg';
-import Sticker4 from '@public/svgs/sticker-4.svg';
-import Sticker5 from '@public/svgs/sticker-5.svg';
-import Sticker6 from '@public/svgs/sticker-6.svg';
-import Sticker7 from '@public/svgs/sticker-7.svg';
-import Sticker8 from '@public/svgs/sticker-8.svg';
-import Sticker9 from '@public/svgs/sticker-9.svg';
-import Sticker10 from '@public/svgs/sticker-10.svg';
-import Sticker11 from '@public/svgs/sticker-11.svg';
-import Sticker12 from '@public/svgs/sticker-12.svg';
-import QuotationMark1 from '@public/svgs/quotationMark-1.svg';
-import QuotationMark2 from '@public/svgs/quotationMark-2.svg';
-import QuotationMark3 from '@public/svgs/quotationMark-3.svg';
-import QuotationMark4 from '@public/svgs/quotationMark-4.svg';
-import QuotationMark5 from '@public/svgs/quotationMark-5.svg';
-import { guestBookTempList, IGuestBookList } from '@configs/bigContents';
 
-const stickers = {
-  '1': { sticker: Sticker1, quotationMark: QuotationMark1 },
-  '2': { sticker: Sticker2, quotationMark: QuotationMark1 },
-  '3': { sticker: Sticker3, quotationMark: QuotationMark1 },
-  '4': { sticker: Sticker4, quotationMark: QuotationMark1 },
-  '5': { sticker: Sticker5, quotationMark: QuotationMark2 },
-  '6': { sticker: Sticker6, quotationMark: QuotationMark2 },
-  '7': { sticker: Sticker7, quotationMark: QuotationMark3 },
-  '8': { sticker: Sticker8, quotationMark: QuotationMark3 },
-  '9': { sticker: Sticker9, quotationMark: QuotationMark4 },
-  '10': { sticker: Sticker10, quotationMark: QuotationMark4 },
-  '11': { sticker: Sticker11, quotationMark: QuotationMark5 },
-  '12': { sticker: Sticker12, quotationMark: QuotationMark5 },
-};
+import { useMyInfo } from '@APIs/user';
+import { useSearchSchool } from '@APIs/search';
+import { useGetJob, useGetMbti, useGetOurCounts, useGetRegion } from '@APIs/statistics';
+import { useGetSchoolGuestBook } from '@APIs/schoolGuestBook';
+import stickers from '@configs/stickers';
+import useComma from '@utils/useComma';
+
+interface IOurSchoolList {
+  id: string;
+  category: string;
+  value: string | null;
+  crown: string;
+}
 
 const MainPage: React.FC = () => {
-  interface IOurSchoolList {
-    id: string;
-    category: string;
-    value: string | null;
-    crown: string;
-  }
-  const [ourSchoolFirstList, setOurSchoolFirstList] = useState<IOurSchoolList[] | null>(null);
-  const list = [
-    { id: '0', category: '직업', value: '마케팅/광고/홍보', crown: Crown1 },
-    { id: '1', category: '지역', value: '서울특별시 동대문구', crown: Crown2 },
-    { id: '2', category: 'MBTI', value: 'ISTJ', crown: Crown3 },
-  ];
-  useEffect(() => {
-    setOurSchoolFirstList(list);
-  }, []);
-
-  const [guestBookList, setGuestBookList] = useState<IGuestBookList[] | null>(null);
-
-  useEffect(() => {
-    setGuestBookList(guestBookTempList);
-  }, []);
-
+  const { data: me } = useMyInfo();
+  const { data: school } = useSearchSchool('' + me?.schoolId);
+  const { data: mbti } = useGetMbti('' + me?.schoolId);
+  const { data: region } = useGetRegion('' + me?.schoolId);
+  const { data: job } = useGetJob('' + me?.schoolId);
+  const { data: guestBookList } = useGetSchoolGuestBook('' + me?.schoolId);
+  const schoolCount = useGetOurCounts('' + me?.schoolId);
+  const ourSchoolFirstList: IOurSchoolList[] = useMemo(() => {
+    if (!job?.data.length && !region?.data.length) return [];
+    return [
+      { id: '0', category: '직업', value: job?.data?.[0]?.title ?? '', crown: Crown1 },
+      { id: '1', category: '지역', value: region?.data?.[0]?.title ?? '', crown: Crown2 },
+      { id: '2', category: 'MBTI', value: mbti?.data?.[0]?.title ?? '', crown: Crown3 },
+    ];
+  }, [job?.data, mbti?.data, region?.data]);
   return (
     <M.MainPageWrapper>
       <LogoHeader headerIcons={true} />
       <M.mySchoolSection>
-        <h2>모여라 초등학교</h2> <p>경기도 성남시</p>
+        <h2>{school?.schoolName}</h2> <p>{school?.address}</p>
         <div>
           <div>
-            <h1>123명</h1>
+            <h1>{useComma(schoolCount?.[1]?.data ?? 0)}명</h1>
             <p>가입한 동창</p>
           </div>
           <div></div>
           <div>
-            <h1>46개</h1>
+            <h1>{useComma(schoolCount?.[0]?.data ?? 0)}개</h1>
             <p>방명록 수</p>
           </div>
         </div>
@@ -90,7 +64,7 @@ const MainPage: React.FC = () => {
           </Link>
         </M.contentTitle>
         <M.content>
-          {ourSchoolFirstList ? (
+          {ourSchoolFirstList?.length ? (
             ourSchoolFirstList.map((data) => (
               <div key={data.id}>
                 <Row>
@@ -131,17 +105,23 @@ const MainPage: React.FC = () => {
           {guestBookList ? (
             guestBookList.map((guestBook) => (
               <GuestBookBox
-                key={guestBook.id}
+                key={guestBook.schoolGuestBookId}
                 size={{ width: '200px', height: '200px', line: '3' }}
-                text={guestBook.text}
-                date={guestBook.date}
+                text={guestBook.content}
+                date={guestBook.modifiedDate}
               >
                 <>
                   <div>
-                    <Image src={stickers[guestBook.sticker].quotationMark} alt="quotationMark" />
+                    <Image
+                      src={stickers?.['' + guestBook?.accountId ?? '1']?.quotationMark}
+                      alt="quotationMark"
+                    />
                   </div>
                   <div>
-                    <Image src={stickers[guestBook.sticker].sticker} alt="sticker" />
+                    <Image
+                      src={stickers?.['' + guestBook?.accountId ?? '1']?.sticker}
+                      alt="sticker"
+                    />
                   </div>
                 </>
               </GuestBookBox>

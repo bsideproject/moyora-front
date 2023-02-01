@@ -20,6 +20,7 @@ module.exports = withBundleAnalyzer({
   images: {
     minimumCacheTTL: 31536000,
     formats: ['image/avif', 'image/webp'],
+    domains: ['kr.object.ncloudstorage.com'],
   },
 
   webpack(config) {

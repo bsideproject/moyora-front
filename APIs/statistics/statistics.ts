@@ -44,6 +44,30 @@ export const useGetCounts = () => {
   });
 };
 
+export const useGetOurCounts = (schoolId: string) => {
+  const schoolGuestBookKey = `${baseCountUrl}/our/schoolguestbook?schoolId=${schoolId}`;
+  const schoolmateKey = `${baseCountUrl}/schoolmate?schoolId=${schoolId}`;
+
+  return useQueries({
+    queries: [
+      {
+        queryKey: [schoolGuestBookKey, schoolId],
+        queryFn: () => fetch.get(schoolGuestBookKey).then((res) => res?.data),
+        keepPreviousData: true,
+        staleTime: 1000 * 60 * 5,
+        cacheTime: 1000 * 60 * 5,
+      },
+      {
+        queryKey: [schoolmateKey, schoolId],
+        queryFn: () => fetch.get(schoolmateKey).then((res) => res.data),
+        keepPreviousData: true,
+        staleTime: 1000 * 60 * 5,
+        cacheTime: 1000 * 60 * 5,
+      },
+    ],
+  });
+};
+
 export const useGetMbti = (
   schoolId: string,
   options?: UseQueryOptions<AxiosResponse<IChart>, AxiosError, IChart, string[]>,
