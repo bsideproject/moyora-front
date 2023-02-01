@@ -129,6 +129,11 @@ const GuestBook = styled.div`
   overflow: auto;
   display: flex;
   flex-direction: row;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
   & > div:not(:last-of-type) {
     margin-right: 8px;
   }
