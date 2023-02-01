@@ -10,7 +10,7 @@ export const baseUrl = '/user/note';
 export const useGetNote = (
   options?: UseQueryOptions<AxiosResponse<INotes[]>, AxiosError, INotes[], string[]>,
 ) => {
-  const queryKey = `${baseUrl}/note`;
+  const queryKey = `${baseUrl}`;
   const queryFn = () => fetch.get(`${queryKey}`).then((res) => res.data);
   return useQuery([queryKey], queryFn, { ...options });
 };
@@ -18,15 +18,15 @@ export const useGetNote = (
 export const useGetMyNotes = (
   options?: UseQueryOptions<AxiosResponse<INotes[]>, AxiosError, INotes[], string[]>,
 ) => {
-  const queryKey = `${baseUrl}/notes/my`;
-  const queryFn = () => fetch.get(`${queryKey}`).then((res) => res.data);
+  const queryKey = `${baseUrl}/my`;
+  const queryFn = () => fetchWithToken.get(`${queryKey}`).then((res) => res.data);
   return useQuery([queryKey], queryFn, { ...options });
 };
 
 export const useAddNote = (
   options?: UseMutationOptions<AxiosResponse<string>, AxiosError, INote>,
 ) => {
-  const queryKey = `${baseUrl}/note`;
+  const queryKey = `${baseUrl}`;
   const queryFn = (data: INote) => fetchWithToken.post(queryKey, data).then((res) => res.data);
 
   const onError = (e: AxiosError) =>
@@ -37,7 +37,7 @@ export const useAddNote = (
 export const useEditNote = (
   options?: UseMutationOptions<AxiosResponse<string>, AxiosError, IEditNote>,
 ) => {
-  const queryKey = `${baseUrl}/note`;
+  const queryKey = `${baseUrl}`;
   const queryFn = (data: IEditNote) => fetchWithToken.put(queryKey, data).then((res) => res.data);
 
   const onError = (e: AxiosError) =>
@@ -48,7 +48,7 @@ export const useEditNote = (
 export const useDeleteNote = (
   options?: UseMutationOptions<AxiosResponse<string>, AxiosError, string>,
 ) => {
-  const queryKey = `${baseUrl}/note`;
+  const queryKey = `${baseUrl}`;
   const queryFn = (noteId: string) =>
     fetchWithToken.delete(`${queryKey}?noteId=${noteId}`).then((res) => res.data);
 
