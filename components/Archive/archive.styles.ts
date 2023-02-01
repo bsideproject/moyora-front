@@ -156,7 +156,9 @@ const GrayDiv = styled.div`
 
 const Note = styled.div`
   margin-top: 24px;
-
+  & > div:not(:last-of-type) {
+    margin-right: 8px;
+  }
   & > div:first-of-type {
     display: flex;
     align-items: center;
@@ -186,6 +188,11 @@ const Note = styled.div`
     height: 220px;
     margin-top: 16px;
     overflow: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
     & > div:not(:last-of-type) {
       margin-right: 10px;
     }
