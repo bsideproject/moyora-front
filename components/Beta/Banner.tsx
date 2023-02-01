@@ -53,8 +53,7 @@ const Banner: React.FC<IProps> = ({ onClick }) => {
               <br />
               전국민 초등학교
               <br />
-              온라인 동창회가 <br className="mobile" />
-              열립니다!
+              <b>온라인 동창회</b>가 열립니다!
             </h3>
             <h2>
               <span>{counterDay}</span>일 : <span>{counterHour}</span>시 :
