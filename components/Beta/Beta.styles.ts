@@ -101,6 +101,9 @@ const BannerSection = styled(MainSection)`
             font-size: 40px;
             line-height: 56px;
           }
+          & b {
+            color: ${({ theme }) => theme.primary};
+          }
         }
         & h2 {
           margin: 33px 0;
@@ -138,12 +141,13 @@ const BannerSection = styled(MainSection)`
         }
         & button {
           height: 40px;
-          font-size: 12px;
+          width: 175px;
+          font-size: 14px;
           font-weight: 700;
           border-radius: 8px;
-
           @media screen and (min-width: 768px) {
             height: 64px;
+            width: 269px;
             font-size: 20px;
           }
         }
