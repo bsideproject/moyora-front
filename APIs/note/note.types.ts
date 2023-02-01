@@ -6,6 +6,7 @@ export interface INotes {
   noteId: number;
   sticker: string;
   username: string;
+  createdDate: string;
 }
 
 export interface INote {

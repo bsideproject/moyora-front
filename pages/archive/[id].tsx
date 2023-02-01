@@ -130,19 +130,19 @@ const Archive: React.FC = () => {
                   id: id,
                   name: guestBook?.username,
                   nickname: guestBook?.nickname,
-                  lock: guestBook.isPublic,
+                  lock: guestBook?.isPublic,
                 }}
                 size={{ width: '200px', height: '220px', line: '3' }}
-                text={guestBook.content}
-                date={'20220101'}
-                key={guestBook.noteId}
+                text={guestBook?.content}
+                date={guestBook?.createdDate}
+                key={guestBook?.noteId}
               >
                 <>
                   <div>
-                    <Image src={stickers[guestBook.sticker].quotationMark} alt="quotationMark" />
+                    <Image src={stickers[guestBook?.sticker].quotationMark} alt="quotationMark" />
                   </div>
                   <div>
-                    <Image src={stickers[guestBook.sticker].sticker} alt="sticker" />
+                    <Image src={stickers[guestBook?.sticker].sticker} alt="sticker" />
                   </div>
                 </>
               </GuestBookBox>
