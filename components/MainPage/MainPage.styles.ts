@@ -104,8 +104,7 @@ const content = styled.div`
     display: inline;
   }
   & p {
-    margin: auto 0;
-    text-align: center;
+    vertical-align: center;
   }
 `;
 
@@ -125,19 +124,24 @@ const ourSchoolGuestBookSection = styled.div`
 `;
 
 const GuestBook = styled.div`
+  margin-top: 24px;
+  height: 200px;
+  overflow: auto;
   display: flex;
   flex-direction: row;
-  height: 200px;
-  margin-top: 24px;
-  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
   & > div:not(:last-of-type) {
     margin-right: 8px;
   }
   & > span {
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     width: 350px;
     background-color: ${({ theme }) => theme.gray50};
     border: 1px solid ${({ theme }) => theme.gray100};
