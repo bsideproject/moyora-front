@@ -11,7 +11,6 @@ import JobCategory from '@public/svgs/icon-info-jobCategory.svg';
 import Region from '@public/svgs/icon-info-region.svg';
 import BetaProfileImage from '@public/svgs/beta-profile.svg';
 import Link from 'next/link';
-import { info2, guestBookTempList } from '@configs/bigContents';
 import GuestBookBox from '@components/Common/GuestBookBox';
 import { useMyInfo } from '@APIs/user';
 import { useGetMyNotes } from '@APIs/note';
