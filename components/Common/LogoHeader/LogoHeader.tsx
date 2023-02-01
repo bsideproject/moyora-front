@@ -38,14 +38,14 @@ const LogoHeader: React.FC<IProps> = ({ headerIcons, backgroundPrimary, children
           <Button
             type="text"
             shape="circle"
-            onClick={() => router.push(`/archive/myPage`, '', { shallow: true })}
+            onClick={() => router.replace(`/archive/myPage`, '', { shallow: true })}
           >
             <Image src={backgroundPrimary ? ArchiveIconPrimary : ArchiveIcon} alt="ArchiveIcon" />
           </Button>
           <Button
             type="text"
             shape="circle"
-            onClick={() => router.push(`/friends/list`, '', { shallow: true })}
+            onClick={() => router.replace(`/friends/list`, '', { shallow: true })}
           >
             <Image src={backgroundPrimary ? UserIconPrimary : UserIcon} alt="UserIcon" />
           </Button>
@@ -73,7 +73,7 @@ const LogoHeader: React.FC<IProps> = ({ headerIcons, backgroundPrimary, children
                 <p>모여라 초등학교 (77회 졸업)</p>
               </div>
             </L.ProfileWrap>
-            <Link href="/mypage">프로필</Link>
+            <Link href="/mypage">프로필 및 설정</Link>
             <span></span>
             <Link href="/archive/myPage">내 사물함</Link>
             <Link href="/guestBook/list/myPage">내 쪽지</Link>
