@@ -12,14 +12,14 @@ import SearchFriendCard from '@components/Search/SearchFriendCard';
 import SearchPr from '@public/svgs/search-pr-icon.svg';
 
 import S from '@components/Search/Search.styles';
-import { IUsers, useGetClassMates } from '@APIs/user';
+import { IUsers, useSearchClassMates } from '@APIs/user';
 
 const Search: React.FC = () => {
   const router = useRouter();
   const isSchool = router.query?.isSchool as string | undefined;
   const [searchText, onChangeSearchText] = useInput('');
   const { data, mutate } = useSearchSchools();
-  const { data: mates, mutate: mateMutate } = useGetClassMates();
+  const { data: mates, mutate: mateMutate } = useSearchClassMates();
 
   const searchData = useMemo(() => (isSchool ? data : mates), [isSchool, data, mates]);
 

@@ -49,7 +49,7 @@ const Archive: React.FC = () => {
             </span>
             <span>
               <div>
-                <h1>{infoData?.name}</h1>
+                <h1>{infoData?.name || infoData?.username}</h1>
                 <h3>{infoData?.nickname}</h3>
               </div>
               <h3>{infoData?.schoolName}</h3>

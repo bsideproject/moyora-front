@@ -92,7 +92,15 @@ export const useMyInfo = (
   return useQuery([queryKey], queryFn, { ...options });
 };
 
-export const useGetClassMates = (options?: UseMutationOptions<IUsers[], AxiosError, string>) => {
+export const useGetClassMates = (
+  options?: UseQueryOptions<AxiosResponse<IUsers[]>, AxiosError, IUsers[], string[]>,
+) => {
+  const queryKey = `${baseUrl}/classmates`;
+  const queryFn = () => fetchWithToken.get(queryKey).then((res) => res.data);
+  return useQuery([queryKey], queryFn, { ...options });
+};
+
+export const useSearchClassMates = (options?: UseMutationOptions<IUsers[], AxiosError, string>) => {
   const queryKey = `${baseUrl}/classmates`;
   const queryFn = (name: string) =>
     fetchWithToken.get(`${queryKey}?name=${name}`).then((res) => res.data);
