@@ -12,16 +12,18 @@ import Region from '@public/svgs/icon-info-region.svg';
 import Link from 'next/link';
 import GuestBookBox from '@components/Common/GuestBookBox';
 import { useGetClassMate, useMyInfo } from '@APIs/user';
-import { useGetMyNotes } from '@APIs/note';
+import { useGetMyNotes, useGetNote } from '@APIs/note';
 import stickers from '@configs/stickers';
 
 const Archive: React.FC = () => {
   const router = useRouter();
   const id = (router.query?.id ?? 'myPage') as string;
-  console.log(id);
   const { data: myInfoData } = useMyInfo({ enabled: id === 'myPage' });
-  const { data: notes } = useGetMyNotes({ enabled: id === 'myPage' });
+  const { data: myNotes } = useGetMyNotes({ enabled: id === 'myPage' });
   const { data: mateInfoData } = useGetClassMate(id, { enabled: id !== 'myPage' });
+  const { data: mateNotes } = useGetNote({ enabled: id !== 'myPage' });
+
+  const notes = useMemo(() => (id === 'myPage' ? myNotes : mateNotes), [id, myNotes, mateNotes]);
 
   const infoData = useMemo(
     () => (id === 'myPage' ? myInfoData : mateInfoData),
