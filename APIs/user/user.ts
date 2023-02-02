@@ -92,12 +92,15 @@ export const useMyInfo = (
   return useQuery([queryKey], queryFn, { ...options });
 };
 
-export const useGetClassMates = (
-  options?: UseQueryOptions<AxiosResponse<IUsers[]>, AxiosError, IUsers[], string[]>,
-) => {
+export const useGetClassMates = (options?: UseMutationOptions<IUsers[], AxiosError, string>) => {
   const queryKey = `${baseUrl}/classmates`;
-  const queryFn = () => fetchWithToken.get(queryKey).then((res) => res.data);
-  return useQuery([queryKey], queryFn, { ...options });
+  const queryFn = (name: string) =>
+    fetchWithToken.get(`${queryKey}?name=${name}`).then((res) => res.data);
+  const onError = (e: AxiosError) =>
+    message.error(
+      (e.response?.data as string) || '학교 검색에 실패하셨습니다.\n다시 시도해 주세요 :(',
+    );
+  return useMutation([queryKey], queryFn, { onError, ...options });
 };
 
 export const useGetClassMate = (

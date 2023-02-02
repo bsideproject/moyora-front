@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import L from '@components/GuestBook/List.styles';
 import LogoHeader from '@components/Common/LogoHeader';
-import { guestBookTempList, IGuestBookList } from '@configs/bigContents';
+
 import { useRouter } from 'next/router';
 import ListSection from './ListSection';
 import { useGetMySchoolGuestBooks } from '@APIs/schoolGuestBook';
