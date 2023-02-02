@@ -35,18 +35,10 @@ const LogoHeader: React.FC<IProps> = ({ headerIcons, backgroundPrimary, children
       <div>{children}</div>
       {headerIcons ? (
         <L.HeaderIcons>
-          <Button
-            type="text"
-            shape="circle"
-            onClick={() => router.push(`/archive/myPage`, '', { shallow: true })}
-          >
+          <Button type="text" shape="circle" onClick={() => router.push(`/archive/myPage`)}>
             <Image src={backgroundPrimary ? ArchiveIconPrimary : ArchiveIcon} alt="ArchiveIcon" />
           </Button>
-          <Button
-            type="text"
-            shape="circle"
-            onClick={() => router.push(`/friends/list`, '', { shallow: true })}
-          >
+          <Button type="text" shape="circle" onClick={() => router.push(`/friends/list`)}>
             <Image src={backgroundPrimary ? UserIconPrimary : UserIcon} alt="UserIcon" />
           </Button>
           <Button type="text" shape="circle" onClick={onToggle}>
