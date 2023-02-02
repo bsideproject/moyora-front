@@ -101,6 +101,9 @@ const BannerSection = styled(MainSection)`
             font-size: 40px;
             line-height: 56px;
           }
+          & b {
+            color: ${({ theme }) => theme.primary};
+          }
         }
         & h2 {
           margin: 33px 0;
@@ -138,12 +141,13 @@ const BannerSection = styled(MainSection)`
         }
         & button {
           height: 40px;
-          font-size: 12px;
+          width: 175px;
+          font-size: 14px;
           font-weight: 700;
           border-radius: 8px;
-
           @media screen and (min-width: 768px) {
             height: 64px;
+            width: 269px;
             font-size: 20px;
           }
         }
@@ -514,23 +518,37 @@ const LinkSection = styled(MainSection)`
 `;
 
 const FooterSection = styled(MainSection)`
-  padding: 108px 20px 42px;
-
+  padding: 20px 33px 42px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 18px;
+  color: #8f8f8f;
   & > div {
     display: flex;
-    justify-content: space-between;
-    & a {
-      font-size: 14px;
-      font-weight: 600;
-      line-height: 14px;
-      color: #777777;
-    }
-
+    flex-direction: column;
     & > div {
       display: flex;
-
       & a + a {
-        margin-left: 25px;
+        margin-left: 12px;
+      }
+    }
+  }
+  @media screen and (min-width: 768px) {
+    padding: 60px 20px 42px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    color: #777777;
+    & > div {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-end;
+      & > div {
+        display: flex;
+        & a + a {
+          margin-left: 25px;
+        }
       }
     }
   }

@@ -49,10 +49,11 @@ const Banner: React.FC<IProps> = ({ onClick }) => {
           <div>
             <h4>우리 학교 온라인 동창회, 모여라</h4>
             <h3>
-              2023년 2월 8일
+              2023년 2월 8일 수요일
               <br />
-              전국민 온라인 동창회가 <br className="mobile" />
-              열립니다!
+              전국민 초등학교
+              <br />
+              <b>온라인 동창회</b>가 열립니다!
             </h3>
             <h2>
               <span>{counterDay}</span>일 : <span>{counterHour}</span>시 :
