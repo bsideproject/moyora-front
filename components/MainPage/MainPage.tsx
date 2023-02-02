@@ -113,15 +113,12 @@ const MainPage: React.FC = () => {
                 <>
                   <div>
                     <Image
-                      src={stickers?.['' + guestBook?.accountId ?? '1']?.quotationMark}
+                      src={stickers?.[guestBook?.sticker ?? '1']?.quotationMark}
                       alt="quotationMark"
                     />
                   </div>
                   <div>
-                    <Image
-                      src={stickers?.['' + guestBook?.accountId ?? '1']?.sticker}
-                      alt="sticker"
-                    />
+                    <Image src={stickers?.[guestBook?.sticker ?? '1']?.sticker} alt="sticker" />
                   </div>
                 </>
               </GuestBookBox>

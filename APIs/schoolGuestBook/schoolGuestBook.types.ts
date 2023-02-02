@@ -5,6 +5,7 @@ export interface ISchoolGuestBooks {
   modifiedDate: string;
   schoolGuestBookId: number;
   schoolId: number;
+  sticker: string;
 }
 
 export interface ISchoolGuestBook {

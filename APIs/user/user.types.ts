@@ -19,6 +19,7 @@ export interface IUser {
   facebook?: string;
   instagram?: string;
   isPublic: boolean;
+  jobCategory: string;
   job: string;
   mbti?: string;
   name: string;
