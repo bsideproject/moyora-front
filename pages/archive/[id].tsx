@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useMemo } from 'react';
 import A from '@components/Archive/archive.styles';
 import LogoHeader from '@components/Common/LogoHeader';
 import Image from 'next/image';
@@ -11,15 +11,22 @@ import JobCategory from '@public/svgs/icon-info-jobCategory.svg';
 import Region from '@public/svgs/icon-info-region.svg';
 import Link from 'next/link';
 import GuestBookBox from '@components/Common/GuestBookBox';
-import { useMyInfo } from '@APIs/user';
+import { useGetClassMate, useMyInfo } from '@APIs/user';
 import { useGetMyNotes } from '@APIs/note';
 import stickers from '@configs/stickers';
 
 const Archive: React.FC = () => {
   const router = useRouter();
   const id = (router.query?.id ?? 'myPage') as string;
-  const { data: infoData } = useMyInfo({ enabled: id === 'myPage' });
+  console.log(id);
+  const { data: myInfoData } = useMyInfo({ enabled: id === 'myPage' });
   const { data: notes } = useGetMyNotes({ enabled: id === 'myPage' });
+  const { data: mateInfoData } = useGetClassMate(id, { enabled: id !== 'myPage' });
+
+  const infoData = useMemo(
+    () => (id === 'myPage' ? myInfoData : mateInfoData),
+    [id, mateInfoData, myInfoData],
+  );
 
   const snsImages = {
     instagram: <Image src={Instagram} alt="instagram" />,
@@ -107,7 +114,9 @@ const Archive: React.FC = () => {
       <A.GrayDiv />
       <A.Note>
         <div>
-          <h1>{id === 'myPage' ? '내 쪽지' : `${infoData?.name}님의 쪽지`}</h1>
+          <h1>
+            {id === 'myPage' ? '내 쪽지' : `${infoData?.name || infoData?.username}님의 쪽지`}
+          </h1>
           <button onClick={onClickNote}>
             <p>자세히 보기 &gt;</p>
           </button>

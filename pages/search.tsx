@@ -33,8 +33,8 @@ const Search: React.FC = () => {
   const onClickSelectCard = (value: ISchool) => () => {
     const href = isSchool
       ? `${isSchool}?schoolName=${value?.schoolName}&schoolCode=${value?.schoolCode}`
-      : `/mainPage?friend=${value}`;
-    const as = isSchool ? `${isSchool}` : '/mainPage';
+      : `/archive/${value?.id}`;
+    const as = isSchool ? `${isSchool}` : `/archive/${value?.id}`;
     router.replace(href, as, { shallow: true });
   };
 

@@ -4,22 +4,24 @@ import LogoHeader from '@components/Common/LogoHeader';
 import { guestBookTempList, IGuestBookList } from '@configs/bigContents';
 import { useRouter } from 'next/router';
 import ListSection from './ListSection';
+import { useGetMySchoolGuestBooks } from '@APIs/schoolGuestBook';
 const List: React.FC = () => {
   const router = useRouter();
   const [noteId, setNoteId] = useState('');
   const [id] = router.query.param ?? '';
-  const [guestBookList, setGuestBookList] = useState<IGuestBookList[] | null>(null);
+  const { data: guestBookList, isLoading } = useGetMySchoolGuestBooks();
+
   useEffect(() => {
-    setGuestBookList(guestBookTempList);
     if (id) setNoteId(id as string);
-  }, [router.query]);
+  }, [id]);
+
   return (
     <>
       <L.GuestBookListWrapper>
         <LogoHeader headerIcons={true} />
         <div>
           <div>
-            {guestBookList ? (
+            {guestBookList?.length && !isLoading ? (
               <>
                 {noteId === 'mySchool' ? (
                   <>

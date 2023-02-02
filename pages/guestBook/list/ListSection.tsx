@@ -1,62 +1,44 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import L from '@components/GuestBook/List.styles';
 import Image from 'next/image';
 import GuestBookBox from '@components/Common/GuestBookBox';
-import Sticker1 from '@public/svgs/sticker-1.svg';
-import Sticker2 from '@public/svgs/sticker-2.svg';
-import Sticker3 from '@public/svgs/sticker-3.svg';
-import Sticker4 from '@public/svgs/sticker-4.svg';
-import Sticker5 from '@public/svgs/sticker-5.svg';
-import Sticker6 from '@public/svgs/sticker-6.svg';
-import Sticker7 from '@public/svgs/sticker-7.svg';
-import Sticker8 from '@public/svgs/sticker-8.svg';
-import Sticker9 from '@public/svgs/sticker-9.svg';
-import Sticker10 from '@public/svgs/sticker-10.svg';
-import Sticker11 from '@public/svgs/sticker-11.svg';
-import Sticker12 from '@public/svgs/sticker-12.svg';
-import QuotationMark1 from '@public/svgs/quotationMark-1.svg';
-import QuotationMark2 from '@public/svgs/quotationMark-2.svg';
-import QuotationMark3 from '@public/svgs/quotationMark-3.svg';
-import QuotationMark4 from '@public/svgs/quotationMark-4.svg';
-import QuotationMark5 from '@public/svgs/quotationMark-5.svg';
-import { IGuestBookList } from '@configs/bigContents';
 import LockPrimary from '@public/svgs/icon-note-lock-primary.svg';
 import floatButtonWrite from '@public/svgs/float-button-write.svg';
 import Write from '@public/svgs/icon-write.svg';
 import { useToggle } from 'react-use';
 import { useRouter } from 'next/router';
-const stickers = {
-  '1': { sticker: Sticker1, quotationMark: QuotationMark1 },
-  '2': { sticker: Sticker2, quotationMark: QuotationMark1 },
-  '3': { sticker: Sticker3, quotationMark: QuotationMark1 },
-  '4': { sticker: Sticker4, quotationMark: QuotationMark1 },
-  '5': { sticker: Sticker5, quotationMark: QuotationMark2 },
-  '6': { sticker: Sticker6, quotationMark: QuotationMark2 },
-  '7': { sticker: Sticker7, quotationMark: QuotationMark3 },
-  '8': { sticker: Sticker8, quotationMark: QuotationMark3 },
-  '9': { sticker: Sticker9, quotationMark: QuotationMark4 },
-  '10': { sticker: Sticker10, quotationMark: QuotationMark4 },
-  '11': { sticker: Sticker11, quotationMark: QuotationMark5 },
-  '12': { sticker: Sticker12, quotationMark: QuotationMark5 },
-};
+import { ISchoolGuestBooks } from '@APIs/schoolGuestBook';
+import stickers from '@configs/stickers';
+import { INotes } from '@APIs/note';
 
 interface IProps {
-  guestBookList?: IGuestBookList[];
+  guestBookList?: ISchoolGuestBooks[] | INotes[];
   noteId?: string;
 }
-const ListSection: React.FC<IProps> = ({ guestBookList, noteId }) => {
+const ListSection: React.FC<IProps> = ({ guestBookList: list, noteId }) => {
   const router = useRouter();
   const [alert, onToggleAlert] = useToggle(false);
   const [isSelect, onToggle] = useToggle(false);
-  const [selectedBox, setSelectedBox] = useState<IGuestBookList | null>(null);
+  const [selectedBox, setSelectedBox] = useState<ISchoolGuestBooks | null>(null);
+  const guestBookList = useMemo(
+    () => (noteId === 'myPage' ? (list as ISchoolGuestBooks[]) : []),
+    [list, noteId],
+  );
+  const noteList = useMemo(() => (noteId === 'myPage' ? [] : (list as INotes[])), [list, noteId]);
+
   const onClickRoute = () => router.push(`/guestBook/write/${noteId}`, '', { shallow: true });
   const onClickGuestBookBox = (id: string) => () => {
-    const selBox = guestBookList ? guestBookList?.filter((guestBook) => guestBook.id === id) : null;
-    if (selBox) {
-      if (selBox[0].lock && noteId != 'myPage') {
+    if (noteId === 'myPage') {
+      const selBox = noteList?.length ? noteList.filter((note) => note?.noteId === +id) : null;
+      if (selBox?.length && selBox[0].isPublic && noteId != 'myPage') {
         onToggleAlert();
-      } else {
-        setSelectedBox(selBox[0]);
+      }
+    } else {
+      const selBox = guestBookList?.length
+        ? guestBookList.filter((guestBook) => guestBook?.schoolGuestBookId === +id)
+        : null;
+      if (selBox?.length) {
+        setSelectedBox(selBox[0] || null);
         onToggle();
       }
     }
@@ -64,24 +46,15 @@ const ListSection: React.FC<IProps> = ({ guestBookList, noteId }) => {
   return (
     <>
       <L.ListSection>
-        {guestBookList
+        {guestBookList?.length
           ? guestBookList.map((guestBook) => (
               <GuestBookBox
                 size={{ width: '171px', height: '218px', line: '4' }}
-                text={guestBook.text}
-                date={guestBook.date}
-                key={guestBook.id}
-                onClick={onClickGuestBookBox(guestBook.id)}
-                info={
-                  noteId === 'mySchool'
-                    ? { id: '', name: '' }
-                    : {
-                        id: noteId ?? '',
-                        name: '이름',
-                        nickname: '별명',
-                        lock: guestBook.lock,
-                      }
-                }
+                text={guestBook.content}
+                date={guestBook.createdDate}
+                key={guestBook?.schoolGuestBookId}
+                onClick={onClickGuestBookBox('' + guestBook?.schoolGuestBookId)}
+                info={{ id: '' + guestBook?.accountId }}
               >
                 <>
                   <div>
@@ -89,6 +62,31 @@ const ListSection: React.FC<IProps> = ({ guestBookList, noteId }) => {
                   </div>
                   <div>
                     <Image src={stickers[guestBook.sticker].sticker} alt="sticker" />
+                  </div>
+                </>
+              </GuestBookBox>
+            ))
+          : noteList?.length
+          ? noteList.map((note) => (
+              <GuestBookBox
+                size={{ width: '171px', height: '218px', line: '4' }}
+                text={note.content}
+                date={note.createdDate}
+                key={note?.noteId}
+                onClick={onClickGuestBookBox('' + note?.noteId)}
+                info={{
+                  id: '' + note?.friendId,
+                  name: note?.username,
+                  nickname: note?.nickname,
+                  lock: note?.isPublic,
+                }}
+              >
+                <>
+                  <div>
+                    <Image src={stickers[note?.sticker].quotationMark} alt="quotationMark" />
+                  </div>
+                  <div>
+                    <Image src={stickers[note?.sticker].sticker} alt="sticker" />
                   </div>
                 </>
               </GuestBookBox>
@@ -117,18 +115,9 @@ const ListSection: React.FC<IProps> = ({ guestBookList, noteId }) => {
           {selectedBox ? (
             <GuestBookBox
               size={{ width: '350px', height: '368px', line: false }}
-              text={selectedBox.text}
-              date={selectedBox.date}
-              info={
-                noteId === 'mySchool'
-                  ? { id: noteId ?? '', name: '' }
-                  : {
-                      id: noteId ?? '',
-                      name: '이름',
-                      nickname: '별명',
-                      lock: selectedBox.id == '0' ? true : false,
-                    }
-              }
+              text={selectedBox.content}
+              date={selectedBox.createdDate}
+              info={{ id: '' + selectedBox?.accountId }}
             >
               <>
                 <div>
