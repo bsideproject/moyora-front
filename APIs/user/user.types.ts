@@ -23,6 +23,7 @@ export interface IUser {
   job: string;
   mbti?: string;
   name: string;
+  username?: string;
   nickname: string;
   profile?: string;
   residence: string;

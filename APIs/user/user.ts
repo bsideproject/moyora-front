@@ -100,6 +100,17 @@ export const useGetClassMates = (
   return useQuery([queryKey], queryFn, { ...options });
 };
 
+export const useSearchClassMates = (options?: UseMutationOptions<IUsers[], AxiosError, string>) => {
+  const queryKey = `${baseUrl}/classmates`;
+  const queryFn = (name: string) =>
+    fetchWithToken.get(`${queryKey}?name=${name}`).then((res) => res.data);
+  const onError = (e: AxiosError) =>
+    message.error(
+      (e.response?.data as string) || '학교 검색에 실패하셨습니다.\n다시 시도해 주세요 :(',
+    );
+  return useMutation([queryKey], queryFn, { onError, ...options });
+};
+
 export const useGetClassMate = (
   schoolmate_id: string,
   options?: UseQueryOptions<AxiosResponse<IUser>, AxiosError, IUser, string[]>,

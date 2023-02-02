@@ -14,7 +14,8 @@ import { useRouter } from 'next/router';
 import { Button } from 'antd';
 import Link from 'next/link';
 import CloseIcon from '@public/svgs/icon-close.svg';
-import BetaProfileImage from '@public/svgs/beta-profile.svg';
+import { useMyInfo } from '@APIs/user';
+import ProfileImage from '../ProfileImage';
 
 interface IProps {
   headerIcons?: boolean;
@@ -24,6 +25,7 @@ interface IProps {
 
 const LogoHeader: React.FC<IProps> = ({ headerIcons, backgroundPrimary, children }) => {
   const router = useRouter();
+  const { data: me } = useMyInfo();
   const [isSelect, onToggle] = useToggle(false);
   const [isLogout, setIsLogout] = useState(false);
   const onClickLogout = () => router.replace('/');
@@ -55,14 +57,17 @@ const LogoHeader: React.FC<IProps> = ({ headerIcons, backgroundPrimary, children
           >
             <L.ProfileWrap>
               <span>
-                <Image src={BetaProfileImage} alt="betaProfile" />
+                <ProfileImage
+                  size="medium"
+                  url={me?.profile?.startsWith('http') ? me?.profile : ''}
+                />
               </span>
               <div>
                 <div>
-                  <h2>홍길동</h2>
-                  <h3>별명</h3>
+                  <h2>{me?.name}</h2>
+                  <h3>{me?.nickname}</h3>
                 </div>
-                <p>모여라 초등학교 (77회 졸업)</p>
+                <p>{me?.schoolName}</p>
               </div>
             </L.ProfileWrap>
             <Link href="/mypage">프로필 및 설정</Link>

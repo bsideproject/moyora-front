@@ -10,7 +10,7 @@ import Image from 'next/image';
 dayjs.locale('ko');
 
 interface IProps {
-  info?: { id: string; name: string; nickname?: string; lock?: boolean };
+  info?: { id: string; name?: string; nickname?: string; lock?: boolean };
   size: { width: string; height: string; line: string | false };
   text: string;
   date?: string;

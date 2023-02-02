@@ -12,14 +12,16 @@ import SearchFriendCard from '@components/Search/SearchFriendCard';
 import SearchPr from '@public/svgs/search-pr-icon.svg';
 
 import S from '@components/Search/Search.styles';
+import { IUsers, useSearchClassMates } from '@APIs/user';
 
 const Search: React.FC = () => {
   const router = useRouter();
   const isSchool = router.query?.isSchool as string | undefined;
   const [searchText, onChangeSearchText] = useInput('');
   const { data, mutate } = useSearchSchools();
+  const { data: mates, mutate: mateMutate } = useSearchClassMates();
 
-  const searchData = useMemo(() => (isSchool ? data : []), [isSchool, data]);
+  const searchData = useMemo(() => (isSchool ? data : mates), [isSchool, data, mates]);
 
   const onClickCloseSearch = () => {
     const href = isSchool ?? '/friends/list';
@@ -27,14 +29,15 @@ const Search: React.FC = () => {
   };
 
   const onSearch = () => {
-    mutate(searchText);
+    if (isSchool) mutate(searchText);
+    else mateMutate(searchText);
   };
 
-  const onClickSelectCard = (value: ISchool) => () => {
+  const onClickSelectCard = (value: ISchool | IUsers) => () => {
     const href = isSchool
-      ? `${isSchool}?schoolName=${value?.schoolName}&schoolCode=${value?.schoolCode}`
-      : `/mainPage?friend=${value}`;
-    const as = isSchool ? `${isSchool}` : '/mainPage';
+      ? `${isSchool}?schoolName=${value?.schoolName}&schoolCode=${(value as ISchool)?.schoolCode}`
+      : `/archive/${value?.id}`;
+    const as = isSchool ? `${isSchool}` : `/archive/${value?.id}`;
     router.replace(href, as, { shallow: true });
   };
 
@@ -52,23 +55,29 @@ const Search: React.FC = () => {
       />
 
       {searchData?.length ? (
-        searchData.map((v) =>
-          isSchool ? (
-            <SearchSchoolCard
-              key={v.id}
-              title={v.schoolName}
-              address={v.address}
-              onClick={onClickSelectCard(v)}
-            />
-          ) : (
-            <SearchFriendCard
-              key={v.schoolCode}
-              name="이서연"
-              school="OO초등학교"
-              onClick={onClickSelectCard(v)}
-            />
-          ),
-        )
+        searchData.map((v) => {
+          if (isSchool) {
+            const school = v as ISchool;
+            return (
+              <SearchSchoolCard
+                key={school.id}
+                title={school.schoolName}
+                address={school.address}
+                onClick={onClickSelectCard(school)}
+              />
+            );
+          } else {
+            const mate = v as IUsers;
+            return (
+              <SearchFriendCard
+                key={mate.id}
+                name={mate?.username}
+                school={mate?.schoolName}
+                onClick={onClickSelectCard(mate)}
+              />
+            );
+          }
+        })
       ) : (
         <h4>검색 결과가 없어요</h4>
       )}

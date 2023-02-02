@@ -14,8 +14,8 @@ const List: React.FC = () => {
   const onClickSearchFriends = () => {
     router.push('/search', '', { shallow: true });
   };
-  const onClickRouter = () => {
-    router.push(`/archive/friendId`, '', { shallow: true });
+  const onClickRouter = (id: number) => () => {
+    router.push(`/archive/${id}`);
   };
   return (
     <F.FriendsListWrapper>
@@ -30,7 +30,7 @@ const List: React.FC = () => {
       <F.FriendsList>
         {friendsData?.length ? (
           friendsData.map((friend) => (
-            <div key={friend.id} onClick={onClickRouter}>
+            <div key={friend.id} onClick={onClickRouter(friend?.id)}>
               <ProfileImage
                 size="small"
                 url={friend?.profile?.startsWith('http') ? friend.profile : ''}
