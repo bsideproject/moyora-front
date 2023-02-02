@@ -36,13 +36,10 @@ const Archive: React.FC = () => {
         <A.Info>
           <div>
             <span>
-              {!infoData?.profile?.startsWith('http') ? (
-                <span>
-                  <Image src={BetaProfileImage} alt="betaProfile" />
-                </span>
-              ) : (
-                <ProfileImage size="medium" url={infoData?.profile} />
-              )}
+              <ProfileImage
+                size="medium"
+                url={infoData?.profile?.startsWith('http') ? infoData?.profile : ''}
+              />
             </span>
             <span>
               <div>
@@ -59,7 +56,7 @@ const Archive: React.FC = () => {
             </span>
             {infoData?.job ? (
               <div>
-                <h2>{infoData?.job}</h2>
+                <h2>{infoData?.jobCategory}</h2>
                 <p>|</p>
                 <h2>{infoData?.job}</h2>
               </div>
