@@ -9,7 +9,6 @@ import Instagram from '@public/svgs/icon-sns-instagram.svg';
 import Youtube from '@public/svgs/icon-sns-youtube.svg';
 import JobCategory from '@public/svgs/icon-info-jobCategory.svg';
 import Region from '@public/svgs/icon-info-region.svg';
-import BetaProfileImage from '@public/svgs/beta-profile.svg';
 import Link from 'next/link';
 import GuestBookBox from '@components/Common/GuestBookBox';
 import { useMyInfo } from '@APIs/user';
