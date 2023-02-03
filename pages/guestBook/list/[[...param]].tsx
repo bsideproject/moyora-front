@@ -1,19 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import L from '@components/GuestBook/List.styles';
 import LogoHeader from '@components/Common/LogoHeader';
 
 import { useRouter } from 'next/router';
 import ListSection from './ListSection';
-import { useGetMySchoolGuestBooks } from '@APIs/schoolGuestBook';
+import { useGetSchoolGuestBook } from '@APIs/schoolGuestBook';
+import { useMyInfo } from '@APIs/user';
+import { useGetNote } from '@APIs/note';
+
 const List: React.FC = () => {
   const router = useRouter();
-  const [noteId, setNoteId] = useState('');
+  const { data: me } = useMyInfo();
   const [id] = router.query.param ?? '';
-  const { data: guestBookList, isLoading } = useGetMySchoolGuestBooks();
+  const { data: guestBookList, isLoading: guestBookListLoading } = useGetSchoolGuestBook(
+    '' + me?.schoolId,
+    {
+      enabled: Boolean(id === 'mySchool' && me?.schoolId),
+    },
+  );
 
-  useEffect(() => {
-    if (id) setNoteId(id as string);
-  }, [id]);
+  const { data: noteList, isLoading: noteListLoading } = useGetNote('' + me?.id, {
+    enabled: Boolean(id === 'myPage' && me?.id),
+  });
+
+  if (id === 'mySchool' && guestBookListLoading) return <></>;
+  if (id === 'myPage' && noteListLoading) return <></>;
 
   return (
     <>
@@ -21,36 +32,31 @@ const List: React.FC = () => {
         <LogoHeader headerIcons={true} />
         <div>
           <div>
-            {guestBookList?.length && !isLoading ? (
+            {id === 'mySchool' ? (
+              guestBookList?.length ? (
+                <>
+                  우리 학교 방명록이 <b>{guestBookList.length}개</b> 있어요!
+                  <ListSection guestBookList={guestBookList} noteId={id} />
+                </>
+              ) : (
+                <>
+                  <br />
+                  아직 작성된 방명록이 없어요.
+                  <br />
+                  가장 먼저 우리 학교 방명록에 글을 남겨보세요!
+                </>
+              )
+            ) : noteList?.length ? (
               <>
-                {noteId === 'mySchool' ? (
-                  <>
-                    우리 학교 방명록이 <b>{guestBookList.length}개</b> 있어요!
-                    <ListSection guestBookList={guestBookList} noteId={noteId} />
-                  </>
-                ) : (
-                  <>
-                    {noteId === 'myPage' ? '내 ' : ''}쪽지가 <b>{guestBookList.length}개</b> 있어요!
-                    <ListSection guestBookList={guestBookList} noteId={noteId} />
-                  </>
-                )}
+                {id === 'myPage' ? '내 ' : ''}쪽지가 <b>{noteList?.length}개</b> 있어요!
+                <ListSection guestBookList={guestBookList} noteId={id} />
               </>
             ) : (
               <>
                 <br />
-                {noteId === 'mySchool' ? (
-                  <>
-                    아직 작성된 방명록이 없어요.
-                    <br />
-                    가장 먼저 우리 학교 방명록에 글을 남겨보세요!
-                  </>
-                ) : (
-                  <>
-                    아직 작성된 방명록이 없어요.
-                    <br />
-                    가장 먼저 방명록에 글을 남겨보세요!
-                  </>
-                )}
+                아직 작성된 방명록이 없어요.
+                <br />
+                가장 먼저 방명록에 글을 남겨보세요!
               </>
             )}
           </div>
