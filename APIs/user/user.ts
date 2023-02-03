@@ -2,7 +2,13 @@ import { message } from 'antd';
 import { useRouter } from 'next/router';
 import { useCookies } from 'react-cookie';
 import { AxiosError, AxiosResponse } from 'axios';
-import { useMutation, UseMutationOptions, useQuery, UseQueryOptions } from '@tanstack/react-query';
+import {
+  useMutation,
+  UseMutationOptions,
+  useQuery,
+  useQueryClient,
+  UseQueryOptions,
+} from '@tanstack/react-query';
 
 import { fetch, fetchWithToken } from '@configs/axios';
 
@@ -123,14 +129,19 @@ export const useGetClassMate = (
 export const useEditImage = (
   options?: UseMutationOptions<AxiosResponse<string>, AxiosError, File>,
 ) => {
+  const queryClient = useQueryClient();
   const queryKey = `${baseUrl}/image`;
   const queryFn = (data: File) => fetchWithToken.put(queryKey, data).then((res) => res.data);
+
+  const onSuccess = async () => {
+    await queryClient.fetchQuery([`${baseUrl}/myinfo`]);
+  };
 
   const onError = (e: AxiosError) =>
     message.error(
       (e.response?.data as string) || '프로필 수정에 실패하셨습니다.\n다시 시도해 주세요 :(',
     );
-  return useMutation([queryKey], queryFn, { onError, ...options });
+  return useMutation([queryKey], queryFn, { onSuccess, onError, ...options });
 };
 
 export const useEditName = (
