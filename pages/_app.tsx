@@ -72,10 +72,6 @@ const App = ({ Component, pageProps }: AppProps) => (
         <ThemeProvider theme={theme}>
           <Head>
             <title>모여라</title>
-            <meta
-              name="viewport"
-              content="width=device-width, initial-scale=1, maximum-scale=1, minimal-scale=1"
-            />
             <meta name="title" content="모여라" />
             <meta name="description" content="초등학교 온라인 동창회, 우리 학교 여기여기 모여라!" />
             <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
