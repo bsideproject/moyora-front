@@ -4,8 +4,6 @@ import { useToggle } from 'react-use';
 import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement } from 'chart.js';
 
-import { dummyChartData, dummyLocationsData } from '@configs/bigContents';
-
 import Arrow from '@public/svgs/arrow-bottom.svg';
 import S from './Statistics.styles';
 import { useMyInfo } from '@APIs/user';
