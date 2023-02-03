@@ -31,6 +31,8 @@ export interface IUser {
   schoolId?: number;
   schoolName: string;
   youtube?: string;
+  graduationYear: number;
+  schoolCode: number;
 }
 
 export interface IUsers {

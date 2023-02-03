@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
@@ -10,20 +10,43 @@ import LogoHeader from '@components/Common/LogoHeader';
 import SelectAllow from '@public/svgs/select-allow.svg';
 
 import M from '@components/Mypage/Mypage.styles';
+import { useEditSchool, useMyInfo } from '@APIs/user';
+import { useQueryClient } from '@tanstack/react-query';
 
 const EditSchool: React.FC = () => {
   const router = useRouter();
-  const school = router.query?.school ?? ('이매초등학교' as string | undefined);
-  const [graduationYear, setGraduationYear] = useState('2015');
+  const queryClient = useQueryClient();
+
+  const schoolName = router.query?.schoolName as string | undefined;
+  const schoolCode = router.query?.schoolCode as string | undefined;
+
+  const { data: me } = useMyInfo();
+  const [name, setName] = useState(me?.schoolName?.split('(')[0]);
+  const [code, setCode] = useState(me?.schoolCode);
+  const [graduationYear, setGraduationYear] = useState(me?.graduationYear);
   const options = useMemo(() => getGraduationYear(), []);
 
-  const onSelectGraduationYear = (value: unknown) => setGraduationYear(value as string);
+  const onSelectGraduationYear = (value: unknown) => setGraduationYear(value as number);
 
   const onClickSearchSchool = () => {
-    router.replace('/search?isSchool=/mypage/edit-school', '/search', { shallow: true });
+    router.replace('/search?isSchool=/signup/1', '/search', { shallow: true });
   };
 
-  const onClickEditSchool = () => router.replace('/mypage');
+  const onSuccess = () => {
+    queryClient.fetchQuery(['/user/myinfo']);
+    router.replace('/mypage');
+  };
+
+  const { mutate } = useEditSchool({ onSuccess });
+
+  const onClickEditSchool = () => {
+    mutate({ schoolCode: '' + code, graduationYear });
+  };
+
+  useEffect(() => {
+    if (schoolName) setName(schoolName);
+    if (schoolCode) setCode(+schoolCode);
+  }, [schoolCode, schoolName]);
 
   return (
     <M.MypageInputWrapper>
@@ -35,9 +58,9 @@ const EditSchool: React.FC = () => {
       <M.SearchButton
         readOnly
         bordered={false}
-        isFill={Boolean(school)}
+        isFill={Boolean(code)}
         placeholder="학교 검색"
-        value={school}
+        value={name}
         onClick={onClickSearchSchool}
       />
       <h3>
