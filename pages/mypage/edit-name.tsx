@@ -5,10 +5,26 @@ import CommonButton from '@atoms/CommonButton';
 import LogoHeader from '@components/Common/LogoHeader';
 
 import M from '@components/Mypage/Mypage.styles';
+import { useEditName, useMyInfo } from '@APIs/user';
+import useInput from '@utils/useInput';
+import { useQueryClient } from '@tanstack/react-query';
 
 const EditName: React.FC = () => {
   const router = useRouter();
-  const onClickEditName = () => router.replace('/mypage');
+  const queryClient = useQueryClient();
+  const { data: me } = useMyInfo();
+
+  const [name, onChangeName] = useInput(me?.name);
+  const [nickname, onChangeNickname] = useInput(me?.nickname);
+
+  const onSuccess = () => {
+    queryClient.setQueryData(['/user/myinfo'], { ...me, name, nickname });
+    router.replace('/mypage');
+  };
+  const { mutate } = useEditName({ onSuccess });
+  const onClickEditName = () => {
+    mutate({ name, nickname });
+  };
   return (
     <M.MypageInputWrapper>
       <LogoHeader headerIcons />
@@ -16,9 +32,13 @@ const EditName: React.FC = () => {
       <h3>
         이름(실명)<span> *</span>
       </h3>
-      <M.MypageInput isFill placeholder="2자 이상 10자 이내" value="홍길동" />
+      <M.MypageInput isFill placeholder="2자 이상 10자 이내" value={name} onChange={onChangeName} />
       <h3>닉네임(별명)</h3>
-      <M.MypageInput placeholder="2자 이상 10자 이내" />
+      <M.MypageInput
+        placeholder="2자 이상 10자 이내"
+        value={nickname}
+        onChange={onChangeNickname}
+      />
       <CommonButton type="primary" onClick={onClickEditName}>
         수정 완료
       </CommonButton>

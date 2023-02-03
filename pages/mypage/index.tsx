@@ -13,6 +13,8 @@ import M from '@components/Mypage/Mypage.styles';
 import { useEditImage, useMyInfo } from '@APIs/user';
 import { useToggle } from 'react-use';
 import { UploadChangeParam, UploadFile } from 'antd/es/upload';
+import { useCookies } from 'react-cookie';
+import { useQueryClient } from '@tanstack/react-query';
 
 const profileLinks = [
   { name: '이름 및 닉네임 수정', link: '/mypage/edit-name' },
@@ -27,6 +29,8 @@ const otherLinks = [
 
 const Mypage: React.FC = () => {
   const router = useRouter();
+  const queryClient = useQueryClient();
+  const [, , removeCookie] = useCookies(['moyora']);
   const logout = router.query?.logout ?? false;
 
   const { data: me } = useMyInfo();
@@ -39,7 +43,11 @@ const Mypage: React.FC = () => {
       mutate(info.file.originFileObj as File);
     }
   };
-  const onClickLogout = () => router.replace('/');
+  const onClickLogout = async () => {
+    removeCookie('moyora');
+    queryClient.setQueryData(['/user/myinfo'], null);
+    router.replace('/');
+  };
   const onClickCancelLogout = () => router.replace('/mypage', '/mypage', { shallow: true });
 
   useEffect(() => {
