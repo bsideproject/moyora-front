@@ -33,6 +33,7 @@ export interface IUser {
   youtube?: string;
   graduationYear: number;
   schoolCode: number;
+  regionId: number;
 }
 
 export interface IUsers {
