@@ -8,11 +8,12 @@ import { IEditNote, INote, INotes } from './note.types';
 export const baseUrl = '/user/note';
 
 export const useGetNote = (
+  userId: string,
   options?: UseQueryOptions<AxiosResponse<INotes[]>, AxiosError, INotes[], string[]>,
 ) => {
   const queryKey = `${baseUrl}`;
-  const queryFn = () => fetch.get(`${queryKey}`).then((res) => res.data);
-  return useQuery([queryKey], queryFn, { ...options });
+  const queryFn = () => fetch.get(`${queryKey}?user_id=${userId}`).then((res) => res.data);
+  return useQuery([queryKey, userId], queryFn, { ...options });
 };
 
 export const useGetMyNotes = (

@@ -15,6 +15,7 @@ export interface ISignin {
 }
 
 export interface IUser {
+  id: number;
   birthDate?: string;
   facebook?: string;
   instagram?: string;

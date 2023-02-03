@@ -37,6 +37,7 @@ const ProfileWrap = styled.section`
     position: relative;
     width: 76px;
     height: 76px;
+    cursor: pointer;
     & div.ant-upload {
       & img {
         width: 76px;

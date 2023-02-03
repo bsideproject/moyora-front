@@ -21,8 +21,7 @@ const Archive: React.FC = () => {
   const { data: myInfoData } = useMyInfo({ enabled: id === 'myPage' });
   const { data: myNotes } = useGetMyNotes({ enabled: id === 'myPage' });
   const { data: mateInfoData } = useGetClassMate(id, { enabled: id !== 'myPage' });
-  const { data: mateNotes } = useGetNote({ enabled: id !== 'myPage' });
-
+  const { data: mateNotes } = useGetNote(id, { enabled: id !== 'myPage' });
   const notes = useMemo(() => (id === 'myPage' ? myNotes : mateNotes), [id, myNotes, mateNotes]);
 
   const infoData = useMemo(
@@ -145,10 +144,10 @@ const Archive: React.FC = () => {
               >
                 <>
                   <div>
-                    <Image src={stickers[guestBook?.sticker].quotationMark} alt="quotationMark" />
+                    <Image src={stickers[guestBook?.sticker]?.quotationMark} alt="quotationMark" />
                   </div>
                   <div>
-                    <Image src={stickers[guestBook?.sticker].sticker} alt="sticker" />
+                    <Image src={stickers[guestBook?.sticker]?.sticker} alt="sticker" />
                   </div>
                 </>
               </GuestBookBox>

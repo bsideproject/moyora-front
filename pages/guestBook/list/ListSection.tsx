@@ -21,7 +21,7 @@ const ListSection: React.FC<IProps> = ({ guestBookList: list, noteId }) => {
   const [isSelect, onToggle] = useToggle(false);
   const [selectedBox, setSelectedBox] = useState<ISchoolGuestBooks | null>(null);
   const guestBookList = useMemo(
-    () => (noteId === 'myPage' ? (list as ISchoolGuestBooks[]) : []),
+    () => (noteId === 'mySchool' ? (list as ISchoolGuestBooks[]) : []),
     [list, noteId],
   );
   const noteList = useMemo(() => (noteId === 'myPage' ? [] : (list as INotes[])), [list, noteId]);
@@ -58,10 +58,13 @@ const ListSection: React.FC<IProps> = ({ guestBookList: list, noteId }) => {
               >
                 <>
                   <div>
-                    <Image src={stickers[guestBook.sticker].quotationMark} alt="quotationMark" />
+                    <Image
+                      src={stickers[guestBook.sticker || '1']?.quotationMark}
+                      alt="quotationMark"
+                    />
                   </div>
                   <div>
-                    <Image src={stickers[guestBook.sticker].sticker} alt="sticker" />
+                    <Image src={stickers[guestBook.sticker || '1']?.sticker} alt="sticker" />
                   </div>
                 </>
               </GuestBookBox>
@@ -83,10 +86,13 @@ const ListSection: React.FC<IProps> = ({ guestBookList: list, noteId }) => {
               >
                 <>
                   <div>
-                    <Image src={stickers[note?.sticker].quotationMark} alt="quotationMark" />
+                    <Image
+                      src={stickers[note?.sticker || '1']?.quotationMark}
+                      alt="quotationMark"
+                    />
                   </div>
                   <div>
-                    <Image src={stickers[note?.sticker].sticker} alt="sticker" />
+                    <Image src={stickers[note?.sticker || '1']?.sticker} alt="sticker" />
                   </div>
                 </>
               </GuestBookBox>

@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { Button, Upload } from 'antd';
+import { Button, Spin, Upload } from 'antd';
 
 import LogoHeader from '@components/Common/LogoHeader';
 
@@ -10,6 +10,9 @@ import Pencil from '@public/svgs/pencil.svg';
 import ChevronRight from '@public/svgs/chevron-right.svg';
 
 import M from '@components/Mypage/Mypage.styles';
+import { useEditImage, useMyInfo } from '@APIs/user';
+import { useToggle } from 'react-use';
+import { UploadChangeParam, UploadFile } from 'antd/es/upload';
 
 const profileLinks = [
   { name: '이름 및 닉네임 수정', link: '/mypage/edit-name' },
@@ -25,8 +28,24 @@ const otherLinks = [
 const Mypage: React.FC = () => {
   const router = useRouter();
   const logout = router.query?.logout ?? false;
+
+  const { data: me } = useMyInfo();
+  const { mutate, isLoading, isSuccess, isError } = useEditImage();
+
+  const [loading, loadingToggle] = useToggle(false);
+  const onChangeUpload = (info: UploadChangeParam<UploadFile>) => {
+    if (info.file.status === 'done') {
+      loadingToggle(true);
+      mutate(info.file.originFileObj as File);
+    }
+  };
   const onClickLogout = () => router.replace('/');
   const onClickCancelLogout = () => router.replace('/mypage', '/mypage', { shallow: true });
+
+  useEffect(() => {
+    if (!isLoading && loading && (isSuccess || isError)) loadingToggle(false);
+  }, [isError, isLoading, isSuccess, loading, loadingToggle]);
+
   return (
     <M.MypageIndexWrapper className="full-container">
       <M.GlobalStyle />
@@ -34,18 +53,32 @@ const Mypage: React.FC = () => {
         <LogoHeader headerIcons />
       </div>
       <M.ProfileWrap>
-        <Upload>
-          <Image src={Profile} alt="profile" />
-          <div>
-            <Image src={Pencil} alt="pencil" />
-          </div>
-        </Upload>
+        {loading ? (
+          <Spin />
+        ) : (
+          <Upload
+            onChange={onChangeUpload}
+            showUploadList={false}
+            disabled={loading}
+            accept="image/*"
+          >
+            <Image
+              src={me?.profile?.startsWith('http') ? me?.profile : Profile}
+              width={76}
+              height={76}
+              alt="profile"
+            />
+            <div>
+              <Image src={Pencil} alt="pencil" />
+            </div>
+          </Upload>
+        )}
         <div>
           <div>
-            <h2>홍길동</h2>
-            <h3>별명</h3>
+            <h2>{me?.name}</h2>
+            <h3>{me?.nickname}</h3>
           </div>
-          <p>OO초등학교 (77회 졸업)</p>
+          <p>{me?.schoolName}</p>
         </div>
       </M.ProfileWrap>
       <M.LinkWrap>
