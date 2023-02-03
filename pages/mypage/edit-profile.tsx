@@ -52,7 +52,7 @@ const EditProfile: React.FC = () => {
           readOnly
           bordered={false}
           placeholder="직군/직무를 선택하기"
-          isFill={Boolean(job)}
+          isfill={Boolean(job)}
           value={job}
           suffix={<Image src={ChevronRight} alt="chevron-right" />}
           onClick={onToggle}
@@ -62,7 +62,7 @@ const EditProfile: React.FC = () => {
             readOnly
             bordered={false}
             placeholder="직군/직무를 선택하기"
-            isFill={Boolean(job)}
+            isfill={Boolean(job)}
             value={job}
             suffix={<Image src={ChevronRight} alt="chevron-right" />}
             onClick={onToggle}
@@ -167,7 +167,7 @@ const EditProfile: React.FC = () => {
             suffixIcon={<Image src={SelectAllow} alt="select-allow" />}
           />
           <M.MypageInput
-            isFill
+            isfill
             status={isError ? 'error' : ''}
             placeholder="전체 URL 주소를 입력해주세요"
             value={url}
