@@ -80,7 +80,7 @@ const App = ({ Component, pageProps }: AppProps) => (
             <link rel="manifest" href="/icons/site.webmanifest" />
 
             <meta property="og:type" content="website" />
-            <meta property="og:url" content="https://www.moyorafriends.co.kr/" />
+            <meta property="og:url" content={process.env.NEXT_PUBLIC_DOMAIN_URL} />
             <meta property="og:title" content="모여라" />
             <meta
               property="og:description"
@@ -89,7 +89,7 @@ const App = ({ Component, pageProps }: AppProps) => (
             <meta property="og:image" content="https://www.moyorafriends.co.kr/thumbnail.png" />
 
             <meta property="twitter:card" content="summary_large_image" />
-            <meta property="twitter:url" content="https://www.moyorafriends.co.kr/" />
+            <meta property="twitter:url" content={process.env.NEXT_PUBLIC_DOMAIN_URL} />
             <meta property="twitter:title" content="모여라" />
             <meta
               property="twitter:description"
