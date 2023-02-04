@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import ListSection from './ListSection';
 import { useGetSchoolGuestBook } from '@APIs/schoolGuestBook';
 import { useMyInfo } from '@APIs/user';
-import { useGetMyNotes, useGetNote } from '@APIs/note';
+import { useGetNote } from '@APIs/note';
 
 const List: React.FC = () => {
   const router = useRouter();
@@ -19,17 +19,12 @@ const List: React.FC = () => {
     },
   );
 
-  const { data: myNoteList, isLoading: myNoteListLoading } = useGetMyNotes({
+  const { data: noteList, isLoading: noteListLoading } = useGetNote('' + me?.id, {
     enabled: Boolean(id === 'myPage' && me?.id),
   });
 
-  const { data: noteList, isLoading: noteListLoading } = useGetNote('' + id, {
-    enabled: Boolean(id !== 'myPage' && id !== 'mySchool'),
-  });
-
   if (id === 'mySchool' && guestBookListLoading) return <></>;
-  if (id === 'myPage' && myNoteListLoading) return <></>;
-  if (id !== 'myPage' && id !== 'mySchool' && noteListLoading) return <></>;
+  if (id === 'myPage' && noteListLoading) return <></>;
 
   return (
     <>

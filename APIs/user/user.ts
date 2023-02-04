@@ -127,11 +127,11 @@ export const useGetClassMate = (
 };
 
 export const useEditImage = (
-  options?: UseMutationOptions<AxiosResponse<FormData>, AxiosError, FormData>,
+  options?: UseMutationOptions<AxiosResponse<string>, AxiosError, File>,
 ) => {
   const queryClient = useQueryClient();
   const queryKey = `${baseUrl}/image`;
-  const queryFn = (data: FormData) => fetchWithToken.put(queryKey, data).then((res) => res.data);
+  const queryFn = (data: File) => fetchWithToken.put(queryKey, data).then((res) => res.data);
 
   const onSuccess = async () => {
     await queryClient.fetchQuery([`${baseUrl}/myinfo`]);
