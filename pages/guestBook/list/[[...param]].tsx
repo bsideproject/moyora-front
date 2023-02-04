@@ -7,24 +7,23 @@ import ListSection from './ListSection';
 import { useGetSchoolGuestBook } from '@APIs/schoolGuestBook';
 import { useMyInfo } from '@APIs/user';
 import { useGetMyNotes, useGetNote } from '@APIs/note';
-
 const List: React.FC = () => {
   const router = useRouter();
   const { data: me } = useMyInfo();
   const [id] = router.query.param ?? '';
+
   const { data: guestBookList, isLoading: guestBookListLoading } = useGetSchoolGuestBook(
-    '' + me?.schoolId,
+    me?.schoolId ?? 0,
     {
-      enabled: Boolean(id === 'mySchool' && me?.schoolId),
+      enabled: Boolean(id && me?.schoolId && id === 'mySchool' && me?.schoolId),
     },
   );
 
   const { data: myNoteList, isLoading: myNoteListLoading } = useGetMyNotes({
-    enabled: Boolean(id === 'myPage' && me?.id),
+    enabled: Boolean(id && me?.id && id === 'myPage' && me?.id),
   });
-
-  const { data: noteList, isLoading: noteListLoading } = useGetNote('' + id, {
-    enabled: Boolean(id !== 'myPage' && id !== 'mySchool'),
+  const { data: noteList, isLoading: noteListLoading } = useGetNote(id ?? '', {
+    enabled: Boolean(id && id !== 'myPage' && id !== 'mySchool'),
   });
 
   if (id === 'mySchool' && guestBookListLoading) return <></>;

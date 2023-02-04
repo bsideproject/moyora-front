@@ -12,9 +12,11 @@ import stickers from '@configs/stickers';
 import { useAddSchoolGuestBook } from '@APIs/schoolGuestBook';
 import { useAddNote } from '@APIs/note';
 import { useMyInfo } from '@APIs/user';
+import { useQueryClient } from '@tanstack/react-query';
 
 const WriteBeta: React.FC = () => {
   const router = useRouter();
+  const queryClient = useQueryClient();
   const { data: me } = useMyInfo();
   const [id] = router.query.param ?? '';
   const [selectedSticker, setSelectedSticker] = useState<TStickerType>('1');
@@ -29,8 +31,19 @@ const WriteBeta: React.FC = () => {
   const [alert, onToggleAlert] = useToggle(false);
   const [confirm, onToggleConfirm] = useToggle(false);
 
-  const { mutate: guestBookMutate } = useAddSchoolGuestBook();
-  const { mutate: noteMutate } = useAddNote();
+  const onSuccess = async () => {
+    if (id === 'mySchool')
+      await queryClient
+        .refetchQueries({ queryKey: [`/schoolGuestBook`], type: 'active' })
+        .then(() => router.replace(`/guestBook/list/${id}`));
+    else
+      await queryClient
+        .refetchQueries({ queryKey: [`/user/note`, id], type: 'active' })
+        .then(() => router.replace(`/guestBook/list/${id}`));
+  };
+
+  const { mutate: guestBookMutate } = useAddSchoolGuestBook({ onSuccess });
+  const { mutate: noteMutate } = useAddNote({ onSuccess });
 
   const onClickFinish = () => {
     if (guestBookText.trim().length < 2) {
@@ -40,15 +53,14 @@ const WriteBeta: React.FC = () => {
     }
   };
 
-  const onClickWrite = async () => {
+  const onClickWrite = () => {
     if (id === 'mySchool')
-      await guestBookMutate({
+      guestBookMutate({
         content: guestBookText,
         schoolId: +(me?.schoolId ?? 0),
         sticker: selectedSticker,
       });
     else noteMutate({ content: guestBookText, sticker: selectedSticker, userId: +id, isPublic });
-    router.replace(`/guestBook/list/${id}`);
   };
   const onChange = (e: CheckboxChangeEvent) => {
     togglePublic(e.target.checked);
