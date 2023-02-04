@@ -25,9 +25,11 @@ const ProfileWrapper = styled.div<IProfileProps>`
 
 const Profile = styled.div<IProfileProps>`
   position: relative;
-  width: ${({ size }) => sizes[size].imgSize};
-  height: ${({ size }) => sizes[size].imgSize};
-  border-radius: 50%;
+  width: ${({ size, url }) => (url ? sizes[size].divSize : sizes[size].imgSize)};
+  height: ${({ size, url }) => (url ? sizes[size].divSize : sizes[size].imgSize)};
+  & img {
+    border-radius: ${({ url }) => (url ? '50%' : 0)};
+  }
 `;
 
 const P = {
