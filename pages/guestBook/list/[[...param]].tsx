@@ -77,7 +77,7 @@ const List: React.FC = () => {
                   <>
                     아직 작성된 쪽지가 없어요.
                     <br />
-                    친구를 초대하고 부탁해 보세요!
+                    가장 먼저 쪽지를 남겨보세요!
                   </>
                 )}
                 <ListSection guestBookList={noteList} noteId={id} />
