@@ -7,7 +7,6 @@ import WarningIcon from '@public/svgs/icon-warning.svg';
 import { Checkbox, RadioChangeEvent } from 'antd';
 import { useToggle } from 'react-use';
 import { useRouter } from 'next/router';
-import type { CheckboxChangeEvent } from 'antd/es/checkbox';
 import stickers from '@configs/stickers';
 import { useAddSchoolGuestBook } from '@APIs/schoolGuestBook';
 import { useAddNote } from '@APIs/note';
