@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Collapse, Drawer, Input, Modal, Select } from 'antd';
 
 interface IInputPublicProps {
-  isFill?: boolean;
+  isfill?: boolean;
 }
 
 const GlobalStyle = createGlobalStyle`
@@ -228,7 +228,7 @@ const MypageInputWrapper = styled.div`
 const MypageInput = styled(Input)<IInputPublicProps>`
   padding: 9px 10px;
   font-weight: 400;
-  border: 1px solid ${({ theme, isFill }) => (isFill ? theme.gray500 : theme.gray200)};
+  border: 1px solid ${({ theme, isfill }) => (isfill ? theme.gray500 : theme.gray200)};
   border-radius: 8px;
 
   & + & {
@@ -251,7 +251,7 @@ const SearchButton = styled(Input.Search)<IInputPublicProps>`
   & input {
     cursor: pointer;
   }
-  border: 1px solid ${({ theme, isFill }) => (isFill ? theme.gray500 : theme.gray200)};
+  border: 1px solid ${({ theme, isfill }) => (isfill ? theme.gray500 : theme.gray200)};
   border-radius: 8px;
   & button {
     border: 0;
@@ -267,7 +267,7 @@ const MypageSelect = styled(Select)<IInputPublicProps>`
   text-align: left;
 
   & div.ant-select-selector {
-    border-color: ${({ theme, isFill }) => (isFill ? theme.gray500 : theme.gray200)} !important;
+    border-color: ${({ theme, isfill }) => (isfill ? theme.gray500 : theme.gray200)} !important;
   }
 
   &.half {

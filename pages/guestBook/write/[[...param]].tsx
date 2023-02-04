@@ -1,24 +1,50 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import W from '@components/GuestBook/WriteBeta.styles';
 import LogoHeader from '@components/Common/LogoHeader';
 import Image from 'next/image';
+import Sticker1 from '@public/svgs/sticker-1.svg';
+import Sticker2 from '@public/svgs/sticker-2.svg';
+import Sticker3 from '@public/svgs/sticker-3.svg';
+import Sticker4 from '@public/svgs/sticker-4.svg';
+import Sticker5 from '@public/svgs/sticker-5.svg';
+import Sticker6 from '@public/svgs/sticker-6.svg';
+import Sticker7 from '@public/svgs/sticker-7.svg';
+import Sticker8 from '@public/svgs/sticker-8.svg';
+import Sticker9 from '@public/svgs/sticker-9.svg';
+import Sticker10 from '@public/svgs/sticker-10.svg';
+import Sticker11 from '@public/svgs/sticker-11.svg';
+import Sticker12 from '@public/svgs/sticker-12.svg';
+import QuotationMark1 from '@public/svgs/quotationMark-1.svg';
+import QuotationMark2 from '@public/svgs/quotationMark-2.svg';
+import QuotationMark3 from '@public/svgs/quotationMark-3.svg';
+import QuotationMark4 from '@public/svgs/quotationMark-4.svg';
+import QuotationMark5 from '@public/svgs/quotationMark-5.svg';
 import { TStickerType } from '@configs/bigContents';
 import WarningIcon from '@public/svgs/icon-warning.svg';
 import { Checkbox, RadioChangeEvent } from 'antd';
 import { useToggle } from 'react-use';
 import { useRouter } from 'next/router';
 import type { CheckboxChangeEvent } from 'antd/es/checkbox';
-import stickers from '@configs/stickers';
-import { useAddSchoolGuestBook } from '@APIs/schoolGuestBook';
-import { useAddNote } from '@APIs/note';
-import { useMyInfo } from '@APIs/user';
+
+const stickers = {
+  '1': { sticker: Sticker1, quotationMark: QuotationMark1 },
+  '2': { sticker: Sticker2, quotationMark: QuotationMark1 },
+  '3': { sticker: Sticker3, quotationMark: QuotationMark1 },
+  '4': { sticker: Sticker4, quotationMark: QuotationMark1 },
+  '5': { sticker: Sticker5, quotationMark: QuotationMark2 },
+  '6': { sticker: Sticker6, quotationMark: QuotationMark2 },
+  '7': { sticker: Sticker7, quotationMark: QuotationMark3 },
+  '8': { sticker: Sticker8, quotationMark: QuotationMark3 },
+  '9': { sticker: Sticker9, quotationMark: QuotationMark4 },
+  '10': { sticker: Sticker10, quotationMark: QuotationMark4 },
+  '11': { sticker: Sticker11, quotationMark: QuotationMark5 },
+  '12': { sticker: Sticker12, quotationMark: QuotationMark5 },
+};
 
 const WriteBeta: React.FC = () => {
   const router = useRouter();
-  const { data: me } = useMyInfo();
   const [id] = router.query.param ?? '';
   const [selectedSticker, setSelectedSticker] = useState<TStickerType>('1');
-  const [isPublic, togglePublic] = useToggle(false);
   const onChangeStar = (e: RadioChangeEvent) => {
     setSelectedSticker(e.target.value);
   };
@@ -28,10 +54,6 @@ const WriteBeta: React.FC = () => {
 
   const [alert, onToggleAlert] = useToggle(false);
   const [confirm, onToggleConfirm] = useToggle(false);
-
-  const { mutate: guestBookMutate } = useAddSchoolGuestBook();
-  const { mutate: noteMutate } = useAddNote();
-
   const onClickFinish = () => {
     if (guestBookText.trim().length < 2) {
       onToggleAlert();
@@ -51,13 +73,13 @@ const WriteBeta: React.FC = () => {
     router.replace(`/guestBook/list/${id}`);
   };
   const onChange = (e: CheckboxChangeEvent) => {
-    togglePublic(e.target.checked);
+    console.log(`checked = ${e.target.checked}`);
   };
   return (
     <>
       <W.GuestBookWriteWrapper>
         <LogoHeader headerIcons={true} />
-        <h1>{id === 'mySchool' ? `우리 학교 방명록 남기기` : `OO에게 쪽지 쓰기`}</h1>
+        <h1>{noteId === 'mySchool' ? `우리 학교 방명록 남기기` : `OO에게 쪽지 쓰기`}</h1>
         <W.TextAreaSection>
           <section>
             <div>
@@ -75,13 +97,7 @@ const WriteBeta: React.FC = () => {
             autoSize={{ minRows: 3, maxRows: 8 }}
             onChange={onChangeGuestBookText}
           />
-          {id === 'mySchool' ? (
-            ''
-          ) : (
-            <Checkbox checked={isPublic} onChange={onChange}>
-              비공개로 작성하기
-            </Checkbox>
-          )}
+          {noteId === 'mySchool' ? '' : <Checkbox onChange={onChange}>비공개로 작성하기</Checkbox>}
         </W.TextAreaSection>
         <W.WarningSection>
           <Image src={WarningIcon} alt="warningIcon" />
@@ -108,7 +124,7 @@ const WriteBeta: React.FC = () => {
           footer={[]}
           centered
         >
-          <Image src={stickers[5].sticker} alt="sticker" />
+          <Image src={Sticker5} alt="sticker" />
           <h2>최소 2자 이상 입력해 주세요!</h2>
           <W.ModalButton type="primary" onClick={onToggleAlert}>
             <p>닫기</p>
@@ -121,7 +137,7 @@ const WriteBeta: React.FC = () => {
           footer={[]}
           centered
         >
-          <Image src={stickers[1].sticker} alt="sticker" />
+          <Image src={Sticker1} alt="sticker" />
           <h2>작성을 완료하셨나요?</h2>
           <h3>완료하시면 수정, 삭제가 불가능해요!</h3>
           <W.ModalButton type="primary" onClick={onClickWrite}>

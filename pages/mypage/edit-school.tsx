@@ -58,7 +58,7 @@ const EditSchool: React.FC = () => {
       <M.SearchButton
         readOnly
         bordered={false}
-        isFill={Boolean(code)}
+        isfill={Boolean(code)}
         placeholder="학교 검색"
         value={name}
         onClick={onClickSearchSchool}
@@ -68,7 +68,7 @@ const EditSchool: React.FC = () => {
       </h3>
       <M.MypageSelect
         placeholder="졸업연도"
-        isFill={Boolean(graduationYear)}
+        isfill={Boolean(graduationYear)}
         onChange={onSelectGraduationYear}
         options={options}
         defaultValue={graduationYear}

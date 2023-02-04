@@ -123,16 +123,6 @@ export const friendsTempList: IFriendsList[] = [
   { id: '10', name: '김지후', nickname: '김지', school: 'OO초등학교' },
 ];
 
-export const dummyChartData = {
-  datasets: [
-    {
-      data: [19, 12, 5, 3, 2],
-      backgroundColor: ['#FF6D3A', '#4181F0', '#F4B95C', '#71BA9D', '#B8C6FB'],
-      borderWidth: 1,
-    },
-  ],
-};
-
 export const barOptions = {
   responsive: false,
   indexAxis: 'y' as const,
@@ -145,34 +135,6 @@ export const barOptions = {
     x: { stacked: true, display: false },
     y: { stacked: true, display: false },
   },
-};
-
-export const dummyBarChartData = {
-  labels: [''],
-  datasets: [
-    {
-      data: [40],
-      backgroundColor: '#FF6D3A',
-      borderRadius: 50,
-    },
-    {
-      data: [22],
-      backgroundColor: '#4181F0',
-    },
-    {
-      data: [18],
-      backgroundColor: '#F4B95C',
-    },
-    {
-      data: [15],
-      backgroundColor: '#71BA9D',
-    },
-    {
-      data: [5],
-      backgroundColor: '#B8C6FB',
-      borderRadius: 50,
-    },
-  ],
 };
 
 export const dummyJobsData = [

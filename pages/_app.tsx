@@ -72,10 +72,6 @@ const App = ({ Component, pageProps }: AppProps) => (
         <ThemeProvider theme={theme}>
           <Head>
             <title>모여라</title>
-            <meta
-              name="viewport"
-              content="width=device-width, initial-scale=1, maximum-scale=1, minimal-scale=1"
-            />
             <meta name="title" content="모여라" />
             <meta name="description" content="초등학교 온라인 동창회, 우리 학교 여기여기 모여라!" />
             <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
@@ -84,7 +80,7 @@ const App = ({ Component, pageProps }: AppProps) => (
             <link rel="manifest" href="/icons/site.webmanifest" />
 
             <meta property="og:type" content="website" />
-            <meta property="og:url" content="https://www.moyorafriends.co.kr/" />
+            <meta property="og:url" content={process.env.NEXT_PUBLIC_DOMAIN_URL} />
             <meta property="og:title" content="모여라" />
             <meta
               property="og:description"
@@ -93,7 +89,7 @@ const App = ({ Component, pageProps }: AppProps) => (
             <meta property="og:image" content="https://www.moyorafriends.co.kr/thumbnail.png" />
 
             <meta property="twitter:card" content="summary_large_image" />
-            <meta property="twitter:url" content="https://www.moyorafriends.co.kr/" />
+            <meta property="twitter:url" content={process.env.NEXT_PUBLIC_DOMAIN_URL} />
             <meta property="twitter:title" content="모여라" />
             <meta
               property="twitter:description"
