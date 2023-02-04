@@ -12,7 +12,7 @@ import ChevronRight from '@public/svgs/chevron-right.svg';
 import M from '@components/Mypage/Mypage.styles';
 import { useEditImage, useMyInfo } from '@APIs/user';
 import { useToggle } from 'react-use';
-import { UploadChangeParam, UploadFile } from 'antd/es/upload';
+import { RcFile } from 'antd/es/upload';
 import { useCookies } from 'react-cookie';
 import { useQueryClient } from '@tanstack/react-query';
 
@@ -35,13 +35,13 @@ const Mypage: React.FC = () => {
 
   const { data: me } = useMyInfo();
   const { mutate, isLoading, isSuccess, isError } = useEditImage();
-
   const [loading, loadingToggle] = useToggle(false);
-  const onChangeUpload = (info: UploadChangeParam<UploadFile>) => {
-    if (info.file.status === 'done') {
-      loadingToggle(true);
-      mutate(info.file.originFileObj as File);
-    }
+  const onChangeUpload = (file: RcFile) => {
+    const formData = new FormData();
+    formData.append('file', file);
+    loadingToggle(true);
+    mutate(formData);
+    return 'upload';
   };
   const onClickLogout = async () => {
     removeCookie('moyora');
@@ -64,16 +64,12 @@ const Mypage: React.FC = () => {
         {loading ? (
           <Spin />
         ) : (
-          <Upload
-            onChange={onChangeUpload}
-            showUploadList={false}
-            disabled={loading}
-            accept="image/*"
-          >
+          <Upload method="PUT" showUploadList={false} disabled={loading} action={onChangeUpload}>
             <Image
               src={me?.profile?.startsWith('http') ? me?.profile : Profile}
               width={76}
               height={76}
+              style={{ borderRadius: '50%' }}
               alt="profile"
             />
             <div>

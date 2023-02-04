@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import ListSection from './ListSection';
 import { useGetSchoolGuestBook } from '@APIs/schoolGuestBook';
 import { useMyInfo } from '@APIs/user';
-import { useGetNote } from '@APIs/note';
+import { useGetMyNotes, useGetNote } from '@APIs/note';
 
 const List: React.FC = () => {
   const router = useRouter();
@@ -19,12 +19,17 @@ const List: React.FC = () => {
     },
   );
 
-  const { data: noteList, isLoading: noteListLoading } = useGetNote('' + me?.id, {
+  const { data: myNoteList, isLoading: myNoteListLoading } = useGetMyNotes({
     enabled: Boolean(id === 'myPage' && me?.id),
   });
 
+  const { data: noteList, isLoading: noteListLoading } = useGetNote('' + id, {
+    enabled: Boolean(id !== 'myPage' && id !== 'mySchool'),
+  });
+
   if (id === 'mySchool' && guestBookListLoading) return <></>;
-  if (id === 'myPage' && noteListLoading) return <></>;
+  if (id === 'myPage' && myNoteListLoading) return <></>;
+  if (id !== 'myPage' && id !== 'mySchool' && noteListLoading) return <></>;
 
   return (
     <>
@@ -46,10 +51,24 @@ const List: React.FC = () => {
                   가장 먼저 우리 학교 방명록에 글을 남겨보세요!
                 </>
               )
+            ) : id === 'myPage' ? (
+              myNoteList?.length ? (
+                <>
+                  {id === 'myPage' ? '내 ' : ''}쪽지가 <b>{myNoteList?.length}개</b> 있어요!
+                  <ListSection guestBookList={myNoteList} noteId={id} />
+                </>
+              ) : (
+                <>
+                  <br />
+                  아직 작성된 방명록이 없어요.
+                  <br />
+                  가장 먼저 방명록에 글을 남겨보세요!
+                </>
+              )
             ) : noteList?.length ? (
               <>
                 {id === 'myPage' ? '내 ' : ''}쪽지가 <b>{noteList?.length}개</b> 있어요!
-                <ListSection guestBookList={guestBookList} noteId={id} />
+                <ListSection guestBookList={noteList} noteId={id} />
               </>
             ) : (
               <>
