@@ -151,6 +151,17 @@ const BannerSection = styled(MainSection)`
             font-size: 20px;
           }
         }
+        & .prodBanner {
+          & button {
+            width: 175px;
+            @media screen and (min-width: 768px) {
+              width: 163px;
+            }
+          }
+          & p {
+            margin-top: 32px;
+          }
+        }
       }
     }
   }

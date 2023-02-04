@@ -49,7 +49,8 @@ const LogoHeader: React.FC<IProps> = ({ headerIcons, backgroundPrimary, children
 
           <L.MyDrawer
             title={<LogoHeader />}
-            placement="left"
+            placement="bottom"
+            height="100%"
             maskStyle={{ width: '100vw', marginLeft: 'calc(-50vw + 50%)' }}
             onClose={onToggle}
             open={isSelect}

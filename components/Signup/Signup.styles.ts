@@ -258,6 +258,17 @@ const SignUpCompleteWrapper = styled.section`
     min-height: calc(100vh - 124px);
     margin-top: 68px;
     text-align: center;
+    & > h1 {
+      margin: 35px auto;
+      font-size: 28px;
+      line-height: 40px;
+      font-weight: 400;
+      color: ${({ theme }) => theme.primary};
+      & > b {
+        font-size: 32px;
+        font-weight: 500;
+      }
+    }
 
     & > h3 {
       margin-top: 43px;
@@ -272,7 +283,6 @@ const SignUpCompleteWrapper = styled.section`
     }
 
     & > h2 {
-      margin-top: 20px;
       font-family: GmarketSans;
       font-size: 28px;
       font-weight: 700;
@@ -280,14 +290,15 @@ const SignUpCompleteWrapper = styled.section`
 
       & span {
         display: inline-block;
-        width: 40px;
+        width: 73px;
+        margin: 0 3px;
         font-family: GmarketSans;
-        vertical-align: middle;
+        vertical-align: baseline;
       }
     }
 
     & > p {
-      margin-top: 8px;
+      margin: 8px 0 108px;
       font-size: 16px;
       font-weight: 400;
       line-height: 24px;
@@ -307,11 +318,9 @@ const SignUpCompleteWrapper = styled.section`
 `;
 
 const SignupCompleteWrap = styled.div`
-  position: absolute;
-  bottom: 67px;
-  left: 0;
   justify-content: center;
   width: 100%;
+  margin-bottom: 67px;
 
   & > p {
     font-size: 16px;

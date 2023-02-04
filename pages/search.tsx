@@ -13,6 +13,7 @@ import SearchPr from '@public/svgs/search-pr-icon.svg';
 
 import S from '@components/Search/Search.styles';
 import { IUsers, useSearchClassMates } from '@APIs/user';
+import { useToggle } from 'react-use';
 
 const Search: React.FC = () => {
   const router = useRouter();
@@ -20,6 +21,7 @@ const Search: React.FC = () => {
   const [searchText, onChangeSearchText] = useInput('');
   const { data, mutate } = useSearchSchools();
   const { data: mates, mutate: mateMutate } = useSearchClassMates();
+  const [first, onToggleFirst] = useToggle(isSchool ? true : false);
 
   const searchData = useMemo(() => (isSchool ? data : mates), [isSchool, data, mates]);
 
@@ -29,6 +31,7 @@ const Search: React.FC = () => {
   };
 
   const onSearch = () => {
+    onToggleFirst(false);
     if (isSchool) mutate(searchText);
     else mateMutate(searchText);
   };
@@ -78,6 +81,12 @@ const Search: React.FC = () => {
             );
           }
         })
+      ) : first ? (
+        <h4>
+          이번 버전은 초등학교만 검색이 가능합니다.
+          <br />
+          중학교와 고등학교는 준비중입니다 :)
+        </h4>
       ) : (
         <h4>검색 결과가 없어요</h4>
       )}
