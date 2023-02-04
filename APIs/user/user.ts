@@ -139,7 +139,8 @@ export const useEditImage = (
 
   const onError = (e: AxiosError) =>
     message.error(
-      (e.response?.data as string) || '프로필 수정에 실패하셨습니다.\n다시 시도해 주세요 :(',
+      (e.response?.status !== 500 && (e.response?.data as string)) ||
+        '프로필 수정에 실패하셨습니다.\n다시 시도해 주세요 :(',
     );
   return useMutation([queryKey], queryFn, { onSuccess, onError, ...options });
 };
