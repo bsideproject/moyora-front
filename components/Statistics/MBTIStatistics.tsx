@@ -48,7 +48,7 @@ const MBTIStatistics: React.FC = () => {
   const onClick = () => {
     router.replace('/mypage/edit-profile', '', { shallow: true });
   };
-  if (!mbti?.data.length && data?.mbti)
+  if (!mbti?.data.length && !data?.mbti)
     return (
       <S.StatisticsCardWrap>
         <div className="empty">
