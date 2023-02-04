@@ -8,7 +8,7 @@ import { IEditSchoolGuestBook, ISchoolGuestBook, ISchoolGuestBooks } from './sch
 export const baseUrl = '/schoolGuestBook';
 
 export const useGetSchoolGuestBook = (
-  schoolId: number,
+  schoolId: string,
   options?: UseQueryOptions<
     AxiosResponse<ISchoolGuestBooks[]>,
     AxiosError,

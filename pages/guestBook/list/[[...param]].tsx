@@ -13,7 +13,7 @@ const List: React.FC = () => {
   const [id] = router.query.param ?? '';
 
   const { data: guestBookList, isLoading: guestBookListLoading } = useGetSchoolGuestBook(
-    me?.schoolId ?? 0,
+    '' + (me?.schoolId ?? 0),
     {
       enabled: Boolean(id && me?.schoolId && id === 'mySchool' && me?.schoolId),
     },
