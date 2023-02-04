@@ -21,7 +21,7 @@ const WriteBeta: React.FC = () => {
   const [id] = router.query.param ?? '';
   const { data: mate } = useGetClassMate(id, { enabled: Boolean(id) });
   const [selectedSticker, setSelectedSticker] = useState<TStickerType>('1');
-  const [isPublic, togglePublic] = useToggle(false);
+  const [isPublic, togglePublic] = useToggle(true);
   const onChangeStar = (e: RadioChangeEvent) => {
     setSelectedSticker(e.target.value);
   };
@@ -63,8 +63,8 @@ const WriteBeta: React.FC = () => {
       });
     else noteMutate({ content: guestBookText, sticker: selectedSticker, userId: +id, isPublic });
   };
-  const onChange = (e: CheckboxChangeEvent) => {
-    togglePublic(e.target.checked);
+  const onChange = () => {
+    togglePublic();
   };
   return (
     <>
@@ -93,7 +93,7 @@ const WriteBeta: React.FC = () => {
           {id === 'mySchool' ? (
             ''
           ) : (
-            <Checkbox checked={isPublic} onChange={onChange}>
+            <Checkbox checked={!isPublic} onChange={onChange}>
               비공개로 작성하기
             </Checkbox>
           )}
