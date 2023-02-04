@@ -128,7 +128,7 @@ const Archive: React.FC = () => {
           <p>친구에게 하고 싶은 말을 쪽지에 남겨보세요 :)</p>
         )}
         <div>
-          {notes?.length && id === 'myPage' ? (
+          {notes?.length ? (
             notes?.map((guestBook) => (
               <GuestBookBox
                 info={{
