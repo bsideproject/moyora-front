@@ -1,12 +1,6 @@
 import { message } from 'antd';
 import { AxiosError, AxiosResponse } from 'axios';
-import {
-  useMutation,
-  UseMutationOptions,
-  useQuery,
-  useQueryClient,
-  UseQueryOptions,
-} from '@tanstack/react-query';
+import { useMutation, UseMutationOptions, useQuery, UseQueryOptions } from '@tanstack/react-query';
 
 import { fetch, fetchWithToken } from '@configs/axios';
 import { IEditSchoolGuestBook, ISchoolGuestBook, ISchoolGuestBooks } from './schoolGuestBook.types';
@@ -43,18 +37,13 @@ export const useGetMySchoolGuestBooks = (
 export const useAddSchoolGuestBook = (
   options?: UseMutationOptions<AxiosResponse<string>, AxiosError, ISchoolGuestBook>,
 ) => {
-  const queryClient = useQueryClient();
   const queryKey = `${baseUrl}`;
   const queryFn = (data: ISchoolGuestBook) =>
-    fetchWithToken.post(`${queryKey}/`, data).then((res) => res.data);
-
-  const onSuccess = async () => {
-    await queryClient.fetchQuery([`${queryKey}/me`]);
-  };
+    fetchWithToken.post(queryKey, data).then((res) => res.data);
 
   const onError = (e: AxiosError) =>
     message.error((e.response?.data as string) || '등록에 실패하셨습니다.\n다시 시도해 주세요 :(');
-  return useMutation([queryKey], queryFn, { onSuccess, onError, ...options });
+  return useMutation([queryKey], queryFn, { onError, ...options });
 };
 
 export const useEditSchoolGuestBook = (
@@ -62,7 +51,7 @@ export const useEditSchoolGuestBook = (
 ) => {
   const queryKey = `${baseUrl}`;
   const queryFn = (data: IEditSchoolGuestBook) =>
-    fetchWithToken.put(`${queryKey}/`, data).then((res) => res.data);
+    fetchWithToken.put(queryKey, data).then((res) => res.data);
 
   const onError = (e: AxiosError) =>
     message.error((e.response?.data as string) || '수정에 실패하셨습니다.\n다시 시도해 주세요 :(');

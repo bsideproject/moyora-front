@@ -19,4 +19,5 @@ export interface INote {
 export interface IEditNote {
   content: string;
   noteId: number;
+  sticker: string;
 }
