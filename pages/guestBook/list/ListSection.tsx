@@ -24,7 +24,7 @@ const ListSection: React.FC<IProps> = ({ guestBookList: list, noteId }) => {
     () => (noteId === 'mySchool' ? (list as ISchoolGuestBooks[]) : []),
     [list, noteId],
   );
-  const noteList = useMemo(() => (noteId === 'myPage' ? [] : (list as INotes[])), [list, noteId]);
+  const noteList = useMemo(() => (noteId === 'myPage' ? (list as INotes[]) : []), [list, noteId]);
 
   const onClickRoute = () => router.push(`/guestBook/write/${noteId}`, '', { shallow: true });
   const onClickGuestBookBox = (id: string) => () => {
@@ -46,7 +46,7 @@ const ListSection: React.FC<IProps> = ({ guestBookList: list, noteId }) => {
   return (
     <>
       <L.ListSection>
-        {guestBookList?.length
+        {noteId === 'mySchool' && guestBookList?.length
           ? guestBookList.map((guestBook) => (
               <GuestBookBox
                 size={{ width: '171px', height: '218px', line: '4' }}
@@ -69,7 +69,8 @@ const ListSection: React.FC<IProps> = ({ guestBookList: list, noteId }) => {
                 </>
               </GuestBookBox>
             ))
-          : noteList?.length
+          : ''}
+        {noteId === 'myPage' && noteList?.length
           ? noteList.map((note) => (
               <GuestBookBox
                 size={{ width: '171px', height: '218px', line: '4' }}
@@ -81,7 +82,6 @@ const ListSection: React.FC<IProps> = ({ guestBookList: list, noteId }) => {
                   id: '' + note?.friendId,
                   name: note?.username,
                   nickname: note?.nickname,
-                  lock: note?.isPublic,
                 }}
               >
                 <>
