@@ -11,7 +11,7 @@ import type { CheckboxChangeEvent } from 'antd/es/checkbox';
 import stickers from '@configs/stickers';
 import { useAddSchoolGuestBook } from '@APIs/schoolGuestBook';
 import { useAddNote } from '@APIs/note';
-import { useMyInfo } from '@APIs/user';
+import { useGetClassMate, useMyInfo } from '@APIs/user';
 import { useQueryClient } from '@tanstack/react-query';
 
 const WriteBeta: React.FC = () => {
@@ -19,6 +19,7 @@ const WriteBeta: React.FC = () => {
   const queryClient = useQueryClient();
   const { data: me } = useMyInfo();
   const [id] = router.query.param ?? '';
+  const { data: mate } = useGetClassMate(id, { enabled: Boolean(id) });
   const [selectedSticker, setSelectedSticker] = useState<TStickerType>('1');
   const [isPublic, togglePublic] = useToggle(false);
   const onChangeStar = (e: RadioChangeEvent) => {
@@ -69,7 +70,9 @@ const WriteBeta: React.FC = () => {
     <>
       <W.GuestBookWriteWrapper>
         <LogoHeader headerIcons={true} />
-        <h1>{id === 'mySchool' ? `우리 학교 방명록 남기기` : `OO에게 쪽지 쓰기`}</h1>
+        <h1>
+          {id === 'mySchool' ? `우리 학교 방명록 남기기` : `${mate?.username ?? ''}에게 쪽지 쓰기`}
+        </h1>
         <W.TextAreaSection>
           <section>
             <div>

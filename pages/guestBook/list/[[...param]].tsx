@@ -5,13 +5,13 @@ import LogoHeader from '@components/Common/LogoHeader';
 import { useRouter } from 'next/router';
 import ListSection from './ListSection';
 import { useGetSchoolGuestBook } from '@APIs/schoolGuestBook';
-import { useMyInfo } from '@APIs/user';
+import { useGetClassMate, useMyInfo } from '@APIs/user';
 import { useGetMyNotes, useGetNote } from '@APIs/note';
 const List: React.FC = () => {
   const router = useRouter();
   const { data: me } = useMyInfo();
   const [id] = router.query.param ?? '';
-
+  const { data: mate } = useGetClassMate(id, { enabled: Boolean(id) });
   const { data: guestBookList, isLoading: guestBookListLoading } = useGetSchoolGuestBook(
     '' + (me?.schoolId ?? 0),
     {
@@ -70,7 +70,8 @@ const List: React.FC = () => {
               <>
                 {noteList?.length ? (
                   <>
-                    {id === 'myPage' ? '내 ' : ''}쪽지가 <b>{noteList?.length}개</b> 있어요!
+                    {id === 'myPage' ? '내 ' : `${mate?.username}님의 `}쪽지가{' '}
+                    <b>{noteList?.length}개</b> 있어요!
                   </>
                 ) : (
                   <>
