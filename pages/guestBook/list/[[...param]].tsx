@@ -11,7 +11,9 @@ const List: React.FC = () => {
   const router = useRouter();
   const { data: me } = useMyInfo();
   const [id] = router.query.param ?? '';
-  const { data: mate } = useGetClassMate(id, { enabled: Boolean(id) });
+  const { data: mate } = useGetClassMate(id, {
+    enabled: Boolean(id && id !== 'mySchool' && id !== 'myPage'),
+  });
   const { data: guestBookList, isLoading: guestBookListLoading } = useGetSchoolGuestBook(
     '' + (me?.schoolId ?? 0),
     {

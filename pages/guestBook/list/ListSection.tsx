@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import React, { useMemo, useState } from 'react';
 import L from '@components/GuestBook/List.styles';
 import Image from 'next/image';
@@ -20,19 +21,24 @@ const ListSection: React.FC<IProps> = ({ guestBookList: list, noteId }) => {
   const [alert, onToggleAlert] = useToggle(false);
   const [isSelect, onToggle] = useToggle(false);
   const [selectedBox, setSelectedBox] = useState<ISchoolGuestBooks | null>(null);
+
   const guestBookList = useMemo(
     () => (noteId === 'mySchool' ? (list as ISchoolGuestBooks[]) : []),
     [list, noteId],
   );
-  const noteList = useMemo(() => (noteId === 'myPage' ? [] : (list as INotes[])), [list, noteId]);
+
+  const noteList = useMemo(() => (noteId === 'myPage' ? (list as INotes[]) : []), [list, noteId]);
+
+  const mateNoteList = useMemo(
+    () => (noteId === 'myPage' || noteId === 'mySchool' ? [] : (list as INotes[])),
+    [list, noteId],
+  );
 
   const onClickRoute = () => router.push(`/guestBook/write/${noteId}`, '', { shallow: true });
   const onClickGuestBookBox = (id: string) => () => {
     if (noteId === 'myPage') {
       const selBox = noteList?.length ? noteList.filter((note) => note?.noteId === +id) : null;
-      if (selBox?.length && selBox[0].isPublic && noteId != 'myPage') {
-        onToggleAlert();
-      }
+      if (selBox?.length && selBox[0].isPublic && noteId != 'myPage') onToggleAlert();
     } else {
       const selBox = guestBookList?.length
         ? guestBookList.filter((guestBook) => guestBook?.schoolGuestBookId === +id)
@@ -46,7 +52,7 @@ const ListSection: React.FC<IProps> = ({ guestBookList: list, noteId }) => {
   return (
     <>
       <L.ListSection>
-        {guestBookList?.length
+        {noteId === 'mySchool'
           ? guestBookList.map((guestBook) => (
               <GuestBookBox
                 size={{ width: '171px', height: '218px', line: '4' }}
@@ -69,7 +75,7 @@ const ListSection: React.FC<IProps> = ({ guestBookList: list, noteId }) => {
                 </>
               </GuestBookBox>
             ))
-          : noteList?.length
+          : noteId === 'myPage'
           ? noteList.map((note) => (
               <GuestBookBox
                 size={{ width: '171px', height: '218px', line: '4' }}
@@ -81,7 +87,7 @@ const ListSection: React.FC<IProps> = ({ guestBookList: list, noteId }) => {
                   id: '' + note?.friendId,
                   name: note?.username,
                   nickname: note?.nickname,
-                  lock: note?.isPublic,
+                  lock: !note?.isPublic,
                 }}
               >
                 <>
@@ -97,11 +103,35 @@ const ListSection: React.FC<IProps> = ({ guestBookList: list, noteId }) => {
                 </>
               </GuestBookBox>
             ))
-          : ''}
+          : mateNoteList?.map((note) => (
+              <GuestBookBox
+                size={{ width: '171px', height: '218px', line: '4' }}
+                text={note.content}
+                date={note.createdDate}
+                key={note?.noteId}
+                onClick={onClickGuestBookBox('' + note?.noteId)}
+                info={{
+                  id: '' + note?.friendId,
+                  name: note?.username,
+                  nickname: note?.nickname,
+                  lock: !note?.isPublic,
+                }}
+              >
+                <>
+                  <div>
+                    <Image
+                      src={stickers[note?.sticker || '1']?.quotationMark}
+                      alt="quotationMark"
+                    />
+                  </div>
+                  <div>
+                    <Image src={stickers[note?.sticker || '1']?.sticker} alt="sticker" />
+                  </div>
+                </>
+              </GuestBookBox>
+            ))}
         <div>
-          {noteId === 'myPage' ? (
-            ''
-          ) : (
+          {noteId !== 'myPage' && (
             <L.FloatingButton
               shape="circle"
               type="primary"
@@ -118,7 +148,7 @@ const ListSection: React.FC<IProps> = ({ guestBookList: list, noteId }) => {
           onClose={onToggle}
           open={isSelect}
         >
-          {selectedBox ? (
+          {selectedBox && (
             <GuestBookBox
               size={{ width: '350px', height: '368px', line: false }}
               text={selectedBox.content}
@@ -134,8 +164,6 @@ const ListSection: React.FC<IProps> = ({ guestBookList: list, noteId }) => {
                 </div>
               </>
             </GuestBookBox>
-          ) : (
-            ''
           )}
           {noteId === 'mySchool' ? (
             <L.BottomButton type="primary" onClick={onClickRoute}>
