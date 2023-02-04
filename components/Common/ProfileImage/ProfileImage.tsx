@@ -9,7 +9,7 @@ const ProfileImage: React.FC<IProfileProps> = ({ ...props }) => {
     <>
       <P.ProfileWrapper size={props.size} url={props.url}>
         {props.url ? (
-          <P.Profile size={props.size}>
+          <P.Profile size={props.size} url={props.url}>
             <AutoHeightImage src={props.url} alt="noProfileImage" />
           </P.Profile>
         ) : (
