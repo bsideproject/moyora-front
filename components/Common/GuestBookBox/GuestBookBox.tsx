@@ -36,7 +36,7 @@ const GuestBookBox: React.FC<IProps> = ({ info, size, text, date, onClick, child
           )}
         </div>
         <G.BoxInfo lock={info?.lock}>
-          <div>{info?.name && !info?.lock ? <Image src={Lock} alt="lock" /> : ''}</div>
+          <div>{info?.name && info?.lock ? <Image src={Lock} alt="lock" /> : ''}</div>
           <div>
             {info?.name ? (
               <>
