@@ -3,15 +3,16 @@ import Image from 'next/image';
 import { useToggle } from 'react-use';
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, BarElement, CategoryScale, LinearScale } from 'chart.js';
-
+import { Button } from 'antd';
 import { barOptions } from '@configs/bigContents';
-
 import Arrow from '@public/svgs/arrow-bottom.svg';
 import S from './Statistics.styles';
 import { useMyInfo } from '@APIs/user';
 import { useGetMbti } from '@APIs/statistics';
+import { useRouter } from 'next/router';
 
 const MBTIStatistics: React.FC = () => {
+  const router = useRouter();
   ChartJS.register(BarElement, CategoryScale, LinearScale);
   const { data: me } = useMyInfo();
   const { data: mbti } = useGetMbti('' + me?.schoolId, { enabled: Boolean(me) });
@@ -43,7 +44,21 @@ const MBTIStatistics: React.FC = () => {
       },
     ],
   };
-  if (!mbti?.data.length) return <></>;
+  const { data } = useMyInfo();
+  const onClick = () => {
+    router.replace('/mypage/edit-profile', '', { shallow: true });
+  };
+  if (!mbti?.data.length && data?.mbti)
+    return (
+      <S.StatisticsCardWrap>
+        <div className="empty">
+          <h2>내 동창들의 MBTI가 궁금하다면?</h2>
+          <Button type="primary" onClick={onClick}>
+            MBTI 입력하기
+          </Button>
+        </div>
+      </S.StatisticsCardWrap>
+    );
   return (
     <S.StatisticsCardWrap>
       <h2>내 동창들은 어떤 MBTI가 가장 많을까?</h2>
@@ -64,8 +79,8 @@ const MBTIStatistics: React.FC = () => {
           );
         })}
       </S.StatisticsDetailWrap>
-      <S.MoreStatisticsButton block onClick={toggleButtonTest} isToggle={isButtonTest}>
-        직업 통계 {isButtonTest ? '더보기' : '접기'}
+      <S.MoreStatisticsButton block onClick={toggleButtonTest} toggle={isButtonTest.toString()}>
+        MBTI 통계 {isButtonTest ? '더보기' : '접기'}
         <Image src={Arrow} alt="arrow" />
       </S.MoreStatisticsButton>
     </S.StatisticsCardWrap>

@@ -37,7 +37,7 @@ const Introduction: React.FC = () => {
         <p onClick={onClickSignup()}>건너뛰기</p>
       </LogoSmallSection>
       <h2>
-        전체 학교 동창 친구들에게
+        우리 학교 동창 친구들에게
         <br />
         한마디 남겨주세요.😆
       </h2>

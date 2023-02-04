@@ -54,6 +54,18 @@ const StatisticsCardWrap = styled.div`
       margin-left: 2px;
     }
   }
+
+  & div.empty {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    & button {
+      width: 124px;
+      height: 44px;
+    }
+  }
 `;
 
 const StatisticsDetailWrap = styled.div`
@@ -83,7 +95,7 @@ const StatisticsDetailCard = styled.div<{ colorIndex: number }>`
   }
 `;
 
-const MoreStatisticsButton = styled(Button)<{ isToggle?: boolean }>`
+const MoreStatisticsButton = styled(Button)<{ toggle?: string }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -99,7 +111,7 @@ const MoreStatisticsButton = styled(Button)<{ isToggle?: boolean }>`
   & img {
     display: inline-block;
     margin-left: 2px;
-    rotate: ${({ isToggle }) => (isToggle ? 0 : 180)}deg;
+    rotate: ${({ toggle }) => (toggle == 'true' ? 0 : 180)}deg;
   }
 `;
 

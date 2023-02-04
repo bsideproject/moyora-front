@@ -27,6 +27,7 @@ const Profile = styled.div<IProfileProps>`
   position: relative;
   width: ${({ size }) => sizes[size].imgSize};
   height: ${({ size }) => sizes[size].imgSize};
+  border-radius: 50%;
 `;
 
 const P = {

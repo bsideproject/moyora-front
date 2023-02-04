@@ -50,7 +50,7 @@ const StepOne: React.FC = () => {
       />
       <h3>졸업연도는 언제인가요?</h3>
       <S.SignupSelect
-        placeholder="졸업연도"
+        placeholder="졸업연도 선택"
         isfill={graduationYear}
         onChange={onSelectGraduationYear}
         options={options}
