@@ -115,9 +115,7 @@ const Archive: React.FC = () => {
       <A.GrayDiv />
       <A.Note>
         <div>
-          <h1>
-            {id === 'myPage' ? '내 쪽지' : `${infoData?.name || infoData?.username}님의 쪽지`}
-          </h1>
+          <h1>{id === 'myPage' ? '내 쪽지' : `${infoData?.name || infoData?.username}의 쪽지`}</h1>
           <button onClick={onClickNote}>
             <p>자세히 보기 &gt;</p>
           </button>
