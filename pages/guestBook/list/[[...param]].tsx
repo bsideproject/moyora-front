@@ -70,7 +70,7 @@ const List: React.FC = () => {
               <>
                 {noteList?.length ? (
                   <>
-                    {id === 'myPage' ? '내 ' : `${mate?.username}님의 `}쪽지가{' '}
+                    {id === 'myPage' ? '내 ' : `${mate?.username}의 `}쪽지가{' '}
                     <b>{noteList?.length}개</b> 있어요!
                   </>
                 ) : (
