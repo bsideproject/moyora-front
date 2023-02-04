@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import Image from 'next/image';
 import { useToggle } from 'react-use';
 import { useRouter } from 'next/router';
@@ -19,6 +19,8 @@ const StepThree: React.FC = () => {
   const [jobCategory, setJobCategory] = useState(me?.category ?? '');
   const [job, setJob] = useState(me?.job ?? '');
   const [isSelect, onToggle] = useToggle(false);
+
+  const isDisabled = useMemo(() => Boolean(!jobCategory || !job), [jobCategory, job]);
 
   const { data: jobs } = useGetJobs(jobCategory, { enabled: Boolean(jobCategory) });
 
@@ -45,7 +47,7 @@ const StepThree: React.FC = () => {
       <S.SignupInput
         readOnly
         bordered={false}
-        placeholder="직군/직무를 선택하기"
+        placeholder="직군/직무를 선택"
         isfill={jobCategory}
         value={jobCategory}
         suffix={<Image src={ChevronRight} alt="chevron-right" />}
@@ -55,7 +57,7 @@ const StepThree: React.FC = () => {
         <S.SignupInput
           readOnly
           bordered={false}
-          placeholder="직군/직무를 선택하기"
+          placeholder="직군/직무를 선택"
           isfill={job}
           value={job}
           suffix={<Image src={ChevronRight} alt="chevron-right" />}
@@ -81,9 +83,6 @@ const StepThree: React.FC = () => {
         >
           {jobCategories?.map(({ name }) => (
             <S.Panel header={name} key={name}>
-              <li className="all" onClick={onClickSignupInput({ category: name, jobName: '전체' })}>
-                전체
-              </li>
               {jobs?.map(({ name: jobName }) => (
                 <li key={jobName} onClick={onClickSignupInput({ category: name, jobName })}>
                   {jobName}
@@ -93,7 +92,7 @@ const StepThree: React.FC = () => {
           ))}
         </S.SignupCollapse>
       </S.JobDrawer>
-      <CommonButton type="primary" onClick={onClickNext}>
+      <CommonButton type="primary" disabled={isDisabled} onClick={onClickNext}>
         다음
       </CommonButton>
     </S.SignupInputWrapper>

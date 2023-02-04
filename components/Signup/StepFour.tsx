@@ -28,6 +28,11 @@ const StepFour: React.FC = () => {
   const { data: stateData } = useGetState();
   const { data: cityData } = useGetCity(parentRegion ?? '', { enabled: Boolean(parentRegion) });
 
+  const isDisabled = useMemo(
+    () => Boolean(!parentRegion || !childRegion),
+    [parentRegion, childRegion],
+  );
+
   const stateOptions = useMemo(
     () =>
       stateData?.length
@@ -84,7 +89,7 @@ const StepFour: React.FC = () => {
           suffixIcon={<Image src={SelectAllow} alt="select-allow" />}
         />
       </div>
-      <CommonButton type="primary" onClick={onClickNext}>
+      <CommonButton type="primary" disabled={isDisabled} onClick={onClickNext}>
         다음
       </CommonButton>
     </S.SignupInputWrapper>

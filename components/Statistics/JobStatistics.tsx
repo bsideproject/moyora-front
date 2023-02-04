@@ -32,7 +32,7 @@ const JobStatistics: React.FC = () => {
           );
         })}
       </S.StatisticsDetailWrap>
-      <S.MoreStatisticsButton block onClick={toggleButtonTest} isToggle={isButtonTest}>
+      <S.MoreStatisticsButton block onClick={toggleButtonTest} toggle={isButtonTest.toString()}>
         직업 통계 {isButtonTest ? '더보기' : '접기'}
         <Image src={Arrow} alt="arrow" />
       </S.MoreStatisticsButton>

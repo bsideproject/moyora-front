@@ -37,8 +37,14 @@ const FriendsList = styled.div`
   height: calc(100vh - 120px);
   overflow: scroll;
   & > div {
+    &:first-of-type {
+      margin-top: 40px;
+    }
     &:not(:first-of-type) {
       margin-top: 12px;
+    }
+    & > div:first-of-type {
+      margin-right: 12px;
     }
     display: flex;
     align-items: center;

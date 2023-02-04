@@ -16,7 +16,7 @@ import LogoHeader from '@components/Common/LogoHeader';
 import LinkIcon from '@public/svgs/moyora-icons-link.svg';
 import KakaoIcon from '@public/svgs/kakao-icons-sharing.svg';
 import ParticleGroup from '@public/svgs/moyora-particles-group.svg';
-
+import { useMyInfo } from '@APIs/user';
 import S from '@components/Signup/Signup.styles';
 
 dayjs.locale('ko');
@@ -31,6 +31,8 @@ const URL =
 const SignUpComplete: React.FC = () => {
   const router = useRouter();
 
+  const { data } = useMyInfo();
+
   const [counterDay, setCounterDay] = useState('00');
   const [counterHour, setCounterHour] = useState('00');
   const [counterMinute, setCounterMinute] = useState('00');
@@ -38,6 +40,7 @@ const SignUpComplete: React.FC = () => {
   const [isCopy, isToggleCopy] = useToggle(false);
 
   const onClickRoute = () => router.replace('/');
+  const bracket = /\([^)]*\)/;
 
   const onClickKakaoShare = () => {
     if (!window?.Kakao?.isInitialized()) {
@@ -76,13 +79,20 @@ const SignUpComplete: React.FC = () => {
     [counterDay, counterHour, counterMinute, counterSecond].every((isLoading) => isLoading === '00')
   )
     return null;
-
   return (
     <S.SignUpCompleteWrapper>
       <LogoHeader />
       <div>
         <Image src={ParticleGroup} alt="moyora-particle" priority />
-        <h3 className={DDAY >= toDay ? '' : 'open'}>회원가입이 완료되었어요!</h3>
+        {data?.schoolName ? (
+          <h1>
+            <b>{data?.schoolName.replace(bracket, '')}</b>
+            <br />
+            여기여기 모여라~
+          </h1>
+        ) : (
+          ''
+        )}
         {DDAY >= toDay ? (
           <>
             <h2>
