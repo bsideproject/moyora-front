@@ -16,8 +16,6 @@ import Link from 'next/link';
 import CloseIcon from '@public/svgs/icon-close.svg';
 import { useMyInfo } from '@APIs/user';
 import ProfileImage from '../ProfileImage';
-import { useQueryClient } from '@tanstack/react-query';
-import { useCookies } from 'react-cookie';
 
 interface IProps {
   headerIcons?: boolean;
@@ -27,17 +25,10 @@ interface IProps {
 
 const LogoHeader: React.FC<IProps> = ({ headerIcons, backgroundPrimary, children }) => {
   const router = useRouter();
-  const queryClient = useQueryClient();
-  const [, , removeCookie] = useCookies(['moyora']);
-
   const { data: me } = useMyInfo();
   const [isSelect, onToggle] = useToggle(false);
   const [isLogout, setIsLogout] = useState(false);
-  const onClickLogout = () => {
-    removeCookie('moyora');
-    queryClient.setQueryData(['/user/myinfo'], null);
-    router.replace('/');
-  };
+  const onClickLogout = () => router.replace('/');
   return (
     <L.LogoHeaderWrapper backgroundPrimary={backgroundPrimary}>
       <Link href="/">
