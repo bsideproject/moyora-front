@@ -17,4 +17,5 @@ export interface ISchoolGuestBook {
 export interface IEditSchoolGuestBook {
   content: string;
   schoolGuestBookId: number;
+  sticker: string;
 }

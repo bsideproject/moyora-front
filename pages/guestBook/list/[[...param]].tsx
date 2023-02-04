@@ -38,44 +38,49 @@ const List: React.FC = () => {
         <div>
           <div>
             {id === 'mySchool' ? (
-              guestBookList?.length ? (
-                <>
-                  우리 학교 방명록이 <b>{guestBookList.length}개</b> 있어요!
-                  <ListSection guestBookList={guestBookList} noteId={id} />
-                </>
-              ) : (
-                <>
-                  <br />
-                  아직 작성된 방명록이 없어요.
-                  <br />
-                  가장 먼저 우리 학교 방명록에 글을 남겨보세요!
-                </>
-              )
-            ) : id === 'myPage' ? (
-              myNoteList?.length ? (
-                <>
-                  {id === 'myPage' ? '내 ' : ''}쪽지가 <b>{myNoteList?.length}개</b> 있어요!
-                  <ListSection guestBookList={myNoteList} noteId={id} />
-                </>
-              ) : (
-                <>
-                  <br />
-                  아직 작성된 방명록이 없어요.
-                  <br />
-                  가장 먼저 방명록에 글을 남겨보세요!
-                </>
-              )
-            ) : noteList?.length ? (
               <>
-                {id === 'myPage' ? '내 ' : ''}쪽지가 <b>{noteList?.length}개</b> 있어요!
-                <ListSection guestBookList={noteList} noteId={id} />
+                {guestBookList?.length ? (
+                  <>
+                    우리 학교 방명록이 <b>{guestBookList.length}개</b> 있어요!
+                  </>
+                ) : (
+                  <>
+                    아직 작성된 방명록이 없어요.
+                    <br />
+                    가장 먼저 우리 학교 방명록에 글을 남겨보세요!
+                  </>
+                )}
+                <ListSection guestBookList={guestBookList} noteId={id} />
+              </>
+            ) : id === 'myPage' ? (
+              <>
+                {myNoteList?.length ? (
+                  <>
+                    {id === 'myPage' ? '내 ' : ''}쪽지가 <b>{myNoteList?.length}개</b> 있어요!
+                  </>
+                ) : (
+                  <>
+                    아직 작성된 쪽지가 없어요.
+                    <br />
+                    친구를 초대하고 부탁해 보세요!
+                  </>
+                )}
+                <ListSection guestBookList={myNoteList} noteId={id} />
               </>
             ) : (
               <>
-                <br />
-                아직 작성된 방명록이 없어요.
-                <br />
-                가장 먼저 방명록에 글을 남겨보세요!
+                {noteList?.length ? (
+                  <>
+                    {id === 'myPage' ? '내 ' : ''}쪽지가 <b>{noteList?.length}개</b> 있어요!
+                  </>
+                ) : (
+                  <>
+                    아직 작성된 쪽지가 없어요.
+                    <br />
+                    친구를 초대하고 부탁해 보세요!
+                  </>
+                )}
+                <ListSection guestBookList={noteList} noteId={id} />
               </>
             )}
           </div>

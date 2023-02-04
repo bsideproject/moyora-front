@@ -40,9 +40,9 @@ const WriteBeta: React.FC = () => {
     }
   };
 
-  const onClickWrite = () => {
+  const onClickWrite = async () => {
     if (id === 'mySchool')
-      guestBookMutate({
+      await guestBookMutate({
         content: guestBookText,
         schoolId: +(me?.schoolId ?? 0),
         sticker: selectedSticker,
