@@ -22,6 +22,7 @@ const ListSection = styled.section`
   flex-wrap: wrap;
   justify-content: space-between;
   height: calc(100vh-84px);
+  margin-top: 20px;
   & > div {
     margin-bottom: 12px;
   }

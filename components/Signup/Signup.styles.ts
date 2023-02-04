@@ -258,6 +258,17 @@ const SignUpCompleteWrapper = styled.section`
     min-height: calc(100vh - 124px);
     margin-top: 68px;
     text-align: center;
+    & > h1 {
+      margin: 35px auto;
+      font-size: 28px;
+      line-height: 40px;
+      font-weight: 400;
+      color: ${({ theme }) => theme.primary};
+      & > b {
+        font-size: 32px;
+        font-weight: 500;
+      }
+    }
 
     & > h3 {
       margin-top: 43px;
@@ -272,7 +283,6 @@ const SignUpCompleteWrapper = styled.section`
     }
 
     & > h2 {
-      margin: 20px -3px 0;
       font-family: GmarketSans;
       font-size: 28px;
       font-weight: 700;

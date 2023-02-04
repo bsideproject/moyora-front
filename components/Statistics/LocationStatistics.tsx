@@ -32,8 +32,8 @@ const LocationStatistics: React.FC = () => {
           );
         })}
       </S.StatisticsDetailWrap>
-      <S.MoreStatisticsButton block onClick={toggleButtonTest} isToggle={isButtonTest}>
-        직업 통계 {isButtonTest ? '더보기' : '접기'}
+      <S.MoreStatisticsButton block onClick={toggleButtonTest} toggle={isButtonTest.toString()}>
+        지역 통계 {isButtonTest ? '더보기' : '접기'}
         <Image src={Arrow} alt="arrow" />
       </S.MoreStatisticsButton>
     </S.StatisticsCardWrap>
