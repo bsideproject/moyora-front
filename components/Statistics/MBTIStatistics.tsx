@@ -65,7 +65,7 @@ const MBTIStatistics: React.FC = () => {
       </div>
       <S.StatisticsDetailWrap>
         {mbti?.data.map(({ title, value }, index) => {
-          if (index > 3 && isButtonTest) return;
+          if ((index > 3 && isButtonTest) || value === 0) return;
           return (
             <S.StatisticsDetailCard key={index.toString()} colorIndex={index}>
               <div>
