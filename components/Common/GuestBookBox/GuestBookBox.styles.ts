@@ -41,7 +41,7 @@ const Textarea = styled.textarea<IProps>`
   font-size: ${({ size }) => (size.line ? '14px' : '16px')};
   font-weight: 400;
   line-height: ${({ size }) => (size.line ? '20px' : '24px')};
-  color: ${({ theme }) => theme.gray850};
+  color: ${({ theme }) => theme.gray850} !important;
   text-overflow: ellipsis;
   word-wrap: break-word;
   resize: none;

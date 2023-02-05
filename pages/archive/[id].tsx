@@ -111,7 +111,7 @@ const Archive: React.FC = () => {
         </div>
         <span></span>
         <div>
-          <h4>{infoData?.birthDate ? infoData?.birthDate : '-'}</h4>
+          <h4>{infoData?.birthDate ? infoData?.birthDate.slice(2) : '-'}</h4>
           <p>생일</p>
         </div>
       </A.EtcInfo>
