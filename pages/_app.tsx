@@ -1,6 +1,6 @@
 import '@styles/global.css';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Script from 'next/script';
 import localFont from '@next/font/local';
@@ -63,57 +63,79 @@ const antdTheme = {
   },
 };
 
-const App = ({ Component, pageProps }: AppProps) => (
-  <QueryClientProvider client={client}>
-    <Hydrate state={pageProps?.dehydratedState}>
-      <GlobalStyle />
-      {process.env.NODE_ENV !== 'production' ? <ReactQueryDevtools initialIsOpen={false} /> : null}
-      <ConfigProvider theme={antdTheme}>
-        <ThemeProvider theme={theme}>
-          <Head>
-            <title>모여라</title>
-            <meta name="title" content="모여라" />
-            <meta name="description" content="초등학교 온라인 동창회, 우리 학교 여기여기 모여라!" />
-            <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
-            <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png" />
-            <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png" />
-            <link rel="manifest" href="/icons/site.webmanifest" />
+const App = ({ Component, pageProps }: AppProps) => {
+  const [width, setWidth] = useState<number | false>(100);
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setWidth(screen.width / 390);
+    }
+  }, [width]);
 
-            <meta property="og:type" content="website" />
-            <meta property="og:url" content={process.env.NEXT_PUBLIC_DOMAIN_URL} />
-            <meta property="og:title" content="모여라" />
-            <meta
-              property="og:description"
-              content="초등학교 온라인 동창회, 우리 학교 여기여기 모여라!"
-            />
-            <meta property="og:image" content="https://www.moyorafriends.co.kr/thumbnail.png" />
+  return (
+    <QueryClientProvider client={client}>
+      <Hydrate state={pageProps?.dehydratedState}>
+        <GlobalStyle />
+        {process.env.NODE_ENV !== 'production' ? (
+          <ReactQueryDevtools initialIsOpen={false} />
+        ) : null}
+        <ConfigProvider theme={antdTheme}>
+          <ThemeProvider theme={theme}>
+            <Head>
+              {width <= 1 && (
+                <meta
+                  name="viewport"
+                  content={`user-scalable=no, width=device-width, viewport-fit=auto, initial-scale=${
+                    width || 1
+                  }, minimum-scale=${width || 1}, maximum-scale=${width || 1}`}
+                />
+              )}
+              <title>모여라</title>
+              <meta name="title" content="모여라" />
+              <meta
+                name="description"
+                content="초등학교 온라인 동창회, 우리 학교 여기여기 모여라!"
+              />
+              <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+              <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png" />
+              <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png" />
+              <link rel="manifest" href="/icons/site.webmanifest" />
 
-            <meta property="twitter:card" content="summary_large_image" />
-            <meta property="twitter:url" content={process.env.NEXT_PUBLIC_DOMAIN_URL} />
-            <meta property="twitter:title" content="모여라" />
-            <meta
-              property="twitter:description"
-              content="초등학교 온라인 동창회, 우리 학교 여기여기 모여라!"
+              <meta property="og:type" content="website" />
+              <meta property="og:url" content={process.env.NEXT_PUBLIC_DOMAIN_URL} />
+              <meta property="og:title" content="모여라" />
+              <meta
+                property="og:description"
+                content="초등학교 온라인 동창회, 우리 학교 여기여기 모여라!"
+              />
+              <meta property="og:image" content="https://www.moyorafriends.co.kr/thumbnail.png" />
+
+              <meta property="twitter:card" content="summary_large_image" />
+              <meta property="twitter:url" content={process.env.NEXT_PUBLIC_DOMAIN_URL} />
+              <meta property="twitter:title" content="모여라" />
+              <meta
+                property="twitter:description"
+                content="초등학교 온라인 동창회, 우리 학교 여기여기 모여라!"
+              />
+              <meta
+                property="twitter:image"
+                content="https://www.moyorafriends.co.kr/thumbnail.png"
+              />
+            </Head>
+            <Script
+              src="https://t1.kakaocdn.net/kakao_js_sdk/2.1.0/kakao.min.js"
+              integrity="sha384-dpu02ieKC6NUeKFoGMOKz6102CLEWi9+5RQjWSV0ikYSFFd8M3Wp2reIcquJOemx"
+              crossOrigin="anonymous"
             />
-            <meta
-              property="twitter:image"
-              content="https://www.moyorafriends.co.kr/thumbnail.png"
-            />
-          </Head>
-          <Script
-            src="https://t1.kakaocdn.net/kakao_js_sdk/2.1.0/kakao.min.js"
-            integrity="sha384-dpu02ieKC6NUeKFoGMOKz6102CLEWi9+5RQjWSV0ikYSFFd8M3Wp2reIcquJOemx"
-            crossOrigin="anonymous"
-          />
-          <AppLayout>
-            <main>
-              <Component {...pageProps} />
-            </main>
-          </AppLayout>
-        </ThemeProvider>
-      </ConfigProvider>
-    </Hydrate>
-  </QueryClientProvider>
-);
+            <AppLayout>
+              <main>
+                <Component {...pageProps} />
+              </main>
+            </AppLayout>
+          </ThemeProvider>
+        </ConfigProvider>
+      </Hydrate>
+    </QueryClientProvider>
+  );
+};
 
 export default App;

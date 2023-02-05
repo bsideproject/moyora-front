@@ -31,7 +31,7 @@ const JobStatistics: React.FC = () => {
       </div>
       <S.StatisticsDetailWrap>
         {job?.data.map(({ title, value }, index) => {
-          if (index > 3 && isButtonTest) return;
+          if ((index > 3 && isButtonTest) || value === 0) return;
           return (
             <S.StatisticsDetailCard key={index.toString()} colorIndex={index}>
               <div>
