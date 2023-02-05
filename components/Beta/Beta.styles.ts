@@ -140,14 +140,14 @@ const BannerSection = styled(MainSection)`
           }
         }
         & button {
-          height: 40px;
           width: 175px;
+          height: 40px;
           font-size: 14px;
           font-weight: 700;
           border-radius: 8px;
           @media screen and (min-width: 768px) {
-            height: 64px;
             width: 269px;
+            height: 64px;
             font-size: 20px;
           }
         }
@@ -159,7 +159,15 @@ const BannerSection = styled(MainSection)`
             }
           }
           & p {
-            margin-top: 32px;
+            margin-top: 45px;
+            @media screen and (min-width: 768px) {
+              margin-top: 32px;
+            }
+          }
+          & br.mobile {
+            @media screen and (min-width: 768px) {
+              display: none;
+            }
           }
         }
       }
@@ -553,8 +561,8 @@ const FooterSection = styled(MainSection)`
     & > div {
       display: flex;
       flex-direction: row;
-      justify-content: space-between;
       align-items: flex-end;
+      justify-content: space-between;
       & > div {
         display: flex;
         & a + a {
