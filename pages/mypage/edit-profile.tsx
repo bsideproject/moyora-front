@@ -48,12 +48,12 @@ const EditProfile: React.FC = () => {
   const [isPublic, togglePublic] = useToggle(me?.isPublic ?? true);
   const [mbti, setMBTI] = useState(me?.mbti);
   const onChangeMBTI = (v: unknown) => setMBTI(v as string);
-  const [year, setYear] = useState(me?.birthDate?.split('-')[0] || undefined);
-  const [month, setMonth] = useState(me?.birthDate?.split('-')[1]);
-  const [day, setDay] = useState(me?.birthDate?.split('-')[2]);
-  const onChangeYear = (v: unknown) => setYear(v as string);
-  const onChangeMonth = (v: unknown) => setMonth(v as string);
-  const onChangeDay = (v: unknown) => setDay(v as string);
+  const [year, setYear] = useState(me?.birthDate?.split('.')?.[0] || undefined);
+  const [month, setMonth] = useState(me?.birthDate?.split('.')[1]);
+  const [day, setDay] = useState(me?.birthDate?.split('.')[2]);
+  const onChangeYear = (v: unknown) => setYear((v || undefined) as string);
+  const onChangeMonth = (v: unknown) => setMonth((v || undefined) as string);
+  const onChangeDay = (v: unknown) => setDay((v || undefined) as string);
   const onClickSelectJob =
     ({ category, jobName }: { category: string; jobName: string }) =>
     () => {
@@ -113,7 +113,8 @@ const EditProfile: React.FC = () => {
     const instagram = urls.filter((v) => v.value === 'instagram')[0]?.url;
     const youtube = urls.filter((v) => v.value === 'youtube')[0]?.url;
     const facebook = urls.filter((v) => v.value === 'facebook')[0]?.url;
-    const birthdate = year ? `${year}-${fillZero(+(month ?? 0))}-${fillZero(+(day ?? 0))}` : null;
+    const birthDate = year ? `${year}-${fillZero(+(month ?? 0))}-${fillZero(+(day ?? 0))}` : null;
+    console.log(birthDate);
     mutate({
       job,
       regionId: childRegion?.value,
@@ -122,7 +123,7 @@ const EditProfile: React.FC = () => {
       instagram,
       youtube,
       facebook,
-      birthdate,
+      birthDate,
     });
   };
 

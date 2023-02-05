@@ -21,24 +21,24 @@ const MBTIStatistics: React.FC = () => {
     labels: [''],
     datasets: [
       {
-        data: [mbti?.chart[0]],
+        data: [mbti?.chart?.[0] ?? 0],
         backgroundColor: '#FF6D3A',
         borderRadius: 50,
       },
       {
-        data: [mbti?.chart[1] ?? 0],
+        data: [mbti?.chart?.[1] ?? 0],
         backgroundColor: '#4181F0',
       },
       {
-        data: [mbti?.chart[2] ?? 0],
+        data: [mbti?.chart?.[2] ?? 0],
         backgroundColor: '#F4B95C',
       },
       {
-        data: [mbti?.chart[3] ?? 0],
+        data: [mbti?.chart?.[3] ?? 0],
         backgroundColor: '#71BA9D',
       },
       {
-        data: [mbti?.chart[4] ?? 0],
+        data: [mbti?.chart?.[4] ?? 0],
         backgroundColor: '#B8C6FB',
         borderRadius: 50,
       },
@@ -48,7 +48,7 @@ const MBTIStatistics: React.FC = () => {
   const onClick = () => {
     router.replace('/mypage/edit-profile', '', { shallow: true });
   };
-  if (!mbti?.data.length && !data?.mbti)
+  if (!mbti?.data.length || !data?.mbti)
     return (
       <S.StatisticsCardWrap>
         <div className="empty">
