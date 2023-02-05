@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 
 const getGraduationYear = () => {
   const thisYear = dayjs().year();
-  return [...Array(thisYear - 1900)].map((_v, i) => {
+  return [...Array(thisYear - 1899)].map((_v, i) => {
     if (i === 0)
       return {
         label: '연 선택',
@@ -28,8 +28,8 @@ export const getDay = () =>
   new Array(32).fill(null).map((_v, i) => {
     if (i === 0) return { label: '일 선택', value: '' };
     return {
-      label: i + 1,
-      value: i + 1,
+      label: i,
+      value: i,
     };
   });
 
