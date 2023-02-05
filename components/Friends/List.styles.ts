@@ -19,11 +19,11 @@ const FriendsListWrapper = styled.section`
       color: ${({ theme }) => theme.primary};
     }
     & > div {
-      width: 92px;
-      height: 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      width: 92px;
+      height: 24px;
       cursor: pointer;
     }
   }
@@ -34,13 +34,8 @@ const FriendsList = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  height: calc(100vh - 130px);
-  overflow: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
+  margin-bottom: 48px;
+
   & > div {
     &:not(:first-of-type) {
       margin-top: 12px;
@@ -53,9 +48,9 @@ const FriendsList = styled.div`
     width: 350px;
     height: 80px;
     padding: 18px 20px;
+    cursor: pointer;
     background: #fff4ec;
     border-radius: 16px;
-    cursor: pointer;
     & h3 {
       font-size: 16px;
       font-weight: 400;
