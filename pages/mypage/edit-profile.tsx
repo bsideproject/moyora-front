@@ -1,44 +1,175 @@
+/* eslint-disable max-lines */
 import React, { useMemo, useState } from 'react';
 import Image from 'next/image';
 import { useToggle } from 'react-use';
 import { useRouter } from 'next/router';
 
-import { dummyMBTIOptions, dummySNSOptions } from '@configs/bigContents';
+import { MBTIOptions, snsOptions } from '@configs/bigContents';
 
 import CommonButton from '@atoms/CommonButton';
 import LogoHeader from '@components/Common/LogoHeader';
 
 import ErrorIcon from '@public/svgs/error-icon.svg';
 import SelectAllow from '@public/svgs/select-allow.svg';
-import ChevronRight from '@public/svgs/chevron-right.svg';
 
 import M from '@components/Mypage/Mypage.styles';
-import getGraduationYear from '@utils/getGraduationYear';
-import useInput from '@utils/useInput';
-import { Switch } from 'antd';
+import { useEditProfile, useMyInfo } from '@APIs/user';
+import { BaseOptionType } from 'antd/es/select';
+import { dehydrate, QueryClient, useQueryClient } from '@tanstack/react-query';
+import { GetServerSideProps } from 'next';
+import axios from 'axios';
+import BirthDaySection from '@components/Mypage/BirthDaySection';
+import PublicSwitchSection from '@components/Mypage/PublicSwitchSection';
+import SelectJobSection from '@components/Mypage/SelectJobSection';
+import SelectLocationSection from '@components/Mypage/SelectLocationSection';
+
+interface ICity {
+  label: string;
+  value: number;
+}
+
+const baseURL =
+  process.env.NODE_ENV !== 'production'
+    ? process.env.NEXT_PUBLIC_SERVER_DEV_URL
+    : process.env.NEXT_PUBLIC_SERVER_URL;
 
 const urlRegex = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
 
 const EditProfile: React.FC = () => {
   const router = useRouter();
-  const [isSelect, onToggle] = useToggle(false);
-  const [isError, setError] = useState<null | boolean>(null);
-  const [job, setJob] = useState('마케팅/광고/홍보');
-  const [url, onChangeUrl] = useInput('');
+  const queryClient = useQueryClient();
 
-  const onFocusUrl = () => setError(null);
+  const { data: me } = useMyInfo();
+  const [isSelect, onToggle] = useToggle(false);
+  const [jobCategory, setJobCategory] = useState(me?.jobCategory ?? '');
+  const [job, setJob] = useState(me?.job ?? '');
+
+  const onChangeCategory = (category: string | string[]) => {
+    if (typeof category === 'string') setJobCategory(category);
+  };
+
+  const [parentRegion, setParentRegion] = useState<string | null>(
+    me?.residence?.split(' ')[0] || null,
+  );
+  const [childRegion, setChildRegion] = useState<ICity | null>(
+    me?.residence ? { label: me?.residence?.split(' ')[1] ?? '', value: me?.regionId ?? 0 } : null,
+  );
+
+  const onChangeState = (v: unknown) => {
+    setChildRegion(null);
+    setParentRegion(v as string);
+  };
+  const onChangeCity = (_: unknown, option: BaseOptionType) =>
+    setChildRegion(option as unknown as ICity);
+
+  const [isPublic, togglePublic] = useToggle(me?.isPublic ?? true);
+
+  const [mbti, setMBTI] = useState(me?.mbti);
+  const onChangeMBTI = (v: unknown) => setMBTI(v as string);
+
+  const [year, setYear] = useState(me?.birthDate?.split('-')[0] || undefined);
+  const [month, setMonth] = useState(me?.birthDate?.split('-')[1]);
+  const [day, setDay] = useState(me?.birthDate?.split('-')[2]);
+
+  const onChangeYear = (v: unknown) => setYear(v as string);
+  const onChangeMonth = (v: unknown) => setMonth(v as string);
+  const onChangeDay = (v: unknown) => setDay(v as string);
+
+  const onClickSelectJob =
+    ({ category, jobName }: { category: string; jobName: string }) =>
+    () => {
+      setJobCategory(category);
+      setJob(jobName);
+      onToggle(false);
+    };
+
+  const sns: { [key: string]: string } = useMemo(
+    () => ({
+      instagram: me?.instagram ?? '',
+      youtube: me?.youtube ?? '',
+      facebook: me?.facebook ?? '',
+    }),
+    [me],
+  );
+
+  const [urls, setUrls] = useState(() => {
+    const data = snsOptions.filter((v) => sns?.[v?.value]);
+    if (!data.length) return [{ label: 'SNS 선택', value: '', url: '' }];
+    return data.map((v) => ({ label: v.label, value: v.value, url: sns?.[v?.value] }));
+  });
+
+  const [isError, setError] = useState<null | boolean>(null);
+
+  const selectedSNS = useMemo(
+    () => snsOptions.filter((v) => !urls.find((url) => v.value && url.value === v.value)),
+    [urls],
+  );
+
+  const onClickAddUrls = () => {
+    setUrls((prev) => [...prev, { label: 'SNS 선택', value: '', url: '' }]);
+  };
+
+  const onSelectUrls = (value: unknown) => {
+    let selected = { label: '', value: '', url: '' };
+    if (value === 'instagram') selected = { label: '인스타그램', value, url: '' };
+    else if (value === 'youtube') selected = { label: '유튜브', value, url: '' };
+    else if (value === 'facebook') selected = { label: '페이스북', value, url: '' };
+    else return;
+    setUrls((prev) => [
+      ...prev.filter((v) => v.label !== 'SNS 선택'),
+      { label: selected?.label, value: selected?.value, url: '' },
+    ]);
+  };
+
+  const onFocusUrl = () => {
+    setError(null);
+  };
 
   const onBlurUrl = () => {
-    setError(url ? !urlRegex.test(url) : false);
+    setError(urls?.at(-1)?.url ? !urlRegex.test(urls?.at(-1)?.url ?? '') : false);
   };
 
-  const options = useMemo(() => getGraduationYear(), []);
+  const onChangeUrl =
+    (label: string, value: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
+      setUrls((prev) => [
+        ...prev.filter((v) => v.label !== label),
+        { label, value, url: e.target.value },
+      ]);
+    };
 
-  const onClickSignupInput = (value: string) => () => {
-    setJob(value);
-    onToggle(false);
+  const isDisabled = useMemo(() => {
+    if (typeof year !== typeof month || typeof month !== typeof day || typeof year !== typeof day)
+      return true;
+
+    return false;
+  }, [day, month, year]);
+
+  const onSuccess = async () => {
+    await queryClient
+      .refetchQueries({ queryKey: ['/user/myinfo'], type: 'active' })
+      .then(() => router.replace('/mypage'));
   };
-  const onClickEditProfile = () => router.replace('/mypage');
+
+  const { mutate } = useEditProfile({ onSuccess });
+
+  const onClickEditProfile = () => {
+    const instagram = urls.filter((v) => v.value === 'instagram')[0]?.url;
+    const youtube = urls.filter((v) => v.value === 'youtube')[0]?.url;
+    const facebook = urls.filter((v) => v.value === 'facebook')[0]?.url;
+    const birthdate = year ? `${year}-${month}-${day}` : null;
+    const data = {
+      job,
+      regionId: childRegion?.value,
+      isPublic,
+      mbti,
+      instagram,
+      youtube,
+      facebook,
+      birthdate,
+    };
+    mutate(data);
+  };
+
   return (
     <M.MypageInputWrapper>
       <LogoHeader headerIcons />
@@ -48,143 +179,63 @@ const EditProfile: React.FC = () => {
         <h3>
           직업 분야<span> *</span>
         </h3>
-        <M.MypageInput
-          readOnly
-          bordered={false}
-          placeholder="직군/직무를 선택하기"
-          isfill={Boolean(job)}
-          value={job}
-          suffix={<Image src={ChevronRight} alt="chevron-right" />}
-          onClick={onToggle}
+        <SelectJobSection
+          {...{ jobCategory, job, onToggle, isSelect, onChangeCategory, onClickSelectJob }}
         />
-        {job ? (
-          <M.MypageInput
-            readOnly
-            bordered={false}
-            placeholder="직군/직무를 선택하기"
-            isfill={Boolean(job)}
-            value={job}
-            suffix={<Image src={ChevronRight} alt="chevron-right" />}
-            onClick={onToggle}
-          />
-        ) : null}
         <h3>
           거주 지역<span> *</span>
         </h3>
-        <div className="select-group">
-          <M.MypageSelect
-            className="half"
-            placeholder="시/도"
-            options={options}
-            suffixIcon={<Image src={SelectAllow} alt="select-allow" />}
-          />
-          <M.MypageSelect
-            className="half"
-            placeholder="시/구"
-            options={options}
-            suffixIcon={<Image src={SelectAllow} alt="select-allow" />}
-          />
-        </div>
-        <M.JobDrawer
-          title="직군/직무를 선택"
-          placement="bottom"
-          getContainer={false}
-          height="100%"
-          maskStyle={{ width: '100vw', marginLeft: 'calc(-50vw + 50%)' }}
-          onClose={onToggle}
-          open={isSelect}
-        >
-          <M.MypageCollapse
-            ghost
-            accordion
-            expandIconPosition="end"
-            bordered={false}
-            expandIcon={({ isActive }) => (isActive ? '-' : '+')}
-          >
-            <M.Panel header="마케팅/PR" key="pr">
-              <li className="all" onClick={onClickSignupInput('전체')}>
-                전체
-              </li>
-              <li>전체</li>
-              <li>전체</li>
-            </M.Panel>
-            <M.Panel header="마케팅/PR" key="pr1">
-              <li>전체</li>
-              <li>전체</li>
-              <li>전체</li>
-            </M.Panel>
-            <M.Panel header="마케팅/PR" key="pr2">
-              <li>전체</li>
-              <li>전체</li>
-              <li>전체</li>
-            </M.Panel>
-          </M.MypageCollapse>
-        </M.JobDrawer>
-        <M.MypageSwitchWrap>
-          <div>
-            <h3>필수 정보 비공개 설정</h3>
-            <Switch />
-          </div>
-          <p>비공개 시 통계 집계에는 포함되지만 프로필에는 공개되지 않습니다.</p>
-        </M.MypageSwitchWrap>
+        <SelectLocationSection {...{ parentRegion, childRegion, onChangeState, onChangeCity }} />
+        <PublicSwitchSection isPublic onChange={() => togglePublic()} />
       </div>
       <div className="form-section">
         <h4>선택 정보</h4>
         <h3>MBTI</h3>
         <M.MypageSelect
           placeholder="MBTI 유형"
-          options={dummyMBTIOptions}
+          options={MBTIOptions}
+          value={mbti}
+          onChange={onChangeMBTI}
           suffixIcon={<Image src={SelectAllow} alt="select-allow" />}
         />
         <h3>생일</h3>
-        <div className="select-group">
-          <M.MypageSelect
-            className="half"
-            placeholder="시/도"
-            options={options}
-            suffixIcon={<Image src={SelectAllow} alt="select-allow" />}
-          />
-          <M.MypageSelect
-            className="half"
-            placeholder="시/구"
-            options={options}
-            suffixIcon={<Image src={SelectAllow} alt="select-allow" />}
-          />
-          <M.MypageSelect
-            className="half"
-            placeholder="시/구"
-            options={options}
-            suffixIcon={<Image src={SelectAllow} alt="select-allow" />}
-          />
-        </div>
+        <BirthDaySection {...{ year, month, day, onChangeYear, onChangeMonth, onChangeDay }} />
         <h3>SNS 계정</h3>
-        <div className="select-group">
-          <M.MypageSelect
-            defaultValue="SNS 선택"
-            className="half"
-            placeholder="SNS 선택"
-            options={dummySNSOptions}
-            suffixIcon={<Image src={SelectAllow} alt="select-allow" />}
-          />
-          <M.MypageInput
-            isfill
-            status={isError ? 'error' : ''}
-            placeholder="전체 URL 주소를 입력해주세요"
-            value={url}
-            onBlur={onBlurUrl}
-            onFocus={onFocusUrl}
-            onChange={onChangeUrl}
-          />
-        </div>
-        {url && isError === false ? <h5>+ SNS 계정 추가</h5> : null}
-        {url && isError === true ? (
+        {urls?.map((url) => (
+          <div key={url.value} className="select-group">
+            <M.MypageSelect
+              isfill={Boolean(url.value)}
+              defaultValue="SNS 선택"
+              className="half"
+              placeholder="SNS 선택"
+              options={selectedSNS}
+              value={{ label: url.label, value: url.value }}
+              onSelect={onSelectUrls}
+              suffixIcon={<Image src={SelectAllow} alt="select-allow" />}
+            />
+            <M.MypageInput
+              allowClear
+              isfill={Boolean(url.url)}
+              placeholder="전체 URL 주소를 입력해주세요"
+              value={url.url}
+              disabled={!url.value}
+              onBlur={onBlurUrl}
+              onFocus={onFocusUrl}
+              onChange={onChangeUrl(url.label, url.value)}
+            />
+          </div>
+        ))}
+        {selectedSNS?.length > 1 && isError !== true && urlRegex.test(urls.at(-1)?.url ?? '') ? (
+          <h5 onClick={onClickAddUrls}>+ SNS 계정 추가</h5>
+        ) : null}
+        {isError === true ? (
           <span className="error-text">
             <Image src={ErrorIcon} alt="error-icon" />
             전체 URL 주소를 입력해주세요
           </span>
         ) : null}
       </div>
-      <CommonButton type="primary" onClick={onClickEditProfile}>
+      <CommonButton type="primary" disabled={isDisabled} onClick={onClickEditProfile}>
         수정 완료
       </CommonButton>
     </M.MypageInputWrapper>
@@ -192,3 +243,31 @@ const EditProfile: React.FC = () => {
 };
 
 export default EditProfile;
+
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  try {
+    const queryClient = new QueryClient();
+    const moyoraCookie = req?.cookies?.moyora || '';
+    if (!moyoraCookie) return { props: {} };
+    else {
+      const queryKey = `${baseURL}/user/myinfo`;
+      const getMyInfo = () =>
+        axios
+          .get(queryKey, {
+            headers: { Authorization: `Bearer ${moyoraCookie}` },
+          })
+          .then((res) => res.data);
+      if (getMyInfo) {
+        await queryClient.prefetchQuery(['/user/myinfo'], getMyInfo);
+        return {
+          props: {
+            dehydratedState: dehydrate(queryClient),
+          },
+        };
+      } else throw new Error('Not Login');
+    }
+  } catch (error) {
+    console.log(error);
+    return { props: {} };
+  }
+};

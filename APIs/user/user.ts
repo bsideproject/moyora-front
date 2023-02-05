@@ -164,7 +164,11 @@ export const useEditProfile = (
     fetchWithToken.put(queryKey, data).then((res) => res.data);
 
   const onError = (e: AxiosError) =>
-    message.error((e.response?.data as string) || '수정에 실패하셨습니다.\n다시 시도해 주세요 :(');
+    message.error(
+      e.response?.status !== 500
+        ? (e.response?.data as string)
+        : '수정에 실패하셨습니다.\n다시 시도해 주세요 :(',
+    );
   return useMutation([queryKey], queryFn, { onError, ...options });
 };
 

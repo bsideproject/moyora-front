@@ -261,8 +261,8 @@ const SignUpCompleteWrapper = styled.section`
     & > h1 {
       margin: 35px auto;
       font-size: 28px;
-      line-height: 40px;
       font-weight: 400;
+      line-height: 40px;
       color: ${({ theme }) => theme.primary};
       & > b {
         font-size: 32px;

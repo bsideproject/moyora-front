@@ -212,21 +212,25 @@ export const info2 = {
   birthDay: '',
 };
 
-export const dummyMBTIOptions = [
+export const MBTIOptions = [
+  { label: 'MBTI 선택', value: null },
   { label: 'ISTJ', value: 'ISTJ' },
-  { label: 'ENTP', value: 'ENTP' },
+  { label: 'ISTP', value: 'ISTP' },
+  { label: 'ISFJ', value: 'ISFJ' },
+  { label: 'ISFP', value: 'ISFP' },
+  { label: 'INTJ', value: 'INTJ' },
+  { label: 'INTP', value: 'INTP' },
+  { label: 'INFJ', value: 'INFJ' },
+  { label: 'ESTJ', value: 'ESTJ' },
+  { label: 'ESTP', value: 'ESTP' },
+  { label: 'ESFJ', value: 'ESFJ' },
   { label: 'ESFP', value: 'ESFP' },
-  { label: 'INFP', value: 'INFP' },
-  { label: 'INFP', value: 'INFP' },
-  { label: 'INFP', value: 'INFP' },
-  { label: 'INFP', value: 'INFP' },
-  { label: 'INFP', value: 'INFP' },
-  { label: 'INFP', value: 'INFP' },
-  { label: 'INFP', value: 'INFP' },
-  { label: 'INFP', value: 'INFP' },
+  { label: 'ENTJ', value: 'ENTJ' },
+  { label: 'ENTP', value: 'ENTP' },
+  { label: 'ENFJ', value: 'ENFJ' },
 ];
 
-export const dummySNSOptions = [
+export const snsOptions = [
   { label: 'SNS 선택', value: '' },
   { label: '인스타그램', value: 'instagram' },
   { label: '유튜브', value: 'youtube' },

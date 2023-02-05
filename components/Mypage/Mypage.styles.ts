@@ -146,6 +146,7 @@ const LogoutModal = styled(Modal)`
 const MypageInputWrapper = styled.div`
   position: relative;
   min-height: 100vh;
+  padding-bottom: 170px;
 
   & > div + div {
     padding: 24px 0 223px;
@@ -198,7 +199,7 @@ const MypageInputWrapper = styled.div`
 
   & div.select-group {
     display: flex;
-    margin: 0 -4px;
+    margin: 0 -4px 12px;
   }
 
   & h5 {
