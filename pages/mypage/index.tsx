@@ -70,7 +70,6 @@ const Mypage: React.FC = () => {
               src={me?.profile?.startsWith('http') ? me?.profile : Profile}
               width={76}
               height={76}
-              style={{ borderRadius: '50%' }}
               alt="profile"
             />
             <div>
