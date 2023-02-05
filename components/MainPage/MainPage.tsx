@@ -40,7 +40,6 @@ const MainPage: React.FC = () => {
       { id: '2', category: 'MBTI', value: mbti?.data?.[0]?.title ?? '', crown: Crown3 },
     ];
   }, [job?.data, mbti?.data, region?.data]);
-  console.log(school);
   return (
     <M.MainPageWrapper>
       <LogoHeader headerIcons={true} />
