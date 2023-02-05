@@ -1,9 +1,10 @@
 export interface ISchool {
-  address: 'string';
-  establishmentDate: 'string';
+  address: string;
+  simpleAddress: string;
+  establishmentDate: string;
   id: number;
-  schoolCode: 'string';
-  schoolName: 'string';
+  schoolCode: string;
+  schoolName: string;
 }
 
 export interface IJobCategory {

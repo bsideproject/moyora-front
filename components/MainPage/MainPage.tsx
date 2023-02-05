@@ -40,11 +40,12 @@ const MainPage: React.FC = () => {
       { id: '2', category: 'MBTI', value: mbti?.data?.[0]?.title ?? '', crown: Crown3 },
     ];
   }, [job?.data, mbti?.data, region?.data]);
+  console.log(school);
   return (
     <M.MainPageWrapper>
       <LogoHeader headerIcons={true} />
       <M.mySchoolSection>
-        <h2>{school?.schoolName}</h2> <p>{school?.address}</p>
+        <h2>{school?.schoolName}</h2> <p>{school?.simpleAddress}</p>
         <div>
           <div>
             <h1>{useComma(schoolCount?.[1]?.data ?? 0)}명</h1>
