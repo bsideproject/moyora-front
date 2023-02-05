@@ -34,12 +34,9 @@ const FriendsList = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  height: calc(100vh - 120px);
+  height: calc(100vh - 130px);
   overflow: scroll;
   & > div {
-    &:first-of-type {
-      margin-top: 40px;
-    }
     &:not(:first-of-type) {
       margin-top: 12px;
     }
@@ -66,6 +63,14 @@ const FriendsList = styled.div`
       line-height: 20px;
       color: ${({ theme }) => theme.gray600};
     }
+  }
+  & h4 {
+    margin-top: 180px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 28px;
+    color: ${({ theme }) => theme.gray500};
+    text-align: center;
   }
 `;
 

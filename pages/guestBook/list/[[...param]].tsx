@@ -36,57 +36,53 @@ const List: React.FC = () => {
     <>
       <L.GuestBookListWrapper>
         <LogoHeader headerIcons={true} />
-        <div>
-          <div>
-            {id === 'mySchool' ? (
-              <>
-                {guestBookList?.length ? (
-                  <>
-                    우리 학교 방명록이 <b>{guestBookList.length}개</b> 있어요!
-                  </>
-                ) : (
-                  <>
-                    아직 작성된 방명록이 없어요.
-                    <br />
-                    가장 먼저 우리 학교 방명록에 글을 남겨보세요!
-                  </>
-                )}
-                <ListSection guestBookList={guestBookList} noteId={id} />
-              </>
-            ) : id === 'myPage' ? (
-              <>
-                {myNoteList?.length ? (
-                  <>
-                    {id === 'myPage' ? '내 ' : ''}쪽지가 <b>{myNoteList?.length}개</b> 있어요!
-                  </>
-                ) : (
-                  <>
-                    아직 작성된 쪽지가 없어요.
-                    <br />
-                    친구를 초대하고 부탁해 보세요!
-                  </>
-                )}
-                <ListSection guestBookList={myNoteList} noteId={id} />
-              </>
+        {id === 'mySchool' ? (
+          <>
+            {guestBookList?.length ? (
+              <div>
+                우리 학교 방명록이 <b>{guestBookList.length}개</b> 있어요!
+              </div>
             ) : (
-              <>
-                {noteList?.length ? (
-                  <>
-                    {id === 'myPage' ? '내 ' : `${mate?.username}의 `}쪽지가{' '}
-                    <b>{noteList?.length}개</b> 있어요!
-                  </>
-                ) : (
-                  <>
-                    아직 작성된 쪽지가 없어요.
-                    <br />
-                    가장 먼저 쪽지를 남겨보세요!
-                  </>
-                )}
-                <ListSection guestBookList={noteList} noteId={id} />
-              </>
+              <div className="empty">
+                아직 작성된 방명록이 없어요.
+                <br />
+                첫번째로 학교 방명록을 작성해 보세요!
+              </div>
             )}
-          </div>
-        </div>
+            <ListSection guestBookList={guestBookList} noteId={id} />
+          </>
+        ) : id === 'myPage' ? (
+          <>
+            {myNoteList?.length ? (
+              <div>
+                {id === 'myPage' ? '내 ' : ''}쪽지가 <b>{myNoteList?.length}개</b> 있어요!
+              </div>
+            ) : (
+              <div className="empty">
+                아직 작성된 쪽지가 없어요.
+                <br />
+                친구에게 먼저 쪽지를 남겨보세요 :)
+              </div>
+            )}
+            <ListSection guestBookList={myNoteList} noteId={id} />
+          </>
+        ) : (
+          <>
+            {noteList?.length ? (
+              <div>
+                {id === 'myPage' ? '내 ' : `${mate?.username}의 `}쪽지가 <b>{noteList?.length}개</b>{' '}
+                있어요!
+              </div>
+            ) : (
+              <div className="empty">
+                아직 작성된 쪽지가 없어요.
+                <br />
+                가장 먼저 쪽지를 남겨보세요!
+              </div>
+            )}
+            <ListSection guestBookList={noteList} noteId={id} />
+          </>
+        )}
       </L.GuestBookListWrapper>
     </>
   );

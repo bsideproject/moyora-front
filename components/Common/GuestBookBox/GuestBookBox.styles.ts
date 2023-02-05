@@ -68,7 +68,6 @@ const LockTextArea = styled.div<IProps>`
 
 const BoxInfo = styled.div<ILockProps>`
   display: flex;
-  /* justify-content: ${({ lock }) => (lock ? 'flex-end' : 'space-between')}; */
   align-items: cneter;
   justify-content: space-between;
   font-size: 13px;

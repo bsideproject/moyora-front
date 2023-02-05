@@ -4,16 +4,23 @@ import { FloatButton, Drawer, Button, Modal } from 'antd';
 const GuestBookListWrapper = styled.section`
   & > div:first-of-type {
     align-self: flex-start;
-    margin: 20px 0;
-    & > div {
-      font-size: 20px;
-      font-weight: 700;
-      line-height: 28px;
-      color: ${({ theme }) => theme.gray900};
-    }
+    height: 68px;
+    padding: 20px 0;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 28px;
+    color: ${({ theme }) => theme.gray900};
     & b {
       color: ${({ theme }) => theme.primary};
     }
+  }
+  & div.empty {
+    margin: 200px auto;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 28px;
+    color: ${({ theme }) => theme.gray500};
+    text-align: center;
   }
 `;
 
@@ -21,7 +28,8 @@ const ListSection = styled.section`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  height: calc(100vh-84px);
+  height: calc(100vh - 134px);
+  overflow: scroll;
   & > div {
     margin-bottom: 12px;
   }

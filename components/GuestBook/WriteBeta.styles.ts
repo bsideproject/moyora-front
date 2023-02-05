@@ -38,6 +38,8 @@ const TextAreaSection = styled.section`
     transition: all 0.2s;
   }
   & > label {
+    position: relative;
+    bottom: -35px;
     font-size: 14px;
     font-weight: 500;
     line-height: 20px;
@@ -60,7 +62,7 @@ const TextArea = styled(Input.TextArea)`
   }
   &::after {
     position: relative;
-    bottom: 20px;
+    bottom: -15px;
     float: right;
     font-size: 14px;
     font-weight: 400;
