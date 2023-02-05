@@ -116,10 +116,9 @@ const ListSection: React.FC<IProps> = ({ guestBookList: list, noteId }) => {
           title={noteId === 'mySchool' ? '방명록 보기' : '쪽지 보기'}
           placement="bottom"
           height="80%"
-          maskStyle={{ height: '100vh', width: '100vw', marginLeft: 'calc(-50vw + 50%)' }}
+          maskStyle={{ height: '100vh', width: '200vw', marginLeft: 'calc(-50vw)' }}
           onClose={onToggle}
           open={isSelect}
-          getContainer={false}
         >
           {selectedBox && (
             <GuestBookBox
