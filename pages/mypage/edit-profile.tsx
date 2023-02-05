@@ -21,6 +21,7 @@ import SelectMBTISection from '@components/Mypage/SelectMBTISection';
 import SelectSNSSection from '@components/Mypage/SelectSNSSection';
 
 import M from '@components/Mypage/Mypage.styles';
+import fillZero from '@utils/fillZero';
 
 const EditProfile: React.FC = () => {
   const router = useRouter();
@@ -112,7 +113,7 @@ const EditProfile: React.FC = () => {
     const instagram = urls.filter((v) => v.value === 'instagram')[0]?.url;
     const youtube = urls.filter((v) => v.value === 'youtube')[0]?.url;
     const facebook = urls.filter((v) => v.value === 'facebook')[0]?.url;
-    const birthdate = year ? `${year}-${month}-${day}` : null;
+    const birthdate = year ? `${year}-${fillZero(+(month ?? 0))}-${fillZero(+(day ?? 0))}` : null;
     mutate({
       job,
       regionId: childRegion?.value,
