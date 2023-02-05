@@ -9,7 +9,7 @@ interface IError {
 
 export type AxiosErrorType = AxiosError<IError>;
 
-const baseURL =
+export const baseURL =
   process.env.NODE_ENV !== 'production'
     ? process.env.NEXT_PUBLIC_SERVER_DEV_URL
     : process.env.NEXT_PUBLIC_SERVER_URL;

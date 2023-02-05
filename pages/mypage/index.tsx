@@ -1,7 +1,13 @@
 import React, { useEffect } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { useToggle } from 'react-use';
+import { RcFile } from 'antd/es/upload';
+import { useCookies } from 'react-cookie';
+import { useQueryClient } from '@tanstack/react-query';
 import { Button, Spin, Upload } from 'antd';
+
+import { useEditImage, useMyInfo } from '@APIs/user';
 
 import LogoHeader from '@components/Common/LogoHeader';
 
@@ -10,11 +16,6 @@ import Pencil from '@public/svgs/pencil.svg';
 import ChevronRight from '@public/svgs/chevron-right.svg';
 
 import M from '@components/Mypage/Mypage.styles';
-import { useEditImage, useMyInfo } from '@APIs/user';
-import { useToggle } from 'react-use';
-import { RcFile } from 'antd/es/upload';
-import { useCookies } from 'react-cookie';
-import { useQueryClient } from '@tanstack/react-query';
 
 const profileLinks = [
   { name: '이름 및 닉네임 수정', link: '/mypage/edit-name' },

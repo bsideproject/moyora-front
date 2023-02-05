@@ -16,6 +16,8 @@ import Link from 'next/link';
 import CloseIcon from '@public/svgs/icon-close.svg';
 import { useMyInfo } from '@APIs/user';
 import ProfileImage from '../ProfileImage';
+import { useCookies } from 'react-cookie';
+import { useQueryClient } from '@tanstack/react-query';
 
 interface IProps {
   headerIcons?: boolean;
@@ -25,10 +27,18 @@ interface IProps {
 
 const LogoHeader: React.FC<IProps> = ({ headerIcons, backgroundPrimary, children }) => {
   const router = useRouter();
+  const queryClient = useQueryClient();
+  const [, , removeCookie] = useCookies(['moyora']);
   const { data: me } = useMyInfo();
   const [isSelect, onToggle] = useToggle(false);
   const [isLogout, setIsLogout] = useState(false);
-  const onClickLogout = () => router.replace('/');
+
+  const onClickLogout = async () => {
+    removeCookie('moyora');
+    queryClient.setQueryData(['/user/myinfo'], null);
+    router.replace('/');
+  };
+
   return (
     <L.LogoHeaderWrapper backgroundPrimary={backgroundPrimary}>
       <Link href="/">
@@ -80,7 +90,7 @@ const LogoHeader: React.FC<IProps> = ({ headerIcons, backgroundPrimary, children
             <Link href="/guestBook/list/mySchool">우리 학교 방명록</Link>
             <Link href="/friends/list">동창 목록</Link>
             <span></span>
-            <p onClick={onClickLogout}>로그아웃</p>
+            <p onClick={() => setIsLogout(true)}>로그아웃</p>
             <L.LogoutModal
               title="정말 로그아웃 하시겠어요?"
               width={350}

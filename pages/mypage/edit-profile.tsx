@@ -7,29 +7,20 @@ import { BaseOptionType } from 'antd/es/select';
 import { dehydrate, QueryClient, useQueryClient } from '@tanstack/react-query';
 
 import { useEditProfile, useMyInfo } from '@APIs/user';
-import { snsOptions } from '@configs/bigContents';
+
+import { baseURL } from '@configs/axios';
+import { snsOptions, urlRegex } from '@configs/bigContents';
 
 import CommonButton from '@atoms/CommonButton';
 import LogoHeader from '@components/Common/LogoHeader';
 import BirthDaySection from '@components/Mypage/BirthDaySection';
 import PublicSwitchSection from '@components/Mypage/PublicSwitchSection';
 import SelectJobSection from '@components/Mypage/SelectJobSection';
-import SelectLocationSection from '@components/Mypage/SelectLocationSection';
+import SelectLocationSection, { ICity } from '@components/Mypage/SelectLocationSection';
 import SelectMBTISection from '@components/Mypage/SelectMBTISection';
 import SelectSNSSection from '@components/Mypage/SelectSNSSection';
 
 import M from '@components/Mypage/Mypage.styles';
-
-interface ICity {
-  label: string;
-  value: number;
-}
-
-const baseURL =
-  process.env.NODE_ENV !== 'production'
-    ? process.env.NEXT_PUBLIC_SERVER_DEV_URL
-    : process.env.NEXT_PUBLIC_SERVER_URL;
-const urlRegex = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
 
 const EditProfile: React.FC = () => {
   const router = useRouter();

@@ -236,3 +236,6 @@ export const snsOptions = [
   { label: '유튜브', value: 'youtube' },
   { label: '페이스북', value: 'facebook' },
 ];
+
+export const urlRegex =
+  /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
