@@ -50,7 +50,7 @@ export interface IEditName {
 }
 
 export interface IEditProfile {
-  birthDate?: string;
+  birthdate?: string | null;
   facebook?: string;
   instagram?: string;
   isPublic?: boolean;
