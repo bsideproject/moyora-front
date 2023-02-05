@@ -9,7 +9,7 @@ interface ILockProps {
 }
 
 const GuestBookBoxWrapper = styled.div<IProps>`
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   justify-content: space-between;
   width: ${({ size }) => size.width};

@@ -25,13 +25,9 @@ const GuestBookListWrapper = styled.section`
 `;
 
 const ListSection = styled.section`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  height: calc(100vh - 134px);
-  overflow: scroll;
+  margin: -6px -4px;
   & > div {
-    margin-bottom: 12px;
+    margin: 6px 4px;
   }
 `;
 
