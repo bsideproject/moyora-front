@@ -7,29 +7,21 @@ import { BaseOptionType } from 'antd/es/select';
 import { dehydrate, QueryClient, useQueryClient } from '@tanstack/react-query';
 
 import { useEditProfile, useMyInfo } from '@APIs/user';
-import { snsOptions } from '@configs/bigContents';
+
+import { baseURL } from '@configs/axios';
+import { snsOptions, urlRegex } from '@configs/bigContents';
 
 import CommonButton from '@atoms/CommonButton';
 import LogoHeader from '@components/Common/LogoHeader';
 import BirthDaySection from '@components/Mypage/BirthDaySection';
 import PublicSwitchSection from '@components/Mypage/PublicSwitchSection';
 import SelectJobSection from '@components/Mypage/SelectJobSection';
-import SelectLocationSection from '@components/Mypage/SelectLocationSection';
+import SelectLocationSection, { ICity } from '@components/Mypage/SelectLocationSection';
 import SelectMBTISection from '@components/Mypage/SelectMBTISection';
 import SelectSNSSection from '@components/Mypage/SelectSNSSection';
 
 import M from '@components/Mypage/Mypage.styles';
-
-interface ICity {
-  label: string;
-  value: number;
-}
-
-const baseURL =
-  process.env.NODE_ENV !== 'production'
-    ? process.env.NEXT_PUBLIC_SERVER_DEV_URL
-    : process.env.NEXT_PUBLIC_SERVER_URL;
-const urlRegex = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+import fillZero from '@utils/fillZero';
 
 const EditProfile: React.FC = () => {
   const router = useRouter();
@@ -55,13 +47,13 @@ const EditProfile: React.FC = () => {
     setChildRegion(option as unknown as ICity);
   const [isPublic, togglePublic] = useToggle(me?.isPublic ?? true);
   const [mbti, setMBTI] = useState(me?.mbti);
-  const onChangeMBTI = (v: unknown) => setMBTI(v as string);
-  const [year, setYear] = useState(me?.birthDate?.split('-')[0] || undefined);
-  const [month, setMonth] = useState(me?.birthDate?.split('-')[1]);
-  const [day, setDay] = useState(me?.birthDate?.split('-')[2]);
-  const onChangeYear = (v: unknown) => setYear(v as string);
-  const onChangeMonth = (v: unknown) => setMonth(v as string);
-  const onChangeDay = (v: unknown) => setDay(v as string);
+  const onChangeMBTI = (v: unknown) => setMBTI((v || undefined) as string);
+  const [year, setYear] = useState(me?.birthDate?.split('.')?.[0] || undefined);
+  const [month, setMonth] = useState(me?.birthDate?.split('.')[1]);
+  const [day, setDay] = useState(me?.birthDate?.split('.')[2]);
+  const onChangeYear = (v: unknown) => setYear((v || undefined) as string);
+  const onChangeMonth = (v: unknown) => setMonth((v || undefined) as string);
+  const onChangeDay = (v: unknown) => setDay((v || undefined) as string);
   const onClickSelectJob =
     ({ category, jobName }: { category: string; jobName: string }) =>
     () => {
@@ -103,13 +95,14 @@ const EditProfile: React.FC = () => {
   const isDisabled = useMemo(
     () =>
       [
+        Boolean(childRegion?.value),
         typeof year === typeof month,
         typeof month === typeof day,
         typeof year === typeof day,
       ].includes(false)
         ? true
         : false,
-    [day, month, year],
+    [childRegion, day, month, year],
   );
   const onSuccess = async () => {
     await queryClient
@@ -121,7 +114,8 @@ const EditProfile: React.FC = () => {
     const instagram = urls.filter((v) => v.value === 'instagram')[0]?.url;
     const youtube = urls.filter((v) => v.value === 'youtube')[0]?.url;
     const facebook = urls.filter((v) => v.value === 'facebook')[0]?.url;
-    const birthdate = year ? `${year}-${month}-${day}` : null;
+    const birthDate = year ? `${year}-${fillZero(+(month ?? 0))}-${fillZero(+(day ?? 0))}` : null;
+    console.log(birthDate);
     mutate({
       job,
       regionId: childRegion?.value,
@@ -130,7 +124,7 @@ const EditProfile: React.FC = () => {
       instagram,
       youtube,
       facebook,
-      birthdate,
+      birthDate,
     });
   };
 
@@ -150,7 +144,7 @@ const EditProfile: React.FC = () => {
           거주 지역<span> *</span>
         </h3>
         <SelectLocationSection {...{ parentRegion, childRegion, onChangeState, onChangeCity }} />
-        <PublicSwitchSection isPublic onChange={() => togglePublic()} />
+        <PublicSwitchSection isPublic={isPublic} onChange={() => togglePublic()} />
       </div>
       <div className="form-section">
         <h4>선택 정보</h4>

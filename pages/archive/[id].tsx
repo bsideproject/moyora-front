@@ -119,9 +119,13 @@ const Archive: React.FC = () => {
       <A.Note>
         <div>
           <h1>{id === 'myPage' ? '내 쪽지' : `${infoData?.name || infoData?.username}의 쪽지`}</h1>
-          <button onClick={onClickNote}>
-            <p>자세히 보기 &gt;</p>
-          </button>
+          {notes?.length ? (
+            <button onClick={onClickNote}>
+              <p>자세히 보기 &gt;</p>
+            </button>
+          ) : (
+            ''
+          )}
         </div>
         {id === 'myPage' ? (
           <p>친구들이 남긴 쪽지를 확인해 보세요 :)</p>

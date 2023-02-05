@@ -7,7 +7,7 @@ import SelectAllow from '@public/svgs/select-allow.svg';
 import M from './Mypage.styles';
 import { BaseOptionType } from 'antd/es/select';
 
-interface ICity {
+export interface ICity {
   label: string;
   value: number;
 }

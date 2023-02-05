@@ -40,7 +40,6 @@ const MainPage: React.FC = () => {
       { id: '2', category: 'MBTI', value: mbti?.data?.[0]?.title ?? '', crown: Crown3 },
     ];
   }, [job?.data, mbti?.data, region?.data]);
-  console.log(school);
   return (
     <M.MainPageWrapper>
       <LogoHeader headerIcons={true} />
@@ -99,7 +98,7 @@ const MainPage: React.FC = () => {
       <M.ourSchoolGuestBookSection>
         <M.contentTitle>
           <h1>우리 학교 방명록</h1>
-          {guestBookList ? (
+          {guestBookList?.length ? (
             <Link href="/guestBook/list/mySchool">
               <p>자세히 보기 &gt;</p>
             </Link>
@@ -108,7 +107,7 @@ const MainPage: React.FC = () => {
           )}
         </M.contentTitle>
         <M.GuestBook>
-          {guestBookList ? (
+          {guestBookList?.length ? (
             guestBookList.map((guestBook) => (
               <GuestBookBox
                 key={guestBook.schoolGuestBookId}
@@ -133,7 +132,7 @@ const MainPage: React.FC = () => {
             <>
               <span className="empty">
                 <h5>아직 작성된 방명록이 없어요</h5>
-                <p>학교 방명록을 입력해 보세요!</p>
+                <p>첫번째로 학교 방명록을 작성해 보세요!</p>
                 <Link href={`/guestBook/write/mySchool`}>
                   <h2>+ 방명록 작성하기</h2>
                 </Link>

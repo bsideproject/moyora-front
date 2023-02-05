@@ -22,10 +22,14 @@ const List: React.FC = () => {
       <LogoHeader headerIcons={true} />
       <div>
         <h1>동창 목록</h1>
-        <div onClick={onClickSearchFriends}>
-          <Image src={SearchPr} alt="search-pr-icon" />
-          <h2>동창 찾기</h2>
-        </div>
+        {friendsData?.length ? (
+          <div onClick={onClickSearchFriends}>
+            <Image src={SearchPr} alt="search-pr-icon" />
+            <h2>동창 찾기</h2>
+          </div>
+        ) : (
+          ''
+        )}
       </div>
       <F.FriendsList>
         {friendsData?.length ? (

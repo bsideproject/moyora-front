@@ -42,6 +42,8 @@ const ProfileWrap = styled.section`
       & img {
         width: 76px;
         height: 76px;
+        border-radius: 50%;
+        object-fit: cover;
       }
       & div {
         position: absolute;

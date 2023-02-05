@@ -1,21 +1,19 @@
 import React, { FC } from 'react';
 
 import axios from 'axios';
+import { useCookies } from 'react-cookie';
 import { GetServerSideProps } from 'next';
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 
 import { useMyInfo } from '@APIs/user';
+import { baseURL } from '@configs/axios';
 
 import Beta from '@components/Beta/Beta';
 import MainPage from '@components/MainPage/MainPage';
 
-const baseURL =
-  process.env.NODE_ENV !== 'production'
-    ? process.env.NEXT_PUBLIC_SERVER_DEV_URL
-    : process.env.NEXT_PUBLIC_SERVER_URL;
-
 const Home: FC = () => {
-  const { data } = useMyInfo();
+  const [cookie] = useCookies(['moyora']);
+  const { data } = useMyInfo({ enabled: Boolean(cookie?.moyora) });
   return data ? <MainPage /> : <Beta />;
 };
 

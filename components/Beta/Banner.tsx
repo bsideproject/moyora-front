@@ -22,28 +22,28 @@ const Banner: React.FC<IProps> = ({ onClick }) => {
   const [counterHour, setCounterHour] = useState('00');
   const [counterMinute, setCounterMinute] = useState('00');
   const [counterSecond, setCounterSecond] = useState('00');
-  const [release, setRelease] = useState(dayjs().isSameOrAfter('2023-02-08 00:00:00'));
+  const [release, setRelease] = useState(dayjs().isSameOrAfter('2023-02-08 23:59:59'));
   useEffect(() => {
     const timer = setInterval(() => {
       const nowDate = dayjs();
       const releaseDate = dayjs('2023-02-08', 'YYYY-MM-DD');
       const timerDate = releaseDate.diff(nowDate, 's');
-      const lastDay = fillZero(timerDate / 3600 / 24);
-      const lastHour = fillZero((timerDate / 3600) % 24);
-      const lastMinutes = fillZero((timerDate / 60) % 60);
-      const lastSeconds = fillZero(timerDate % 60);
+      const lastDay = fillZero(timerDate > 0 ? timerDate / 3600 / 24 : 0);
+      const lastHour = fillZero(timerDate > 0 ? (timerDate / 3600) % 24 : 0);
+      const lastMinutes = fillZero(timerDate > 0 ? (timerDate / 60) % 60 : 0);
+      const lastSeconds = fillZero(timerDate > 0 ? timerDate % 60 : 0);
 
       setCounterDay(lastDay);
       setCounterHour(lastHour);
       setCounterMinute(lastMinutes);
       setCounterSecond(lastSeconds);
       if (!release) {
-        setRelease(dayjs().isSameOrAfter('2023-02-08 00:00:00'));
+        setRelease(dayjs().isSameOrAfter('2023-02-08 23:59:59'));
       }
     }, 1000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [release]);
 
   return (
     <B.BannerSection>
@@ -57,10 +57,12 @@ const Banner: React.FC<IProps> = ({ onClick }) => {
                 <div className="prodBanner">
                   <h3>
                     초등학교 온라인 동창회 서비스
-                    <br />
-                    우리 학교 여기여기 <b>모여라</b>
+                    <br /> 우리 학교 여기여기 <b>모여라</b>
                   </h3>
-                  <p>간단한 가입으로 우리 학교 온라인 동창회를 참여해 보세요.</p>
+                  <p>
+                    간단한 가입으로 우리 학교 온라인 동창회를
+                    <br className="mobile" /> 참여해 보세요.
+                  </p>
                   <Button type="primary" onClick={onClick}>
                     모여라 시작하기
                   </Button>

@@ -136,6 +136,13 @@ const GuestBook = styled.div`
     & a {
       margin-top: 18px;
     }
+    & h2 {
+      display: inline;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 24px;
+      color: ${({ theme }) => theme.primary};
+    }
   }
   &::-webkit-scrollbar {
     display: none;
