@@ -31,8 +31,11 @@ const LogoHeaderWrapper = styled.section<IProps>`
 `;
 
 const MyDrawer = styled(Drawer)`
+  position: sticky;
+  bottom: 0;
+  left: 0;
   width: 390px !important;
-  margin-left: calc((100vw - 390px) / 2);
+  margin: auto;
   & div.ant-drawer-header {
     height: 72px;
     padding: 28px 20px;
