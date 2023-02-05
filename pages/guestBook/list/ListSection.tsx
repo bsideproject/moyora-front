@@ -37,7 +37,13 @@ const ListSection: React.FC<IProps> = ({ guestBookList: list, noteId }) => {
         : null;
     else selBox = noteList?.length ? noteList.filter((note) => note?.noteId === +id) : null;
 
-    if (selBox?.length && !(selBox[0] as INotes)?.isPublic && noteId != 'myPage') onToggleAlert();
+    if (
+      noteId !== 'mySchool' &&
+      selBox?.length &&
+      !(selBox[0] as INotes)?.isPublic &&
+      noteId != 'myPage'
+    )
+      onToggleAlert();
     else {
       setSelectedBox(selBox?.[0] || null);
       onToggle();
