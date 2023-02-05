@@ -45,7 +45,11 @@ const List: React.FC = () => {
             </div>
           ))
         ) : (
-          <h3>친구 없음</h3>
+          <h4>
+            아직 우리 학교에 가입한 동창이 없어요
+            <br />
+            친구들이 모이기를 기다려주세요!
+          </h4>
         )}
       </F.FriendsList>
     </F.FriendsListWrapper>

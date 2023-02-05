@@ -30,6 +30,7 @@ const MainPage: React.FC = () => {
   const { data: region } = useGetRegion('' + me?.schoolId);
   const { data: job } = useGetJob('' + me?.schoolId);
   const { data: guestBookList } = useGetSchoolGuestBook('' + me?.schoolId);
+  // const guestBookList = undefined;
   const schoolCount = useGetOurCounts('' + me?.schoolId);
   const ourSchoolFirstList: IOurSchoolList[] = useMemo(() => {
     if (!job?.data.length && !region?.data.length) return [];
@@ -97,9 +98,13 @@ const MainPage: React.FC = () => {
       <M.ourSchoolGuestBookSection>
         <M.contentTitle>
           <h1>우리 학교 방명록</h1>
-          <Link href="/guestBook/list/mySchool">
-            <p>자세히 보기 &gt;</p>
-          </Link>
+          {guestBookList ? (
+            <Link href="/guestBook/list/mySchool">
+              <p>자세히 보기 &gt;</p>
+            </Link>
+          ) : (
+            ''
+          )}
         </M.contentTitle>
         <M.GuestBook>
           {guestBookList ? (
@@ -124,10 +129,15 @@ const MainPage: React.FC = () => {
               </GuestBookBox>
             ))
           ) : (
-            <span>
-              <h5>아직 작성된 방명록이 없어요</h5>
-              <p>학교 방명록을 입력해 보세요!</p>
-            </span>
+            <>
+              <span className="empty">
+                <h5>아직 작성된 방명록이 없어요</h5>
+                <p>학교 방명록을 입력해 보세요!</p>
+                <Link href={`/guestBook/write/mySchool`}>
+                  <h2>+ 방명록 작성하기</h2>
+                </Link>
+              </span>
+            </>
           )}
         </M.GuestBook>
       </M.ourSchoolGuestBookSection>

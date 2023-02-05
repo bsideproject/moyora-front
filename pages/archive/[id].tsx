@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import React, { useMemo } from 'react';
 import A from '@components/Archive/archive.styles';
+import L from '@components/GuestBook/List.styles';
 import LogoHeader from '@components/Common/LogoHeader';
 import Image from 'next/image';
 import ProfileImage from '@components/Common/ProfileImage';
@@ -14,7 +15,7 @@ import GuestBookBox from '@components/Common/GuestBookBox';
 import { useGetClassMate, useMyInfo } from '@APIs/user';
 import { useGetMyNotes, useGetNote } from '@APIs/note';
 import stickers from '@configs/stickers';
-
+import floatButtonWrite from '@public/svgs/float-button-write.svg';
 const Archive: React.FC = () => {
   const router = useRouter();
   const id = (router.query?.id ?? 'myPage') as string;
@@ -34,7 +35,9 @@ const Archive: React.FC = () => {
     youtube: <Image src={Youtube} alt="youtube" />,
     facebook: <Image src={Facebook} alt="facebook" />,
   };
-
+  const onClickRoute = () => {
+    router.replace(`/guestBook/write/${id}`, '', { shallow: true });
+  };
   const onClickNote = () => router.push(`/guestBook/list/${id}`, '', { shallow: true });
   return (
     <A.ArchiveWrapper>
@@ -87,7 +90,7 @@ const Archive: React.FC = () => {
         </div>
         <span></span>
         <div>
-          {(infoData?.instagram || infoData?.youtube || infoData?.facebook) === '' ? (
+          {(infoData?.instagram || infoData?.youtube || infoData?.facebook) == null ? (
             <h4>-</h4>
           ) : (
             <div>
@@ -151,10 +154,27 @@ const Archive: React.FC = () => {
               </GuestBookBox>
             ))
           ) : (
-            <span>
-              <h5>아직 작성된 쪽지가 없어요</h5>
-              <p>친구에게 먼저 쪽지를 남겨보세요 :)</p>
-            </span>
+            <>
+              {id === 'myPage' ? (
+                <span>
+                  <h5>아직 작성된 쪽지가 없어요</h5>
+                  <p>친구에게 먼저 쪽지를 남겨보세요 :)</p>
+                </span>
+              ) : (
+                <>
+                  <span>
+                    <h5>아직 작성된 쪽지가 없어요</h5>
+                    <p>글쓰기 버튼을 눌러 친구에게 쪽지를 남겨보세요 :)</p>
+                  </span>
+                  <L.FloatingButton
+                    shape="circle"
+                    type="primary"
+                    onClick={onClickRoute}
+                    icon={<Image src={floatButtonWrite} alt="floatButtonWirte" />}
+                  />
+                </>
+              )}
+            </>
           )}
         </div>
       </A.Note>

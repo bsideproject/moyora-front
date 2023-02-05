@@ -132,6 +132,11 @@ const GuestBook = styled.div`
   overflow: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  & span.empty {
+    & a {
+      margin-top: 18px;
+    }
+  }
   &::-webkit-scrollbar {
     display: none;
   }
