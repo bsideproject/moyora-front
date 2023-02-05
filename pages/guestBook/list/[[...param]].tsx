@@ -43,20 +43,26 @@ const List: React.FC = () => {
                 우리 학교 방명록이 <b>{guestBookList.length}개</b> 있어요!
               </div>
             ) : (
-              <div className="empty">
-                아직 작성된 방명록이 없어요.
-                <br />
-                첫번째로 학교 방명록을 작성해 보세요!
-              </div>
+              <>
+                <div>
+                  우리 학교 방명록이 <b>0개</b> 있어요!
+                </div>
+                <div className="empty">
+                  아직 작성된 방명록이 없어요.
+                  <br />
+                  첫번째로 학교 방명록을 작성해 보세요!
+                </div>
+              </>
             )}
             <ListSection guestBookList={guestBookList} noteId={id} />
           </>
         ) : id === 'myPage' ? (
           <>
+            <div>
+              {id === 'myPage' ? '내 ' : ''}쪽지가 <b>{myNoteList?.length}개</b> 있어요!
+            </div>
             {myNoteList?.length ? (
-              <div>
-                {id === 'myPage' ? '내 ' : ''}쪽지가 <b>{myNoteList?.length}개</b> 있어요!
-              </div>
+              ''
             ) : (
               <div className="empty">
                 아직 작성된 쪽지가 없어요.
@@ -68,11 +74,12 @@ const List: React.FC = () => {
           </>
         ) : (
           <>
+            <div>
+              {id === 'myPage' ? '내 ' : `${mate?.username}의 `}쪽지가 <b>{noteList?.length}개</b>{' '}
+              있어요!
+            </div>
             {noteList?.length ? (
-              <div>
-                {id === 'myPage' ? '내 ' : `${mate?.username}의 `}쪽지가 <b>{noteList?.length}개</b>{' '}
-                있어요!
-              </div>
+              ''
             ) : (
               <div className="empty">
                 아직 작성된 쪽지가 없어요.
