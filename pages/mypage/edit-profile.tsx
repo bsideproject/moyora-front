@@ -141,7 +141,7 @@ const EditProfile: React.FC = () => {
           거주 지역<span> *</span>
         </h3>
         <SelectLocationSection {...{ parentRegion, childRegion, onChangeState, onChangeCity }} />
-        <PublicSwitchSection isPublic onChange={() => togglePublic()} />
+        <PublicSwitchSection isPublic={isPublic} onChange={() => togglePublic()} />
       </div>
       <div className="form-section">
         <h4>선택 정보</h4>
