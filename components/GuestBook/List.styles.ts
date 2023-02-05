@@ -1,5 +1,11 @@
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import { FloatButton, Drawer, Button, Modal } from 'antd';
+
+const GlobalStyle = createGlobalStyle`
+  div.ant-drawer-content-wrapper{
+    box-shadow: none !important;
+  }
+`;
 
 const GuestBookListWrapper = styled.section`
   & > div:first-of-type {
@@ -51,6 +57,7 @@ const GuestBookDrawer = styled(Drawer)`
   width: 390px !important;
   margin: auto;
   border-radius: 24px 24px 0 0;
+
   .ant-drawer-bottom {
     box-shadow: none;
   }
@@ -146,6 +153,7 @@ const ModalButton = styled(Button)`
 `;
 
 const L = {
+  GlobalStyle,
   GuestBookListWrapper,
   ListSection,
   FloatingButton,

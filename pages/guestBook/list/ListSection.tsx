@@ -51,6 +51,7 @@ const ListSection: React.FC<IProps> = ({ guestBookList: list, noteId }) => {
   };
   return (
     <>
+      <L.GlobalStyle />
       <L.ListSection>
         {noteId === 'mySchool'
           ? guestBookList.map((guestBook) => (
