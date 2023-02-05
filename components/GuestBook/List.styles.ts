@@ -51,6 +51,9 @@ const GuestBookDrawer = styled(Drawer)`
   width: 390px !important;
   margin: auto;
   border-radius: 24px 24px 0 0;
+  .ant-drawer-bottom {
+    box-shadow: none;
+  }
   & div.ant-drawer-header {
     height: 72px;
     padding: 28px 20px;
