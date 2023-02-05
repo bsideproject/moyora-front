@@ -50,9 +50,6 @@ const Textarea = styled.textarea<IProps>`
   outline: none;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: ${({ size }) => size.line};
-  &:disabled {
-    color: ${({ theme }) => theme.gray850} !important;
-  }
 `;
 
 const LockTextArea = styled.div<IProps>`

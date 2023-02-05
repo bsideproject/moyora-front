@@ -32,7 +32,7 @@ const GuestBookBox: React.FC<IProps> = ({ info, size, text, date, onClick, child
               비공개 쪽지
             </G.LockTextArea>
           ) : (
-            <G.Textarea disabled size={size} value={text} />
+            <G.Textarea readOnly size={size} value={text} />
           )}
         </div>
         <G.BoxInfo lock={info?.lock}>
