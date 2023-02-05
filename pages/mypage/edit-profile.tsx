@@ -47,7 +47,7 @@ const EditProfile: React.FC = () => {
     setChildRegion(option as unknown as ICity);
   const [isPublic, togglePublic] = useToggle(me?.isPublic ?? true);
   const [mbti, setMBTI] = useState(me?.mbti);
-  const onChangeMBTI = (v: unknown) => setMBTI(v as string);
+  const onChangeMBTI = (v: unknown) => setMBTI((v || undefined) as string);
   const [year, setYear] = useState(me?.birthDate?.split('.')?.[0] || undefined);
   const [month, setMonth] = useState(me?.birthDate?.split('.')[1]);
   const [day, setDay] = useState(me?.birthDate?.split('.')[2]);
@@ -95,13 +95,14 @@ const EditProfile: React.FC = () => {
   const isDisabled = useMemo(
     () =>
       [
+        Boolean(childRegion?.value),
         typeof year === typeof month,
         typeof month === typeof day,
         typeof year === typeof day,
       ].includes(false)
         ? true
         : false,
-    [day, month, year],
+    [childRegion, day, month, year],
   );
   const onSuccess = async () => {
     await queryClient
