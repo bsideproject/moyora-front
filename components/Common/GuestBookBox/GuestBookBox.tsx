@@ -25,7 +25,7 @@ const GuestBookBox: React.FC<IProps> = ({ info, size, text, date, onClick, child
       <G.GuestBookBoxWrapper size={size} onClick={onClick}>
         <G.StickerDiv>{children}</G.StickerDiv>
         <div>
-          {info?.lock && info.id != 'myPage' ? (
+          {info?.lock && info.id !== 'myPage' ? (
             <G.LockTextArea size={size}>
               <Image src={Lock} alt="lock" width={16} />
               <br />
@@ -36,9 +36,9 @@ const GuestBookBox: React.FC<IProps> = ({ info, size, text, date, onClick, child
           )}
         </div>
         <G.BoxInfo lock={info?.lock}>
-          <div>{info?.lock ? <Image src={Lock} alt="lock" /> : ''}</div>
+          <div>{info?.lock && info.id === 'myPage' ? <Image src={Lock} alt="lock" /> : ''}</div>
           <div>
-            {!info?.lock && info?.name ? (
+            {info?.name ? (
               <>
                 <Image src={User} alt="user" />
                 &nbsp;{info.name}({info.nickname ?? info.name})
