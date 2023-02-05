@@ -115,7 +115,6 @@ const EditProfile: React.FC = () => {
     const youtube = urls.filter((v) => v.value === 'youtube')[0]?.url;
     const facebook = urls.filter((v) => v.value === 'facebook')[0]?.url;
     const birthDate = year ? `${year}-${fillZero(+(month ?? 0))}-${fillZero(+(day ?? 0))}` : null;
-    console.log(birthDate);
     mutate({
       job,
       regionId: childRegion?.value,
