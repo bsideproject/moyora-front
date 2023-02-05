@@ -84,7 +84,7 @@ const WarningSection = styled.div`
 `;
 
 const SelectStarSection = styled.section`
-  margin: 24px 0 40px 0;
+  margin: 24px 0 56px 0;
 `;
 
 const StarGroup = styled(Radio.Group)`
