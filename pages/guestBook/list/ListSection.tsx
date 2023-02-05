@@ -37,7 +37,13 @@ const ListSection: React.FC<IProps> = ({ guestBookList: list, noteId }) => {
         : null;
     else selBox = noteList?.length ? noteList.filter((note) => note?.noteId === +id) : null;
 
-    if (selBox?.length && !(selBox[0] as INotes)?.isPublic && noteId != 'myPage') onToggleAlert();
+    if (
+      selBox?.length &&
+      !(selBox[0] as INotes)?.isPublic &&
+      noteId != 'myPage' &&
+      noteId != 'mySchool'
+    )
+      onToggleAlert();
     else {
       setSelectedBox(selBox?.[0] || null);
       onToggle();
@@ -69,7 +75,7 @@ const ListSection: React.FC<IProps> = ({ guestBookList: list, noteId }) => {
                 </>
               </GuestBookBox>
             ))
-          : noteList?.map((note) => (
+          : noteList.map((note) => (
               <GuestBookBox
                 size={{ width: '171px', height: '218px', line: '4' }}
                 text={note.content}
@@ -109,10 +115,11 @@ const ListSection: React.FC<IProps> = ({ guestBookList: list, noteId }) => {
         <L.GuestBookDrawer
           title={noteId === 'mySchool' ? '방명록 보기' : '쪽지 보기'}
           placement="bottom"
-          height="600px"
-          maskStyle={{ width: '100vw', marginLeft: 'calc(-50vw + 50%)' }}
+          height="80%"
+          maskStyle={{ height: '100vh', width: '100vw', marginLeft: 'calc(-50vw + 50%)' }}
           onClose={onToggle}
           open={isSelect}
+          getContainer={false}
         >
           {selectedBox && (
             <GuestBookBox
