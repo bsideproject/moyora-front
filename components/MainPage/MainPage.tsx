@@ -132,7 +132,7 @@ const MainPage: React.FC = () => {
             <>
               <span className="empty">
                 <h5>아직 작성된 방명록이 없어요</h5>
-                <p>학교 방명록을 입력해 보세요!</p>
+                <p>첫번째로 학교 방명록을 작성해 보세요!</p>
                 <Link href={`/guestBook/write/mySchool`}>
                   <h2>+ 방명록 작성하기</h2>
                 </Link>
