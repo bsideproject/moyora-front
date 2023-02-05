@@ -29,7 +29,7 @@ const EditSchool: React.FC = () => {
   const onSelectGraduationYear = (value: unknown) => setGraduationYear(value as number);
 
   const onClickSearchSchool = () => {
-    router.replace('/search?isSchool=/signup/1', '/search', { shallow: true });
+    router.replace('/search?isSchool=/mypage/edit-school/', '/search', { shallow: true });
   };
 
   const onSuccess = () => {
