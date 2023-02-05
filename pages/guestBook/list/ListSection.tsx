@@ -69,7 +69,7 @@ const ListSection: React.FC<IProps> = ({ guestBookList: list, noteId }) => {
                 </>
               </GuestBookBox>
             ))
-          : noteList.map((note) => (
+          : noteList?.map((note) => (
               <GuestBookBox
                 size={{ width: '171px', height: '218px', line: '4' }}
                 text={note.content}
