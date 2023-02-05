@@ -98,7 +98,7 @@ const MainPage: React.FC = () => {
       <M.ourSchoolGuestBookSection>
         <M.contentTitle>
           <h1>우리 학교 방명록</h1>
-          {guestBookList ? (
+          {guestBookList?.length ? (
             <Link href="/guestBook/list/mySchool">
               <p>자세히 보기 &gt;</p>
             </Link>
@@ -107,7 +107,7 @@ const MainPage: React.FC = () => {
           )}
         </M.contentTitle>
         <M.GuestBook>
-          {guestBookList ? (
+          {guestBookList?.length ? (
             guestBookList.map((guestBook) => (
               <GuestBookBox
                 key={guestBook.schoolGuestBookId}
