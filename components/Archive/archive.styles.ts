@@ -30,14 +30,15 @@ const ArchiveWrapper = styled.section`
 `;
 
 const PrimaryBackgroundSection = styled.section`
-  width: 100vw;
+  width: 390px;
   padding: 0 20px;
-  margin-left: calc(-50vw + 50%);
+  margin-left: -20px;
   background-color: ${({ theme }) => theme.primary};
 `;
 
 const Info = styled.div`
   height: 268px;
+  margin: 0 auto;
   & > div:first-of-type {
     display: flex;
     align-items: center;
