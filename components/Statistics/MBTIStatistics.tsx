@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import Image from 'next/image';
 import { useToggle } from 'react-use';
 import { Bar } from 'react-chartjs-2';
@@ -17,31 +17,34 @@ const MBTIStatistics: React.FC = () => {
   const { data: me } = useMyInfo();
   const { data: mbti } = useGetMbti('' + me?.schoolId, { enabled: Boolean(me) });
   const [isButtonTest, toggleButtonTest] = useToggle(true);
-  const barChartData = {
-    labels: [''],
-    datasets: [
-      {
-        data: [mbti?.chart?.[0] ?? 0],
-        backgroundColor: '#FF6D3A',
-      },
-      {
-        data: [mbti?.chart?.[1] ?? 0],
-        backgroundColor: '#4181F0',
-      },
-      {
-        data: [mbti?.chart?.[2] ?? 0],
-        backgroundColor: '#F4B95C',
-      },
-      {
-        data: [mbti?.chart?.[3] ?? 0],
-        backgroundColor: '#71BA9D',
-      },
-      {
-        data: [mbti?.chart?.[4] ?? 0],
-        backgroundColor: '#B8C6FB',
-      },
-    ],
-  };
+  const barChartData = useMemo(
+    () => ({
+      labels: [''],
+      datasets: [
+        {
+          data: [mbti?.chart?.[0] ?? 0],
+          backgroundColor: '#FF6D3A',
+        },
+        {
+          data: [mbti?.chart?.[1] ?? 0],
+          backgroundColor: '#4181F0',
+        },
+        {
+          data: [mbti?.chart?.[2] ?? 0],
+          backgroundColor: '#F4B95C',
+        },
+        {
+          data: [mbti?.chart?.[3] ?? 0],
+          backgroundColor: '#71BA9D',
+        },
+        {
+          data: [mbti?.chart?.[4] ?? 0],
+          backgroundColor: '#B8C6FB',
+        },
+      ],
+    }),
+    [mbti?.chart],
+  );
   const { data } = useMyInfo();
   const onClick = () => {
     router.replace('/mypage/edit-profile', '', { shallow: true });

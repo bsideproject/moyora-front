@@ -15,6 +15,10 @@ const GuestBookBoxWrapper = styled.div<IProps>`
   width: ${({ size }) => size.width};
   height: ${({ size }) => size.height};
   padding: 20px 16px;
+  cursor: pointer;
+  & * {
+    cursor: pointer;
+  }
   background-color: ${({ theme }) => theme.gray50};
   border: 1px solid ${({ theme }) => theme.gray100};
   border-radius: 20px;
@@ -41,7 +45,7 @@ const Textarea = styled.textarea<IProps>`
   font-size: ${({ size }) => (size.line ? '14px' : '16px')};
   font-weight: 400;
   line-height: ${({ size }) => (size.line ? '20px' : '24px')};
-  color: ${({ theme }) => theme.gray850};
+  color: ${({ theme }) => theme.gray850} !important;
   text-overflow: ellipsis;
   word-wrap: break-word;
   resize: none;

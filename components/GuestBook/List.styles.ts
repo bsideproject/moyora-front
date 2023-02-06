@@ -56,6 +56,9 @@ const GuestBookDrawer = styled(Drawer)`
   left: 0;
   width: 390px !important;
   margin: auto;
+  * {
+    cursor: auto;
+  }
   border-radius: 24px 24px 0 0;
 
   .ant-drawer-bottom {
@@ -105,6 +108,10 @@ const BottomButton = styled(Button)`
   font-size: 15px;
   font-weight: 600;
   line-height: 22px;
+  cursor: pointer;
+  * {
+    cursor: pointer;
+  }
 `;
 
 const AlertModal = styled(Modal)`

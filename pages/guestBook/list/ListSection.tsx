@@ -84,7 +84,7 @@ const ListSection: React.FC<IProps> = ({ guestBookList: list, noteId }) => {
                 key={note?.noteId}
                 onClick={onClickGuestBookBox('' + note?.noteId)}
                 info={{
-                  id: '' + note?.friendId,
+                  id: '' + noteId,
                   name: note?.username,
                   nickname: note?.nickname,
                   lock: !note?.isPublic,
@@ -135,10 +135,13 @@ const ListSection: React.FC<IProps> = ({ guestBookList: list, noteId }) => {
             >
               <>
                 <div>
-                  <Image src={stickers[selectedBox.sticker].quotationMark} alt="quotationMark" />
+                  <Image
+                    src={stickers[selectedBox?.sticker ?? '1']?.quotationMark}
+                    alt="quotationMark"
+                  />
                 </div>
                 <div>
-                  <Image src={stickers[selectedBox.sticker].sticker} alt="sticker" />
+                  <Image src={stickers[selectedBox?.sticker ?? '1']?.sticker} alt="sticker" />
                 </div>
               </>
             </GuestBookBox>

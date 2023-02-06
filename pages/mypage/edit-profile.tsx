@@ -96,9 +96,9 @@ const EditProfile: React.FC = () => {
     () =>
       [
         Boolean(childRegion?.value),
-        typeof year === typeof month,
-        typeof month === typeof day,
-        typeof year === typeof day,
+        typeof year === 'string' || typeof year === 'number',
+        typeof month === 'string' || typeof month === 'number',
+        typeof day === 'string' || typeof day === 'number',
       ].includes(false)
         ? true
         : false,
