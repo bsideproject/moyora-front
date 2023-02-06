@@ -125,52 +125,54 @@ const ourSchoolGuestBookSection = styled.div`
 `;
 
 const GuestBook = styled.div`
-  display: flex;
-  flex-direction: row;
-  height: 200px;
-  margin-top: 24px;
-  overflow: auto;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  & span.empty {
-    & a {
-      margin-top: 18px;
-    }
-    & h2 {
-      display: inline;
-      font-size: 16px;
-      font-weight: 500;
-      line-height: 24px;
-      color: ${({ theme }) => theme.primary};
-    }
-  }
-  &::-webkit-scrollbar {
-    display: none;
-  }
-  & > div:not(:last-of-type) {
-    margin-right: 8px;
-  }
-  & > span {
+  & > div {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 350px;
-    background-color: ${({ theme }) => theme.gray50};
-    border: 1px solid ${({ theme }) => theme.gray100};
-    border-radius: 20px;
-    & h5 {
-      font-size: 14px;
-      font-weight: 500;
-      line-height: 20px;
-      color: ${({ theme }) => theme.gray600};
+    flex-direction: row;
+    height: 200px;
+    margin-top: 24px;
+    overflow: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    & span.empty {
+      & a {
+        margin-top: 18px;
+      }
+      & h2 {
+        display: inline;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 24px;
+        color: ${({ theme }) => theme.primary};
+      }
     }
-    & p {
-      margin-top: 8px;
-      font-size: 14px;
-      font-weight: 500;
-      line-height: 20px;
-      color: ${({ theme }) => theme.gray500};
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    & > div:not(:last-of-type) {
+      margin-right: 8px;
+    }
+    & > span {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 350px;
+      background-color: ${({ theme }) => theme.gray50};
+      border: 1px solid ${({ theme }) => theme.gray100};
+      border-radius: 20px;
+      & h5 {
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 20px;
+        color: ${({ theme }) => theme.gray600};
+      }
+      & p {
+        margin-top: 8px;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 20px;
+        color: ${({ theme }) => theme.gray500};
+      }
     }
   }
 `;
