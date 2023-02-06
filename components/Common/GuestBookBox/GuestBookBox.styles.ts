@@ -15,6 +15,10 @@ const GuestBookBoxWrapper = styled.div<IProps>`
   width: ${({ size }) => size.width};
   height: ${({ size }) => size.height};
   padding: 20px 16px;
+  cursor: pointer;
+  & * {
+    cursor: pointer;
+  }
   background-color: ${({ theme }) => theme.gray50};
   border: 1px solid ${({ theme }) => theme.gray100};
   border-radius: 20px;
