@@ -8,7 +8,7 @@ import Link from 'next/link';
 import Crown1 from '@public/svgs/crown-1.svg';
 import Crown2 from '@public/svgs/crown-2.svg';
 import Crown3 from '@public/svgs/crown-3.svg';
-
+import ScrollContainer from 'react-indiana-drag-scroll';
 import { useMyInfo } from '@APIs/user';
 import { useSearchSchool } from '@APIs/search';
 import { useGetJob, useGetMbti, useGetOurCounts, useGetRegion } from '@APIs/statistics';
@@ -30,7 +30,6 @@ const MainPage: React.FC = () => {
   const { data: region } = useGetRegion('' + me?.schoolId);
   const { data: job } = useGetJob('' + me?.schoolId);
   const { data: guestBookList } = useGetSchoolGuestBook('' + me?.schoolId);
-  // const guestBookList = undefined;
   const schoolCount = useGetOurCounts('' + me?.schoolId);
   const ourSchoolFirstList: IOurSchoolList[] = useMemo(() => {
     if (!job?.data.length && !region?.data.length) return [];
@@ -107,38 +106,40 @@ const MainPage: React.FC = () => {
           )}
         </M.contentTitle>
         <M.GuestBook>
-          {guestBookList?.length ? (
-            guestBookList.map((guestBook) => (
-              <GuestBookBox
-                key={guestBook.schoolGuestBookId}
-                size={{ width: '200px', height: '200px', line: '3' }}
-                text={guestBook.content}
-                date={guestBook.modifiedDate}
-              >
-                <>
-                  <div>
-                    <Image
-                      src={stickers?.[guestBook?.sticker ?? '1']?.quotationMark}
-                      alt="quotationMark"
-                    />
-                  </div>
-                  <div>
-                    <Image src={stickers?.[guestBook?.sticker ?? '1']?.sticker} alt="sticker" />
-                  </div>
-                </>
-              </GuestBookBox>
-            ))
-          ) : (
-            <>
-              <span className="empty">
-                <h5>아직 작성된 방명록이 없어요</h5>
-                <p>첫번째로 학교 방명록을 작성해 보세요!</p>
-                <Link href={`/guestBook/write/mySchool`}>
-                  <h2>+ 방명록 작성하기</h2>
-                </Link>
-              </span>
-            </>
-          )}
+          <ScrollContainer>
+            {guestBookList?.length ? (
+              guestBookList.map((guestBook) => (
+                <GuestBookBox
+                  key={guestBook.schoolGuestBookId}
+                  size={{ width: '200px', height: '200px', line: '3' }}
+                  text={guestBook.content}
+                  date={guestBook.modifiedDate}
+                >
+                  <>
+                    <div>
+                      <Image
+                        src={stickers?.[guestBook?.sticker ?? '1']?.quotationMark}
+                        alt="quotationMark"
+                      />
+                    </div>
+                    <div>
+                      <Image src={stickers?.[guestBook?.sticker ?? '1']?.sticker} alt="sticker" />
+                    </div>
+                  </>
+                </GuestBookBox>
+              ))
+            ) : (
+              <>
+                <span className="empty">
+                  <h5>아직 작성된 방명록이 없어요</h5>
+                  <p>첫번째로 학교 방명록을 작성해 보세요!</p>
+                  <Link href={`/guestBook/write/mySchool`}>
+                    <h2>+ 방명록 작성하기</h2>
+                  </Link>
+                </span>
+              </>
+            )}
+          </ScrollContainer>
         </M.GuestBook>
       </M.ourSchoolGuestBookSection>
     </M.MainPageWrapper>
