@@ -28,11 +28,21 @@ const MypageIndexWrapper = styled.div`
 `;
 
 const ProfileWrap = styled.section`
+  position: relative;
   display: flex;
   align-items: center;
   padding: 22px;
   background-color: ${({ theme }) => theme.gray50};
-
+  & div.close-icon-wrap {
+    position: absolute;
+    top: 18px;
+    left: -5px;
+    z-index: 1000;
+    padding: 6px;
+    cursor: pointer;
+    background-color: #fff;
+    border-radius: 50%;
+  }
   & span.ant-upload-wrapper {
     position: relative;
     width: 76px;
@@ -188,6 +198,14 @@ const MypageInputWrapper = styled.div`
     & span {
       color: ${({ theme }) => theme.negative};
     }
+  }
+
+  & h4 {
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 400;
+    color: ${({ theme }) => theme.gray600};
+    text-align: left;
   }
 
   & > p {
