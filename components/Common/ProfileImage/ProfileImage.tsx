@@ -1,8 +1,9 @@
 import React, { memo } from 'react';
 import equal from 'fast-deep-equal';
-import P, { IProfileProps } from './ProfileImage.styles';
+import Image from 'next/image';
+
 import NoProfileImage from '@public/svgs/no-profile.svg';
-import AutoHeightImage from '../AutoHeightImage/AutoHeightImage';
+import P, { IProfileProps } from './ProfileImage.styles';
 
 const ProfileImage: React.FC<IProfileProps> = ({ ...props }) => {
   return (
@@ -10,11 +11,16 @@ const ProfileImage: React.FC<IProfileProps> = ({ ...props }) => {
       <P.ProfileWrapper size={props.size} url={props.url}>
         {props.url ? (
           <P.Profile size={props.size} url={props.url}>
-            <AutoHeightImage src={props.url} alt="noProfileImage" />
+            <Image
+              src={props.url}
+              alt="noProfileImage"
+              width={props.size === 'small' ? 44 : 60}
+              height={props.size === 'small' ? 44 : 60}
+            />
           </P.Profile>
         ) : (
           <P.Profile size={props.size}>
-            <AutoHeightImage src={NoProfileImage} alt="noProfileImage" />
+            <Image src={NoProfileImage} alt="noProfileImage" />
           </P.Profile>
         )}
       </P.ProfileWrapper>
