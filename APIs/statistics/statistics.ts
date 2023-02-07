@@ -20,8 +20,6 @@ export const useGetCounts = () => {
             schoolCount: res?.data,
           })),
         keepPreviousData: true,
-        staleTime: 1000 * 60 * 5,
-        cacheTime: 1000 * 60 * 5,
       },
       {
         queryKey: [schoolGuestBookKey],
@@ -30,15 +28,11 @@ export const useGetCounts = () => {
             schoolGuestBookKeyCount: res?.data,
           })),
         keepPreviousData: true,
-        staleTime: 1000 * 60 * 5,
-        cacheTime: 1000 * 60 * 5,
       },
       {
         queryKey: [userKey],
         queryFn: () => fetch(userKey).then((res) => ({ userCount: res.data })),
         keepPreviousData: true,
-        staleTime: 1000 * 60 * 5,
-        cacheTime: 1000 * 60 * 5,
       },
     ],
   });
@@ -54,15 +48,11 @@ export const useGetOurCounts = (schoolId: string) => {
         queryKey: [schoolGuestBookKey, schoolId],
         queryFn: () => fetchWithToken.get(schoolGuestBookKey).then((res) => res?.data),
         keepPreviousData: true,
-        staleTime: 1000 * 60 * 5,
-        cacheTime: 1000 * 60 * 5,
       },
       {
         queryKey: [schoolmateKey, schoolId],
         queryFn: () => fetchWithToken.get(schoolmateKey).then((res) => res.data),
         keepPreviousData: true,
-        staleTime: 1000 * 60 * 5,
-        cacheTime: 1000 * 60 * 5,
       },
     ],
   });
