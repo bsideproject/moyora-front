@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useToggle } from 'react-use';
 import Image from 'next/image';
 import SmallLogo from '@public/svgs/moyora-logo-small.svg';
