@@ -54,7 +54,7 @@ const ListSection: React.FC<IProps> = ({ guestBookList: list, noteId }) => {
       <L.GlobalStyle />
       <L.ListSection>
         {noteId === 'mySchool'
-          ? guestBookList.map((guestBook) => (
+          ? guestBookList?.map((guestBook) => (
               <GuestBookBox
                 size={{ width: '171px', height: '218px', line: '4' }}
                 text={guestBook.content}

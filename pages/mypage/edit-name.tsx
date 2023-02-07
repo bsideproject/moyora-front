@@ -32,9 +32,15 @@ const EditName: React.FC = () => {
       <h3>
         이름(실명)<span> *</span>
       </h3>
-      <M.MypageInput isfill placeholder="2자 이상 10자 이내" value={name} onChange={onChangeName} />
+      <M.MypageInput
+        isfill={Boolean(name)}
+        placeholder="2자 이상 10자 이내"
+        value={name}
+        onChange={onChangeName}
+      />
       <h3>닉네임(별명)</h3>
       <M.MypageInput
+        isfill={Boolean(nickname)}
         placeholder="2자 이상 10자 이내"
         value={nickname}
         onChange={onChangeNickname}

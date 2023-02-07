@@ -1,7 +1,7 @@
 import { AxiosError, AxiosResponse } from 'axios';
 import { useQueries, useQuery, UseQueryOptions } from '@tanstack/react-query';
 
-import { fetch } from '@configs/axios';
+import { fetch, fetchWithToken } from '@configs/axios';
 import { IChart } from './statistics.types';
 
 export const baseUrl = '/school';
@@ -52,14 +52,14 @@ export const useGetOurCounts = (schoolId: string) => {
     queries: [
       {
         queryKey: [schoolGuestBookKey, schoolId],
-        queryFn: () => fetch.get(schoolGuestBookKey).then((res) => res?.data),
+        queryFn: () => fetchWithToken.get(schoolGuestBookKey).then((res) => res?.data),
         keepPreviousData: true,
         staleTime: 1000 * 60 * 5,
         cacheTime: 1000 * 60 * 5,
       },
       {
         queryKey: [schoolmateKey, schoolId],
-        queryFn: () => fetch.get(schoolmateKey).then((res) => res.data),
+        queryFn: () => fetchWithToken.get(schoolmateKey).then((res) => res.data),
         keepPreviousData: true,
         staleTime: 1000 * 60 * 5,
         cacheTime: 1000 * 60 * 5,
@@ -70,27 +70,39 @@ export const useGetOurCounts = (schoolId: string) => {
 
 export const useGetMbti = (
   schoolId: string,
+  graduationYear: number,
   options?: UseQueryOptions<AxiosResponse<IChart>, AxiosError, IChart, string[]>,
 ) => {
-  const queryKey = `${baseUrl}Mbti/${schoolId}`;
-  const queryFn = () => fetch.get(`${queryKey}`).then((res) => res.data);
+  const queryKey = `${baseUrl}Mbti/statistics`;
+  const queryFn = () =>
+    fetchWithToken
+      .get(`${queryKey}?schoolId=${schoolId}&graduationYear=${graduationYear}`)
+      .then((res) => res.data);
   return useQuery([queryKey], queryFn, { ...options });
 };
 
 export const useGetRegion = (
   schoolId: string,
+  graduationYear: number,
   options?: UseQueryOptions<AxiosResponse<IChart>, AxiosError, IChart, string[]>,
 ) => {
-  const queryKey = `${baseUrl}Region/${schoolId}`;
-  const queryFn = () => fetch.get(`${queryKey}`).then((res) => res.data);
+  const queryKey = `${baseUrl}Region/statistics`;
+  const queryFn = () =>
+    fetchWithToken
+      .get(`${queryKey}?schoolId=${schoolId}&graduationYear=${graduationYear}`)
+      .then((res) => res.data);
   return useQuery([queryKey], queryFn, { ...options });
 };
 
 export const useGetJob = (
   schoolId: string,
+  graduationYear: number,
   options?: UseQueryOptions<AxiosResponse<IChart>, AxiosError, IChart, string[]>,
 ) => {
-  const queryKey = `${baseUrl}Job/${schoolId}`;
-  const queryFn = () => fetch.get(`${queryKey}`).then((res) => res.data);
+  const queryKey = `${baseUrl}Job/statistics`;
+  const queryFn = () =>
+    fetchWithToken
+      .get(`${queryKey}?schoolId=${schoolId}&graduationYear=${graduationYear}`)
+      .then((res) => res.data);
   return useQuery([queryKey], queryFn, { ...options });
 };

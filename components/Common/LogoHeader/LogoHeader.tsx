@@ -31,7 +31,7 @@ const LogoHeader: React.FC<IProps> = ({ headerIcons, backgroundPrimary, children
   const [, , removeCookie] = useCookies(['moyora']);
   const { data: me } = useMyInfo();
   const [isSelect, onToggle] = useToggle(false);
-  const [isLogout, setIsLogout] = useState(false);
+  const [isLogout, logoutToggle] = useToggle(false);
 
   const onClickLogout = async () => {
     removeCookie('moyora');
@@ -90,7 +90,7 @@ const LogoHeader: React.FC<IProps> = ({ headerIcons, backgroundPrimary, children
             <Link href="/guestBook/list/mySchool">우리 학교 방명록</Link>
             <Link href="/friends/list">동창 목록</Link>
             <span></span>
-            <p onClick={() => setIsLogout(true)}>로그아웃</p>
+            <p onClick={logoutToggle}>로그아웃</p>
             <L.LogoutModal
               title="정말 로그아웃 하시겠어요?"
               width={350}
@@ -102,7 +102,7 @@ const LogoHeader: React.FC<IProps> = ({ headerIcons, backgroundPrimary, children
               <Button block type="primary" onClick={onClickLogout}>
                 로그아웃
               </Button>
-              <Button block onClick={() => setIsLogout(false)}>
+              <Button block onClick={logoutToggle}>
                 취소
               </Button>
             </L.LogoutModal>

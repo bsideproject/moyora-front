@@ -26,9 +26,9 @@ interface IOurSchoolList {
 const MainPage: React.FC = () => {
   const { data: me } = useMyInfo();
   const { data: school } = useSearchSchool('' + me?.schoolId);
-  const { data: mbti } = useGetMbti('' + me?.schoolId);
-  const { data: region } = useGetRegion('' + me?.schoolId);
-  const { data: job } = useGetJob('' + me?.schoolId);
+  const { data: mbti } = useGetMbti('' + me?.schoolId, me?.graduationYear ?? 0);
+  const { data: region } = useGetRegion('' + me?.schoolId, me?.graduationYear ?? 0);
+  const { data: job } = useGetJob('' + me?.schoolId, me?.graduationYear ?? 0);
   const { data: guestBookList } = useGetSchoolGuestBook('' + me?.schoolId);
   const schoolCount = useGetOurCounts('' + me?.schoolId);
   const ourSchoolFirstList: IOurSchoolList[] = useMemo(() => {

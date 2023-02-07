@@ -12,7 +12,9 @@ import { useGetRegion } from '@APIs/statistics';
 const LocationStatistics: React.FC = () => {
   ChartJS.register(ArcElement);
   const { data: me } = useMyInfo();
-  const { data: region } = useGetRegion('' + me?.schoolId, { enabled: Boolean(me) });
+  const { data: region } = useGetRegion('' + me?.schoolId, me?.graduationYear ?? 0, {
+    enabled: Boolean(me),
+  });
   const [isButtonTest, toggleButtonTest] = useToggle(true);
   const chartData = {
     datasets: [
