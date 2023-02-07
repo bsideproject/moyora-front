@@ -16,6 +16,7 @@ import { useGetClassMate, useMyInfo } from '@APIs/user';
 import { useGetMyNotes, useGetNote } from '@APIs/note';
 import stickers from '@configs/stickers';
 import floatButtonWrite from '@public/svgs/float-button-write.svg';
+import ScrollContainer from 'react-indiana-drag-scroll';
 const Archive: React.FC = () => {
   const router = useRouter();
   const id = (router.query?.id ?? 'myPage') as string;
@@ -132,7 +133,7 @@ const Archive: React.FC = () => {
         ) : (
           <p>친구에게 하고 싶은 말을 쪽지에 남겨보세요 :)</p>
         )}
-        <div>
+        <ScrollContainer>
           {notes?.length ? (
             notes?.map((guestBook) => (
               <GuestBookBox
@@ -180,7 +181,7 @@ const Archive: React.FC = () => {
               )}
             </>
           )}
-        </div>
+        </ScrollContainer>
       </A.Note>
     </A.ArchiveWrapper>
   );

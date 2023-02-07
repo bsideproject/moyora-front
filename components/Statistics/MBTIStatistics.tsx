@@ -15,7 +15,9 @@ const MBTIStatistics: React.FC = () => {
   const router = useRouter();
   ChartJS.register(BarElement, CategoryScale, LinearScale);
   const { data: me } = useMyInfo();
-  const { data: mbti } = useGetMbti('' + me?.schoolId, { enabled: Boolean(me) });
+  const { data: mbti } = useGetMbti('' + me?.schoolId, me?.graduationYear ?? 0, {
+    enabled: Boolean(me),
+  });
   const [isButtonTest, toggleButtonTest] = useToggle(true);
   const barChartData = useMemo(
     () => ({

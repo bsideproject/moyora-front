@@ -14,6 +14,7 @@ interface IProps {
 const SelectMBTISection: React.FC<IProps> = ({ mbti, onChangeMBTI }) => {
   return (
     <M.MypageSelect
+      isfill={Boolean(mbti)}
       placeholder="MBTI 유형"
       options={MBTIOptions}
       value={mbti}

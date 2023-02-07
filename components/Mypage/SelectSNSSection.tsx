@@ -30,32 +30,32 @@ const SelectSNSSection: React.FC<IProps> = ({
   onClickAddUrls,
 }) => {
   const selectedSNS = useMemo(
-    () => snsOptions.filter((v) => !urls.find((url) => v.value && url.value === v.value)),
+    () => snsOptions.filter((sns) => !urls.find(({ value }) => sns.value && value === sns.value)),
     [urls],
   );
   return (
     <>
-      {urls?.map((url) => (
-        <div key={url.value} className="select-group">
+      {urls?.map(({ label, value, url }) => (
+        <div key={value} className="select-group">
           <M.MypageSelect
-            isfill={Boolean(url.value)}
+            isfill={Boolean(value)}
             defaultValue="SNS 선택"
             className="half"
             placeholder="SNS 선택"
             options={selectedSNS}
-            value={{ label: url.label, value: url.value }}
-            onSelect={onSelectUrls(url.label)}
+            value={{ label: label, value: value }}
+            onSelect={onSelectUrls(label)}
             suffixIcon={<Image src={SelectAllow} alt="select-allow" />}
           />
           <M.MypageInput
             allowClear
-            isfill={Boolean(url.url)}
+            isfill={Boolean(url)}
             placeholder="전체 URL 주소를 입력해주세요"
-            value={url.url}
-            disabled={!url.value}
+            value={url}
+            disabled={!value}
             onBlur={onBlurUrl}
             onFocus={onFocusUrl}
-            onChange={onChangeUrl(url.label)}
+            onChange={onChangeUrl(label)}
           />
         </div>
       ))}
