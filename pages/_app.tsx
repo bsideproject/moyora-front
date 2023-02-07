@@ -64,12 +64,12 @@ const antdTheme = {
 };
 
 const App = ({ Component, pageProps }: AppProps) => {
-  const [width, setWidth] = useState<number | false>(100);
+  const [widthRatio, setWidthRatio] = useState<number | false>(100);
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      setWidth(screen.width / 390);
+      setWidthRatio(screen.width / 390);
     }
-  }, [width]);
+  }, [widthRatio]);
 
   return (
     <QueryClientProvider client={client}>
@@ -81,12 +81,12 @@ const App = ({ Component, pageProps }: AppProps) => {
         <ConfigProvider theme={antdTheme}>
           <ThemeProvider theme={theme}>
             <Head>
-              {width <= 1 && (
+              {widthRatio <= 1 && (
                 <meta
                   name="viewport"
-                  content={`user-scalable=no, width=device-width, viewport-fit=auto, initial-scale=${
-                    width || 1
-                  }, minimum-scale=${width || 1}, maximum-scale=${width || 1}`}
+                  content={`user-scalable=no, widthRatio=device-widthRatio, viewport-fit=auto, initial-scale=${
+                    widthRatio || 1
+                  }, minimum-scale=${widthRatio || 1}, maximum-scale=${widthRatio || 1}`}
                 />
               )}
               <title>모여라</title>
