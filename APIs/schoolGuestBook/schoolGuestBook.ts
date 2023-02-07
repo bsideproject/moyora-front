@@ -2,7 +2,7 @@ import { message } from 'antd';
 import { AxiosError, AxiosResponse } from 'axios';
 import { useMutation, UseMutationOptions, useQuery, UseQueryOptions } from '@tanstack/react-query';
 
-import { fetch, fetchWithToken } from '@configs/axios';
+import { fetchWithToken } from '@configs/axios';
 import { IEditSchoolGuestBook, ISchoolGuestBook, ISchoolGuestBooks } from './schoolGuestBook.types';
 
 export const baseUrl = '/schoolGuestBook';
@@ -17,7 +17,7 @@ export const useGetSchoolGuestBook = (
   >,
 ) => {
   const queryKey = `${baseUrl}`;
-  const queryFn = () => fetch.get(`${queryKey}/${schoolId}`).then((res) => res.data);
+  const queryFn = () => fetchWithToken.get(`${queryKey}/${schoolId}`).then((res) => res.data);
   return useQuery([queryKey], queryFn, { ...options });
 };
 
@@ -30,7 +30,7 @@ export const useGetMySchoolGuestBooks = (
   >,
 ) => {
   const queryKey = `${baseUrl}/me`;
-  const queryFn = () => fetch.get(`${queryKey}`).then((res) => res.data);
+  const queryFn = () => fetchWithToken.get(`${queryKey}`).then((res) => res.data);
   return useQuery([queryKey], queryFn, { ...options });
 };
 

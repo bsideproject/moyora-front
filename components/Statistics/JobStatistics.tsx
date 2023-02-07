@@ -12,7 +12,9 @@ import { useMyInfo } from '@APIs/user';
 const JobStatistics: React.FC = () => {
   ChartJS.register(ArcElement);
   const { data: me } = useMyInfo();
-  const { data: job } = useGetJob('' + me?.schoolId, { enabled: Boolean(me) });
+  const { data: job } = useGetJob('' + me?.schoolId, me?.graduationYear ?? 0, {
+    enabled: Boolean(me),
+  });
   const [isButtonTest, toggleButtonTest] = useToggle(true);
   const chartData = {
     datasets: [

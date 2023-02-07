@@ -30,6 +30,7 @@ const BirthDaySection: React.FC<IProps> = ({
   return (
     <div className="select-group">
       <M.MypageSelect
+        isfill={Boolean(year)}
         className="half"
         placeholder="년"
         options={yearOptions}
@@ -38,6 +39,7 @@ const BirthDaySection: React.FC<IProps> = ({
         suffixIcon={<Image src={SelectAllow} alt="select-allow" />}
       />
       <M.MypageSelect
+        isfill={Boolean(month)}
         className="half"
         placeholder="월"
         options={monthOptions}
@@ -46,6 +48,7 @@ const BirthDaySection: React.FC<IProps> = ({
         suffixIcon={<Image src={SelectAllow} alt="select-allow" />}
       />
       <M.MypageSelect
+        isfill={Boolean(day)}
         className="half"
         placeholder="일"
         options={dayOptions}
