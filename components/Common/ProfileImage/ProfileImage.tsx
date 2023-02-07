@@ -20,7 +20,12 @@ const ProfileImage: React.FC<IProfileProps> = ({ ...props }) => {
           </P.Profile>
         ) : (
           <P.Profile size={props.size}>
-            <Image src={NoProfileImage} alt="noProfileImage" />
+            <Image
+              src={NoProfileImage}
+              alt="noProfileImage"
+              width={props.size === 'small' ? 22 : 32}
+              height={props.size === 'small' ? 22 : 32}
+            />
           </P.Profile>
         )}
       </P.ProfileWrapper>

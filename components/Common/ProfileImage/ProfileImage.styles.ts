@@ -29,7 +29,7 @@ const Profile = styled.div<IProfileProps>`
   height: ${({ size, url }) => (url ? sizes[size].divSize : sizes[size].imgSize)};
   & img {
     border-radius: ${({ url }) => (url ? '50%' : 0)};
-    object-fit: cover;
+    object-fit: ${({ url }) => (url ? 'cover' : 'fill')};
   }
 `;
 
