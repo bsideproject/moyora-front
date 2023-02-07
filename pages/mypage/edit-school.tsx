@@ -74,6 +74,7 @@ const EditSchool: React.FC = () => {
         defaultValue={graduationYear}
         suffixIcon={<Image src={SelectAllow} alt="select-allow" />}
       />
+      <h4>태어난 년도에 +13을 하면 초등학교 졸업연도 입니다.</h4>
       <CommonButton type="primary" onClick={onClickEditSchool}>
         수정 완료
       </CommonButton>
