@@ -26,22 +26,27 @@ const MBTIStatistics: React.FC = () => {
         {
           data: [mbti?.chart?.[0] ?? 0],
           backgroundColor: '#FF6D3A',
+          borderWidth: 1,
         },
         {
           data: [mbti?.chart?.[1] ?? 0],
           backgroundColor: '#4181F0',
+          borderWidth: 1,
         },
         {
           data: [mbti?.chart?.[2] ?? 0],
           backgroundColor: '#F4B95C',
+          borderWidth: 1,
         },
         {
           data: [mbti?.chart?.[3] ?? 0],
           backgroundColor: '#71BA9D',
+          borderWidth: 1,
         },
         {
           data: [mbti?.chart?.[4] ?? 0],
           backgroundColor: '#B8C6FB',
+          borderWidth: 1,
         },
       ],
     }),
