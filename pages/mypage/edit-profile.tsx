@@ -92,13 +92,13 @@ const EditProfile: React.FC = () => {
       prev.map((url) => (url.label === label ? { ...url, url: e.target.value } : url)),
     );
   };
+  console.log(childRegion);
   const isDisabled = useMemo(
     () =>
       [
         Boolean(childRegion?.value),
-        typeof year === 'string' || typeof year === 'number',
-        typeof month === 'string' || typeof month === 'number',
-        typeof day === 'string' || typeof day === 'number',
+        (Boolean(year) && Boolean(month) && Boolean(day)) ||
+          (!Boolean(year) && !Boolean(month) && !Boolean(day)),
       ].includes(false)
         ? true
         : false,
