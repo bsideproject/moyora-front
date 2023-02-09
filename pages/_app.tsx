@@ -84,7 +84,7 @@ const App = ({ Component, pageProps }: AppProps) => {
               {widthRatio <= 1 && (
                 <meta
                   name="viewport"
-                  content={`user-scalable=no, widthRatio=device-widthRatio, viewport-fit=auto, initial-scale=${
+                  content={`user-scalable=no, width=device-width, viewport-fit=auto, initial-scale=${
                     widthRatio || 1
                   }, minimum-scale=${widthRatio || 1}, maximum-scale=${widthRatio || 1}`}
                 />
